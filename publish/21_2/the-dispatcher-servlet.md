@@ -8,7 +8,7 @@
 
 下面这张图展示了Spring Web MVC的`DispatcherServlet`处理请求的工作流。熟悉设计模式的朋友会发现，`DispatcherServlet`应用的其实就是一个“前端控制器”的设计模式（其实很多其他优秀的web框架也都使用了这个设计模式）。
 
-![图21.1 Spring Web MVC处理请求的（高层抽象）工作流](/figures/figure-21-1-the-request-processing-workflow-in-spring-web-mvc.png)
+![图21.1 Spring Web MVC处理请求的（高层抽象）工作流](./figures/figure-21-1-the-request-processing-workflow-in-spring-web-mvc.png)
 
 The DispatcherServlet is an actual Servlet (it inherits from the HttpServlet base class), and as such is declared in the web.xml of your web application. You need to map requests that you want the DispatcherServlet to handle, by using a URL mapping in the same web.xml file. This is standard Java EE Servlet configuration; the following example shows such a DispatcherServlet declaration and mapping:
 
@@ -49,7 +49,7 @@ The above is only the first step in setting up Spring Web MVC. You now need to c
 
 As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
 
-![图21.2 Spring Web MVC中常见的context层级结构](/figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
+![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
 Upon initialization of a DispatcherServlet, Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF directory of your web application and creates the beans defined there, overriding the definitions of any beans defined with the same name in the global scope.
 
@@ -73,7 +73,7 @@ With the above Servlet configuration in place, you will need to have a file call
 
 It is also possible to have just one root context for single DispatcherServlet scenarios.
 
-![图21.3 Spring Web MVC中的根context](/figures/figure-21-3-single-root-context-in-spring-web-mvc.png)
+![图21.3 Spring Web MVC中的根context](./figures/figure-21-3-single-root-context-in-spring-web-mvc.png)
 
 This can be configured by setting an empty contextConfigLocation servlet init parameter, as shown below:
 
