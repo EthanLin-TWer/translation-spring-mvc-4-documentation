@@ -1,0 +1,1 @@
+# WebApplicationContext中特别的Bean类型
