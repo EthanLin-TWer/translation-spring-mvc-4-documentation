@@ -1,0 +1,7 @@
+# 允许其他MVC实现
+
+Non-Spring MVC implementations are preferable for some projects. Many teams expect to leverage their existing investment in skills and tools, for example with JSF.
+
+If you do not want to use Spring’s Web MVC, but intend to leverage other solutions that Spring offers, you can integrate the web MVC framework of your choice with Spring easily. Simply start up a Spring root application context through its ContextLoaderListener, and access it through its ServletContext attribute (or Spring’s respective helper method) from within any action object. No "plug-ins" are involved, so no dedicated integration is necessary. From the web layer’s point of view, you simply use Spring as a library, with the root application context instance as the entry point.
+
+Your registered beans and Spring’s services can be at your fingertips even without Spring’s Web MVC. Spring does not compete with other web frameworks in this scenario. It simply addresses the many areas that the pure web MVC frameworks do not, from bean configuration to data access and transaction handling. So you can enrich your application with a Spring middle tier and/or data access tier, even if you just want to use, for example, the transaction abstraction with JDBC or Hibernate.
