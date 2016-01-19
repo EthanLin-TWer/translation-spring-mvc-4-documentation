@@ -26,7 +26,6 @@
         <servlet-name>example</servlet-name>
         <url-pattern>/example/*</url-pattern>
     </servlet-mapping>
-
 </web-app>
 ```
 
@@ -49,15 +48,23 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 > WebApplicationInitializer is an interface provided by Spring MVC that ensures your code-based configuration is detected and automatically used to initialize any Servlet 3 container. An abstract base class implementation of this interface named AbstractDispatcherServletInitializer makes it even easier to register the DispatcherServlet by simply specifying its servlet mapping. See Code-based Servlet container initialization for more details.
 
-The above is only the first step in setting up Spring Web MVC. You now need to configure the various beans used by the Spring Web MVC framework (over and above the DispatcherServlet itself).
 
-As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
+
+> The above is only the first step in setting up Spring Web MVC. You now need to configure the various beans used by the Spring Web MVC framework (over and above the DispatcherServlet itself).
+
+
+
+> As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
 
 ![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
-Upon initialization of a DispatcherServlet, Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF directory of your web application and creates the beans defined there, overriding the definitions of any beans defined with the same name in the global scope.
+> Upon initialization of a DispatcherServlet, Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF directory of your web application and creates the beans defined there, overriding the definitions of any beans defined with the same name in the global scope.
 
-Consider the following DispatcherServlet Servlet configuration (in the web.xml file):
+
+
+> Consider the following DispatcherServlet Servlet configuration (in the web.xml file):
+
+
 
 ```
 <web-app>
@@ -73,13 +80,18 @@ Consider the following DispatcherServlet Servlet configuration (in the web.xml f
 </web-app>
 ```
 
-With the above Servlet configuration in place, you will need to have a file called /WEB-INF/golfing-servlet.xml in your application; this file will contain all of your Spring Web MVC-specific components (beans). You can change the exact location of this configuration file through a Servlet initialization parameter (see below for details).
+> With the above Servlet configuration in place, you will need to have a file called /WEB-INF/golfing-servlet.xml in your application; this file will contain all of your Spring Web MVC-specific components (beans). You can change the exact location of this configuration file through a Servlet initialization parameter (see below for details).
 
-It is also possible to have just one root context for single DispatcherServlet scenarios.
+
+
+> It is also possible to have just one root context for single DispatcherServlet scenarios.
+
+
 
 ![图21.3 Spring Web MVC中的根context](./figures/figure-21-3-single-root-context-in-spring-web-mvc.png)
 
-This can be configured by setting an empty contextConfigLocation servlet init parameter, as shown below:
+> This can be configured by setting an empty contextConfigLocation servlet init parameter, as shown below:
+
 
 ```
 <web-app>
@@ -106,5 +118,7 @@ This can be configured by setting an empty contextConfigLocation servlet init pa
 </web-app>
 ```
 
-The WebApplicationContext is an extension of the plain ApplicationContext that has some extra features necessary for web applications. It differs from a normal ApplicationContext in that it is capable of resolving themes (see Section 21.9, “Using themes”), and that it knows which Servlet it is associated with (by having a link to the ServletContext). The WebApplicationContext is bound in the ServletContext, and by using static methods on the RequestContextUtils class you can always look up the WebApplicationContext if you need access to it.
+> The WebApplicationContext is an extension of the plain ApplicationContext that has some extra features necessary for web applications. It differs from a normal ApplicationContext in that it is capable of resolving themes (see Section 21.9, “Using themes”), and that it knows which Servlet it is associated with (by having a link to the ServletContext). The WebApplicationContext is bound in the ServletContext, and by using static methods on the RequestContextUtils class you can always look up the WebApplicationContext if you need access to it.
+
+
 
