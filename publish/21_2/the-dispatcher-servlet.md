@@ -48,13 +48,15 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 > WebApplicationInitializer is an interface provided by Spring MVC that ensures your code-based configuration is detected and automatically used to initialize any Servlet 3 container. An abstract base class implementation of this interface named AbstractDispatcherServletInitializer makes it even easier to register the DispatcherServlet by simply specifying its servlet mapping. See Code-based Servlet container initialization for more details.
 
-
+`WebApplicationInitializer`是Spring MVC提供的接口，它会查找你通过编程方式进行配置的代码，并应用它们来初始化Servlet 3版本以上的web容器。它有一个抽象的实现`AbstractDispatcherServletInitializer`，它简化了`DispatcherServlet`的注册工作，你只需要指定servlet的映射（mapping）即可。如果想要了解更多的细节，可以参考其他基于代码配置的servlet容器。
 
 > The above is only the first step in setting up Spring Web MVC. You now need to configure the various beans used by the Spring Web MVC framework (over and above the DispatcherServlet itself).
 
-
+上面只是配置Spring Web MVC的第一步，你还需要配置其他的一些bean，它们也会被Spring Web MVC框架使用到（除了`DispatcherServlet`以外的其他bean）。
 
 > As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
+
+6.15节“Additional Capabilities of the ApplicationContext(ApplicationContext的其他作用)”中我们聊到，`ApplicationContext`实例是可以有范围（scope）的。在Web MVC框架中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根`WebApplicationContext`对象中已经定义的所有bean。
 
 ![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
