@@ -19,7 +19,7 @@ Spring的`DispatcherServlet`使用了特殊的bean来处理请求、渲染视图
 | bean的类型 | 作用 | 
 | :-------- | :---------- |
 | [`HandlerMapping`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-handlermapping)| 根据某些规则将外部请求映射到具体的处理器（handler）以及一系列前处理器和后处理器（hanlder interceptors）上。具体的规则视`HandlerMapping`类的实现不同而有所不同。最常用的handler实现支持控制器（controller）上基于注解的配置。当然，也存在其他的handler实现。 |
-| `HandlerAdapter` | 辅助`DispatcherServlet`调用到负责处理某个具体请求的处理器，而无需关心具体去调用哪一个处理器。比如说，要调用基于注解配置的控制器将需要事先解析许多的注解。因此，`HandlerAdapter`的主要任务，就是将`DispatcherServlet`从这些具体的细节中解放出来，交给它来处理。 |
+| `HandlerAdapter` | 辅助`DispatcherServlet`调用到负责处理某个具体请求的处理器，而无需关心具体去调用哪一个处理器。比如说，要调用基于注解配置的控制器将需要事先解析许多的注解。因此，`HandlerAdapter`的主要任务就是将`DispatcherServlet`从这些具体的细节中解放出来，交给它来处理。 |
 | [`HandlerExceptionResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-exceptionhandlers)| 将捕获的异常映射到不同的页面上去以支持更加复杂的异常处理代码。 |
 | [`ViewResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-viewresolver)| 将有命名规则的String类型的视图名称解析到一个对应的视图上。 |
 | [`LocaleResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-localeresolver) & [`LocaleContextResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-timezone)| 解析客户端所使用的地区（locale）甚至时区信息，为定制了国际化的视图提供支持。 |
