@@ -56,17 +56,17 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 > As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
 
-6.15节“Additional Capabilities of the ApplicationContext(ApplicationContext的其他作用)”中我们聊到，`ApplicationContext`实例是可以有范围（scope）的。在Web MVC框架中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根`WebApplicationContext`对象中已经定义的所有bean。
+6.15节“Additional Capabilities of the ApplicationContext(ApplicationContext的其他作用)”中我们聊到，`ApplicationContext`实例是可以有范围（scope）的。在Web MVC框架中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根`WebApplicationContext`对象中已经定义的所有bean。这些继承的bean可以在每个servlet的特定scope内被重载，在每个Servlet实例中你也可以定义其scope内新的bean。（这句翻译得渣渣我知道……）
 
 ![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
 > Upon initialization of a DispatcherServlet, Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF directory of your web application and creates the beans defined there, overriding the definitions of any beans defined with the same name in the global scope.
 
-
+在`DispatcherServlet`的初始化过程中，框架会在你web应用的WEB-INF目录下查找一个名为[servlet-name]-servlet.xml的配置文件，创建其中所定义的bean。如果在全局作用域(global scope)中存在相同名字的bean，则它们将被新的bean定义覆盖。
 
 > Consider the following DispatcherServlet Servlet configuration (in the web.xml file):
 
-
+请看下面这个`DispatcherServlet`的配置（定义于web.xml文件中）：
 
 ```
 <web-app>
@@ -84,16 +84,17 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 > With the above Servlet configuration in place, you will need to have a file called /WEB-INF/golfing-servlet.xml in your application; this file will contain all of your Spring Web MVC-specific components (beans). You can change the exact location of this configuration file through a Servlet initialization parameter (see below for details).
 
-
+假设我们有一个如上定义的配置文件，那么我们还需要在应用中的`/WEB-INF/`路径下配置一个`golfing-servlet.xml`文件，该文件必须包含所有Spring Web MVC相关的组件的定义（比如bean等）。你也可以改变这个配置文件所在的目录，这需要在一个servlet初始化参数中指定（见下面的例子）：
 
 > It is also possible to have just one root context for single DispatcherServlet scenarios.
 
-
+当你的应用中只需要一个`DispatcherServlet`时，只配置一个根context对象也是可行的。
 
 ![图21.3 Spring Web MVC中的根context](./figures/figure-21-3-single-root-context-in-spring-web-mvc.png)
 
 > This can be configured by setting an empty contextConfigLocation servlet init parameter, as shown below:
 
+若要配置一个唯一的根context对象，可以通过在servlet的初始化参数中配置一个空的contextConfigLocation来做到，如下所示：
 
 ```
 <web-app>
@@ -122,5 +123,5 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 > The WebApplicationContext is an extension of the plain ApplicationContext that has some extra features necessary for web applications. It differs from a normal ApplicationContext in that it is capable of resolving themes (see Section 21.9, “Using themes”), and that it knows which Servlet it is associated with (by having a link to the ServletContext). The WebApplicationContext is bound in the ServletContext, and by using static methods on the RequestContextUtils class you can always look up the WebApplicationContext if you need access to it.
 
-
+`WebApplicationContext`是一个简单的`ApplicationContext`的扩展，包含了一些web应用经常需要用到的特性。它与普通的`ApplicationContext`不同的地方在于，它支持主题（theme）的解析（见21.9节“主题（theme）的使用”），并且它与持有它的servlet关联在一起（通过持有一个`ServletContext`的引用来实现）。`WebApplicationContext`与`ServletContext`是绑定的，如果需要的话，你可以通过`RequestContextUtils`工具类中的静态方法来拿到这个web应用的上下文`WebApplicationContext`。
 
