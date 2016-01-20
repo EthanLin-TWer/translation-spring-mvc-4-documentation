@@ -6,7 +6,7 @@
 
 > All special beans have some reasonable defaults of their own. Sooner or later though you’ll need to customize one or more of the properties these beans provide. For example it’s quite common to configure an `InternalResourceViewResolver` settings its `prefix` property to the parent location of view files.
 
-所有特定的bean都有一些合乎情理的默认行为。而或多或少你都可能需要对它们提供的一些默认的属性进行配置，比如说一个很常用的定制是，通过配置`InternalResourceViewResolver`类中的`prefix`属性，使其指向视图文件所在的目录下。
+所有特定的bean都有一些基本的默认行为。而或多或少你都可能需要对它们提供的一些默认属性进行配置，比如说一个很常用的定制是，通过配置`InternalResourceViewResolver`类中的`prefix`属性，使其指向视图文件所在的目录。
 
 > Regardless of the details, the important concept to understand here is that once you configure a special bean such as an InternalResourceViewResolver in your WebApplicationContext, you effectively override the list of default implementations that would have been used otherwise for that special bean type. For example if you configure an InternalResourceViewResolver, the default list of ViewResolver implementations is ignored.
 
