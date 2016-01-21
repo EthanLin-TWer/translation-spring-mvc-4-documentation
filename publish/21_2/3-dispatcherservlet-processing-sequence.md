@@ -37,6 +37,7 @@ Spring的`DispatcherServlet`同时也支持返回Servlet API规范中所定义�
 > | `namespace` | Namespace of the `WebApplicationContext`. Defaults to `[servlet-name]-servlet`. |
 
 | 可选参数 | 解释 |
+| :-- | :-- |
 | `contextClass` | 任意实现了`WebApplicationContext`的类。这个类会初始化该servlet所需要用到的上下文对象，默认情况下，框架会使用一个`XmlWebApplicationContext`对象 | 
 | `contextConfigLocation` | 一个指定了context路径的字符串，会被传入给`contextClass`所指定的context实例对象进行解析。该字符串内又可以包含多个字符串，字符串之间以逗号分隔，以此来支持多上下文对象的配置。在存在多个context的情况下，重复定义的bean将以最后被加载的bean定义为准 |
 | `namespace` | `WebApplicationContext`的命名空间。默认是`[servlet-name]-servlet` |  
