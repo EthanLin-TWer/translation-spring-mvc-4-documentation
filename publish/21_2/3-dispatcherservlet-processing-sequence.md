@@ -30,4 +30,10 @@ Spring的`DispatcherServlet`同时也支持返回Servlet API规范中所定义�
 
 你可以在servlet的定义文件`web.xml`文件中添加一些servlet的初始化参数（比如`init-param`等）来定制不同的`DispatcherServlet`实例。可选的参数请见下表：
 
+> | Parameter | Explanation |
+> | :-- | :-- |
+> | `contextClass` | Class that implements `WebApplicationContext`, which instantiates the context used by this Servlet. By default, the `XmlWebApplicationContext` is used. |
+> | `contextConfigLocation` | String that is passed to the context instance (specified by `contextClass`) to indicate where context(s) can be found. The string consists potentially of multiple strings (using a comma as a delimiter) to support multiple contexts. In case of multiple context locations with beans that are defined twice, the latest location takes precedence. |
+> | `namespace` | Namespace of the `WebApplicationContext`. Defaults to `[servlet-name]-servlet`. |
+
 
