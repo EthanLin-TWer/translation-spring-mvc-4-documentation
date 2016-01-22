@@ -10,7 +10,7 @@
    * [DispatcherServlet的处理流程](publish/21_2/3-dispatcherservlet-processing-sequence.md)
 * [控制器的实现](publish/21_3/implementing-controllers.md)
    * [使用@Controller注解定义一个控制器](publish/21_3/1-defining-a-controller-with-@controller.md)
-   * [](publish/21_3/2-mapping-requests-with-@requestmapping.md)
+   * [使用@RequestMapping注解映射请求路径](publish/21_3/2-mapping-requests-with-@requestmapping.md)
    * [](publish/21_3/3-defining-@requestmapping-handler-methods.md)
    * [](publish/21_3/4-asynchronous-request-processing.md)
    * [](publish/21_3/5-testing-controllers.md)
