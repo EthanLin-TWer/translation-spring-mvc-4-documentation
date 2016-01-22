@@ -54,41 +54,78 @@ public class AppointmentsController {
 
 `getForDay()`方法则展示了`@RequestMapping`注解的另一个作用：URI模板。（这个内容请[见下节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates)）
 
+> [Original] A `@RequestMapping` on the class level is not required. Without it, all paths are simply absolute, and not relative. The following example from the PetClinic sample application shows a multi-action controller using `@RequestMapping`:
+
+类级别的`@RequestMapping`注解并不是必须的。没有指定它的话则所有的路径都是绝对路径，而非相对路径。以下的代码示例来自PetClinic，它展示了一个具备多个处理方法的控制器：
+
+```
+@Controller
+public class ClinicController {
+
+    private final Clinic clinic;
+
+    @Autowired
+    public ClinicController(Clinic clinic) {
+        this.clinic = clinic;
+    }
+
+    @RequestMapping("/")
+    public void welcomeHandler() {
+    }
+
+    @RequestMapping("/vets")
+    public ModelMap vetsHandler() {
+        return new ModelMap(this.clinic.getVets());
+    }
+
+}
+```
+
+> [Original] The above example does not specify GET vs. PUT, POST, and so forth, because `@RequestMapping` maps all HTTP methods by default. Use `@RequestMapping(method=GET)` to narrow the mapping.
+
+以上代码并不区分请求是GET方法还是PUT/POST或其他方法，因此`@RequestMapping`注解默认是映射所有的HTTP请求方法的。如果想要指定相应的请求方法类型，请使用`@RequestMapping(method=GET)`来缩小范围。
+
+> [Original] ## @Controller and AOP Proxying
+
+## @Controller和面向切面（AOP）代理
+
+> [Original] In some cases a controller may need to be decorated with an AOP proxy at runtime. One example is if you choose to have `@Transactional` annotations directly on the controller. When this is the case, for controllers specifically, we recommend using class-based proxying. This is typically the default choice with controllers. However if a controller must implement an interface that is not a Spring Context callback (e.g. `InitializingBean`, `*Aware`, etc), you may need to explicitly configure class-based proxying. For example with `<tx:annotation-driven/>`, change to `<tx:annotation-driven proxy-target-class="true"/>`.
+
+在某些情形下，一个控制器可能需要在运行时配置AOP代理来做一些工作。一个很好的例子就是当你直接使用`@Transactional`注解来标注一个控制器的时候。如果——更多的时候是指控制器——有这样的需要，我们推荐使用类级别的代理方式。这是代理控制器的默认做法，但如果控制器同时必须实现另一些不支持Spring Context回调（比如`InitializingBean`, `*Aware`等）的接口，可能就需要你手动地去配置类级别的代理了。比如，配置文件可能需要由`<tx:annotation-driven/>`改为`<tx:annotation-driven proxy-target-class="true"/>`。
+
+> [Original] ## New Support Classes for @RequestMapping methods in Spring MVC 3.1
+
+## Spring MVC 3.1中新增支持@RequestMapping的一些类
+
+> [Original] Spring 3.1 introduced a new set of support classes for `@RequestMapping` methods called `RequestMappingHandlerMapping` and `RequestMappingHandlerAdapter` respectively. They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward. The new support classes are enabled by default by the MVC namespace and the MVC Java config but must be configured explicitly if using neither. This section describes a few important differences between the old and the new support classes.
+
+Spring 3.1中新增了一组支持`@RequestMapping`注解的类，分别是`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`。我们推荐你使用它们，有些Spring MVC 3.1之后的版本才新增的特性，这几个注解甚至是必须的。不管是通过MVC的命名空间还是通过MVC Java编程的方式来配置，这组新增的类及其功能默认是开启的，但若你哪种方式都不想用，则必须通过手动去配置。本小节将简要描述新支持的类与旧的哪些有什么主要的不同。
+
+> [Original] Prior to Spring 3.1, type and method-level request mappings were examined in two separate stages — a controller was selected first by the `DefaultAnnotationHandlerMapping` and the actual method to invoke was narrowed down second by the `AnnotationMethodHandlerAdapter`.
+
+在Spring的3.1版本之前，类级别和方法级别的请求映射是分别在两个阶段中完成的——首先`DefaultAnnotationHanlderMapping`会先选中一个控制器，然后再通过`AnnotationMethodHandlerAdapter`把请求定位到具体要调用的那个方法上。
+
+> [Original] With the new support classes in Spring 3.1, the `RequestMappingHandlerMapping` is the only place where a decision is made about which method should process the request. Think of controller methods as a collection of unique endpoints with mappings for each method derived from type and method-level `@RequestMapping` information.
+
+现在有了Spring 3.1后引入的这组新类，`RequestMappingHandlerMapping`成为了这两个决策实际发生的唯一一个地方。你可以把控制器中的一系列处理方法当成是一系列独立的服务节点，每个从类级别和方法级别的`@RequestMapping`注解中获取到足够请求路径映射信息。
+
+> [Original] This enables some new possibilities. For once a `HandlerInterceptor` or a `HandlerExceptionResolver` can now expect the Object-based handler to be a `HandlerMethod`, which allows them to examine the exact method, its parameters and associated annotations. The processing for a URL no longer needs to be split across different controllers.
+
+这种新的处理方式带来了新的可能性。之前的`HandlerInterceptor`或`HandlerExceptionResolver`现在可以确定拿到的这个处理器肯定是一个`HandlerMethod`类型，因此它能够精确地了解这个方法的所有信息，包括它的参数、应用于其上的注解等。这样，内部对于一个URL的处理流程再也不需要分隔到不同的控制器里面去执行了。
+
+> [Original] There are also several things no longer possible:
+> [Original] * Select a controller first with a SimpleUrlHandlerMapping or BeanNameUrlHandlerMapping and then narrow the method based on @RequestMapping annotations.
+> [Original] * @RequestMapping methods that don’t have an explicit path mapping URL path but otherwise match equally, e.g. by HTTP method. In the new support classes @RequestMapping methods have to be mapped uniquely.
+> [Original] * Rely on method names as a fall-back mechanism to disambiguate between two Have a single default method (without an explicit path mapping) with which requests are processed if no other controller method matches more concretely. In the new support classes if a matching method is not found a 404 error is raised.
+
+
+
 > [Original] 
 
+> [Original] 
 
 > [Original] 
 
-
 > [Original] 
 
-
 > [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
-
-> [Original] 
-
