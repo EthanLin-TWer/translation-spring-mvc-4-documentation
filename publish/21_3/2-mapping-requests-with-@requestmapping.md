@@ -114,11 +114,74 @@ Spring 3.1中新增了一组支持`@RequestMapping`注解的类，分别是`Requ
 这种新的处理方式带来了新的可能性。之前的`HandlerInterceptor`或`HandlerExceptionResolver`现在可以确定拿到的这个处理器肯定是一个`HandlerMethod`类型，因此它能够精确地了解这个方法的所有信息，包括它的参数、应用于其上的注解等。这样，内部对于一个URL的处理流程再也不需要分隔到不同的控制器里面去执行了。
 
 > [Original] There are also several things no longer possible:
-> [Original] * Select a controller first with a SimpleUrlHandlerMapping or BeanNameUrlHandlerMapping and then narrow the method based on @RequestMapping annotations.
-> [Original] * @RequestMapping methods that don’t have an explicit path mapping URL path but otherwise match equally, e.g. by HTTP method. In the new support classes @RequestMapping methods have to be mapped uniquely.
-> [Original] * Rely on method names as a fall-back mechanism to disambiguate between two Have a single default method (without an explicit path mapping) with which requests are processed if no other controller method matches more concretely. In the new support classes if a matching method is not found a 404 error is raised.
+> [Original] * Select a controller first with a `SimpleUrlHandlerMapping` or `BeanNameUrlHandlerMapping` and then narrow the method based on `@RequestMapping` annotations.
+> [Original] * Rely on method names as a fall-back mechanism to disambiguate between two `@RequestMapping` methods that don’t have an explicit path mapping URL path but otherwise match equally, e.g. by HTTP method. In the new support classes `@RequestMapping` methods have to be mapped uniquely.
+> [Original] * Have a single default method (without an explicit path mapping) with which requests are processed if no other controller method matches more concretely. In the new support classes if a matching method is not found a 404 error is raised.
 
+同时，也有其他的一些变化，比如有些事情就没法这么玩儿了：
+* 先通过`SimpleUrlHandlerMapping`或`BeanNameUrlHandlerMapping`来拿到负责处理请求的控制器，然后通过`@RequestMapping`注解配置的信息来定位到具体的处理方法；
+* 依靠方法名称来作为选择处理方法的标准。比如说，两个注解了`@RequestMapping`的方法除了方法名称拥有完全相同的URL映射和HTTP请求方法。在新版本下，`@RequestMapping`注解的方法必须具有唯一的请求映射；
+* 定义一个默认方法（即没有声明路径映射），在请求路径无法被映射到控制器下更精确的方法上去时，为该请求提供默认处理。在新版本中，如果无法为一个请求找到合适的处理方法，那么一个404错误将被抛出；
 
+> [Original] The above features are still supported with the existing support classes. However to take advantage of new Spring MVC 3.1 features you’ll need to use the new support classes.
+
+如果使用原来的类，以上的功能还是可以做到。但是，如果要享受Spring MVC 3.1版本带来的方便特性，你就需要去使用新的类。
+
+> [Original] ## URI Template Patterns
+
+## URI模板
+
+> [Original] URI templates can be used for convenient access to selected parts of a URL in a `@RequestMapping` method.
+
+URI模板可以为快速访问`@RequestMapping`中指定的URL的一个特定的部分提供很大的便利。
+
+> [Original] A URI Template is a URI-like string, containing one or more variable names. When you substitute values for these variables, the template becomes a URI. The proposed RFC for URI Templates defines how a URI is parameterized. For example, the URI Template `http://www.example.com/users/{userId}` contains the variable userId. Assigning the value fred to the variable yields `http://www.example.com/users/fred`.
+
+URI模板是一个类似于URI的字符串，只不过其中包含了一个或多个的变量名。当你使用实际的值去填充这些变量名的时候，模板就退化成了一个URI。在URI模板的RFC提议中定义了一个URI是如何进行参数化的。比如说，一个这个URI模板`http://www.example.com/users/{userId}`就包含了一个变量名_userId_。将值_fred_赋给这个变量名后，它就变成了一个URI：`http://www.example.com/users/fred`。
+
+> [Original] In Spring MVC you can use the `@PathVariable` annotation on a method argument to bind it to the value of a URI template variable:
+
+在Spring MVC中你可以在方法参数上使用`@PathVariable`注解，将其与URI模板中的参数绑定起来：
+
+```
+@RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
+public String findOwner(@PathVariable String ownerId, Model model) {
+    Owner owner = ownerService.findOwner(ownerId);
+    model.addAttribute("owner", owner);
+    return "displayOwner";
+}
+```
+
+> [Original] The URI Template "`/owners/{ownerId}`" specifies the variable name `ownerId`. When the controller handles this request, the value of `ownerId` is set to the value found in the appropriate part of the URI. For example, when a request comes in for `/owners/fred`, the value of `ownerId` is `fred`.
+
+URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控制器处理这个请求的时候，`ownerId`的值就会被URI模板中对应部分的值所填充。比如说，如果请求的URI是`/owners/fred`，此时变量`ownerId`的值就是`fred`.
+
+> [Original] > To process the @PathVariable annotation, Spring MVC needs to find the matching URI template variable by name. You can specify it in the annotation:
+> [Original] > ```
+> @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
+public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
+    // implementation omitted
+}
+> ```
+> [Original] Or if the URI template variable name matches the method argument name you can omit that detail. As long as your code is not compiled without debugging information, Spring MVC will match the method argument name to the URI template variable name:
+> [Original] ```
+> @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
+public String findOwner(@PathVariable String ownerId, Model model) {
+    // implementation omitted
+}
+> ```
+
+> 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
 
 > [Original] 
 
