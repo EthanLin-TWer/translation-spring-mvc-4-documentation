@@ -157,21 +157,24 @@ public String findOwner(@PathVariable String ownerId, Model model) {
 URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控制器处理这个请求的时候，`ownerId`的值就会被URI模板中对应部分的值所填充。比如说，如果请求的URI是`/owners/fred`，此时变量`ownerId`的值就是`fred`.
 
 > [Original] > To process the @PathVariable annotation, Spring MVC needs to find the matching URI template variable by name. You can specify it in the annotation:
+> 
 > [Original] > ```
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
-public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
-    // implementation omitted
-}
+> public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
+>    // implementation omitted
+> }
 > ```
-> [Original] Or if the URI template variable name matches the method argument name you can omit that detail. As long as your code is not compiled without debugging information, Spring MVC will match the method argument name to the URI template variable name:
-> [Original] ```
+> 
+> [Original] > Or if the URI template variable name matches the method argument name you can omit that detail. As long as your code is not compiled without debugging information, Spring MVC will match the method argument name to the URI template variable name:
+> 
+> [Original] > ```
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
-public String findOwner(@PathVariable String ownerId, Model model) {
-    // implementation omitted
-}
+> public String findOwner(@PathVariable String ownerId, Model model) {
+>     // implementation omitted
+> }
 > ```
 
-> 
+
 
 > [Original] 
 
