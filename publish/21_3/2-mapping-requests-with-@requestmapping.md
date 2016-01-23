@@ -155,26 +155,23 @@ public String findOwner(@PathVariable String ownerId, Model model) {
 > [Original] The URI Template "`/owners/{ownerId}`" specifies the variable name `ownerId`. When the controller handles this request, the value of `ownerId` is set to the value found in the appropriate part of the URI. For example, when a request comes in for `/owners/fred`, the value of `ownerId` is `fred`.
 
 URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控制器处理这个请求的时候，`ownerId`的值就会被URI模板中对应部分的值所填充。比如说，如果请求的URI是`/owners/fred`，此时变量`ownerId`的值就是`fred`.
+`
 
-> [Original] > To process the @PathVariable annotation, Spring MVC needs to find the matching URI template variable by name. You can specify it in the annotation:
-> 
-> [Original] > ```
-> @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
-> public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
->    // implementation omitted
+> 为了处理`@PathVariables`注解，Spring MVC必须通过变量名来找到URI模板中相对应的变量。你可以在注解中直接声明：
+> ```
+> @RequestMapping(path="/owners/{ownerId}}", method=RequestMethod.GET)
+> public String findOwner(@PathVariable("ownerID") String theOwner, Model model) {
+>     // 具体的方法代码…
 > }
 > ```
 > 
-> [Original] > Or if the URI template variable name matches the method argument name you can omit that detail. As long as your code is not compiled without debugging information, Spring MVC will match the method argument name to the URI template variable name:
-> 
-> [Original] > ```
+> 或者，如果URI模板中的变量名与方法的参数名是相同的，则你可以不必再指定一次。只要你在编译的时候留下debug信息，Spring MVC就可以自动匹配URL模板中与方法参数名相同的变量名。
+> ```
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
 > public String findOwner(@PathVariable String ownerId, Model model) {
 >     // implementation omitted
 > }
 > ```
-
-
 
 > [Original] 
 
