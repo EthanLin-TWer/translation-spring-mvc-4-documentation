@@ -169,7 +169,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 > ```
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
 > public String findOwner(@PathVariable String ownerId, Model model) {
->     // implementation omitted
+>     // 具体的方法代码…
 > }
 > ```
 
