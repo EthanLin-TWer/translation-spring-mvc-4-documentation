@@ -12,10 +12,10 @@
 目前自己的计划是，先翻好自己正在进行的MVC文档的部分，先完成这件对我而言有意义的事。然后或许会加入翻译团队也未可知。
 
 以下是一些目前了解到的正在进行的相关项目，希望这些资源能整合起来：
-* [该项目团队从14年底即组织翻译，其仓库最近也还是活跃的：http://blog.csdn.net/isea533/article/details/50450289](http://blog.csdn.net/isea533/article/details/50450289)
+* 该项目团队从14年底即组织翻译，其仓库最近也还是活跃的：[http://blog.csdn.net/isea533/article/details/50450289](http://blog.csdn.net/isea533/article/details/50450289)
    * 该项目托管在OSC上的仓库：[http://git.oschina.net/free/spring-framework-reference](http://git.oschina.net/free/spring-framework-reference)
    * 项目成果，已翻译的部分：[http://spring.cndocs.tk/](http://spring.cndocs.tk/)
-* Github上另一位同学的翻译：[https://www.gitbook.com/book/sunrh/spring4-reference-chinese/details](https://www.gitbook.com/book/sunrh/spring4-reference-chinese/details)，目前看起来已经翻译了新特性、框架简介和模板技术三个部分。注意到提交日期是8个月以前，作者暂时性弃坑的可能性看来较大…
-  [Github地址：https://github.com/sunrh/spring-reference-chinese](https://github.com/sunrh/spring-reference-chinese)
+* Github上另一位同学的翻译：[https://sunrh.gitbooks.io/spring4-reference-chinese/content/](https://sunrh.gitbooks.io/spring4-reference-chinese/content/)，目前看起来已经翻译了新特性、框架简介和模板技术三个部分。注意到提交日期是8个月以前，作者暂时性弃坑的可能性看来较大…
+   * Github地址：[https://github.com/sunrh/spring-reference-chinese](https://github.com/sunrh/spring-reference-chinese)
 * Github上另一位同学的翻译：[https://waylau.gitbooks.io/spring-framework-4-reference/content/](https://waylau.gitbooks.io/spring-framework-4-reference/content/)，已经翻译了许多部分，貌似是单兵作战，自己翻译过也感觉到坚持不易，都是好样儿的！
-  [Github地址：https://github.com/waylau/spring-framework-4-reference](https://github.com/waylau/spring-framework-4-reference)
+   * Github地址：[https://github.com/waylau/spring-framework-4-reference](https://github.com/waylau/spring-framework-4-reference)
