@@ -1,7 +1,6 @@
-# Spring MVC中文文档翻译稿
-> Chinese Translation for Spring MVC Reference Documentation
+# Spring MVC中文文档翻译稿 - Chinese Translation for Spring MVC Reference Documentation
 
-出于个人兴趣学习爱好翻译的Spring MVC 4.2.4.RELEASE版本官方文档，仅翻译原文档第21章的MVC部分。希望对可能的读者及我自己有所助益。
+本项目翻译的是Spring MVC官方最新4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。翻译目标是，在最大限度保留原意的基础上保证中文译文的流畅度。这个过程既是深入的学习过程，也希望分享出来对可能的读者有所帮助。
 
 [原文地址：http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html)
 
