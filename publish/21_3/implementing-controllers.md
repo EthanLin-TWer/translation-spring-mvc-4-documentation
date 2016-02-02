@@ -12,7 +12,7 @@ Spring 2.5开始采用基于注解的编程方式，使用了`@RequestMapping`�
 
 > 在Spring组织的官方Github上，你可以找到许多项目，它们对本节所述的注解配置方式开发MVC的产生有很大的影响，比如说MvcShowcase，MvcAjax，MvcBasic，PetClinic，PetCare等。
 
-```
+```java
 @Controller
 public class HelloWorldController {
 

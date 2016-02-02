@@ -58,7 +58,7 @@ public class AppointmentsController {
 
 类级别的`@RequestMapping`注解并不是必须的。没有指定它的话则所有的路径都是绝对路径，而非相对路径。以下的代码示例来自PetClinic，它展示了一个具备多个处理方法的控制器：
 
-```
+```java
 @Controller
 public class ClinicController {
 
@@ -143,7 +143,7 @@ URI模板是一个类似于URI的字符串，只不过其中包含了一个或�
 
 在Spring MVC中你可以在方法参数上使用`@PathVariable`注解，将其与URI模板中的参数绑定起来：
 
-```
+```java
 @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
 public String findOwner(@PathVariable String ownerId, Model model) {
     Owner owner = ownerService.findOwner(ownerId);
@@ -158,7 +158,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 `
 
 > 为了处理`@PathVariables`注解，Spring MVC必须通过变量名来找到URI模板中相对应的变量。你可以在注解中直接声明：
-> ```
+> ```java
 > @RequestMapping(path="/owners/{ownerId}}", method=RequestMethod.GET)
 > public String findOwner(@PathVariable("ownerID") String theOwner, Model model) {
 >     // 具体的方法代码…
@@ -166,7 +166,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 > ```
 > 
 > 或者，如果URI模板中的变量名与方法的参数名是相同的，则你可以不必再指定一次。只要你在编译的时候留下debug信息，Spring MVC就可以自动匹配URL模板中与方法参数名相同的变量名。
-> ```
+> ```java
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
 > public String findOwner(@PathVariable String ownerId, Model model) {
 >     // 具体的方法代码…

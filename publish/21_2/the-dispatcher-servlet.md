@@ -14,7 +14,7 @@
 
 `DispatcherServlet`其实就是个`Servlet`（它继承自`HttpServlet`基类），它也是在你的web应用的`web.xml`配置文件下声明的。同样，你需要在`web.xml`文件中把你希望`DispatcherServlet`处理的请求映射到对应的URL上去。这就是标准的Java EE Servlet配置；下面的代码就展示了对`DispatcherServlet`和映射路径的声明。
 
-```
+```xml
 <web-app>
     <servlet>
         <servlet-name>example</servlet-name>
@@ -33,7 +33,7 @@
 
 在上面的例子中，所有以`/example`开头的请求都会被`DispatcherServlet`处理，并且该`DispatcherServlet`实例的名字为`example`。在Servlet 3.0+的环境下，你还可以用代码来配置Servlet容器。下面这段代码就展示了这种用法，它与我们所写的`web.xml`配置文件是等效的。
 
-```
+```java
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
     @Override
@@ -68,7 +68,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 请看下面这个`DispatcherServlet`的配置（定义于web.xml文件中）：
 
-```
+```xml
 <web-app>
     <servlet>
         <servlet-name>golfing</servlet-name>
@@ -96,7 +96,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 若要配置一个唯一的根context对象，可以通过在servlet的初始化参数中配置一个空的contextConfigLocation来做到，如下所示：
 
-```
+```xml
 <web-app>
     <context-param>
         <param-name>contextConfigLocation</param-name>
