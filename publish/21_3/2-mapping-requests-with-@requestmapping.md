@@ -8,7 +8,7 @@
 
 下面这段代码示例来自Petcare，它展示了在Spring MVC的应用中如何在控制器上使用这个注解：
 
-```
+```java
 @Controller
 @RequestMapping("/appointments")
 public class AppointmentsController {
