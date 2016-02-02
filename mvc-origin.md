@@ -3483,7 +3483,7 @@ with JSON formatted data:
     Content-Transfer-Encoding: 8bit
 
     {
-      "name": "value"
+        "name": "value"
     }
     --edt7Tfrdusa7r3lNQc79vXuhIIMlatb7PQg7Vp
     Content-Disposition: form-data; name="file-data"; filename="file.properties"
@@ -4969,14 +4969,14 @@ XML example:
 
 
     <mvc:resources mapping="/resources/**" location="/public-resources/">
-      <mvc:resource-chain>
-         <mvc:resource-cache/>
-         <mvc:resolvers>
-            <mvc:version-resolver>
-               <mvc:content-version-strategy patterns="/**"/>
-            </mvc:version-resolver>
-         </mvc:resolvers>
-      </mvc:resource-chain>
+        <mvc:resource-chain>
+            <mvc:resource-cache/>
+            <mvc:resolvers>
+                <mvc:version-resolver>
+                    <mvc:content-version-strategy patterns="/**"/>
+                </mvc:version-resolver>
+            </mvc:resolvers>
+        </mvc:resource-chain>
     </mvc:resources>
 
 In order for the above to work the application must also render URLs with
@@ -5276,3 +5276,4 @@ with an XML bean declaration.
 
 [Prev](spring-web.html) | [Up](spring-web.html)|  [Next](view.html)
 ---|---|---
+Part VI. The Web | [Home](index.html)|  22. View technologies
