@@ -223,19 +223,26 @@ initialization" ).
 > [Original] Sometimes you need more precision in defining URI template variables. Consider the URL `"/spring-web/spring-web-3.0.5.jar"`. How do you break it down into
 multiple parts?
 
-
+有时候你可能需要更准确地描述一个URI模板的变量，比如说这个URL：`"/spring-web/spring-web-3.0.5.jar`。你要怎么把它分解成几个有意义的部分呢？
 
 > [Original] The `@RequestMapping` annotation supports the use of regular expressions in URI template variables. The syntax is `{varName:regex}` where the first part defines the variable name and the second - the regular expression.For example:
 
+`@RequestMapping`注解支持你在URI模板变量中使用正则表达式。语法是`{varName:regex}`，其中第一部分定义了变量名，第二部分就是你所要应用的正则表达式。比如下面的代码样例：
+
 ```java
 @RequestMapping("/spring-web/{symbolicName:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]+}")
-    public void handle(_@PathVariable_ String version, _@PathVariable_ String extension) {
-        // ...
+    public void handle(@PathVariable String version, @PathVariable String extension) {
+        // 代码部分省略...
     }
 }
 ```
 
-> [Original] 
+## Path Patterns（不好翻，容易掉韵味）
+
+> [Original] In addition to URI templates, the `@RequestMapping` annotation also supports Ant-style path patterns (for example, `/myPath/*.do`). A combination of URI
+template variables and Ant-style globs is also supported (e.g. `/owners/*/pets/{petId}`).
+
+除了URI模板外，`@RequestMapping`注解还支持Ant风格的路径模式（如`/myPath/*.do`等）。不仅如此，还可以把URI模板变量和Ant风格的glob组合起来使用（比如`/owners/*/pets/{petId}`这样的用法等）。
 
 > [Original] 
 
