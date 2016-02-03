@@ -179,7 +179,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 
 ```java
 @RequestMapping(path="/owners/{ownerId}/pets/{petId}", method=RequestMethod.GET)
-public String findPet(**@PathVariable** String ownerId, **@PathVariable** String petId, Model model) {
+public String findPet(@PathVariable String ownerId, @PathVariable String petId, Model model) {
     Owner owner = ownerService.findOwner(ownerId);
     Pet pet = owner.getPet(petId);
     model.addAttribute("pet", pet);
@@ -197,10 +197,10 @@ URI模板可以从类级别和方法级别的 _@RequestMapping_ 注解获取数�
 
 ```java
 _@Controller_
-@RequestMapping(**"/owners/{ownerId}"**)
+@RequestMapping("/owners/{ownerId}")
 public class RelativePathUriTemplateController {
 
-    @RequestMapping(**"/pets/{petId}"**)
+    @RequestMapping("/pets/{petId}")
     public void findPet(_@PathVariable_ String ownerId, _@PathVariable_ String petId, Model model) {
         // 方法实现体这里忽略
     }
