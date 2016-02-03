@@ -266,9 +266,10 @@ specific than `/hotels/*`.
 
 > [Original] There are also some additional special rules:
 
-除此之外，还有一个其他的规则：
+除此之外，还有一些其他的规则：
 
 > [Original] * The **default mapping pattern** `/**` is less specific than any other pattern. For example `/api/{a}/{b}/{c}` is more specific.
+> 
 > [Original] * A **prefix pattern** such as `/public/**` is less specific than any other pattern that doesn't contain double wildcards. For example `/public/path3/{a}/{b}/{c}` is more specific.
 
 * __默认的通配模式__`/**`比其他所有的模式都更“不准确”。比方说，`/api/{a}/{b}/{c}`就比默认的通配模式`/**`要更准确
@@ -278,7 +279,7 @@ specific than `/hotels/*`.
 Matching"](mvc.html#mvc-config-path-matching "21.16.11 Path Matching" ) in the
 section on configuring Spring MVC).
 
-更多的细节请参考这两个类：`AntPatternComparator`和`AntPathMatcher`。可以提醒的是，PathMatcher类是可以配置的（见“配置Spring MVC”一节中的[21.16.11 路径的匹配](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/html#mvc-config-path-matching "21.16.11 Path Matching")一节)。
+更多的细节请参考这两个类：`AntPatternComparator`和`AntPathMatcher`。值得一提的是，PathMatcher类是可以配置的（见“配置Spring MVC”一节中的[21.16.11 路径的匹配](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/html#mvc-config-path-matching "21.16.11 Path Matching")一节)。
 
 > [Original] 
 
