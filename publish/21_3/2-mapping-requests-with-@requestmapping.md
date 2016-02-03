@@ -244,6 +244,92 @@ template variables and Ant-style globs is also supported (e.g. `/owners/*/pets/{
 
 除了URI模板外，`@RequestMapping`注解还支持Ant风格的路径模式（如`/myPath/*.do`等）。不仅如此，还可以把URI模板变量和Ant风格的glob组合起来使用（比如`/owners/*/pets/{petId}`这样的用法等）。
 
+## 路径样式的匹配(Path Pattern Comparison)
+
+> [Original] When a URL matches multiple patterns, a sort is used to find the most specific match.
+
+当一个URL同时匹配多个模板（pattern）时，我们将需要一个算法来决定其中最匹配的一个。
+
+> [Original] A pattern with a lower count of URI variables and wild cards is considered more specific. For example `/hotels/{hotel}/*` has 1 URI variable and 1 wild card and is considered more specific than `/hotels/{hotel}/**` which as 1 URI
+variable and 2 wild cards.
+
+URI模板变量的数目和通配符数量的总和最少的那个路径模板更准确。举个例子，`/hotels/{hotel}/*`这个路径拥有一个URI变量和一个通配符，而`/hotels/{hotel}/**`这个路径则拥有一个URI变量和两个通配符，因此，我们认为前者是更准确的路径模板。
+
+> [Original] If two patterns have the same count, the one that is longer is considered more specific. For example `/foo/bar*` is longer and considered more specific than `/foo/*`.
+
+如果两个模板的URI模板数量和通配符数量总和一致，则路径更长的那个模板更准确。举个例子，`/foo/bar*`就被认为比`/foo/*`更准确，因为前者的路径更长。
+
+> [Original] When two patterns have the same count and length, the pattern with fewer wild cards is considered more specific. For example `/hotels/{hotel}` is more
+specific than `/hotels/*`.
+
+如果两个模板的数量和长度均一致，则那个具有更少通配符的模板是更加准确的。比如，`/hotels/{hotel}`就比`/hotels/*`更精确。
+
+> [Original] There are also some additional special rules:
+
+除此之外，还有一个其他的规则：
+
+> [Original] * The **default mapping pattern** `/**` is less specific than any other pattern. For example `/api/{a}/{b}/{c}` is more specific.
+> [Original] * A **prefix pattern** such as `/public/**` is less specific than any other pattern that doesn't contain double wildcards. For example `/public/path3/{a}/{b}/{c}` is more specific.
+
+* __默认的通配模式__`/**`比其他所有的模式都更“不准确”。比方说，`/api/{a}/{b}/{c}`就比默认的通配模式`/**`要更准确
+* __前缀通配__（比如`/public/**`)被认为比其他任何不包括双通配符的模式更不准确。比如说，`/public/path3/{a}/{b}/{c}`就比`/public/**`更准确
+
+> [Original] For the full details see `AntPatternComparator` in `AntPathMatcher`. Note that the PathMatcher can be customized (see [Section 21.16.11, "Path
+Matching"](mvc.html#mvc-config-path-matching "21.16.11 Path Matching" ) in the
+section on configuring Spring MVC).
+
+更多的细节请参考这两个类：`AntPatternComparator`和`AntPathMatcher`。可以提醒的是，PathMatcher类是可以配置的（见“配置Spring MVC”一节中的[21.16.11 路径的匹配](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/html#mvc-config-path-matching "21.16.11 Path Matching")一节)。
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
+> [Original] 
+
 > [Original] 
 
 > [Original] 
