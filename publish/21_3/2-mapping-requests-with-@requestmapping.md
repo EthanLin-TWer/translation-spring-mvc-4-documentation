@@ -173,11 +173,67 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 > }
 > ```
 
-> [Original] 
+> [Original] A method can have any number of `@PathVariable` annotations:
 
-> [Original] 
+一个方法可以拥有任意数量的`@PathVariable`注解：
 
-> [Original] 
+```java
+@RequestMapping(path="/owners/{ownerId}/pets/{petId}", method=RequestMethod.GET)
+public String findPet(**@PathVariable** String ownerId, **@PathVariable** String petId, Model model) {
+    Owner owner = ownerService.findOwner(ownerId);
+    Pet pet = owner.getPet(petId);
+    model.addAttribute("pet", pet);
+    return "displayPet";
+}
+```
+
+> [Original] When a `@PathVariable` annotation is used on a `Map<String, String>` argument, the map is populated with all URI template variables.
+
+当`@PathVariable`注解被应用于`Map<String, String>`类型的参数上时，框架会使用所有URI模板变量来填充这个map。
+
+> [Original] A URI template can be assembled from type and path level _@RequestMapping_ annotations. As a result the `findPet()` method can be invoked with a URL such as `/owners/42/pets/21`.
+
+URI模板可以从类级别和方法级别的 _@RequestMapping_ 注解获取数据。因此，像这样的`findPet()`方法可以被类似于`/owners/42/pets/21`这样的URL路由并调用到：
+
+```java
+_@Controller_
+@RequestMapping(**"/owners/{ownerId}"**)
+public class RelativePathUriTemplateController {
+
+    @RequestMapping(**"/pets/{petId}"**)
+    public void findPet(_@PathVariable_ String ownerId, _@PathVariable_ String petId, Model model) {
+        // 方法实现体这里忽略
+    }
+
+}
+```
+
+> [Original] A `@PathVariable` argument can be of _any simple type_ such as int, long, Date, etc. Spring automatically converts to the appropriate type or throws a
+`TypeMismatchException` if it fails to do so. You can also register support
+for parsing additional data types. See [the section called "Method Parameters
+And Type Conversion"](mvc.html#mvc-ann-typeconversion "Method Parameters And
+Type Conversion" ) and [the section called "Customizing WebDataBinder
+initialization"](mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder
+initialization" ).
+
+`@PathVariable`可以被应用于所有 _简单类型_ 的参数上，比如int、long、Date等类型。Spring会自动地帮你把参数转化成合适的类型，如果转换失败，就抛出一个`TypeMismatchException`。如果你需要处理其他数据类型的转换，也可以注册自己的类。若需要更详细的信息可以参考[“方法参数与类型转换”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")和[“定制WebDataBinder初始化过程”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")
+
+## 带正则表达式的URI模板
+
+> [Original] Sometimes you need more precision in defining URI template variables. Consider the URL `"/spring-web/spring-web-3.0.5.jar"`. How do you break it down into
+multiple parts?
+
+
+
+> [Original] The `@RequestMapping` annotation supports the use of regular expressions in URI template variables. The syntax is `{varName:regex}` where the first part defines the variable name and the second - the regular expression.For example:
+
+```java
+@RequestMapping("/spring-web/{symbolicName:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]+}")
+    public void handle(_@PathVariable_ String version, _@PathVariable_ String extension) {
+        // ...
+    }
+}
+```
 
 > [Original] 
 
