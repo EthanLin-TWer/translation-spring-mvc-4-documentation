@@ -292,14 +292,14 @@ the javadocs of the `PropertyPlaceholderConfigurer` class.
 
 
 #### Suffix Pattern Matching
-## 后缀通配模式
+## 后缀模式匹配
 
 > [Original] By default Spring MVC performs `".*"` suffix pattern matching so that a
 controller mapped to `/person` is also implicitly mapped to `/person.*`. This
 makes it easy to request different representations of a resource through the
 URL path (e.g. `/person.pdf`, `/person.xml`).
 
-Spring MVC默认采用`".*"`的后缀通配模式来进行路径匹配，因此，一个映射到`/person`路径的控制器也会隐式地被映射到`/person.*`。这使得通过URL来请求同一资源文件的不同格式变得更简单（比如`/person.pdf`，`/person.xml`）。
+Spring MVC默认采用`".*"`的后缀模式匹配来进行路径匹配，因此，一个映射到`/person`路径的控制器也会隐式地被映射到`/person.*`。这使得通过URL来请求同一资源文件的不同格式变得更简单（比如`/person.pdf`，`/person.xml`）。
 
 > [Original] Suffix pattern matching can be turned off or restricted to a set of path extensions explicitly registered for content negotiation purposes. This is
 generally recommended to minimize ambiguity with common request mappings such
@@ -308,17 +308,19 @@ as `/person/{id}` where a dot might not represent a file extension, e.g.
 in some circumstances to attempt malicious attacks and there are good reasons
 to restrict them meaningfully.
 
-你可以关闭默认的后缀通配模式，或者显式地将路径后缀限定到一些特定格式上for content negotiation purpose。我们推荐这样做，这样可以减少映射请求时可以带来的一些二义性，比如请求以下路径`/person/{id}`时，路径中的点号后面带的可能不是描述内容格式，比如`/person/joe@email.com` vs `/person/joe@email.com.json`。而且正如下面马上要提到的，后缀通配模式以及内容协商有时可能会被黑客用来进行攻击，对后缀通配进行有意义的限定是有好处的。
+你可以关闭默认的后缀模式匹配，或者显式地将路径后缀限定到一些特定格式上for content negotiation purpose。我们推荐这样做，这样可以减少映射请求时可以带来的一些二义性，比如请求以下路径`/person/{id}`时，路径中的点号后面带的可能不是描述内容格式，比如`/person/joe@email.com` vs `/person/joe@email.com.json`。而且正如下面马上要提到的，后缀模式通配以及内容协商有时可能会被黑客用来进行攻击，因此，对后缀通配进行有意义的限定是有好处的。
 
 > [Original] See [Section 21.16.11, "Path Matching"](mvc.html#mvc-config-path-matching "21.16.11 Path Matching") for suffix pattern matching configuration and also [Section 21.16.6, "Content Negotiation"](mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation") for content negotiation configuration.
 
-关于后缀通配模式的配置问题，可以参考[第21.16.11小节 "路径匹配"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-path-matching "21.16.11 Path Matching")；关于内容协商的配置问题，可以参考[第21.16.6小节 "内容协商"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation")的内容。
+关于后缀模式匹配的配置问题，可以参考[第21.16.11小节 "路径匹配"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-path-matching "21.16.11 Path Matching")；关于内容协商的配置问题，可以参考[第21.16.6小节 "内容协商"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation")的内容。
 
 
-#### Suffix Pattern Matching and RFD
+## 后缀模式匹配与RFD
 
 > [Original] Reflected file download (RFD) attack was first described in a [paper by
 Trustwave](https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/) in 2014. The attack is similar to XSS in that it relies on input (e.g. query parameter, URI variable) being reflected in the response. However instead of inserting JavaScript into HTML, an RFD attack relies on the browser switching to perform a download and treating the response as an executable script if double-clicked based on the file extension (e.g. .bat, .cmd).
+
+RFD(Reflected file download)攻击最先是2014年在[Trustwave的一篇论文](https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/)中被提出的。
 
 > [Original] In Spring MVC `@ResponseBody` and `ResponseEntity` methods are at risk because they can render different content types which clients can request including via URL path extensions. Note however that neither disabling suffix pattern matching nor disabling the use of path extensions for content negotiation purposes alone are effective at preventing RFD attacks.
 
