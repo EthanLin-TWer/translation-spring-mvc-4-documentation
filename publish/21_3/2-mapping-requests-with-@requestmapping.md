@@ -328,8 +328,11 @@ Spring MVC的`@ResponseBody`和`ResponseEntity`方法是有风险的，因为它
 
 > [Original] For comprehensive protection against RFD, prior to rendering the response body Spring MVC adds a `Content-Disposition:inline;filename=f.txt` header to suggest a fixed and safe download file filename. This is done only if the URL path contains a file extension that is neither whitelisted nor explicitly registered for content negotiation purposes. However it may potentially have side effects when URLs are typed directly into a browser.
 
+若要开启对RFD更高级的保护模式，可以在Spring MVC渲染开始请求正文之前，在请求头中增加一行配置`Content-Disposition:inline;filename=f.txt`，指定固定的下载文件的文件名。这仅在URL路径中包含了一个文件符合以下特征的拓展名时适用：该扩展名既不在信任列表（白名单）中，也没有被显式地被注册于内容协商时使用。并且这种做法还可以有一些副作用，比如，当URL是通过浏览器手动输入的时候。
+
 > [Original] Many common path extensions are whitelisted by default. Furthermore REST API calls are typically not meant to be used as URLs directly in browsers. Nevertheless applications that use custom `HttpMessageConverter` implementations can explicitly register file extensions for content negotiation and the Content-Disposition header will not be added for such extensions. See [Section 21.16.6, "Content Negotiation"](mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation" ).
 
+很多常用的路径文件后缀默认是被信任的。另外，REST的API一般是不应该直接用做URL的。不过，你可以自己定制`HttpMessageConverter`的实现，然后显式地注册用于内容协商的文件类型，这种情形下Content-Disposition头将不会被加入到请求头中。详见[第21.16.6节中“内容协商”的内容](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation")。
 
 > [Original] 
 
