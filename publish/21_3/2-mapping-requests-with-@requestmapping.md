@@ -340,6 +340,20 @@ Spring MVC的`@ResponseBody`和`ResponseEntity`方法是有风险的，因为它
 * Configure content negotiation with the properties "useJaf" and "ignoreUnknownPathExtensions" set to false which would result in a 406 response for URLs with unknown extensions. Note however that this may not be an option if URLs are naturally expected to have a dot towards the end.
 * Add `X-Content-Type-Options: nosniff` header to responses. Spring Security 4 does this by default.
 
+感觉这节的翻译质量还有限，需要继续了解XSS攻击和RFD攻击的细节再翻。
+
+## 矩阵变量
+
+> [Original] The URI specification [RFC 3986](http://tools.ietf.org/html/rfc3986#section-3.3) defines the possibility of including name-value pairs within path segments. There is no specific term used in the spec. The general "URI path parameters" could be applied although the more unique ["Matrix URIs"](http://www.w3.org/DesignIssues/MatrixURIs.html), originating from an old post by Tim Berners-Lee, is also frequently used and fairly well known. Within Spring MVC these are referred to as matrix variables.
+
+原来的URI规范[RFC 3986](http://tools.ietf.org/html/rfc3986#section-3.3)中允许在路径段落中携带键值对，但规范没有明确给这样的键值对定义术语。有人叫“URI路径参数”，也有叫[“矩阵URI”](http://www.w3.org/DesignIssues/MatrixURIs.html)的。后者是Tim Berners-Lee首先在其博客中提到的术语，被使用得要更加频繁一些，知名度也更高些。而在Spring MVC中，我们称这样的键值对为矩阵变量。
+
+> [Original] Matrix variables can appear in any path segment, each matrix variable separated with a ";" (semicolon). For example: `"/cars;color=red;year=2012"`. Multiple values may be either "," (comma) separated `"color=red,green,blue"` or the variable name may be repeated `"color=red;color=green;color=blue"`.
+
+矩阵变量可以在任何路径段落中出现，每对矩阵变量之间使用一个分号“;”隔开。比如这样的URI：`"/cars;color=red;year=2012"`。多个值可以用逗号隔开`"color=red,green,blue"`，或者重复变量名多次`"color=red;color=green;color=blue"`。
+
+> [Original] If a URL is expected to contain matrix variables, the request mapping pattern must represent them with a URI template. This ensures the request can be matched correctly regardless of whether matrix variables are present or not and in what order they are provided.
+
 
 
 > [Original] 
