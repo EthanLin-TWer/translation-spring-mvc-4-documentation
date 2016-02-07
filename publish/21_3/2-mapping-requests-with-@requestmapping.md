@@ -334,6 +334,14 @@ Spring MVC的`@ResponseBody`和`ResponseEntity`方法是有风险的，因为它
 
 很多常用的路径文件后缀默认是被信任的。另外，REST的API一般是不应该直接用做URL的。不过，你可以自己定制`HttpMessageConverter`的实现，然后显式地注册用于内容协商的文件类型，这种情形下Content-Disposition头将不会被加入到请求头中。详见[第21.16.6节中“内容协商”的内容](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation "21.16.6 Content Negotiation")。
 
+> [Original] This was originally introduced as part of work for [CVE-2015-5211](http://pivotal.io/security/cve-2015-5211). Below are additional recommendations from the report:
+* Encode rather than escape JSON responses. This is also an OWASP XSS recommendation. For an example of how to do that with Spring see [spring-jackson-owasp](https://github.com/rwinch/spring-jackson-owasp).
+* Configure suffix pattern matching to be turned off or restricted to explicitly registered suffixes only.
+* Configure content negotiation with the properties "useJaf" and "ignoreUnknownPathExtensions" set to false which would result in a 406 response for URLs with unknown extensions. Note however that this may not be an option if URLs are naturally expected to have a dot towards the end.
+* Add `X-Content-Type-Options: nosniff` header to responses. Spring Security 4 does this by default.
+
+
+
 > [Original] 
 
 
