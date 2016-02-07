@@ -320,9 +320,11 @@ to restrict them meaningfully.
 > [Original] Reflected file download (RFD) attack was first described in a [paper by
 Trustwave](https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/) in 2014. The attack is similar to XSS in that it relies on input (e.g. query parameter, URI variable) being reflected in the response. However instead of inserting JavaScript into HTML, an RFD attack relies on the browser switching to perform a download and treating the response as an executable script if double-clicked based on the file extension (e.g. .bat, .cmd).
 
-RFD(Reflected file download)攻击最先是2014年在[Trustwave的一篇论文](https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/)中被提出的。
+RFD(Reflected file download)攻击最先是2014年在[Trustwave的一篇论文](https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/)中被提出的。它与XSS攻击有些相似，因为这种攻击方式也依赖于某些特征，即需要你的输入（比如查询参数，URI变量等）等也在输出（response）中以某种形式出现。不同的是，RFD攻击并不是通过在HTML中写入JavaScript代码进行，而是依赖于浏览器来跳转到下载页面，并把特定格式（比如.bat，.cmd等）的response当成是可执行脚本，双击它就会执行。
 
 > [Original] In Spring MVC `@ResponseBody` and `ResponseEntity` methods are at risk because they can render different content types which clients can request including via URL path extensions. Note however that neither disabling suffix pattern matching nor disabling the use of path extensions for content negotiation purposes alone are effective at preventing RFD attacks.
+
+Spring MVC的`@ResponseBody`和`ResponseEntity`方法是有风险的，因为它们会根据客户的请求——包括URL的路径后缀，来渲染不同的内容类型。因此，禁用后缀模式匹配或者禁用仅为内容协商开启的路径文件后缀名携带，都是防范RFD攻击的有效方式。
 
 > [Original] For comprehensive protection against RFD, prior to rendering the response body Spring MVC adds a `Content-Disposition:inline;filename=f.txt` header to suggest a fixed and safe download file filename. This is done only if the URL path contains a file extension that is neither whitelisted nor explicitly registered for content negotiation purposes. However it may potentially have side effects when URLs are typed directly into a browser.
 
