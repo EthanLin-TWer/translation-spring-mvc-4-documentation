@@ -354,6 +354,79 @@ Spring MVC的`@ResponseBody`和`ResponseEntity`方法是有风险的，因为它
 
 > [Original] If a URL is expected to contain matrix variables, the request mapping pattern must represent them with a URI template. This ensures the request can be matched correctly regardless of whether matrix variables are present or not and in what order they are provided.
 
+如果一个URL有可能需要包含矩阵变量，那么在请求路径的映射配置上就需要使用URI模板来体现这一点。这样才能确保请求可以被正确地映射，而不管矩阵变量在URI中是否出现、出现的次序是怎样等。
+
+> [Original] Below is an example of extracting the matrix variable "q":
+
+下面是一个例子，展示了我们如何从矩阵变量中获取到变量“q”的值：
+
+```java
+// GET /pets/42;q=11;r=22
+
+@RequestMapping(path = "/pets/{petId}", method = RequestMethod.GET)
+public void findPet(@PathVariable String petId, @MatrixVariable int q) {
+
+    // petId == 42
+    // q == 11
+
+}
+```
+
+> [Original] Since all path segments may contain matrix variables, in some cases you need to be more specific to identify where the variable is expected to be:
+
+由于任意路径段落中都可以含有矩阵变量，在某些场景下，你需要用更精确的信息来指定一个矩阵变量的位置：
+
+```java
+// GET /owners/42;q=11/pets/21;q=22
+
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}", method = RequestMethod.GET)
+public void findPet(
+    @MatrixVariable(name="q", pathVar="ownerId") int q1,
+    @MatrixVariable(name="q", pathVar="petId") int q2) {
+
+    // q1 == 11
+    // q2 == 22
+
+}
+```
+
+> [Original] A matrix variable may be defined as optional and a default value specified:
+
+你也可以声明一个矩阵变量不是必须出现的，并给它赋一个默认值：
+
+```java
+// GET /pets/42
+
+@RequestMapping(path = "/pets/{petId}", method = RequestMethod.GET)
+public void findPet(@MatrixVariable(required=false, defaultValue="1") int q) {
+
+    // q == 1
+
+}
+```
+
+> [Original] All matrix variables may be obtained in a Map:
+
+也可以通过一个Map来存储所有的矩阵变量：
+
+```java
+// GET /owners/42;q=11;r=12/pets/21;q=22;s=23
+
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}", method = RequestMethod.GET)
+public void findPet(
+    @MatrixVariable Map<String, String> matrixVars,
+    @MatrixVariable(pathVar="petId") Map<String, String> petMatrixVars) {
+
+    // matrixVars: ["q" : [11,22], "r" : 12, "s" : 23]
+    // petMatrixVars: ["q" : 11, "s" : 23]
+
+}
+```
+
+> [Original] Note that to enable the use of matrix variables, you must set the `removeSemicolonContent` property of `RequestMappingHandlerMapping` to `false`. By default it is set to `true`.
+
+如果要允许矩阵变量的使用，你必须把`RequestMappingHandlerMapping`类的`removeSemicolonContent`属性设置为`false`。该值默认是`true`的。
+
 
 
 > [Original] 
