@@ -463,9 +463,9 @@ public void findPet(
 
 ```java
 @Controller
-@RequestMapping(path = "/pets", method = RequestMethod.POST, **consumes="application/json"**)
+@RequestMapping(path = "/pets", method = RequestMethod.POST, consumes="application/json")
 public void addPet(@RequestBody Pet pet, Model model) {
-    // implementation omitted
+    // 方法实现省略
 }
 ```
 
@@ -487,7 +487,7 @@ public void addPet(@RequestBody Pet pet, Model model) {
 @Controller
 @RequestMapping(path = "/pets/{petId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @ResponseBody
-public Pet getPet(_@PathVariable_ String petId, Model model) {
+public Pet getPet(@PathVariable String petId, Model model) {
     // 方法实现省略
 }
 ```
@@ -510,6 +510,7 @@ producible types override rather than extend type-level producible types.
 
 > [Original] You can narrow request matching through request parameter conditions such as `"myParam"`, `"!myParam"`, or `"myParam=myValue"`. The first two test for request parameter presence/absence and the third for a specific parameter value. Here is an example with a request parameter value condition:
 
+你可以筛选请求参数的条件来缩小请求匹配范围，比如`"myParam"`、`"!myParam"`及`"myParam=myValue"`等。前两个条件用于筛选存在/不存在某些请求参数的请求，第三个条件筛选具有特定参数值的请求。下面有个例子，展示了如何使用请求参数值的筛选条件：
 
 ```java
 @Controller
@@ -524,38 +525,23 @@ public class RelativePathUriTemplateController {
 }
 ```
 
-The same can be done to test for request header presence/absence or to match based on a specific request header value:
+> [Original] The same can be done to test for request header presence/absence or to match based on a specific request header value:
 
+同样，你可以用相同的条件来筛选请求头的出现与否，或者筛选出一个具有特定值的请求头：
 
+```java
+@Controller
+@RequestMapping("/owners/{ownerId}")
+public class RelativePathUriTemplateController {
 
-    _@Controller_
-    _@RequestMapping("/owners/{ownerId}")_
-    public class RelativePathUriTemplateController {
-
-        @RequestMapping(path = "/pets", method = RequestMethod.GET, **headers="myHeader=myValue"**)
-        public void findPet(_@PathVariable_ String ownerId, _@PathVariable_ String petId, Model model) {
-            // implementation omitted
-        }
-
+    @RequestMapping(path = "/pets", method = RequestMethod.GET, headers="myHeader=myValue")
+    public void findPet(@PathVariable String ownerId, @PathVariable String petId, Model model) {
+        // 方法体实现省略
     }
 
-![\[Tip\]](images/tip.png)| Tip
----|---
+}
+```
 
-Although you can match to _Content-Type_ and _Accept_ header values using media type wild cards (for example _"content-type=text/*"_ will match to _"text/plain"_ and _"text/html"_), it is recommended to use the _consumes_ and _produces_ conditions respectively instead. They are intended specifically for that purpose.
+> [Original] Although you can match to _Content-Type_ and _Accept_ header values using media type wild cards (for example _"content-type=text/*"_ will match to _"text/plain"_ and _"text/html"_), it is recommended to use the _consumes_ and _produces_ conditions respectively instead. They are intended specifically for that purpose.
 
-> [Original] 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> 尽管，你可以使用媒体类型的通配符（比如 _"content-type=text/*"_）来匹配请求头 _Content-Type_和 _Accept_的值，但我们更推荐独立使用 _consumes_和 _produces_条件来筛选各自的请求。因为它们就是专门为区分这两种不同的场景而生的。
