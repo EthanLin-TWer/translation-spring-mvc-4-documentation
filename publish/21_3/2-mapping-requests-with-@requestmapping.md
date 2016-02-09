@@ -427,7 +427,55 @@ public void findPet(
 
 如果要允许矩阵变量的使用，你必须把`RequestMappingHandlerMapping`类的`removeSemicolonContent`属性设置为`false`。该值默认是`true`的。
 
+> [Original] The MVC Java config and the MVC namespace both provide options for enabling the use of matrix variables.
 
+> MVC的Java编程配置和命名空间配置都提供了启用矩阵变量的方式。
+
+> [Original] If you are using Java config, The [Advanced Customizations with MVC Java Config](mvc.html#mvc-config-advanced-java "21.16.13 Advanced Customizations with MVC Java Config" ) section describes how the `RequestMappingHandlerMapping` can be customized.
+
+> 如果你是使用Java编程的方式，[“MVC Java高级定制化配置”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-advanced-java "21.16.13 Advanced Customizations with MVC Java Config")描述了如何对`RequestMappingHandlerMapping`进行定制。
+
+> [Original] In the MVC namespace, the `<mvc:annotation-driven>` element has an `enable-matrix-variables` attribute that should be set to `true`. By default it is set to `false`.
+
+> 而使用MVC的命名空间配置时，你可以把`<mvc:annotation-driven>`元素下的`enable-matrix-variables`属性设置为`true`。该值默认情况下是配置为`false`的。
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+
+</beans>
+```
+
+## 可消费的媒体类型
+
+> [Original] You can narrow the primary mapping by specifying a list of consumable media types. The request will be matched only if the _Content-Type_ request header matches the specified media type. For example:
+
+你可以指定一组可消费的媒体类型，缩小映射的范围。这样只有当请求头中 _Content-Type_ 的值与指定可消费的媒体类型中有相同的时候，请求才会被匹配。比如下面这个例子：
+
+```java
+@Controller
+@RequestMapping(path = "/pets", method = RequestMethod.POST, **consumes="application/json"**)
+public void addPet(@RequestBody Pet pet, Model model) {
+    // implementation omitted
+}
+```
+
+> [Original] Consumable media type expressions can also be negated as in _!text/plain_ to match to all requests other than those with _Content-Type_ of _text/plain_. Also consider using constants provided in `MediaType` such as `APPLICATION_JSON_VALUE` and `APPLICATION_JSON_UTF8_VALUE`.
+
+指定可消费媒体类型的表达式中还可以使用否定，比如，可以使用 _!text/plain_ 来匹配所有请求头 _Content-Type_ 中不含 _text/plain_ 的请求。在`MediaType`类中定义了一些常量，比如`APPLICATION_JSON_VALUE`、`APPLICATION_JSON_UTF8_VALUE`等，推荐更多地使用它们。
+
+> [Original] The _consumes_ condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.
+
+_consumes_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
 
 > [Original] 
 
