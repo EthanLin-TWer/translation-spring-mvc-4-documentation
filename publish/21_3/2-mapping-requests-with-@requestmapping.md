@@ -506,7 +506,43 @@ producible types override rather than extend type-level producible types.
 
 > _produces_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
 
+## 请求参数与请求头的值
 
+> [Original] You can narrow request matching through request parameter conditions such as `"myParam"`, `"!myParam"`, or `"myParam=myValue"`. The first two test for request parameter presence/absence and the third for a specific parameter value. Here is an example with a request parameter value condition:
+
+
+```java
+@Controller
+@RequestMapping("/owners/{ownerId}")
+public class RelativePathUriTemplateController {
+
+    @RequestMapping(path = "/pets/{petId}", method = RequestMethod.GET, params="myParam=myValue")
+    public void findPet(@PathVariable String ownerId, @PathVariable String petId, Model model) {
+        // 实际实现省略
+    }
+
+}
+```
+
+The same can be done to test for request header presence/absence or to match based on a specific request header value:
+
+
+
+    _@Controller_
+    _@RequestMapping("/owners/{ownerId}")_
+    public class RelativePathUriTemplateController {
+
+        @RequestMapping(path = "/pets", method = RequestMethod.GET, **headers="myHeader=myValue"**)
+        public void findPet(_@PathVariable_ String ownerId, _@PathVariable_ String petId, Model model) {
+            // implementation omitted
+        }
+
+    }
+
+![\[Tip\]](images/tip.png)| Tip
+---|---
+
+Although you can match to _Content-Type_ and _Accept_ header values using media type wild cards (for example _"content-type=text/*"_ will match to _"text/plain"_ and _"text/html"_), it is recommended to use the _consumes_ and _produces_ conditions respectively instead. They are intended specifically for that purpose.
 
 > [Original] 
 
