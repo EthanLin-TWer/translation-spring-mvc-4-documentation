@@ -471,11 +471,42 @@ public void addPet(@RequestBody Pet pet, Model model) {
 
 > [Original] Consumable media type expressions can also be negated as in _!text/plain_ to match to all requests other than those with _Content-Type_ of _text/plain_. Also consider using constants provided in `MediaType` such as `APPLICATION_JSON_VALUE` and `APPLICATION_JSON_UTF8_VALUE`.
 
-指定可消费媒体类型的表达式中还可以使用否定，比如，可以使用 _!text/plain_ 来匹配所有请求头 _Content-Type_ 中不含 _text/plain_ 的请求。在`MediaType`类中定义了一些常量，比如`APPLICATION_JSON_VALUE`、`APPLICATION_JSON_UTF8_VALUE`等，推荐更多地使用它们。
+指定可消费媒体类型的表达式中还可以使用否定，比如，可以使用 _!text/plain_ 来匹配所有请求头 _Content-Type_ 中不含 _text/plain_ 的请求。同时，在`MediaType`类中还定义了一些常量，比如`APPLICATION_JSON_VALUE`、`APPLICATION_JSON_UTF8_VALUE`等，推荐更多地使用它们。
 
 > [Original] The _consumes_ condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.
 
-_consumes_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
+> _consumes_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
+
+## 可生产的媒体类型
+
+> [Original] You can narrow the primary mapping by specifying a list of producible media types. The request will be matched only if the _Accept_ request header matches one of these values. Furthermore, use of the _produces_ condition ensures the actual content type used to generate the response respects the media types specified in the _produces_ condition. For example:
+
+你可以指定一组可生产的媒体类型，缩小映射的范围。这样只有当请求头中 _Accept_ 的值与指定可生产的媒体类型中有相同的时候，请求才会被匹配。而且，使用 _produces_ 条件可以确保用于生成响应（response）的内容与指定的可生产的媒体类型是相同的。举个例子：
+
+```java
+@Controller
+@RequestMapping(path = "/pets/{petId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@ResponseBody
+public Pet getPet(_@PathVariable_ String petId, Model model) {
+    // 方法实现省略
+}
+```
+
+> [Original] Be aware that the media type specified in the _produces_ condition can also optionally specify a character set. For example, in the code snippet above we
+specify the same media type than the default one configured in `MappingJackson2HttpMessageConverter`, including the `UTF-8` charset.
+
+> 要注意的是，通过 _condition_ 条件指定的媒体类型也可以指定字符集。比如在上面的小段代码中，我们还是覆写了`MappingJackson2HttpMessageConverter`类中默认配置的媒体类型，同时，还指定了使用`UTF-8`的字符集。
+
+> [Original] Just like with _consumes_, producible media type expressions can be negated as in _!text/plain_ to match to all requests other than those with an _Accept_ header value of _text/plain_. Also consider using constants provided in `MediaType` such as `APPLICATION_JSON_VALUE` and `APPLICATION_JSON_UTF8_VALUE`.
+
+与 _consumes_ 条件类似，可生产的媒体类型表达式也可以使用否定。比如，可以使用 _!text/plain_ 来匹配所有请求头 _Accept_ 中不含 _text/plain_ 的请求。同时，在`MediaType`类中还定义了一些常量，比如`APPLICATION_JSON_VALUE`、`APPLICATION_JSON_UTF8_VALUE`等，推荐更多地使用它们。
+
+> [Original] The _produces_ condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level
+producible types override rather than extend type-level producible types.
+
+> _produces_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
+
+
 
 > [Original] 
 
