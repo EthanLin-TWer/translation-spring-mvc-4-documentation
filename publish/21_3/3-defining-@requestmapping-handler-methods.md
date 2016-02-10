@@ -17,6 +17,7 @@ neither.
 下面列出所有支持的方法参数类型：
 
 > [Original] * Request or response objects (Servlet API). Choose any specific request or response type, for example `ServletRequest` or `HttpServletRequest`.
+> 
 > [Original] * Session object (Servlet API): of type `HttpSession`. An argument of this type enforces the presence of a corresponding session. As a consequence, such an argument is never `null`.
 
 * 请求或响应对象（Servlet API）。可以是任何具体的请求或响应类型的对象，比如，`ServletRequest`或`HttpServletRequest`对象等。
@@ -27,12 +28,28 @@ neither.
 > 存取session可能不是线程安全的，特别是在一个Servlet的运行环境中。如果应用可能有多个请求同时并发存取一个session场景，请考虑将RequestMappingHandlerAdapter类中的"synchronizeOnSession"标志设置为"true"。
 
 > [Original] * `org.springframework.web.context.request.WebRequest` or `org.springframework.web.context.request.NativeWebRequest`. Allows for generic request parameter access as well as request/session attribute access, without ties to the native Servlet/Portlet API.
+> 
 > [Original] * `java.util.Locale` for the current request locale, determined by the most specific locale resolver available, in effect, the configured `LocaleResolver` / `LocaleContextResolver` in an MVC environment.
+> 
 > [Original] * `java.util.TimeZone` (Java 6+) / `java.time.ZoneId` (on Java 8) for the time zone associated with the current request, as determined by a `LocaleContextResolver`.
+> 
 > [Original] * `java.io.InputStream` / `java.io.Reader` for access to the request's content. This value is the raw InputStream/Reader as exposed by the Servlet API.
+> 
 > [Original] * `java.io.OutputStream` / `java.io.Writer` for generating the response's content. This value is the raw OutputStream/Writer as exposed by the Servlet API.
+> 
 > [Original] * `org.springframework.http.HttpMethod` for the HTTP request method.
+> 
 > [Original] * `java.security.Principal` containing the currently authenticated user.
+
+* `org.springframework.web.context.request.WebRequest`或`org.springframework.web.context.request.NativeWebRequest`。允许存取一般的请求参数和请求/会话范围的属性（attribute），同时无需绑定使用Servlet/Portlet的API
+* 当前请求的地区信息`java.util.Locale`，由已配置的最相关的地区解析器解析得到。在MVC的环境下，就是应用中配置的`LocaleResolver`或`LocaleContextResolver`
+* 与当前请求绑定的时区信息`java.util.TimeZone`（java 6以上的版本）/`java.time.ZoneId`（java 8），由`LocaleContextResolver`解析得到
+* 用于存取请求正文的`java.io.InputStream`或`java.io.Reader`。该对象与通过Servlet API拿到的输入流/Reader是一样的
+* 用于生成响应正文的`java.io.OutputStream`或`java.io.Writer`。该对象与通过Servlet API拿到的输出流/Writer是一样的
+* `org.springframework.http.HttpMethod`。可以拿到HTTP请求方法
+* 包装了当前被认证用户信息的`java.security.Principal`
+
+
 
 
 
