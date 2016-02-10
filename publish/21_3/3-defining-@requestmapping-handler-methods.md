@@ -49,7 +49,24 @@ neither.
 * `org.springframework.http.HttpMethod`。可以拿到HTTP请求方法
 * 包装了当前被认证用户信息的`java.security.Principal`
 
+> [Original] * `@PathVariable` annotated parameters for access to URI template variables. See [the section called "URI Template Patterns"](mvc.html#mvc-ann-requestmapping-uri-templates "URI Template Patterns" ).
+> [Original] * `@MatrixVariable` annotated parameters for access to name-value pairs located in URI path segments. See [the section called "Matrix Variables"](mvc.html#mvc-ann-matrix-variables "Matrix Variables" ).
+> [Original] * `@RequestParam` annotated parameters for access to specific Servlet request parameters. Parameter values are converted to the declared method argument type. See [the section called "Binding request parameters to method parameters with @RequestParam"](mvc.html#mvc-ann-requestparam "Binding request parameters to method parameters with @RequestParam" ).
+> [Original] * `@RequestHeader` annotated parameters for access to specific Servlet request HTTP headers. Parameter values are converted to the declared method argument type. See [the section called "Mapping request header attributes with the @RequestHeader annotation"](mvc.html#mvc-ann-requestheader "Mapping request header attributes with the @RequestHeader annotation" ).
 
+* 
+
+  * `@RequestBody` annotated parameters for access to the HTTP request body. Parameter values are converted to the declared method argument type using HttpMessageConverters. See [the section called "Mapping the request body with the @RequestBody annotation"](mvc.html#mvc-ann-requestbody "Mapping the request body with the @RequestBody annotation" ).
+
+
+  * `@RequestPart` annotated parameters for access to the content of a "multipart/form-data" request part. See [Section 21.10.5, "Handling a file upload request from programmatic clients"](mvc.html#mvc-multipart-forms-non-browsers "21.10.5 Handling a file upload request from programmatic clients" ) and [Section 21.10, "Spring's multipart (file upload) support"](mvc.html#mvc-multipart "21.10 Spring's multipart \(file upload\) support" ).
+  * `HttpEntity<?>` parameters for access to the Servlet request HTTP headers and contents. The request stream will be converted to the entity body using HttpMessageConverters. See [the section called "Using HttpEntity"](mvc.html#mvc-ann-httpentity "Using HttpEntity" ).
+  * `java.util.Map` / `org.springframework.ui.Model` / `org.springframework.ui.ModelMap` for enriching the implicit model that is exposed to the web view.
+  * `org.springframework.web.servlet.mvc.support.RedirectAttributes` to specify the exact set of attributes to use in case of a redirect and also to add flash attributes (attributes stored temporarily on the server-side to make them available to the request after the redirect). See [the section called "Passing Data To the Redirect Target"](mvc.html#mvc-redirecting-passing-data "Passing Data To the Redirect Target" ) and [Section 21.6, "Using flash attributes"](mvc.html#mvc-flash-attributes "21.6 Using flash attributes" ).
+  * Command or form objects to bind request parameters to bean properties (via setters) or directly to fields, with customizable type conversion, depending on `@InitBinder` methods and/or the HandlerAdapter configuration. See the `webBindingInitializer` property on `RequestMappingHandlerAdapter`. Such command objects along with their validation results will be exposed as model attributes by default, using the command class class name - e.g. model attribute "orderAddress" for a command object of type "some.package.OrderAddress". The `ModelAttribute` annotation can be used on a method argument to customize the model attribute name used.
+  * `org.springframework.validation.Errors` / `org.springframework.validation.BindingResult` validation results for a preceding command or form object (the immediately preceding method argument).
+  * `org.springframework.web.bind.support.SessionStatus` status handle for marking form processing as complete, which triggers the cleanup of session attributes that have been indicated by the `@SessionAttributes` annotation at the handler type level.
+  * `org.springframework.web.util.UriComponentsBuilder` a builder for preparing a URL relative to the current request's host, port, scheme, context path, and the literal part of the servlet mapping.
 
 
 
