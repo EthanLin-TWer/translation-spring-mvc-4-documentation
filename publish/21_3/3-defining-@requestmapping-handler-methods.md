@@ -54,7 +54,9 @@ neither.
 > [Original] * `@RequestParam` annotated parameters for access to specific Servlet request parameters. Parameter values are converted to the declared method argument type. See [the section called "Binding request parameters to method parameters with @RequestParam"](mvc.html#mvc-ann-requestparam "Binding request parameters to method parameters with @RequestParam" ).
 > [Original] * `@RequestHeader` annotated parameters for access to specific Servlet request HTTP headers. Parameter values are converted to the declared method argument type. See [the section called "Mapping request header attributes with the @RequestHeader annotation"](mvc.html#mvc-ann-requestheader "Mapping request header attributes with the @RequestHeader annotation" ).
 
-* 
+* 带`@PathVariable`注解的方法参数，存放了URI模板变量中的值。详见[“URI模板变量”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates "URI Template Patterns" )
+* 带`@MatrixVariable`注解的方法参数，存放了URI路径段中的键值对。详见[“矩阵变量”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-matrix-variables "Matrix Variables")
+* 带`@RequestParam`注解的方法参数，
 
   * `@RequestBody` annotated parameters for access to the HTTP request body. Parameter values are converted to the declared method argument type using HttpMessageConverters. See [the section called "Mapping the request body with the @RequestBody annotation"](mvc.html#mvc-ann-requestbody "Mapping the request body with the @RequestBody annotation" ).
 
