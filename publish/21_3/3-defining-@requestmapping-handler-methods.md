@@ -93,6 +93,39 @@ neither.
 * `org.springframework.web.bind.support.SessionStatus`对象，用以标记当前的表单处理已结束。这将触发一些清理操作：`@SessionAttributes`在类级别注解的属性将被移除
 * `org.springframework.web.util.UriComponentsBuilder`构造器对象，用于构造当前请求URL相关的信息，比如主机名、端口号、资源类型（scheme）、上下文路径、servlet映射中的相对部分（literal part）等
 
+> The `Errors` or `BindingResult` parameters have to follow the model object
+that is being bound immediately as the method signature might have more than
+one model object and Spring will create a separate `BindingResult` instance
+for each of them so the following sample won't work:
+
+在参数列表中，`Errors`或`BindingResult`参数必须紧跟在其所绑定的验证对象后面。这是因为，在参数列表中允许有多于一个的模型对象，Spring会为它们创建不同的`BindingResult`实例。因此，下面这样的代码是不能工作的：
+
+> __Invalid ordering of BindingResult and @ModelAttribute.__
+```java
+_@RequestMapping(method = RequestMethod.POST)_
+public String processSubmit(@ModelAttribute("pet") Pet pet, Model model, BindingResult result) { ... }
+```
+
+__BindingResult与@ModelAttribute错误的参数次序__
+```java
+@RequestMapping(method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute("pet") Pet pet, Model model, BindingResult result) { ... }
+```
+
+> Note, that there is a `Model` parameter in between `Pet` and `BindingResult`.
+To get this working you have to reorder the parameters as follows:
+
+```java
+_@RequestMapping(method = RequestMethod.POST)_
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result, Model model) { ... }
+```
+
+上例中，因为在模型对象`Pet`和验证结果对象`BindingResult`中间还插了一个`Model`参数，这是不行的。要达到预期的效果，必须调整一下参数的次序：
+
+```java
+@RequestMapping(method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result, Model model) { ... }
+```
 
 
 
