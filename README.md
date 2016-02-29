@@ -19,6 +19,11 @@
 * [Spring 2.5文档的翻译](http://javasalatu.iteye.com/blog/1212618)。该译稿看起来比较权威，但是满红红机构的首页和维基已打不开，也没有在网上搜到2.5版本的翻译稿，故成传说
 
 
+## TODOLIST
+* 更新README部分目录与索引，翻译完成后，要总结文档的基本内容到简介或README中
+* 以github/gitbook为中心，一键自动化同步推送到其他平台
+
+
 ## 反馈与建议
 阅读过程有任何反馈或建议或不爽，有以下方式可以联系作者：
 * 邮箱：linesh.simpcity@gmail.com

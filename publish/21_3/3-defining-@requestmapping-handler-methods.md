@@ -129,6 +129,18 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 
 > 对于一些带有`required`属性的注解（比如`@RequestParam`、`@RequestHeader`等），JDK 1.8的`java.util.Optional`可以作为被它们注解的方法参数。在这种情况下，使用`java.util.Optional`与`required=false`的作用是相同的。
 
+## 支持的方法返回类型
+
+> [Original] The following are the supported return types:
+
+以下是handler方法允许的所有返回类型：
+
+> [Original] * A `ModelAndView` object, with the model implicitly enriched with command objects and the results of `@ModelAttribute` annotated reference data accessor methods.
+> [Original] * A `Model` object, with the view name implicitly determined through a `RequestToViewNameTranslator` and the model implicitly enriched with command objects and the results of `@ModelAttribute` annotated reference data accessor methods.
+> [Original] * A `Map` object for exposing a model, with the view name implicitly determined through a `RequestToViewNameTranslator` and the model implicitly enriched with command objects and the results of `@ModelAttribute` annotated reference data accessor methods.
+
+* `ModelAndView`
+
 
 
 
