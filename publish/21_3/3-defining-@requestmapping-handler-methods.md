@@ -151,3 +151,19 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 与`@ModelAttribute`注解的参数一样，`Errors`也可以被传入为方法参数，用于检查错误。如果没有声明这样一个参数，那么程序会抛出一个`MethodArgumentNotValidException`异常。该异常默认由`DefaultHandlerExceptionResolver`处理，处理程序会返回一个`400`错误给客户端。
 
 > 关于如何通过MVC命令空间或MVC Java编程的方式配置消息转换器和验证器，也请参考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
+
+## 使用@ResponseBody注解映射响应体
+
+`@ResponseBody`注解与`@RequestBody`注解类似。`@ResponseBody`注解可被应用于方法上，标志该方法的返回值（更正，原文是return type，看起来应该是返回值）应该被直接写回到HTTP响应体中去（而不会被被放置到Model中或被解释为一个视图名）。举个例子：
+
+```java
+@RequestMapping(path = "/something", method = RequestMethod.PUT)
+@ResponseBody
+public String helloWorld() {
+    return "Hello World"
+}
+```
+
+上面的代码结果是文本`Hello World`将被写入HTTP的响应流中。
+
+与`@RequestBody`注解类似，Spring使用了一个`HttpMessageConverter`来将返回对象转换到响应体中。关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。
