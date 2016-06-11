@@ -71,3 +71,34 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 * `SseEmitter`对象，可用它异步地向响应体中写服务器端事件（Server-Sent Events）,also supported as the body within a `ResponseEntity`
 * `StreamingResponseBody`对象，可用它异步地向响应对象的输出流中写东西。also supported as the body within a `ResponseEntity`
 * 其他任何返回类型，都会被处理成model的一个属性并返回给视图，该属性的名称为方法级的`@ModelAttribute`所注解的字段名（或者以返回类型的类名作为默认的属性名）。model隐含填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值
+
+
+## 使用@RequestParam将请求参数绑定至方法参数
+
+你可以使用`@RequestParam`注解将请求参数绑定到你控制器的方法参数上。
+
+下面这段代码展示了它的用法：
+
+```java
+@Controller
+@RequestMapping("/pets")
+@SessionAttributes("pet")
+public class EditPetForm {
+    // ...
+    @RequestMapping(method = RequestMapping.GET)
+    public String setupForm(@RequestParam("petId") int petId, ModelMap model) {
+        Pet pet = this.clinic.loadPet(petId);
+        model.addAttribute("pet", pet);
+        return "petForm";
+    }
+
+    // ,..
+}
+```
+
+若参数使用了该注解，则该参数默认是必须提供的，但你也可以把该参数标注为非必须的：只需要将`@RequestParam`注解的`required`属性设置为`false`即可（比如，`@RequestParam(path="id", required=false)`）。
+
+若所注解的方法参数类型不是`String`，则类型转换会自动地发生。详见["方法参数与类型转换"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type
+Conversion")
+
+若`@RequestParam`注解的参数类型是`Map<String, String>`或者`MultiValueMap<String, String>`，则该Map中会自动填充所有的请求参数。
