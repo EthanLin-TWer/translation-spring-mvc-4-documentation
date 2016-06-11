@@ -146,22 +146,8 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>    
 ```
 
-An `@RequestBody` method parameter can be annotated with `@Valid`, in which
-case it will be validated using the configured `Validator` instance. When
-using the MVC namespace or the MVC Java config, a JSR-303 validator is
-configured automatically assuming a JSR-303 implementation is available on the
-classpath.
+注解了`@RequestBody`的方法参数还可以被`@Valid`注解，这样框架会使用已配置的`Validator`实例来对该参数进行验证。若你的应用是使用MVC命令空间或MVC Java编程的方式配置的，框架会假设在classpath路径下存在一个符合JSR-303规范的验证器，并自动将其作为默认配置。
 
-Just like with `@ModelAttribute` parameters, an `Errors` argument can be used
-to examine the errors. If such an argument is not declared, a
-`MethodArgumentNotValidException` will be raised. The exception is handled in
-the `DefaultHandlerExceptionResolver`, which sends a `400` error back to the
-client.
+与`@ModelAttribute`注解的参数一样，`Errors`也可以被传入为方法参数，用于检查错误。如果没有声明这样一个参数，那么程序会抛出一个`MethodArgumentNotValidException`异常。该异常默认由`DefaultHandlerExceptionResolver`处理，处理程序会返回一个`400`错误给客户端。
 
-![\[Note\]](images/note.png)| Note
----|---
-
-Also see [Section 21.16.1, "Enabling the MVC Java Config or the MVC XML
-Namespace"](mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config
-or the MVC XML Namespace" ) for information on configuring message converters
-and a validator through the MVC namespace or the MVC Java config.
+> 关于如何通过MVC命令空间或MVC Java编程的方式配置消息转换器和验证器，也请参考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
