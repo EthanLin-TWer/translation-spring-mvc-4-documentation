@@ -167,3 +167,12 @@ public String helloWorld() {
 上面的代码结果是文本`Hello World`将被写入HTTP的响应流中。
 
 与`@RequestBody`注解类似，Spring使用了一个`HttpMessageConverter`来将返回对象转换到响应体中。关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。
+
+## 使用@RestController注解创建REST控制器
+
+当今让控制器实现一个REST API是非常常见的，这种场景下控制器只需要提供JSON、XML或其他自定义的媒体类型内容即可。你不需要在每个`@RequestMapping`方法上都增加一个`@ResponseBody`注解，更简明的做法是，给你的控制器加上一个`@RestController`的注解。
+
+[`@RestController`](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE
+/javadoc-api/org/springframework/web/bind/annotation/RestController.html)是一个原生内置的注解，它结合了`@ResponseBody`与`@Controller`注解的功能。不仅如此，它也让你的控制器更表义，而且在框架未来的发布版本中，它也可能承载更多的意义。
+
+与普通的`@Controller`无异，`@RestController`也可以与`@ControllerAdvice`bean配合使用。更多细节，请见[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
