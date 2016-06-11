@@ -176,3 +176,26 @@ public String helloWorld() {
 /javadoc-api/org/springframework/web/bind/annotation/RestController.html)是一个原生内置的注解，它结合了`@ResponseBody`与`@Controller`注解的功能。不仅如此，它也让你的控制器更表义，而且在框架未来的发布版本中，它也可能承载更多的意义。
 
 与普通的`@Controller`无异，`@RestController`也可以与`@ControllerAdvice`bean配合使用。更多细节，请见[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
+
+
+## 使用HTTP实体HttpEntity
+
+`HttpEntity`与`@RequestBody`和`@ResponseBody`很相似。除了能获得请求体和响应体中的内容之外，`HttpEntity`（以及专门负责处理响应的`ResponseEntity`子类）还可以存取请求头和响应头，像下面这样：
+
+```java
+@RequestMapping("/something")
+public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
+    String requestHeader = requestEntity.getHeaders().getFirst("MyRequestHeader"));
+    byte[] requestBody = requestEntity.getBody();
+
+    // do something with request header and body
+
+    HttpHeaders responseHeaders = new HttpHeaders();
+    responseHeaders.set("MyResponseHeader", "MyValue");
+    return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED);
+}
+```
+
+上面这段示例代码先是获取了`MyRequestHeader`请求头的值，然后读取请求体的主体内容。读完以后往影响头中添加了一个自己的响应头`MyResponseHeader`，然后向响应流中写了字符串`Hello World`，最后把响应状态码设置为201（创建成功）。
+
+与`@RequestBody`与`@ResponseBody`注解一样，Spring使用了`HttpMessageConverter`来对请求流和响应流进行转换。关于这些转换器的更多信息，请阅读上一小节以及["HTTP信息转换器"这一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。
