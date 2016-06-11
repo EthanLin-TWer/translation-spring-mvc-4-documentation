@@ -102,3 +102,74 @@ public class EditPetForm {
 Conversion")
 
 若`@RequestParam`注解的参数类型是`Map<String, String>`或者`MultiValueMap<String, String>`，则该Map中会自动填充所有的请求参数。
+
+## 使用@RequestBody注解映射请求体
+
+方法参数中的`@RequestBody`注解暗示了方法参数应该被绑定了HTTP请求体的值。举个例子：
+
+```java
+@RequestMapping(path = "/something", method = RequestMethod.PUT)
+public void handle(@RequestBody String body, Writer writer) throws IOException {
+    writer.write(body);
+}
+```
+
+请求体到方法参数的转换是由`HttpMessageConverter`完成的。`HttpMessageConverter`负责将HTTP请求信息转换成对象，以及将对象转换回一个HTTP响应体。对于`@RequestBody`注解，`RequestMappingHandlerAdapter`提供了以下几种默认的`HttpMessageConverter`支持：
+
+* `ByteArrayHttpMessageConverter`用以转换字节数组
+* `StringHttpMessageConverter`用以转换字符串
+* `FormHttpMessageConverter`用以将表格数据转换成`MultiValueMap<String, String>`或从`MultiValueMap<String, String>`中转换出表格数据
+* `SourceHttpMessageConverter`用于`javax.xml.transform.Source`类的互相转换
+
+关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。另外，如果使用的是MVC命名空间或Java编程的配置方式，会有更多默认注册的消息转换器。更多信息，請參考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
+
+If you intend to read and write XML, you will need to configure the
+`MarshallingHttpMessageConverter` with a specific `Marshaller` and an
+`Unmarshaller` implementation from the `org.springframework.oxm` package. The
+example below shows how to do that directly in your configuration but if your
+application is configured through the MVC namespace or the MVC Java config see
+[Section 21.16.1, "Enabling the MVC Java Config or the MVC XML
+Namespace"](mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config
+or the MVC XML Namespace" ) instead.
+
+
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <util:list id="beanList">
+                <ref bean="stringHttpMessageConverter"/>
+                <ref bean="marshallingHttpMessageConverter"/>
+            </util:list>
+        </property
+    </bean>
+
+    <bean id="stringHttpMessageConverter"
+            class="org.springframework.http.converter.StringHttpMessageConverter"/>
+
+    <bean id="marshallingHttpMessageConverter"
+            class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+        <property name="marshaller" ref="castorMarshaller"/>
+        <property name="unmarshaller" ref="castorMarshaller"/>
+    </bean>
+
+    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>
+
+An `@RequestBody` method parameter can be annotated with `@Valid`, in which
+case it will be validated using the configured `Validator` instance. When
+using the MVC namespace or the MVC Java config, a JSR-303 validator is
+configured automatically assuming a JSR-303 implementation is available on the
+classpath.
+
+Just like with `@ModelAttribute` parameters, an `Errors` argument can be used
+to examine the errors. If such an argument is not declared, a
+`MethodArgumentNotValidException` will be raised. The exception is handled in
+the `DefaultHandlerExceptionResolver`, which sends a `400` error back to the
+client.
+
+![\[Note\]](images/note.png)| Note
+---|---
+
+Also see [Section 21.16.1, "Enabling the MVC Java Config or the MVC XML
+Namespace"](mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config
+or the MVC XML Namespace" ) for information on configuring message converters
+and a validator through the MVC namespace or the MVC Java config.
