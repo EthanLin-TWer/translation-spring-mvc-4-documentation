@@ -123,36 +123,28 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 
 关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。另外，如果使用的是MVC命名空间或Java编程的配置方式，会有更多默认注册的消息转换器。更多信息，請參考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
 
-If you intend to read and write XML, you will need to configure the
-`MarshallingHttpMessageConverter` with a specific `Marshaller` and an
-`Unmarshaller` implementation from the `org.springframework.oxm` package. The
-example below shows how to do that directly in your configuration but if your
-application is configured through the MVC namespace or the MVC Java config see
-[Section 21.16.1, "Enabling the MVC Java Config or the MVC XML
-Namespace"](mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config
-or the MVC XML Namespace" ) instead.
+若你更倾向于阅读和编写XML文件，那么你需要配置一个`MarshallingHttpMessageConverter`并为其提供`org.springframework.oxm`包下的一个`Marshaller`和`Unmarshaller`实现。下面的示例就为你展示如何直接在配置文件中配置它。但如果你的应用是使用MVC命令空间或MVC Java编程的方式进行配置的，则请参考["启用MVC Java编程配置或MVC XML命令空间配置"这一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
 
+```xml
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+        <util:list id="beanList">
+            <ref bean="stringHttpMessageConverter"/>
+            <ref bean="marshallingHttpMessageConverter"/>
+        </util:list>
+    </property
+</bean>
 
+<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter"/>
 
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <util:list id="beanList">
-                <ref bean="stringHttpMessageConverter"/>
-                <ref bean="marshallingHttpMessageConverter"/>
-            </util:list>
-        </property
-    </bean>
+<bean id="marshallingHttpMessageConverter"
+        class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+    <property name="marshaller" ref="castorMarshaller"/>
+    <property name="unmarshaller" ref="castorMarshaller"/>
+</bean>
 
-    <bean id="stringHttpMessageConverter"
-            class="org.springframework.http.converter.StringHttpMessageConverter"/>
-
-    <bean id="marshallingHttpMessageConverter"
-            class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-        <property name="marshaller" ref="castorMarshaller"/>
-        <property name="unmarshaller" ref="castorMarshaller"/>
-    </bean>
-
-    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>
+<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>    
+```
 
 An `@RequestBody` method parameter can be annotated with `@Valid`, in which
 case it will be validated using the configured `Validator` instance. When
