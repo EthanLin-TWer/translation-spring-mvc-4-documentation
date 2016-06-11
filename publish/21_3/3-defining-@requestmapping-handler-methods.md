@@ -199,3 +199,73 @@ public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws Un
 上面这段示例代码先是获取了`MyRequestHeader`请求头的值，然后读取请求体的主体内容。读完以后往影响头中添加了一个自己的响应头`MyResponseHeader`，然后向响应流中写了字符串`Hello World`，最后把响应状态码设置为201（创建成功）。
 
 与`@RequestBody`与`@ResponseBody`注解一样，Spring使用了`HttpMessageConverter`来对请求流和响应流进行转换。关于这些转换器的更多信息，请阅读上一小节以及["HTTP信息转换器"这一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。
+
+#### Using @ModelAttribute on a method
+
+The `@ModelAttribute` annotation can be used on methods or on method
+arguments. This section explains its usage on methods while the next section
+explains its usage on method arguments.
+
+An `@ModelAttribute` on a method indicates the purpose of that method is to
+add one or more model attributes. Such methods support the same argument types
+as `@RequestMapping` methods but cannot be mapped directly to requests.
+Instead `@ModelAttribute` methods in a controller are invoked before
+`@RequestMapping` methods, within the same controller. A couple of examples:
+
+
+
+    // Add one attribute
+    // The return value of the method is added to the model under the name "account"
+    // You can customize the name via @ModelAttribute("myAccount")
+
+    _@ModelAttribute_
+    public Account addAccount(_@RequestParam_ String number) {
+        return accountManager.findAccount(number);
+    }
+
+    // Add multiple attributes
+
+    _@ModelAttribute_
+    public void populateModel(_@RequestParam_ String number, Model model) {
+        model.addAttribute(accountManager.findAccount(number));
+        // add more ...
+    }
+
+`@ModelAttribute` methods are used to populate the model with commonly needed
+attributes for example to fill a drop-down with states or with pet types, or
+to retrieve a command object like Account in order to use it to represent the
+data on an HTML form. The latter case is further discussed in the next
+section.
+
+Note the two styles of `@ModelAttribute` methods. In the first, the method
+adds an attribute implicitly by returning it. In the second, the method
+accepts a `Model` and adds any number of model attributes to it. You can
+choose between the two styles depending on your needs.
+
+A controller can have any number of `@ModelAttribute` methods. All such
+methods are invoked before `@RequestMapping` methods of the same controller.
+
+`@ModelAttribute` methods can also be defined in an @ControllerAdvice-
+annotated class and such methods apply to many controllers. See the [the
+section called "Advising controllers with @ControllerAdvice"](mvc.html#mvc-
+ann-controller-advice "Advising controllers with @ControllerAdvice" ) section
+for more details.
+
+![\[Tip\]](images/tip.png)| Tip
+---|---
+
+What happens when a model attribute name is not explicitly specified? In such
+cases a default name is assigned to the model attribute based on its type. For
+example if the method returns an object of type `Account`, the default name
+used is "account". You can change that through the value of the
+`@ModelAttribute` annotation. If adding attributes directly to the `Model`,
+use the appropriate overloaded `addAttribute(..)` method - i.e., with or
+without an attribute name.
+
+The `@ModelAttribute` annotation can be used on `@RequestMapping` methods as
+well. In that case the return value of the `@RequestMapping` method is
+interpreted as a model attribute rather than as a view name. The view name is
+derived from view name conventions instead much like for methods returning
+void -- see [Section 21.13.3, "The View -
+RequestToViewNameTranslator"](mvc.html#mvc-coc-r2vnt "21.13.3 The View -
+RequestToViewNameTranslator" ).
