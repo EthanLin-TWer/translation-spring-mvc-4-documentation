@@ -200,72 +200,40 @@ public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws Un
 
 与`@RequestBody`与`@ResponseBody`注解一样，Spring使用了`HttpMessageConverter`来对请求流和响应流进行转换。关于这些转换器的更多信息，请阅读上一小节以及["HTTP信息转换器"这一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。
 
-#### Using @ModelAttribute on a method
 
-The `@ModelAttribute` annotation can be used on methods or on method
-arguments. This section explains its usage on methods while the next section
-explains its usage on method arguments.
+## 对方法使用@ModelAttribute注解
 
-An `@ModelAttribute` on a method indicates the purpose of that method is to
-add one or more model attributes. Such methods support the same argument types
-as `@RequestMapping` methods but cannot be mapped directly to requests.
-Instead `@ModelAttribute` methods in a controller are invoked before
-`@RequestMapping` methods, within the same controller. A couple of examples:
+`@ModelAttribute`注解可被应用在方法或方法参数上。本节将介绍其被注解于方法上时的用法，下节会介绍其被用于注解方法参数的用法。
 
+注解在方法上的`@ModelAttribute`说明了方法的作用是用于添加一个或多个属性到model上。这样的方法能接受与`@RequestMapping`注解相同的参数类型，只不过不能直接被映射到具体的请求上。在同一个控制器中，注解了`@ModelAttribute`的方法实际上会在`@RequestMapping`方法之前被调用。以下是几个例子：
 
+```java
+// Add one attribute
+// The return value of the method is added to the model under the name "account"
+// You can customize the name via @ModelAttribute("myAccount")
 
-    // Add one attribute
-    // The return value of the method is added to the model under the name "account"
-    // You can customize the name via @ModelAttribute("myAccount")
+@ModelAttribute
+public Account addAccount(@RequestParam String number) {
+    return accountManager.findAccount(number);
+}
 
-    _@ModelAttribute_
-    public Account addAccount(_@RequestParam_ String number) {
-        return accountManager.findAccount(number);
-    }
+// Add multiple attributes
 
-    // Add multiple attributes
+@ModelAttribute
+public void populateModel(@RequestParam String number, Model model) {
+    model.addAttribute(accountManager.findAccount(number));
+    // add more ...
+}
+```
 
-    _@ModelAttribute_
-    public void populateModel(_@RequestParam_ String number, Model model) {
-        model.addAttribute(accountManager.findAccount(number));
-        // add more ...
-    }
+`@ModelAttribute`方法通常被用来填充一些公共需要的属性或数据，比如一个下拉列表所预设的几种状态，或者宠物的几种类型，或者去取得一个HTML表单渲染所需要的命令对象，比如`Account`等。
 
-`@ModelAttribute` methods are used to populate the model with commonly needed
-attributes for example to fill a drop-down with states or with pet types, or
-to retrieve a command object like Account in order to use it to represent the
-data on an HTML form. The latter case is further discussed in the next
-section.
+留意`@ModelAttribute`方法的两种风格。在第一种写法中，方法通过返回值的方式默认地将添加一个属性；在第二种写法中，方法接收一个`Model`对象，然后可以向其中添加任意数量的属性。你可以在根据需要，在两种风格中选择合适的一种。
 
-Note the two styles of `@ModelAttribute` methods. In the first, the method
-adds an attribute implicitly by returning it. In the second, the method
-accepts a `Model` and adds any number of model attributes to it. You can
-choose between the two styles depending on your needs.
+一个控制器可以拥有数量不限的`@ModelAttribute`方法。同个控制器内的所有这些方法，都会在`@RequestMapping`方法之前被调用。
 
-A controller can have any number of `@ModelAttribute` methods. All such
-methods are invoked before `@RequestMapping` methods of the same controller.
+`@ModelAttribute`方法也可以定义在`@ControllerAdvice`注解的类中，并且这些`@ModelAttribute`可以同时对许多控制器生效。具体的信息可以参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
 
-`@ModelAttribute` methods can also be defined in an @ControllerAdvice-
-annotated class and such methods apply to many controllers. See the [the
-section called "Advising controllers with @ControllerAdvice"](mvc.html#mvc-
-ann-controller-advice "Advising controllers with @ControllerAdvice" ) section
-for more details.
+> 属性名没有被显式指定的时候又当如何呢？在这种情况下，框架将根据属性的类型给予一个默认名称。举个例子，若方法返回一个`Account`类型的对象，则默认的属性名为"account"。你可以通过设置`@ModelAttribute`注解的值来改变默认值。当向`Model`中直接添加属性时，请使用合适的重载方法`addAttribute(..)`-即，带或不带属性名的方法。
 
-![\[Tip\]](images/tip.png)| Tip
----|---
-
-What happens when a model attribute name is not explicitly specified? In such
-cases a default name is assigned to the model attribute based on its type. For
-example if the method returns an object of type `Account`, the default name
-used is "account". You can change that through the value of the
-`@ModelAttribute` annotation. If adding attributes directly to the `Model`,
-use the appropriate overloaded `addAttribute(..)` method - i.e., with or
-without an attribute name.
-
-The `@ModelAttribute` annotation can be used on `@RequestMapping` methods as
-well. In that case the return value of the `@RequestMapping` method is
-interpreted as a model attribute rather than as a view name. The view name is
-derived from view name conventions instead much like for methods returning
-void -- see [Section 21.13.3, "The View -
-RequestToViewNameTranslator"](mvc.html#mvc-coc-r2vnt "21.13.3 The View -
-RequestToViewNameTranslator" ).
+`@ModelAttribute`注解也可以被用在`@RequestMapping`方法上。这种情况下，`@RequestMapping`方法的返回值将会被解释为model的一个属性，而非一个视图名。此时视图名将以视图命名约定来方式来决议，与返回值为void的方法所采用的处理方法类似——请见[视图：请求与视图名的对应](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-coc-r2vnt "21.13.3 The View - RequestToViewNameTranslator")。
