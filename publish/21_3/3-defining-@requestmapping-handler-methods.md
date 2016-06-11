@@ -55,17 +55,6 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 
 以下是handler方法允许的所有返回类型：
 
-> [Original] * An `HttpEntity<?>` or `ResponseEntity<?>` object to provide access to the Servlet response HTTP headers and contents. The entity body will be converted to the response stream using HttpMessageConverters. See [the section called "Using HttpEntity"](mvc.html#mvc-ann-httpentity "Using HttpEntity" ).
->
-> [Original] * An `HttpHeaders` object to return a response with no body.
->
-> [Original] * A `Callable<?>` can be returned when the application wants to produce the return value asynchronously in a thread managed by Spring MVC.
->
-> [Original] * A `DeferredResult<?>` can be returned when the application wants to produce the return value from a thread of its own choosing.
->
-> [Original] * A `ListenableFuture<?>` can be returned when the application wants to produce the return value from a thread of its own choosing.
-
-
 * `ModelAndView`对象，其中model隐含填充了命令对象，以及注解了`@ModelAttribute`字段的存取器被调用所返回的值。
 * `Model`对象，其中视图名称默认由`RequestToViewNameTranslator`决定，model隐含填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值
 * `Map`对象，用于暴露model，其中视图名称默认由`RequestToViewNameTranslator`决定，model隐含填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值
@@ -78,14 +67,7 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 * `Callable<?>`对象。当应用希望异步地返回方法值时使用，这个过程由Spring MVC自身的线程来管理
 * `DeferredResult<?>`对象。当应用希望方法的返回值交由线程自身决定时使用
 * `ListenableFuture<?>`对象。当应用希望方法的返回值交由线程自身决定时使用
-
-
-
-
-
-
-
-
-
-
-> [Original]
+* `ResponseBodyEmitter`对象，可用它异步地向响应体中同时写多个对象，also supported as the body within a `ResponseEntity`
+* `SseEmitter`对象，可用它异步地向响应体中写服务器端事件（Server-Sent Events）,also supported as the body within a `ResponseEntity`
+* `StreamingResponseBody`对象，可用它异步地向响应对象的输出流中写东西。also supported as the body within a `ResponseEntity`
+* 其他任何返回类型，都会被处理成model的一个属性并返回给视图，该属性的名称为方法级的`@ModelAttribute`所注解的字段名（或者以返回类型的类名作为默认的属性名）。model隐含填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值
