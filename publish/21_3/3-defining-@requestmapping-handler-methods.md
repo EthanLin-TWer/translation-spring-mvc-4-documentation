@@ -252,7 +252,7 @@ public String processSubmit(@ModelAttribute Pet pet) { }
 
 以上面的代码为例，这个Pet类型的实例可能来自哪里呢？有几种可能:
 
-* 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["使用@SessionAttributes注解在请求之间将模型数据保存在HTTP会话中"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
+* 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
 * 它可能因为在同个控制器中使用了`@ModelAttribute`方法已经存在于model中——正如上一小节所叙述的
 * 它可能是由URI模板变量和类型转换中取得的（下面会详细讲解）
 * 它可能是调用了自身的默认构造器被实例化出来的
@@ -320,3 +320,46 @@ public String processSubmit(@Valid @ModelAttribute("pet") Pet pet, BindingResult
 ```
 
 关于如何配置并使用验证，可以参考[第8.8小节 "Spring验证"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#validation-beanvalidation "8.8 Spring Validation")和[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")。
+
+
+## 在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据
+
+类型级别的`@SessionAttributes`注解声明了某个特定处理器所使用的会话属性。通常它会列出该类型希望存储到session或converstaion中的model属性名或model的类型名，一般是用于在请求之间保存一些表单数据的bean。
+
+以下的代码段演示了该注解的用法，它指定了模型属性的名称
+
+```java
+@Controller
+@RequestMapping("/editPet.do")
+@SessionAttributes("pet")
+public class EditPetForm {
+    // ...
+}
+```
+
+## 使用"application/x-www-form-urlencoded"数据
+
+上一小节讲述了如何使用`@ModelAttribute`支持客户端浏览器的多次表单提交请求。对于不是使用的浏览器的客户端，我们也推荐使用这个注解来处理请求。但当请求是一个HTTP PUT方法的请求时，有一个事情需要注意。浏览器可以通过HTTP的GET方法或POST方法来提交表单数据，非浏览器的客户端还可以通过HTTP的PUT方法来提交表单。这就设计是个挑战，因为在Servlet规范中明确规定，`ServletRequest.getParameter*()`系列的方法只能支持通过HTTP POST方法的方式提交表单，而不支持HTTP PUT的方式。
+
+为了支持HTTP的PUT类型和PATCH类型的请求，Spring的`spring-web`模块提供了一个过滤器`HttpPutFormContentFilter`。你可以在`web.xml`文件中配置它：
+
+```xml
+    <filter>
+        <filter-name>httpPutFormFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>httpPutFormFilter</filter-name>
+        <servlet-name>dispatcherServlet</servlet-name>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+```
+
+上面的过滤器将会拦截内容类型(content type)为`application/x-www-form-urlencoded`、HTTP方法为PUT或PATCH类型的请求，然后从请求体中读取表单数据，把它们包装在`ServletRequest`中。这是为了使表单数据能够通过`ServletRequest.getParameter*()`系列的方法来拿到。
+
+> 因为`HttpPutFormContentFilter`会消费请求体的内容，因此，它不应该用于处理那些依赖于其他`application/x-www-form-urlencoded`转换器的PUT和PATCH请求，这包括了`@RequestBodyMultiValueMap<String, String>`和`HttpEntity<MultiValueMap<String, String>>`。
