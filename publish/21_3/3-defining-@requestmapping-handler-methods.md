@@ -514,3 +514,101 @@ public class AssignableTypesAdvice {}
 ```
 
 更多的细节，请查阅[`@ControllerAdvice`的文档](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)。
+
+
+下面两节，还看不太懂，待译。
+
+#### Jackson Serialization View Support
+
+It can sometimes be useful to filter contextually the object that will be
+serialized to the HTTP response body. In order to provide such capability,
+Spring MVC has built-in support for rendering with [Jackson's Serialization
+Views](http://wiki.fasterxml.com/JacksonJsonViews).
+
+To use it with an `@ResponseBody` controller method or controller methods that
+return `ResponseEntity`, simply add the `@JsonView` annotation with a class
+argument specifying the view class or interface to be used:
+
+
+
+    _@RestController_
+    public class UserController {
+
+        _@RequestMapping(path = "/user", method = RequestMethod.GET)_
+        _@JsonView(User.WithoutPasswordView.class)_
+        public User getUser() {
+            return new User("eric", "7!jd#h23");
+        }
+    }
+
+    public class User {
+
+        public interface WithoutPasswordView {};
+        public interface WithPasswordView extends WithoutPasswordView {};
+
+        private String username;
+        private String password;
+
+        public User() {
+        }
+
+        public User(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        _@JsonView(WithoutPasswordView.class)_
+        public String getUsername() {
+            return this.username;
+        }
+
+        _@JsonView(WithPasswordView.class)_
+        public String getPassword() {
+            return this.password;
+        }
+    }
+
+![\[Note\]](images/note.png)| Note
+---|---
+
+Note that despite `@JsonView` allowing for more than one class to be
+specified, the use on a controller method is only supported with exactly one
+class argument. Consider the use of a composite interface if you need to
+enable multiple views.
+
+For controllers relying on view resolution, simply add the serialization view
+class to the model:
+
+
+
+    _@Controller_
+    public class UserController extends AbstractController {
+
+        _@RequestMapping(path = "/user", method = RequestMethod.GET)_
+        public String getUser(Model model) {
+            model.addAttribute("user", new User("eric", "7!jd#h23"));
+            model.addAttribute(JsonView.class.getName(), User.WithoutPasswordView.class);
+            return "userView";
+        }
+    }
+
+#### Jackson JSONP Support
+
+In order to enable [JSONP](http://en.wikipedia.org/wiki/JSONP) support for
+`@ResponseBody` and `ResponseEntity` methods, declare an `@ControllerAdvice`
+bean that extends `AbstractJsonpResponseBodyAdvice` as shown below where the
+constructor argument indicates the JSONP query parameter name(s):
+
+
+
+    _@ControllerAdvice_
+    public class JsonpAdvice extends AbstractJsonpResponseBodyAdvice {
+
+        public JsonpAdvice() {
+            super("callback");
+        }
+    }
+
+For controllers relying on view resolution, JSONP is automatically enabled
+when the request has a query parameter named `jsonp` or `callback`. Those
+names can be customized through `jsonpParameterNames` property.
