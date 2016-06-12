@@ -1,58 +1,42 @@
 # 21.3.4 异步请求的处理
 
+Spring MVC 3.2开始引入了基于Servlet 3的异步请求处理。相比以前，控制器方法已经不一定需要返回一个值，而是可以返回一个`java.util.concurrent.Callable`的对象，并通过Spring MVC所管理的线程来产生返回值。与此同时，Servlet容器的主线程则可以退出并释放其资源了，同时也允许容器去处理其他的请求。通过一个`TaskExecutor`，Spring MVC可以在另外的线程中调用`Callable`。当`Callable`返回时，请求再携带`Callable`返回的值，再次被分配到Servlet容器中恢复处理流程。以下代码给出了一个这样的控制器方法作为例子：
 
-### 21.3.4 Asynchronous Request Processing
+```java
+@RequestMapping(method=RequestMethod.POST)
+public Callable<String> processUpload(final MultipartFile file) {
 
-Spring MVC 3.2 introduced Servlet 3 based asynchronous request processing.
-Instead of returning a value, as usual, a controller method can now return a
-`java.util.concurrent.Callable` and produce the return value from a Spring MVC
-managed thread. Meanwhile the main Servlet container thread is exited and
-released and allowed to process other requests. Spring MVC invokes the
-`Callable` in a separate thread with the help of a `TaskExecutor` and when the
-`Callable` returns, the request is dispatched back to the Servlet container to
-resume processing using the value returned by the `Callable`. Here is an
-example of such a controller method:
+    return new Callable<String>() {
+        public String call() throws Exception {
+            // ...
+            return "someView";
+        }
+    };
 
+}
+```
 
+另一个选择，是让控制器方法返回一个`DeferredResult`的实例。这种场景下，返回值可以由任何一个线程产生，也包括那些不是由Spring MVC管理的线程。举个例子，返回值可能是为了响应某些外部事件所产生的，比如一条JMS的消息，一个计划任务，等等。以下代码给出了一个这样的控制器作为例子：
 
-    _@RequestMapping(method=RequestMethod.POST)_
-    public Callable<String> processUpload(final MultipartFile file) {
+```java
+@RequestMapping("/quotes")
+@ResponseBody
+public DeferredResult<String> quotes() {
+    DeferredResult<String> deferredResult = new DeferredResult<String>();
+    // Save the deferredResult somewhere..
+    return deferredResult;
+}
 
-        return new Callable<String>() {
-            public String call() throws Exception {
-                // ...
-                return "someView";
-            }
-        };
+// In some other thread...
+deferredResult.setResult(data);
+```
 
-    }
+如果对Servlet 3.0的异步请求处理特性没有了解，理解这个特性可能会有点困难。因此，阅读一下前者的文档将会很有帮助。以下给出了这个机制运作背后的一些原理：
 
-Another option is for the controller method to return an instance of
-`DeferredResult`. In this case the return value will also be produced from any
-thread, i.e. one that is not managed by Spring MVC. For example the result may
-be produced in response to some external event such as a JMS message, a
-scheduled task, and so on. Here is an example of such a controller method:
+* 一个servlet请求`ServletRequest`可以通过调用`request.startAsync()`方法而进入异步模式。这样做的主要结果就是该servlet以及所有的过滤器都可以结束，但其响应（response）会留待异步处理结束后再返回
+* 调用`request.startAsync()`方法会返回一个`AsyncContext`对象，可用它对异步处理进行进一步的控制和操作。比如说它也提供了一个与转向（forward）很相似的`dispatch`方法，只不过它允许应用恢复Servlet容器的请求处理进程
+* `ServletRequest`提供了获取当前`DispatherType`的方式，后者可以用来区别当前处理的是原始请求、异步分发请求、转向，或是其他类型的请求分发类型。
 
-
-
-    _@RequestMapping("/quotes")_
-    _@ResponseBody_
-    public DeferredResult<String> quotes() {
-        DeferredResult<String> deferredResult = new DeferredResult<String>();
-        // Save the deferredResult somewhere..
-        return deferredResult;
-    }
-
-    // In some other thread...
-    deferredResult.setResult(data);
-
-This may be difficult to understand without any knowledge of the Servlet 3.0
-asynchronous request processing features. It would certainly help to read up
-on that. Here are a few basic facts about the underlying mechanism:
-
-  * A `ServletRequest` can be put in asynchronous mode by calling `request.startAsync()`. The main effect of doing so is that the Servlet, as well as any Filters, can exit but the response will remain open to allow processing to complete later.
-  * The call to `request.startAsync()` returns `AsyncContext` which can be used for further control over async processing. For example it provides the method `dispatch`, that is similar to a forward from the Servlet API except it allows an application to resume request processing on a Servlet container thread.
-  * The `ServletRequest` provides access to the current `DispatcherType` that can be used to distinguish between processing the initial request, an async dispatch, a forward, and other dispatcher types.
 
 With the above in mind, the following is the sequence of events for async
 request processing with a `Callable`:
