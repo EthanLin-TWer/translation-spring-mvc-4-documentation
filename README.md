@@ -6,8 +6,7 @@
 
 原文地址：[http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html)
 
-译文地址：[https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
-
+译文地址：[mvc.linesh.tw](mvc.linesh.tw)
 
 ## 其他相关翻译项目
 以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中规模比较大的组织性翻译有[这个团队](http://blog.csdn.net/isea533/article/details/50450289)正在进行的翻译，翻译的是Spring(而不仅仅是MVC部分)4.1.3.RELEASE的版本，从项目起止和发布时间来看，基本上是新版本开始发布就组织翻译了。其中Spring MVC的章节已经进行了一大部分，文档排版很不错，翻译质量尚未仔细阅读，但看起来品质较好。该项目的可阅读版文档在：[http://spring.cndocs.tk](http://spring.cndocs.tk)，项目托管在OSC的仓库上：[点这里](http://git.oschina.net/free/spring-framework-reference)。
@@ -29,4 +28,4 @@
 * 邮箱：linesh.simpcity@gmail.com
 * 给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
 * 给这个项目提[pull request](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/pulls)。该方式对于大型的反馈或建议比较推荐，否则工力太大
-* 在gitbook上的段落右侧浮现`+`号时留comments（评论），[點擊這裡前往](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
+* 在gitbook上的段落右侧浮现`+`号时留comments（评论），[點擊這裡前往](mvc.linesh.tw)
