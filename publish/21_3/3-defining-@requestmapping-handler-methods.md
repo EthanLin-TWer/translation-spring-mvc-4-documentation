@@ -422,3 +422,8 @@ public void displayHeaderInfo(@RequestHeader("Accept-Encoding") String encoding,
 > Spring内置支持将一个逗号分隔的字符串（或其他类型转换系统所能识别的类型）转换成一个String类型的列表/集合。举个例子，一个注解了`@RequestHeader("Accept")`的方法参数可以是一个`String`类型，但也可以是`String[]`或`List<String>`类型的。
 
 这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。
+
+
+## 方法参数与类型转换
+
+从请求参数、路径变量、请求头属性或者cookie中抽取出来的`String`类型的值，可能需要被转换成其所绑定的目标方法参数或字段的类型（比如，通过`@ModelAttribute`将请求参数绑定到方法参数上）。如果目标类型不是`String`，Spring会自动进行类型转换。所有的简单类型诸如int、long、Date都有内置的支持。如果想进一步定制这个转换过程，你可以通过`WebDataBinder`（详见["定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")一节），或者为`Formatters`配置一个`FormattingConversionService`（详见[8.6节 "Spring字段格式化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#format "8.6 Spring Field Formatting")一节）来做到。
