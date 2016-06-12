@@ -250,7 +250,7 @@ public void populateModel(@RequestParam String number, Model model) {
 public String processSubmit(@ModelAttribute Pet pet) { }
 ```
 
-以上面的代码为例，这个Pet类型的实例可能来自哪里呢？有几种可能：
+以上面的代码为例，这个Pet类型的实例可能来自哪里呢？有几种可能:
 
 * 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["使用@SessionAttributes注解在请求之间将模型数据保存在HTTP会话中"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
 * 它可能因为在同个控制器中使用了`@ModelAttribute`方法已经存在于model中——正如上一小节所叙述的
@@ -271,65 +271,52 @@ public String save(@ModelAttribute("account") Account account) {
 
 下一步就是数据的绑定。`WebDataBinder`类能将请求参数——包括字符串的查询参数和表单字段等——通过名称匹配到model的属性上。成功匹配的字段在需要的时候会进行一次类型转换（从String类型到目标字段的类型），然后被填充到model对应的属性中。数据绑定和数据验证的问题在[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")中提到。如何在控制器层来定制数据绑定的过程，在[这一节 "定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")中提及。
 
+进行了数据绑定后，则可能会出现一些错误，比如没有提供必须的字段、类型转换过程的错误等。若想检查这些错误，可以在注解了`@ModelAttribute`的参数紧跟着声明一个`BindingResult`参数：
 
-
-As a result of data binding there may be errors such as missing required
-fields or type conversion errors. To check for such errors add a
-`BindingResult` argument immediately following the `@ModelAttribute` argument:
-
-
-
-    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
-    public String processSubmit(**@ModelAttribute("pet") Pet pet**, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return "petForm";
-        }
-
-        // ...
-
+```java
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result) {
+    if (result.hasErrors()) {
+        return "petForm";
     }
 
-With a `BindingResult` you can check if errors were found in which case it's
-common to render the same form where the errors can be shown with the help of
-Spring's `<errors>` form tag.
+    // ...
 
-In addition to data binding you can also invoke validation using your own
-custom validator passing the same `BindingResult` that was used to record data
-binding errors. That allows for data binding and validation errors to be
-accumulated in one place and subsequently reported back to the user:
+}
+```
 
+拿到`BindingResult`参数后，你可以检查是否有错误。有时你可以通过Spring的`<errors>`表单标签来在同一个表单上显示错误信息。
 
+`BindingResult`被用于记录数据绑定过程的错误，因此除了数据绑定外，你还可以把该对象传给自己定制的验证器来调用验证。这使得数据绑定过程和验证过程出现的错误可以被搜集到一处，然后一并返回给用户：
 
-    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
-    public String processSubmit(**@ModelAttribute("pet") Pet pet**, BindingResult result) {
+```java
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result) {
 
-        new PetValidator().validate(pet, result);
-        if (result.hasErrors()) {
-            return "petForm";
-        }
-
-        // ...
-
+    new PetValidator().validate(pet, result);
+    if (result.hasErrors()) {
+        return "petForm";
     }
 
-Or you can have validation invoked automatically by adding the JSR-303
-`@Valid` annotation:
+    // ...
+
+}
+```
+
+又或者，你可以通过添加一个JSR-303规范的`@Valid`注解，这样验证器会自动被调用。
 
 
+```java
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@Valid @ModelAttribute("pet") Pet pet, BindingResult result) {
 
-    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
-    public String processSubmit(**@Valid @ModelAttribute("pet") Pet pet**, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return "petForm";
-        }
-
-        // ...
-
+    if (result.hasErrors()) {
+        return "petForm";
     }
 
-See [Section 8.8, "Spring Validation"](validation.html#validation-
-beanvalidation "8.8 Spring Validation" ) and [Chapter 8, _Validation, Data
-Binding, and Type Conversion_](validation.html "8. Validation, Data Binding,
-and Type Conversion" ) for details on how to configure and use validation.
+    // ...
+
+}
+```
+
+关于如何配置并使用验证，可以参考[第8.8小节 "Spring验证"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#validation-beanvalidation "8.8 Spring Validation")和[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")。
