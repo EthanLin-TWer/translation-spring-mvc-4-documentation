@@ -363,3 +363,62 @@ public class EditPetForm {
 上面的过滤器将会拦截内容类型(content type)为`application/x-www-form-urlencoded`、HTTP方法为PUT或PATCH类型的请求，然后从请求体中读取表单数据，把它们包装在`ServletRequest`中。这是为了使表单数据能够通过`ServletRequest.getParameter*()`系列的方法来拿到。
 
 > 因为`HttpPutFormContentFilter`会消费请求体的内容，因此，它不应该用于处理那些依赖于其他`application/x-www-form-urlencoded`转换器的PUT和PATCH请求，这包括了`@RequestBodyMultiValueMap<String, String>`和`HttpEntity<MultiValueMap<String, String>>`。
+
+
+## 使用@CookieValue注解映射cookie值
+
+`@CookieValue`注解能将一个方法参数与一个HTTP cookie的值进行绑定。
+
+看一个这样的场景：以下的这个cookie存储在一个HTTP请求中：
+
+```
+JSESSIONID=415A4AC178C59DACE0B2C9CA727CDD84
+```
+
+下面的代码演示了拿到`JSESSIONID`这个cookie值的方法：
+
+```java
+@RequestMapping("/displayHeaderInfo.do")
+public void displayHeaderInfo(@CookieValue("JSESSIONID") String cookie) {
+    //...
+}
+```
+
+若注解的目标方法参数不是`String`类型，则类型转换会自动进行。详见["方法参数与类型转换"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
+
+这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。
+
+
+## 使用`@RequestHeader`注解映射请求头属性
+
+`@RequestHeader`注解能将一个方法参数与一个请求头属性进行绑定。
+
+以下是一个请求头的例子：
+
+```
+    Host                    localhost:8080
+    Accept                  text/html,application/xhtml+xml,application/xml;q=0.9
+    Accept-Language         fr,en-gb;q=0.7,en;q=0.3
+    Accept-Encoding         gzip,deflate
+    Accept-Charset          ISO-8859-1,utf-8;q=0.7,*;q=0.7
+    Keep-Alive              300
+```
+
+以下的代码片段展示了如何取得`Accept-Encoding`请求头和`Keep-Alive`请求头的值：
+
+
+```java
+@RequestMapping("/displayHeaderInfo.do")
+public void displayHeaderInfo(@RequestHeader("Accept-Encoding") String encoding,
+        @RequestHeader("Keep-Alive") long keepAlive) {
+    //...
+}
+```
+
+若注解的目标方法参数不是`String`类型，则类型转换会自动进行。["方法参数与类型转换"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
+
+如果`@RequestHeader`注解应用在`Map<String, String>`、`MultiValueMap<String, String>`或`HttpHeaders`类型的参数上，那么所有的请求头属性值都会被填充到map中。
+
+> Spring内置支持将一个逗号分隔的字符串（或其他类型转换系统所能识别的类型）转换成一个String类型的列表/集合。举个例子，一个注解了`@RequestHeader("Accept")`的方法参数可以是一个`String`类型，但也可以是`String[]`或`List<String>`类型的。
+
+这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。
