@@ -427,3 +427,48 @@ public void displayHeaderInfo(@RequestHeader("Accept-Encoding") String encoding,
 ## 方法参数与类型转换
 
 从请求参数、路径变量、请求头属性或者cookie中抽取出来的`String`类型的值，可能需要被转换成其所绑定的目标方法参数或字段的类型（比如，通过`@ModelAttribute`将请求参数绑定到方法参数上）。如果目标类型不是`String`，Spring会自动进行类型转换。所有的简单类型诸如int、long、Date都有内置的支持。如果想进一步定制这个转换过程，你可以通过`WebDataBinder`（详见["定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")一节），或者为`Formatters`配置一个`FormattingConversionService`（详见[8.6节 "Spring字段格式化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#format "8.6 Spring Field Formatting")一节）来做到。
+
+
+## 定制WebDataBinder的初始化
+
+如果想通过Spring的`WebDataBinder`在属性编辑器中做请求参数的绑定，你可以使用在控制器内使用`@InitBinder`注解的方法、在注解了`@ControllerAdvice`的类中使用`@InitBinder`注解的方法，或者提供一个定制的`WebBindingInitializer`。更多的细节，请参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
+
+
+### 数据绑定的定制：使用@InitBinder
+
+使用`@InitBinder`注解控制器的方法，你可以直接在你的控制器类中定制应用的数据绑定。`@InitBinder`用来标记一些方法，这些方法会初始化一个`WebDataBinder`并用以为处理器方法填充命令对象和表单对象的参数。
+
+除了命令/表单对象以及相应的验证结果对象，这样的“绑定器初始化”方法能够接收`@RequestMapping`所支持的所有参数类型。“绑定器初始化”方法不能有返回值，因此，一般将它们声明为`void`返回类型。特别地，当`WebDataBinder`与`WebRequest`或`java.util.Locale`一起作为方法参数时，你可以在代码中注册上下文相关的编辑器。
+
+下面的代码示例演示了如何使用`@InitBinder`来配置一个`CustomerDateEditor`，后者会对所有`java.util.Date`类型的表单字段进行操作：
+
+
+```java
+@Controller
+public class MyFormController {
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+
+    // ...
+}
+```
+
+或者，你可以使用Spring 4.2提供的`addCustomFormatter`来指定`Formatter`的实现，而非通过`PropertyEditor`实例。这在你拥有一个需要`Formatter`的setup方法，并且该方法位于一个共享的`FormattingConversionService`中时非常有用。这样对于控制器级别的绑定规则的定制，代码更容易被复用。
+
+```java
+@Controller
+public class MyFormController {
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd"));
+    }
+
+    // ...
+}
+```
