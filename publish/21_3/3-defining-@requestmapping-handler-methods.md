@@ -237,3 +237,99 @@ public void populateModel(@RequestParam String number, Model model) {
 > 属性名没有被显式指定的时候又当如何呢？在这种情况下，框架将根据属性的类型给予一个默认名称。举个例子，若方法返回一个`Account`类型的对象，则默认的属性名为"account"。你可以通过设置`@ModelAttribute`注解的值来改变默认值。当向`Model`中直接添加属性时，请使用合适的重载方法`addAttribute(..)`-即，带或不带属性名的方法。
 
 `@ModelAttribute`注解也可以被用在`@RequestMapping`方法上。这种情况下，`@RequestMapping`方法的返回值将会被解释为model的一个属性，而非一个视图名。此时视图名将以视图命名约定来方式来决议，与返回值为void的方法所采用的处理方法类似——请见[视图：请求与视图名的对应](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-coc-r2vnt "21.13.3 The View - RequestToViewNameTranslator")。
+
+
+## 在方法参数上使用@ModelAttribute注解
+
+如上一小节所解释，`@ModelAttribute`注解既可以被用在方法上，也可以被用在方法参数上。这一小节将介绍它注解在方法参数上时的用法。
+
+注解在方法参数上的`@ModelAttribute`说明了该方法参数的值将由model中取得。如果model中找不到，那么该参数会先被实例化，然后被添加到model中。在model中存在以后，请求中所有名称匹配的参数都会填充到该参数中。这在Spring MVC中被称为数据绑定，一个非常有用的特性，节约了你每次都需要手动从表格数据中转换这些字段数据的时间。
+
+```java
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute Pet pet) { }
+```
+
+以上面的代码为例，这个Pet类型的实例可能来自哪里呢？有几种可能：
+
+* 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["使用@SessionAttributes注解在请求之间将模型数据保存在HTTP会话中"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
+* 它可能因为在同个控制器中使用了`@ModelAttribute`方法已经存在于model中——正如上一小节所叙述的
+* 它可能是由URI模板变量和类型转换中取得的（下面会详细讲解）
+* 它可能是调用了自身的默认构造器被实例化出来的
+
+`@ModelAttribute`方法常用于从数据库中取一个属性值，该值可能通过`@SessionAttributes`注解在请求中间传递。在一些情况下，使用URI模板变量和类型转换的方式来取得一个属性是更方便的方式。这里有个例子：
+
+```java
+@RequestMapping(path = "/accounts/{account}", method = RequestMethod.PUT)
+public String save(@ModelAttribute("account") Account account) {
+
+}
+
+```
+
+上面这个例子中，model属性的名称（"account"）与URI模板变量的名称相匹配。如果你配置了一个可以将`String`类型的账户值转换成`Account`类型实例的转换器`Converter<String, Account>`，那么上面这段代码就可以工作的很好，而不需要再额外写一个`@ModelAttribute`方法。
+
+下一步就是数据的绑定。`WebDataBinder`类能将请求参数——包括字符串的查询参数和表单字段等——通过名称匹配到model的属性上。成功匹配的字段在需要的时候会进行一次类型转换（从String类型到目标字段的类型），然后被填充到model对应的属性中。数据绑定和数据验证的问题在[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")中提到。如何在控制器层来定制数据绑定的过程，在[这一节 "定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")中提及。
+
+
+
+As a result of data binding there may be errors such as missing required
+fields or type conversion errors. To check for such errors add a
+`BindingResult` argument immediately following the `@ModelAttribute` argument:
+
+
+
+    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
+    public String processSubmit(**@ModelAttribute("pet") Pet pet**, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "petForm";
+        }
+
+        // ...
+
+    }
+
+With a `BindingResult` you can check if errors were found in which case it's
+common to render the same form where the errors can be shown with the help of
+Spring's `<errors>` form tag.
+
+In addition to data binding you can also invoke validation using your own
+custom validator passing the same `BindingResult` that was used to record data
+binding errors. That allows for data binding and validation errors to be
+accumulated in one place and subsequently reported back to the user:
+
+
+
+    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
+    public String processSubmit(**@ModelAttribute("pet") Pet pet**, BindingResult result) {
+
+        new PetValidator().validate(pet, result);
+        if (result.hasErrors()) {
+            return "petForm";
+        }
+
+        // ...
+
+    }
+
+Or you can have validation invoked automatically by adding the JSR-303
+`@Valid` annotation:
+
+
+
+    _@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)_
+    public String processSubmit(**@Valid @ModelAttribute("pet") Pet pet**, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "petForm";
+        }
+
+        // ...
+
+    }
+
+See [Section 8.8, "Spring Validation"](validation.html#validation-
+beanvalidation "8.8 Spring Validation" ) and [Chapter 8, _Validation, Data
+Binding, and Type Conversion_](validation.html "8. Validation, Data Binding,
+and Type Conversion" ) for details on how to configure and use validation.
