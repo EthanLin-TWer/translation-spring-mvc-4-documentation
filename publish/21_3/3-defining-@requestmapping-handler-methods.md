@@ -472,3 +472,45 @@ public class MyFormController {
     // ...
 }
 ```
+
+### 配置定制的WebBindingInitializer
+
+为了externalize数据绑定的初始化过程，你可以为`WebBindingInitializer`接口提供一个自己的实现，在其中你可以为`AnnotationMethodHandlerAdapter`提供一个默认的配置bean，以此来覆写默认的配置。
+
+以下的代码来自PetClinic的应用，它展示了为`WebBindingInitializer`接口提供一个自定义实现：`org.springframework.samples.petclinic.web.ClinicBindingInitializer`完整的配置过程。后者中配置了PetClinic应用中许多控制器所需要的属性编辑器PropertyEditors。
+
+```xml
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="cacheSeconds" value="0"/>
+    <property name="webBindingInitializer">
+        <bean class="org.springframework.samples.petclinic.web.ClinicBindingInitializer"/>
+    </property>
+</bean>
+```
+
+`@InitBinder`方法也可以定义在`@ControllerAdvice`注解的类上，这样配置可以为许多控制器所共享。这提供了除使用`WebBindingInitializer`外的另外一种方法。更多细节请参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
+
+
+## 使用@ControllerAdvice辅助控制器
+
+`@ControllerAdvice`是一个组件注解，它使得其实现类能够被classpath扫描自动发现。若应用是通过MVC命令空间或MVC Java编程方式配置，那么该特性默认是自动开启的。
+
+注解`@ControllerAdvice`的类可以拥有`@ExceptionHandler`、`@InitBinder`或`@ModelAttribute`注解的方法，并且这些方法会被应用至控制器类层次??的所有`@RequestMapping`方法上。
+
+你也可以通过`@ControllerAdvice`的属性来指定其只对一个子集的控制器生效：
+
+```java
+// Target all Controllers annotated with @RestController
+@ControllerAdvice(annotations = RestController.class)
+public class AnnotationAdvice {}
+
+// Target all Controllers within specific packages
+@ControllerAdvice("org.example.controllers")
+public class BasePackageAdvice {}
+
+// Target all Controllers assignable to specific classes
+@ControllerAdvice(assignableTypes = {ControllerInterface.class, AbstractController.class})
+public class AssignableTypesAdvice {}
+```
+
+更多的细节，请查阅[`@ControllerAdvice`的文档](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)。
