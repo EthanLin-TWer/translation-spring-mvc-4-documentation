@@ -2211,7 +2211,7 @@ the filter needs to be involved in async dispatches or not.
 Below is some example web.xml configuration:
 
 
-
+```xml
     <web-app xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="
@@ -2233,6 +2233,7 @@ Below is some example web.xml configuration:
         </filter-mapping>
 
     </web-app>
+```
 
 If using Servlet 3, Java based configuration for example via
 `WebApplicationInitializer`, you'll also need to set the "asyncSupported" flag
