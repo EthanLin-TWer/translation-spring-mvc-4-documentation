@@ -1,0 +1,1862 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>使用@RequestMapping注解映射请求路径 | Spring MVC中文文档翻译稿 - Chinese Translation for Spring MVC Reference Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.1.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../publish/21-3/3-defining-@requestmapping-handler-methods.html" />
+    
+    
+    <link rel="prev" href="../../publish/21-3/1-defining-a-controller-with-@controller.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="3.2" data-basepath="../.." data-revision="Mon Jun 13 2016 15:23:39 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="publish/21-1/introduction-to-spring-web-mvc-framework.html">
+            
+                
+                    <a href="../../publish/21-1/introduction-to-spring-web-mvc-framework.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Spring Web MVC框架简介
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="publish/21-1/1-features-of-spring-web-mvc.html">
+            
+                
+                    <a href="../../publish/21-1/1-features-of-spring-web-mvc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Spring Web MVC的特性
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="publish/21-1/2-pluggability-of-other-mvc-implementations.html">
+            
+                
+                    <a href="../../publish/21-1/2-pluggability-of-other-mvc-implementations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        允许其他MVC实现
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="publish/21-2/the-dispatcher-servlet.html">
+            
+                
+                    <a href="../../publish/21-2/the-dispatcher-servlet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        DispatcherServlet
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="publish/21-2/1-special-bean-types-in-the-webapplicationcontext.html">
+            
+                
+                    <a href="../../publish/21-2/1-special-bean-types-in-the-webapplicationcontext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        WebApplicationContext中特别的Bean类型
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="publish/21-2/2-default-dispatcherservlet-configuration.html">
+            
+                
+                    <a href="../../publish/21-2/2-default-dispatcherservlet-configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        默认的DispatcherServlet配置
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="publish/21-2/3-dispatcherservlet-processing-sequence.html">
+            
+                
+                    <a href="../../publish/21-2/3-dispatcherservlet-processing-sequence.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        DispatcherServlet的处理流程
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="publish/21-3/implementing-controllers.html">
+            
+                
+                    <a href="../../publish/21-3/implementing-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        控制器的实现
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="publish/21-3/1-defining-a-controller-with-@controller.html">
+            
+                
+                    <a href="../../publish/21-3/1-defining-a-controller-with-@controller.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        使用@Controller注解定义一个控制器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="publish/21-3/2-mapping-requests-with-@requestmapping.html">
+            
+                
+                    <a href="../../publish/21-3/2-mapping-requests-with-@requestmapping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        使用@RequestMapping注解映射请求路径
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="publish/21-3/3-defining-@requestmapping-handler-methods.html">
+            
+                
+                    <a href="../../publish/21-3/3-defining-@requestmapping-handler-methods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        定义@RequestMapping注解的处理方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="publish/21-3/4-asynchronous-request-processing.html">
+            
+                
+                    <a href="../../publish/21-3/4-asynchronous-request-processing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        异步请求的处理
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="publish/21-3/5-testing-controllers.html">
+            
+                
+                    <a href="../../publish/21-3/5-testing-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        对控制器测试
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="publish/21-4/handler-mappings.html">
+            
+                
+                    <a href="../../publish/21-4/handler-mappings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        处理器映射
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="publish/21-4/1-intercepting-requests-with-a-handler-interceptor.html">
+            
+                
+                    <a href="../../publish/21-4/1-intercepting-requests-with-a-handler-interceptor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        使用HandlerInterceptor拦截请求
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="publish/21-5/resolving-views.html">
+            
+                
+                    <a href="../../publish/21-5/resolving-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        视图解析
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="publish/21-5/1-resolving-views-with-the-view-resolver-interface.html">
+            
+                
+                    <a href="../../publish/21-5/1-resolving-views-with-the-view-resolver-interface.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        使用ViewResolver接口解析视图
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="publish/21-5/2-chaining-view-resolvers.html">
+            
+                
+                    <a href="../../publish/21-5/2-chaining-view-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        视图链
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="publish/21-5/3-redirecting-to-views.html">
+            
+                
+                    <a href="../../publish/21-5/3-redirecting-to-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        视图重定向
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="publish/21-5/4-content-negotiating-view-resolver.html">
+            
+                
+                    <a href="../../publish/21-5/4-content-negotiating-view-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        内容协商解析器ContentNegotiatingViewResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="publish/21-6/using-flash-attributes.html">
+            
+                
+                    <a href="../../publish/21-6/using-flash-attributes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        使用闪存属性FlashAttributes
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="publish/21-7/building-uris.html">
+            
+                
+                    <a href="../../publish/21-7/building-uris.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        URI构造
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="publish/21-7/1-building-uris-to-controllers-and-methods.html">
+            
+                
+                    <a href="../../publish/21-7/1-building-uris-to-controllers-and-methods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        为控制器和方法指定URI
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="publish/21-7/2-building-uris-to-controllers-and-methods-from-views.html">
+            
+                
+                    <a href="../../publish/21-7/2-building-uris-to-controllers-and-methods-from-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        在视图中为控制器和方法指定URI
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="publish/21-8/using-locales.html">
+            
+                
+                    <a href="../../publish/21-8/using-locales.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        地区信息
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="publish/21-8/1-obtaining-time-zone-information.html">
+            
+                
+                    <a href="../../publish/21-8/1-obtaining-time-zone-information.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        获取时区信息
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="publish/21-8/2-accept-header-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/2-accept-header-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Accept请求头解析器AcceptHeaderLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="publish/21-8/3-cookie-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/3-cookie-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Cookie解析器CookieLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="publish/21-8/4-session-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/4-session-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Session解析器SessionLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="publish/21-8/5-locale-change-interceptor.html">
+            
+                
+                    <a href="../../publish/21-8/5-locale-change-interceptor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        地区更改拦截器LocaleChangeInterceptor
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="publish/21-9/using-themes.html">
+            
+                
+                    <a href="../../publish/21-9/using-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        主题 themes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="publish/21-9/1-overview-of-themes.html">
+            
+                
+                    <a href="../../publish/21-9/1-overview-of-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        关于主题：概览
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="publish/21-9/2-defining-themes.html">
+            
+                
+                    <a href="../../publish/21-9/2-defining-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        定义主题
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="publish/21-9/3-theme-resolvers.html">
+            
+                
+                    <a href="../../publish/21-9/3-theme-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        主题解析器
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="publish/21-10/springs-multipart-file-upload-support.html">
+            
+                
+                    <a href="../../publish/21-10/springs-multipart-file-upload-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Spring的多路传输（文件上传）支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="publish/21-10/1-introduction.html">
+            
+                
+                    <a href="../../publish/21-10/1-introduction.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        概述
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="publish/21-10/2-using-a-multipart-resolver-with-commons-fileupload.html">
+            
+                
+                    <a href="../../publish/21-10/2-using-a-multipart-resolver-with-commons-fileupload.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        使用MultipartResolver与Commons FileUpload传输文件
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="publish/21-10/3-using-a-multipart-resolver-with-servlet-3.html">
+            
+                
+                    <a href="../../publish/21-10/3-using-a-multipart-resolver-with-servlet-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Servlet 3.0下的MultipartResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="publish/21-10/4-handling-a-file-upload-in-a-form.html">
+            
+                
+                    <a href="../../publish/21-10/4-handling-a-file-upload-in-a-form.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        处理表单中的文件上传
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5" data-path="publish/21-10/5-handling-a-file-upload-request-from-programmatic-clients.html">
+            
+                
+                    <a href="../../publish/21-10/5-handling-a-file-upload-request-from-programmatic-clients.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                        处理客户端发起的文件上传请求
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="publish/21-11/handling-exceptions.html">
+            
+                
+                    <a href="../../publish/21-11/handling-exceptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        异常处理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="publish/21-11/1-handler-exception-handler.html">
+            
+                
+                    <a href="../../publish/21-11/1-handler-exception-handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        处理器异常解析器HandlerExceptionHandler
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="publish/21-11/2-@exception-handler.html">
+            
+                
+                    <a href="../../publish/21-11/2-@exception-handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        @ExceptionHandler注解
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="publish/21-11/3-handling-standard-spring-mvc-exceptions.html">
+            
+                
+                    <a href="../../publish/21-11/3-handling-standard-spring-mvc-exceptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        处理一般的Spring MVC异常
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="publish/21-11/4-annotating-business-exceptions-with-@response-status.html">
+            
+                
+                    <a href="../../publish/21-11/4-annotating-business-exceptions-with-@response-status.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        使用@ResponseStatus注解业务异常
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="publish/21-11/5-customizing-the-default-servlet-container-error-page.html">
+            
+                
+                    <a href="../../publish/21-11/5-customizing-the-default-servlet-container-error-page.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Servlet默认容器错误页面的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="publish/21-12/web-security.html">
+            
+                
+                    <a href="../../publish/21-12/web-security.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Web安全
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="publish/21-13/convention-over-configuration-support.html">
+            
+                
+                    <a href="../../publish/21-13/convention-over-configuration-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        &quot;约定优于配置&quot;的支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1" data-path="publish/21-13/1-the-controller-controller-class-name-handler-mapping.html">
+            
+                
+                    <a href="../../publish/21-13/1-the-controller-controller-class-name-handler-mapping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                        控制器类名-处理器映射ControllerClassNameHandlerMapping
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2" data-path="publish/21-13/2-the-model-modelmap-modelandview.html">
+            
+                
+                    <a href="../../publish/21-13/2-the-model-modelmap-modelandview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                        模型ModelMap(ModelAndView)
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.3" data-path="publish/21-13/3-the-view-request-to-view-name-translator.html">
+            
+                
+                    <a href="../../publish/21-13/3-the-view-request-to-view-name-translator.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                        视图-请求与视图名的映射
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="publish/21-14/http-caching-support.html">
+            
+                
+                    <a href="../../publish/21-14/http-caching-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        HTTP缓存支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1" data-path="publish/21-14/1-cache-control-http-header.html">
+            
+                
+                    <a href="../../publish/21-14/1-cache-control-http-header.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                        HTTP请求头Cache-Control
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="publish/21-14/2-http-caching-support-for-static-resources.html">
+            
+                
+                    <a href="../../publish/21-14/2-http-caching-support-for-static-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                        对静态资源的HTTP缓存支持
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="publish/21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.html">
+            
+                
+                    <a href="../../publish/21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                        在控制器中设置Cache-Control、ETag和Last-Modified响应头
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="publish/21-14/4-shallow-etag-support.html">
+            
+                
+                    <a href="../../publish/21-14/4-shallow-etag-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.4.</b>
+                        
+                        忽略ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="publish/21-15/code-based-servlet-container-initialization.html">
+            
+                
+                    <a href="../../publish/21-15/code-based-servlet-container-initialization.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        基于代码的Servlet容器初始化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="publish/21-16/configuring-spring-mvc.html">
+            
+                
+                    <a href="../../publish/21-16/configuring-spring-mvc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        配置Spring MVC
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.html">
+            
+                
+                    <a href="../../publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        启用MVC Java编程配置或MVC命名空间配置方式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="publish/21-16/2-customizing-the-provided-configuration.html">
+            
+                
+                    <a href="../../publish/21-16/2-customizing-the-provided-configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        默认配置的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="publish/21-16/3-conversion-and-formatting.html">
+            
+                
+                    <a href="../../publish/21-16/3-conversion-and-formatting.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        转换与格式化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="publish/21-16/4-validation.html">
+            
+                
+                    <a href="../../publish/21-16/4-validation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        验证
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="publish/21-16/5-interceptors.html">
+            
+                
+                    <a href="../../publish/21-16/5-interceptors.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        拦截器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="publish/21-16/6-content-negotiation.html">
+            
+                
+                    <a href="../../publish/21-16/6-content-negotiation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.6.</b>
+                        
+                        内容协商
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.7" data-path="publish/21-16/7-view-controllers.html">
+            
+                
+                    <a href="../../publish/21-16/7-view-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.7.</b>
+                        
+                        视图控制器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.8" data-path="publish/21-16/8-view-resolvers.html">
+            
+                
+                    <a href="../../publish/21-16/8-view-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.8.</b>
+                        
+                        视图解析器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.9" data-path="publish/21-16/9-serving-of-resources.html">
+            
+                
+                    <a href="../../publish/21-16/9-serving-of-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.9.</b>
+                        
+                        资源的服务
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.10" data-path="publish/21-16/10-falling-back-on-the-default-servlet-to-serve-resources.html">
+            
+                
+                    <a href="../../publish/21-16/10-falling-back-on-the-default-servlet-to-serve-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.10.</b>
+                        
+                        回到默认的Servlet来进行资源服务
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.11" data-path="publish/21-16/11-path-matching.html">
+            
+                
+                    <a href="../../publish/21-16/11-path-matching.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.11.</b>
+                        
+                        路径匹配
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.12" data-path="publish/21-16/12-message-converters.html">
+            
+                
+                    <a href="../../publish/21-16/12-message-converters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.12.</b>
+                        
+                        消息转换器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.13" data-path="publish/21-16/13-advanced-customizations-with-mvc-java-config.html">
+            
+                
+                    <a href="../../publish/21-16/13-advanced-customizations-with-mvc-java-config.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.13.</b>
+                        
+                        使用MVC Java编程进行高级的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.14" data-path="publish/21-16/14-advanced-customizations-with-the-mvc-namespace.html">
+            
+                
+                    <a href="../../publish/21-16/14-advanced-customizations-with-the-mvc-namespace.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.</b>
+                        
+                        使用MVC命名空间进行高级的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Spring MVC中文文档翻译稿 - Chinese Translation for Spring MVC Reference Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="21-3-2-%E4%BD%BF%E7%94%A8-requestmapping%E6%B3%A8%E8%A7%A3%E6%98%A0%E5%B0%84%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84">21.3.2 &#x4F7F;&#x7528;@RequestMapping&#x6CE8;&#x89E3;&#x6620;&#x5C04;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;</h1>
+<blockquote>
+<p>[Original] You use the <code>@RequestMapping</code> annotation to map URLs such as <code>/appointments</code> onto an entire class or a particular handler method. Typically the class-level annotation maps a specific request path (or path pattern) onto a form controller, with additional method-level annotations narrowing the primary mapping for a specific HTTP method request method (&quot;GET&quot;, &quot;POST&quot;, etc.) or an HTTP request parameter condition.</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x6765;&#x5C06;&#x8BF7;&#x6C42;&#x7684;URL&#xFF08;&#x6BD4;&#x5982;<code>/appointments</code>&#x4E4B;&#x7C7B;&#x7684;&#xFF09;&#x8DEF;&#x5F84;&#x6620;&#x5C04;&#x5230;&#x6574;&#x4E2A;&#x7C7B;&#x6216;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x4E0A;&#x53BB;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x7C7B;&#x7EA7;&#x522B;&#x7684;&#x6CE8;&#x89E3;&#x8D1F;&#x8D23;&#x5C06;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF08;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x7B26;&#x5408;&#x67D0;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#xFF09;&#x6620;&#x5C04;&#x5230;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x7684;&#x63A7;&#x5236;&#x5668;&#x4E0A;&#xFF0C;&#x540C;&#x65F6;&#x901A;&#x8FC7;&#x65B9;&#x6CD5;&#x7EA7;&#x522B;&#x7684;&#x6CE8;&#x89E3;&#x6765;&#x7EC6;&#x5316;&#x6620;&#x5C04;&#xFF0C;&#x5373;&#x6839;&#x636E;HTTP&#x65B9;&#x6CD5;&#x7684;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#xFF08;&#x201C;GET&#x201D;&#x201C;POST&#x201D;&#x65B9;&#x6CD5;&#x7B49;&#xFF09;&#x6216;&#x8005;HTTP&#x8BF7;&#x6C42;&#x4E2D;&#x643A;&#x5E26;&#x7684;&#x53C2;&#x6570;&#x7279;&#x5F81;&#x6765;&#x5C06;&#x8BF7;&#x6C42;&#x6620;&#x5C04;&#x5230;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x4E0A;&#x3002;</p>
+<blockquote>
+<p>[Original] The following example from the Petcare sample shows a controller in a Spring MVC application that uses this annotation:</p>
+</blockquote>
+<p>&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#x6765;&#x81EA;Petcare&#xFF0C;&#x5B83;&#x5C55;&#x793A;&#x4E86;&#x5728;Spring MVC&#x7684;&#x5E94;&#x7528;&#x4E2D;&#x5982;&#x4F55;&#x5728;&#x63A7;&#x5236;&#x5668;&#x4E0A;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6CE8;&#x89E3;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/appointments&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppointmentsController</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AppointmentBook appointmentBook;
+
+    <span class="hljs-annotation">@Autowired</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AppointmentsController</span><span class="hljs-params">(AppointmentBook appointmentBook)</span> </span>{
+        <span class="hljs-keyword">this</span>.appointmentBook = appointmentBook;
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(method = RequestMethod.GET)
+    <span class="hljs-keyword">public</span> Map&lt;String, Appointment&gt; get() {
+        <span class="hljs-keyword">return</span> appointmentBook.getAppointmentsForToday();
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/{day}&quot;</span>, method = RequestMethod.GET)
+    <span class="hljs-keyword">public</span> Map&lt;String, Appointment&gt; getForDay(<span class="hljs-annotation">@PathVariable</span> <span class="hljs-annotation">@DateTimeFormat</span>(iso=ISO.DATE) Date day, Model model) {
+        <span class="hljs-keyword">return</span> appointmentBook.getAppointmentsForDay(day);
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/new&quot;</span>, method = RequestMethod.GET)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> AppointmentForm <span class="hljs-title">getNewForm</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AppointmentForm();
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(method = RequestMethod.POST)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">add</span><span class="hljs-params">(@Valid AppointmentForm appointment, BindingResult result)</span> </span>{
+        <span class="hljs-keyword">if</span> (result.hasErrors()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;appointments/new&quot;</span>;
+        }
+        appointmentBook.addAppointment(appointment);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/appointments&quot;</span>;
+    }
+}
+</code></pre>
+<blockquote>
+<p>[Original] In the example, the <code>@RequestMapping</code> is used in a number of places. The first usage is on the type (class) level, which indicates that all handling methods on this controller are relative to the <code>/appointments</code> path. The <code>get()</code> method has a further <code>@RequestMapping</code> refinement: it only accepts GET requests, meaning that an HTTP GET for <code>/appointments</code> invokes this method. The <code>add()</code> has a similar refinement, and the <code>getNewForm()</code> combines the definition of HTTP method and path into one, so that GET requests for <code>appointments/new</code> are handled by that method.</p>
+</blockquote>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#x6709;&#x8BB8;&#x591A;&#x5730;&#x65B9;&#x90FD;&#x4F7F;&#x7528;&#x5230;&#x4E86;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x3002;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x662F;&#x4F5C;&#x7528;&#x4E8E;&#x7C7B;&#x578B;&#xFF08;&#x7C7B;&#xFF09;&#x7EA7;&#x522B;&#x7684;&#xFF0C;&#x6307;&#x793A;&#x4E86;&#x8BE5;&#x63A7;&#x5236;&#x5668;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x90FD;&#x5C06;&#x4EE5;<code>/appointments</code>&#x5F00;&#x5934;&#x3002;<code>get()</code>&#x65B9;&#x6CD5;&#x4E0A;&#x7684;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x5C06;&#x5176;&#x63A5;&#x53D7;&#x7684;&#x8BF7;&#x6C42;&#x8FDB;&#x884C;&#x4E86;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x7EC6;&#x5316;&#xFF1A;&#x5B83;&#x53EA;&#x63A5;&#x6536;GET&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#x4E3A;<code>/appointments</code>&#x7684;HTTP GET&#x8BF7;&#x6C42;&#x5C06;&#x4F1A;&#x6700;&#x7EC8;&#x8C03;&#x7528;&#x5230;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;<code>add()</code>&#x65B9;&#x6CD5;&#x4E5F;&#x505A;&#x4E86;&#x7C7B;&#x4F3C;&#x7684;&#x7EC6;&#x5316;&#xFF0C;&#x800C;<code>getNewForm()</code>&#x65B9;&#x6CD5;&#x5219;&#x540C;&#x65F6;&#x6CE8;&#x89E3;&#x4E86;&#x80FD;&#x591F;&#x63A5;&#x53D7;&#x7684;&#x8BF7;&#x6C42;&#x7684;HTTP&#x65B9;&#x6CD5;&#x548C;&#x8DEF;&#x5F84;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#x4E3A;<code>appointments/new</code>&#x7684;GET&#x8BF7;&#x6C42;&#x5C06;&#x4F1A;&#x88AB;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6240;&#x5904;&#x7406;&#x3002;</p>
+<blockquote>
+<p>[Original] The <code>getForDay()</code> method shows another usage of <code>@RequestMapping</code>: URI templates. <a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates" target="_blank">(See the next section)</a>.</p>
+</blockquote>
+<p><code>getForDay()</code>&#x65B9;&#x6CD5;&#x5219;&#x5C55;&#x793A;&#x4E86;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x4F5C;&#x7528;&#xFF1A;URI&#x6A21;&#x677F;&#x3002;&#xFF08;&#x8FD9;&#x4E2A;&#x5185;&#x5BB9;&#x8BF7;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates" target="_blank">&#x89C1;&#x4E0B;&#x8282;</a>&#xFF09;</p>
+<blockquote>
+<p>[Original] A <code>@RequestMapping</code> on the class level is not required. Without it, all paths are simply absolute, and not relative. The following example from the PetClinic sample application shows a multi-action controller using <code>@RequestMapping</code>:</p>
+</blockquote>
+<p>&#x7C7B;&#x7EA7;&#x522B;&#x7684;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x5E76;&#x4E0D;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x5B83;&#x7684;&#x8BDD;&#x5219;&#x6240;&#x6709;&#x7684;&#x8DEF;&#x5F84;&#x90FD;&#x662F;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x800C;&#x975E;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;&#x4EE5;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#x6765;&#x81EA;PetClinic&#xFF0C;&#x5B83;&#x5C55;&#x793A;&#x4E86;&#x4E00;&#x4E2A;&#x5177;&#x5907;&#x591A;&#x4E2A;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x7684;&#x63A7;&#x5236;&#x5668;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClinicController</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Clinic clinic;
+
+    <span class="hljs-annotation">@Autowired</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ClinicController</span><span class="hljs-params">(Clinic clinic)</span> </span>{
+        <span class="hljs-keyword">this</span>.clinic = clinic;
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">welcomeHandler</span><span class="hljs-params">()</span> </span>{
+    }
+
+    <span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/vets&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ModelMap <span class="hljs-title">vetsHandler</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelMap(<span class="hljs-keyword">this</span>.clinic.getVets());
+    }
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] The above example does not specify GET vs. PUT, POST, and so forth, because <code>@RequestMapping</code> maps all HTTP methods by default. Use <code>@RequestMapping(method=GET)</code> to narrow the mapping.</p>
+</blockquote>
+<p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x533A;&#x5206;&#x8BF7;&#x6C42;&#x662F;GET&#x65B9;&#x6CD5;&#x8FD8;&#x662F;PUT/POST&#x6216;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x6B64;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x9ED8;&#x8BA4;&#x662F;&#x6620;&#x5C04;&#x6240;&#x6709;&#x7684;HTTP&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7684;&#x3002;&#x5982;&#x679C;&#x60F3;&#x8981;&#x6307;&#x5B9A;&#x76F8;&#x5E94;&#x7684;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x7C7B;&#x578B;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;<code>@RequestMapping(method=GET)</code>&#x6765;&#x7F29;&#x5C0F;&#x8303;&#x56F4;&#x3002;</p>
+<blockquote>
+<p>[Original] ## @Controller and AOP Proxying</p>
+</blockquote>
+<h2 id="-controller%E5%92%8C%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%EF%BC%88aop%EF%BC%89%E4%BB%A3%E7%90%86">@Controller&#x548C;&#x9762;&#x5411;&#x5207;&#x9762;&#xFF08;AOP&#xFF09;&#x4EE3;&#x7406;</h2>
+<blockquote>
+<p>[Original] In some cases a controller may need to be decorated with an AOP proxy at runtime. One example is if you choose to have <code>@Transactional</code> annotations directly on the controller. When this is the case, for controllers specifically, we recommend using class-based proxying. This is typically the default choice with controllers. However if a controller must implement an interface that is not a Spring Context callback (e.g. <code>InitializingBean</code>, <code>*Aware</code>, etc), you may need to explicitly configure class-based proxying. For example with <code>&lt;tx:annotation-driven/&gt;</code>, change to <code>&lt;tx:annotation-driven proxy-target-class=&quot;true&quot;/&gt;</code>.</p>
+</blockquote>
+<p>&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x5F62;&#x4E0B;&#xFF0C;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x914D;&#x7F6E;AOP&#x4EE3;&#x7406;&#x6765;&#x505A;&#x4E00;&#x4E9B;&#x5DE5;&#x4F5C;&#x3002;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x5F53;&#x4F60;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>@Transactional</code>&#x6CE8;&#x89E3;&#x6765;&#x6807;&#x6CE8;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x7684;&#x65F6;&#x5019;&#x3002;&#x5982;&#x679C;&#x2014;&#x2014;&#x66F4;&#x591A;&#x7684;&#x65F6;&#x5019;&#x662F;&#x6307;&#x63A7;&#x5236;&#x5668;&#x2014;&#x2014;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x6211;&#x4EEC;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x7C7B;&#x7EA7;&#x522B;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x5F0F;&#x3002;&#x8FD9;&#x662F;&#x4EE3;&#x7406;&#x63A7;&#x5236;&#x5668;&#x7684;&#x9ED8;&#x8BA4;&#x505A;&#x6CD5;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x63A7;&#x5236;&#x5668;&#x540C;&#x65F6;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x53E6;&#x4E00;&#x4E9B;&#x4E0D;&#x652F;&#x6301;Spring Context&#x56DE;&#x8C03;&#xFF08;&#x6BD4;&#x5982;<code>InitializingBean</code>, <code>*Aware</code>&#x7B49;&#xFF09;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x53EF;&#x80FD;&#x5C31;&#x9700;&#x8981;&#x4F60;&#x624B;&#x52A8;&#x5730;&#x53BB;&#x914D;&#x7F6E;&#x7C7B;&#x7EA7;&#x522B;&#x7684;&#x4EE3;&#x7406;&#x4E86;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x7531;<code>&lt;tx:annotation-driven/&gt;</code>&#x6539;&#x4E3A;<code>&lt;tx:annotation-driven proxy-target-class=&quot;true&quot;/&gt;</code>&#x3002;</p>
+<blockquote>
+<p>[Original] ## New Support Classes for @RequestMapping methods in Spring MVC 3.1</p>
+</blockquote>
+<h2 id="spring-mvc-3-1%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%94%AF%E6%8C%81-requestmapping%E7%9A%84%E4%B8%80%E4%BA%9B%E7%B1%BB">Spring MVC 3.1&#x4E2D;&#x65B0;&#x589E;&#x652F;&#x6301;@RequestMapping&#x7684;&#x4E00;&#x4E9B;&#x7C7B;</h2>
+<blockquote>
+<p>[Original] Spring 3.1 introduced a new set of support classes for <code>@RequestMapping</code> methods called <code>RequestMappingHandlerMapping</code> and <code>RequestMappingHandlerAdapter</code> respectively. They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward. The new support classes are enabled by default by the MVC namespace and the MVC Java config but must be configured explicitly if using neither. This section describes a few important differences between the old and the new support classes.</p>
+</blockquote>
+<p>Spring 3.1&#x4E2D;&#x65B0;&#x589E;&#x4E86;&#x4E00;&#x7EC4;&#x652F;&#x6301;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x7684;&#x7C7B;&#xFF0C;&#x5206;&#x522B;&#x662F;<code>RequestMappingHandlerMapping</code>&#x548C;<code>RequestMappingHandlerAdapter</code>&#x3002;&#x6211;&#x4EEC;&#x63A8;&#x8350;&#x4F60;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#xFF0C;&#x6709;&#x4E9B;Spring MVC 3.1&#x4E4B;&#x540E;&#x7684;&#x7248;&#x672C;&#x624D;&#x65B0;&#x589E;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x8FD9;&#x51E0;&#x4E2A;&#x6CE8;&#x89E3;&#x751A;&#x81F3;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;&#x4E0D;&#x7BA1;&#x662F;&#x901A;&#x8FC7;MVC&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x8FD8;&#x662F;&#x901A;&#x8FC7;MVC Java&#x7F16;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x914D;&#x7F6E;&#xFF0C;&#x8FD9;&#x7EC4;&#x65B0;&#x589E;&#x7684;&#x7C7B;&#x53CA;&#x5176;&#x529F;&#x80FD;&#x9ED8;&#x8BA4;&#x662F;&#x5F00;&#x542F;&#x7684;&#xFF0C;&#x4F46;&#x82E5;&#x4F60;&#x54EA;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x4E0D;&#x60F3;&#x7528;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x624B;&#x52A8;&#x53BB;&#x914D;&#x7F6E;&#x3002;&#x672C;&#x5C0F;&#x8282;&#x5C06;&#x7B80;&#x8981;&#x63CF;&#x8FF0;&#x65B0;&#x652F;&#x6301;&#x7684;&#x7C7B;&#x4E0E;&#x65E7;&#x7684;&#x54EA;&#x4E9B;&#x6709;&#x4EC0;&#x4E48;&#x4E3B;&#x8981;&#x7684;&#x4E0D;&#x540C;&#x3002;</p>
+<blockquote>
+<p>[Original] Prior to Spring 3.1, type and method-level request mappings were examined in two separate stages&#x2009;&#x2014;&#x2009;a controller was selected first by the <code>DefaultAnnotationHandlerMapping</code> and the actual method to invoke was narrowed down second by the <code>AnnotationMethodHandlerAdapter</code>.</p>
+</blockquote>
+<p>&#x5728;Spring&#x7684;3.1&#x7248;&#x672C;&#x4E4B;&#x524D;&#xFF0C;&#x7C7B;&#x7EA7;&#x522B;&#x548C;&#x65B9;&#x6CD5;&#x7EA7;&#x522B;&#x7684;&#x8BF7;&#x6C42;&#x6620;&#x5C04;&#x662F;&#x5206;&#x522B;&#x5728;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#x4E2D;&#x5B8C;&#x6210;&#x7684;&#x2014;&#x2014;&#x9996;&#x5148;<code>DefaultAnnotationHanlderMapping</code>&#x4F1A;&#x5148;&#x9009;&#x4E2D;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x901A;&#x8FC7;<code>AnnotationMethodHandlerAdapter</code>&#x628A;&#x8BF7;&#x6C42;&#x5B9A;&#x4F4D;&#x5230;&#x5177;&#x4F53;&#x8981;&#x8C03;&#x7528;&#x7684;&#x90A3;&#x4E2A;&#x65B9;&#x6CD5;&#x4E0A;&#x3002;</p>
+<blockquote>
+<p>[Original] With the new support classes in Spring 3.1, the <code>RequestMappingHandlerMapping</code> is the only place where a decision is made about which method should process the request. Think of controller methods as a collection of unique endpoints with mappings for each method derived from type and method-level <code>@RequestMapping</code> information.</p>
+</blockquote>
+<p>&#x73B0;&#x5728;&#x6709;&#x4E86;Spring 3.1&#x540E;&#x5F15;&#x5165;&#x7684;&#x8FD9;&#x7EC4;&#x65B0;&#x7C7B;&#xFF0C;<code>RequestMappingHandlerMapping</code>&#x6210;&#x4E3A;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x51B3;&#x7B56;&#x5B9E;&#x9645;&#x53D1;&#x751F;&#x7684;&#x552F;&#x4E00;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x628A;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x5F53;&#x6210;&#x662F;&#x4E00;&#x7CFB;&#x5217;&#x72EC;&#x7ACB;&#x7684;&#x670D;&#x52A1;&#x8282;&#x70B9;&#xFF0C;&#x6BCF;&#x4E2A;&#x4ECE;&#x7C7B;&#x7EA7;&#x522B;&#x548C;&#x65B9;&#x6CD5;&#x7EA7;&#x522B;&#x7684;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x8DB3;&#x591F;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#x6620;&#x5C04;&#x4FE1;&#x606F;&#x3002;</p>
+<blockquote>
+<p>[Original] This enables some new possibilities. For once a <code>HandlerInterceptor</code> or a <code>HandlerExceptionResolver</code> can now expect the Object-based handler to be a <code>HandlerMethod</code>, which allows them to examine the exact method, its parameters and associated annotations. The processing for a URL no longer needs to be split across different controllers.</p>
+</blockquote>
+<p>&#x8FD9;&#x79CD;&#x65B0;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x5E26;&#x6765;&#x4E86;&#x65B0;&#x7684;&#x53EF;&#x80FD;&#x6027;&#x3002;&#x4E4B;&#x524D;&#x7684;<code>HandlerInterceptor</code>&#x6216;<code>HandlerExceptionResolver</code>&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x786E;&#x5B9A;&#x62FF;&#x5230;&#x7684;&#x8FD9;&#x4E2A;&#x5904;&#x7406;&#x5668;&#x80AF;&#x5B9A;&#x662F;&#x4E00;&#x4E2A;<code>HandlerMethod</code>&#x7C7B;&#x578B;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x80FD;&#x591F;&#x7CBE;&#x786E;&#x5730;&#x4E86;&#x89E3;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC;&#x5B83;&#x7684;&#x53C2;&#x6570;&#x3001;&#x5E94;&#x7528;&#x4E8E;&#x5176;&#x4E0A;&#x7684;&#x6CE8;&#x89E3;&#x7B49;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x5185;&#x90E8;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;URL&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x518D;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x5206;&#x9694;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x63A7;&#x5236;&#x5668;&#x91CC;&#x9762;&#x53BB;&#x6267;&#x884C;&#x4E86;&#x3002;</p>
+<blockquote>
+<p>[Original] There are also several things no longer possible:
+[Original] <em> Select a controller first with a <code>SimpleUrlHandlerMapping</code> or <code>BeanNameUrlHandlerMapping</code> and then narrow the method based on <code>@RequestMapping</code> annotations.
+[Original] </em> Rely on method names as a fall-back mechanism to disambiguate between two <code>@RequestMapping</code> methods that don&#x2019;t have an explicit path mapping URL path but otherwise match equally, e.g. by HTTP method. In the new support classes <code>@RequestMapping</code> methods have to be mapped uniquely.
+[Original] * Have a single default method (without an explicit path mapping) with which requests are processed if no other controller method matches more concretely. In the new support classes if a matching method is not found a 404 error is raised.</p>
+</blockquote>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x6709;&#x5176;&#x4ED6;&#x7684;&#x4E00;&#x4E9B;&#x53D8;&#x5316;&#xFF0C;&#x6BD4;&#x5982;&#x6709;&#x4E9B;&#x4E8B;&#x60C5;&#x5C31;&#x6CA1;&#x6CD5;&#x8FD9;&#x4E48;&#x73A9;&#x513F;&#x4E86;&#xFF1A;</p>
+<ul>
+<li>&#x5148;&#x901A;&#x8FC7;<code>SimpleUrlHandlerMapping</code>&#x6216;<code>BeanNameUrlHandlerMapping</code>&#x6765;&#x62FF;&#x5230;&#x8D1F;&#x8D23;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x7684;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x914D;&#x7F6E;&#x7684;&#x4FE1;&#x606F;&#x6765;&#x5B9A;&#x4F4D;&#x5230;&#x5177;&#x4F53;&#x7684;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#xFF1B;</li>
+<li>&#x4F9D;&#x9760;&#x65B9;&#x6CD5;&#x540D;&#x79F0;&#x6765;&#x4F5C;&#x4E3A;&#x9009;&#x62E9;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x7684;&#x6807;&#x51C6;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x4E24;&#x4E2A;&#x6CE8;&#x89E3;&#x4E86;<code>@RequestMapping</code>&#x7684;&#x65B9;&#x6CD5;&#x9664;&#x4E86;&#x65B9;&#x6CD5;&#x540D;&#x79F0;&#x62E5;&#x6709;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;URL&#x6620;&#x5C04;&#x548C;HTTP&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x3002;&#x5728;&#x65B0;&#x7248;&#x672C;&#x4E0B;&#xFF0C;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x7684;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x5177;&#x6709;&#x552F;&#x4E00;&#x7684;&#x8BF7;&#x6C42;&#x6620;&#x5C04;&#xFF1B;</li>
+<li>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x65B9;&#x6CD5;&#xFF08;&#x5373;&#x6CA1;&#x6709;&#x58F0;&#x660E;&#x8DEF;&#x5F84;&#x6620;&#x5C04;&#xFF09;&#xFF0C;&#x5728;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#x65E0;&#x6CD5;&#x88AB;&#x6620;&#x5C04;&#x5230;&#x63A7;&#x5236;&#x5668;&#x4E0B;&#x66F4;&#x7CBE;&#x786E;&#x7684;&#x65B9;&#x6CD5;&#x4E0A;&#x53BB;&#x65F6;&#xFF0C;&#x4E3A;&#x8BE5;&#x8BF7;&#x6C42;&#x63D0;&#x4F9B;&#x9ED8;&#x8BA4;&#x5904;&#x7406;&#x3002;&#x5728;&#x65B0;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x65E0;&#x6CD5;&#x4E3A;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x627E;&#x5230;&#x5408;&#x9002;&#x7684;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x4E00;&#x4E2A;404&#x9519;&#x8BEF;&#x5C06;&#x88AB;&#x629B;&#x51FA;&#xFF1B;</li>
+</ul>
+<blockquote>
+<p>[Original] The above features are still supported with the existing support classes. However to take advantage of new Spring MVC 3.1 features you&#x2019;ll need to use the new support classes.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x539F;&#x6765;&#x7684;&#x7C7B;&#xFF0C;&#x4EE5;&#x4E0A;&#x7684;&#x529F;&#x80FD;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x4EAB;&#x53D7;Spring MVC 3.1&#x7248;&#x672C;&#x5E26;&#x6765;&#x7684;&#x65B9;&#x4FBF;&#x7279;&#x6027;&#xFF0C;&#x4F60;&#x5C31;&#x9700;&#x8981;&#x53BB;&#x4F7F;&#x7528;&#x65B0;&#x7684;&#x7C7B;&#x3002;</p>
+<blockquote>
+<p>[Original] ## URI Template Patterns</p>
+</blockquote>
+<h2 id="uri%E6%A8%A1%E6%9D%BF">URI&#x6A21;&#x677F;</h2>
+<blockquote>
+<p>[Original] URI templates can be used for convenient access to selected parts of a URL in a <code>@RequestMapping</code> method.</p>
+</blockquote>
+<p>URI&#x6A21;&#x677F;&#x53EF;&#x4EE5;&#x4E3A;&#x5FEB;&#x901F;&#x8BBF;&#x95EE;<code>@RequestMapping</code>&#x4E2D;&#x6307;&#x5B9A;&#x7684;URL&#x7684;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x90E8;&#x5206;&#x63D0;&#x4F9B;&#x5F88;&#x5927;&#x7684;&#x4FBF;&#x5229;&#x3002;</p>
+<blockquote>
+<p>[Original] A URI Template is a URI-like string, containing one or more variable names. When you substitute values for these variables, the template becomes a URI. The proposed RFC for URI Templates defines how a URI is parameterized. For example, the URI Template <code>http://www.example.com/users/{userId}</code> contains the variable userId. Assigning the value fred to the variable yields <code>http://www.example.com/users/fred</code>.</p>
+</blockquote>
+<p>URI&#x6A21;&#x677F;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x4F3C;&#x4E8E;URI&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x3002;&#x5F53;&#x4F60;&#x4F7F;&#x7528;&#x5B9E;&#x9645;&#x7684;&#x503C;&#x53BB;&#x586B;&#x5145;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#x540D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6A21;&#x677F;&#x5C31;&#x9000;&#x5316;&#x6210;&#x4E86;&#x4E00;&#x4E2A;URI&#x3002;&#x5728;URI&#x6A21;&#x677F;&#x7684;RFC&#x63D0;&#x8BAE;&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;URI&#x662F;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x5316;&#x7684;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x8FD9;&#x4E2A;URI&#x6A21;&#x677F;<code>http://www.example.com/users/{userId}</code>&#x5C31;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x540D;<em>userId</em>&#x3002;&#x5C06;&#x503C;<em>fred</em>&#x8D4B;&#x7ED9;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x540D;&#x540E;&#xFF0C;&#x5B83;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;URI&#xFF1A;<code>http://www.example.com/users/fred</code>&#x3002;</p>
+<blockquote>
+<p>[Original] In Spring MVC you can use the <code>@PathVariable</code> annotation on a method argument to bind it to the value of a URI template variable:</p>
+</blockquote>
+<p>&#x5728;Spring MVC&#x4E2D;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x4E0A;&#x4F7F;&#x7528;<code>@PathVariable</code>&#x6CE8;&#x89E3;&#xFF0C;&#x5C06;&#x5176;&#x4E0E;URI&#x6A21;&#x677F;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x7ED1;&#x5B9A;&#x8D77;&#x6765;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@RequestMapping</span>(path=<span class="hljs-string">&quot;/owners/{ownerId}&quot;</span>, method=RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">findOwner</span><span class="hljs-params">(@PathVariable String ownerId, Model model)</span> </span>{
+    Owner owner = ownerService.findOwner(ownerId);
+    model.addAttribute(<span class="hljs-string">&quot;owner&quot;</span>, owner);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;displayOwner&quot;</span>;
+}
+</code></pre>
+<blockquote>
+<p>[Original] The URI Template &quot;<code>/owners/{ownerId}</code>&quot; specifies the variable name <code>ownerId</code>. When the controller handles this request, the value of <code>ownerId</code> is set to the value found in the appropriate part of the URI. For example, when a request comes in for <code>/owners/fred</code>, the value of <code>ownerId</code> is <code>fred</code>.</p>
+</blockquote>
+<p>URI&#x6A21;&#x677F;&quot;<code>/owners/{ownerId}</code>&quot;&#x6307;&#x5B9A;&#x4E86;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x540D;&#x4E3A;<code>ownerId</code>&#x3002;&#x5F53;&#x63A7;&#x5236;&#x5668;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>ownerId</code>&#x7684;&#x503C;&#x5C31;&#x4F1A;&#x88AB;URI&#x6A21;&#x677F;&#x4E2D;&#x5BF9;&#x5E94;&#x90E8;&#x5206;&#x7684;&#x503C;&#x6240;&#x586B;&#x5145;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x7684;URI&#x662F;<code>/owners/fred</code>&#xFF0C;&#x6B64;&#x65F6;&#x53D8;&#x91CF;<code>ownerId</code>&#x7684;&#x503C;&#x5C31;&#x662F;<code>fred</code>.
+`</p>
+<blockquote>
+<p>&#x4E3A;&#x4E86;&#x5904;&#x7406;<code>@PathVariables</code>&#x6CE8;&#x89E3;&#xFF0C;Spring MVC&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x53D8;&#x91CF;&#x540D;&#x6765;&#x627E;&#x5230;URI&#x6A21;&#x677F;&#x4E2D;&#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x53D8;&#x91CF;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x6CE8;&#x89E3;&#x4E2D;&#x76F4;&#x63A5;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@RequestMapping</span>(path=<span class="hljs-string">&quot;/owners/{ownerId}}&quot;</span>, method=RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">findOwner</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">&quot;ownerID&quot;</span>)</span> String theOwner, Model model) </span>{
+    <span class="hljs-comment">// &#x5177;&#x4F53;&#x7684;&#x65B9;&#x6CD5;&#x4EE3;&#x7801;&#x2026;</span>
+}
+</code></pre>
+<p>&#x6216;&#x8005;&#xFF0C;&#x5982;&#x679C;URI&#x6A21;&#x677F;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x4E0E;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x540D;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x5219;&#x4F60;&#x53EF;&#x4EE5;&#x4E0D;&#x5FC5;&#x518D;&#x6307;&#x5B9A;&#x4E00;&#x6B21;&#x3002;&#x53EA;&#x8981;&#x4F60;&#x5728;&#x7F16;&#x8BD1;&#x7684;&#x65F6;&#x5019;&#x7559;&#x4E0B;debug&#x4FE1;&#x606F;&#xFF0C;Spring MVC&#x5C31;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x5339;&#x914D;URL&#x6A21;&#x677F;&#x4E2D;&#x4E0E;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x540D;&#x76F8;&#x540C;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@RequestMapping</span>(path=<span class="hljs-string">&quot;/owners/{ownerId}&quot;</span>, method=RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">findOwner</span><span class="hljs-params">(@PathVariable String ownerId, Model model)</span> </span>{
+    <span class="hljs-comment">// &#x5177;&#x4F53;&#x7684;&#x65B9;&#x6CD5;&#x4EE3;&#x7801;&#x2026;</span>
+}
+</code></pre>
+<p>[Original] A method can have any number of <code>@PathVariable</code> annotations:</p>
+</blockquote>
+<p>&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x62E5;&#x6709;&#x4EFB;&#x610F;&#x6570;&#x91CF;&#x7684;<code>@PathVariable</code>&#x6CE8;&#x89E3;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@RequestMapping</span>(path=<span class="hljs-string">&quot;/owners/{ownerId}/pets/{petId}&quot;</span>, method=RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">findPet</span><span class="hljs-params">(@PathVariable String ownerId, @PathVariable String petId, Model model)</span> </span>{
+    Owner owner = ownerService.findOwner(ownerId);
+    Pet pet = owner.getPet(petId);
+    model.addAttribute(<span class="hljs-string">&quot;pet&quot;</span>, pet);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;displayPet&quot;</span>;
+}
+</code></pre>
+<blockquote>
+<p>[Original] When a <code>@PathVariable</code> annotation is used on a <code>Map&lt;String, String&gt;</code> argument, the map is populated with all URI template variables.</p>
+</blockquote>
+<p>&#x5F53;<code>@PathVariable</code>&#x6CE8;&#x89E3;&#x88AB;&#x5E94;&#x7528;&#x4E8E;<code>Map&lt;String, String&gt;</code>&#x7C7B;&#x578B;&#x7684;&#x53C2;&#x6570;&#x4E0A;&#x65F6;&#xFF0C;&#x6846;&#x67B6;&#x4F1A;&#x4F7F;&#x7528;&#x6240;&#x6709;URI&#x6A21;&#x677F;&#x53D8;&#x91CF;&#x6765;&#x586B;&#x5145;&#x8FD9;&#x4E2A;map&#x3002;</p>
+<blockquote>
+<p>[Original] A URI template can be assembled from type and path level <em>@RequestMapping</em> annotations. As a result the <code>findPet()</code> method can be invoked with a URL such as <code>/owners/42/pets/21</code>.</p>
+</blockquote>
+<p>URI&#x6A21;&#x677F;&#x53EF;&#x4EE5;&#x4ECE;&#x7C7B;&#x7EA7;&#x522B;&#x548C;&#x65B9;&#x6CD5;&#x7EA7;&#x522B;&#x7684; <em>@RequestMapping</em> &#x6CE8;&#x89E3;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x50CF;&#x8FD9;&#x6837;&#x7684;<code>findPet()</code>&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x88AB;&#x7C7B;&#x4F3C;&#x4E8E;<code>/owners/42/pets/21</code>&#x8FD9;&#x6837;&#x7684;URL&#x8DEF;&#x7531;&#x5E76;&#x8C03;&#x7528;&#x5230;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-number">_</span><span class="hljs-annotation">@Controller</span>_
+<span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/owners/{ownerId}&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RelativePathUriTemplateController</span> </span>{
+
+    <span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/pets/{petId}&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(_@PathVariable_ String ownerId, _@PathVariable_ String petId, Model model)</span> </span>{
+        <span class="hljs-comment">// &#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x4F53;&#x8FD9;&#x91CC;&#x5FFD;&#x7565;</span>
+    }
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] A <code>@PathVariable</code> argument can be of <em>any simple type</em> such as int, long, Date, etc. Spring automatically converts to the appropriate type or throws a
+<code>TypeMismatchException</code> if it fails to do so. You can also register support
+for parsing additional data types. See <a href="mvc.html#mvc-ann-typeconversion" title="Method Parameters And
+Type Conversion">the section called &quot;Method Parameters
+And Type Conversion&quot;</a> and <a href="mvc.html#mvc-ann-webdatabinder" title="Customizing WebDataBinder
+initialization">the section called &quot;Customizing WebDataBinder
+initialization&quot;</a>.</p>
+</blockquote>
+<p><code>@PathVariable</code>&#x53EF;&#x4EE5;&#x88AB;&#x5E94;&#x7528;&#x4E8E;&#x6240;&#x6709; <em>&#x7B80;&#x5355;&#x7C7B;&#x578B;</em> &#x7684;&#x53C2;&#x6570;&#x4E0A;&#xFF0C;&#x6BD4;&#x5982;int&#x3001;long&#x3001;Date&#x7B49;&#x7C7B;&#x578B;&#x3002;Spring&#x4F1A;&#x81EA;&#x52A8;&#x5730;&#x5E2E;&#x4F60;&#x628A;&#x53C2;&#x6570;&#x8F6C;&#x5316;&#x6210;&#x5408;&#x9002;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x8F6C;&#x6362;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x629B;&#x51FA;&#x4E00;&#x4E2A;<code>TypeMismatchException</code>&#x3002;&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x5904;&#x7406;&#x5176;&#x4ED6;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6CE8;&#x518C;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x3002;&#x82E5;&#x9700;&#x8981;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x4FE1;&#x606F;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion" title="Method Parameters And Type Conversion" target="_blank">&#x201C;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x4E0E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x201D;&#x4E00;&#x8282;</a>&#x548C;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder" title="Customizing WebDataBinder initialization" target="_blank">&#x201C;&#x5B9A;&#x5236;WebDataBinder&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;&#x201D;&#x4E00;&#x8282;</a></p>
+<h2 id="%E5%B8%A6%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84uri%E6%A8%A1%E6%9D%BF">&#x5E26;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;URI&#x6A21;&#x677F;</h2>
+<blockquote>
+<p>[Original] Sometimes you need more precision in defining URI template variables. Consider the URL <code>&quot;/spring-web/spring-web-3.0.5.jar&quot;</code>. How do you break it down into
+multiple parts?</p>
+</blockquote>
+<p>&#x6709;&#x65F6;&#x5019;&#x4F60;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x66F4;&#x51C6;&#x786E;&#x5730;&#x63CF;&#x8FF0;&#x4E00;&#x4E2A;URI&#x6A21;&#x677F;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x8FD9;&#x4E2A;URL&#xFF1A;<code>&quot;/spring-web/spring-web-3.0.5.jar</code>&#x3002;&#x4F60;&#x8981;&#x600E;&#x4E48;&#x628A;&#x5B83;&#x5206;&#x89E3;&#x6210;&#x51E0;&#x4E2A;&#x6709;&#x610F;&#x4E49;&#x7684;&#x90E8;&#x5206;&#x5462;&#xFF1F;</p>
+<blockquote>
+<p>[Original] The <code>@RequestMapping</code> annotation supports the use of regular expressions in URI template variables. The syntax is <code>{varName:regex}</code> where the first part defines the variable name and the second - the regular expression.For example:</p>
+</blockquote>
+<p><code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x652F;&#x6301;&#x4F60;&#x5728;URI&#x6A21;&#x677F;&#x53D8;&#x91CF;&#x4E2D;&#x4F7F;&#x7528;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x8BED;&#x6CD5;&#x662F;<code>{varName:regex}</code>&#xFF0C;&#x5176;&#x4E2D;&#x7B2C;&#x4E00;&#x90E8;&#x5206;&#x5B9A;&#x4E49;&#x4E86;&#x53D8;&#x91CF;&#x540D;&#xFF0C;&#x7B2C;&#x4E8C;&#x90E8;&#x5206;&#x5C31;&#x662F;&#x4F60;&#x6240;&#x8981;&#x5E94;&#x7528;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6837;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/spring-web/{symbolicName:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]+}&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(@PathVariable String version, @PathVariable String extension)</span> </span>{
+        <span class="hljs-comment">// &#x4EE3;&#x7801;&#x90E8;&#x5206;&#x7701;&#x7565;...</span>
+    }
+}
+</code></pre>
+<h2 id="path-patterns%EF%BC%88%E4%B8%8D%E5%A5%BD%E7%BF%BB%EF%BC%8C%E5%AE%B9%E6%98%93%E6%8E%89%E9%9F%B5%E5%91%B3%EF%BC%89">Path Patterns&#xFF08;&#x4E0D;&#x597D;&#x7FFB;&#xFF0C;&#x5BB9;&#x6613;&#x6389;&#x97F5;&#x5473;&#xFF09;</h2>
+<blockquote>
+<p>[Original] In addition to URI templates, the <code>@RequestMapping</code> annotation also supports Ant-style path patterns (for example, <code>/myPath/*.do</code>). A combination of URI
+template variables and Ant-style globs is also supported (e.g. <code>/owners/*/pets/{petId}</code>).</p>
+</blockquote>
+<p>&#x9664;&#x4E86;URI&#x6A21;&#x677F;&#x5916;&#xFF0C;<code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x8FD8;&#x652F;&#x6301;Ant&#x98CE;&#x683C;&#x7684;&#x8DEF;&#x5F84;&#x6A21;&#x5F0F;&#xFF08;&#x5982;<code>/myPath/*.do</code>&#x7B49;&#xFF09;&#x3002;&#x4E0D;&#x4EC5;&#x5982;&#x6B64;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x628A;URI&#x6A21;&#x677F;&#x53D8;&#x91CF;&#x548C;Ant&#x98CE;&#x683C;&#x7684;glob&#x7EC4;&#x5408;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x6BD4;&#x5982;<code>/owners/*/pets/{petId}</code>&#x8FD9;&#x6837;&#x7684;&#x7528;&#x6CD5;&#x7B49;&#xFF09;&#x3002;</p>
+<h2 id="%E8%B7%AF%E5%BE%84%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%8C%B9%E9%85%8D-path-pattern-comparison">&#x8DEF;&#x5F84;&#x6837;&#x5F0F;&#x7684;&#x5339;&#x914D;(Path Pattern Comparison)</h2>
+<blockquote>
+<p>[Original] When a URL matches multiple patterns, a sort is used to find the most specific match.</p>
+</blockquote>
+<p>&#x5F53;&#x4E00;&#x4E2A;URL&#x540C;&#x65F6;&#x5339;&#x914D;&#x591A;&#x4E2A;&#x6A21;&#x677F;&#xFF08;pattern&#xFF09;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x6765;&#x51B3;&#x5B9A;&#x5176;&#x4E2D;&#x6700;&#x5339;&#x914D;&#x7684;&#x4E00;&#x4E2A;&#x3002;</p>
+<blockquote>
+<p>[Original] A pattern with a lower count of URI variables and wild cards is considered more specific. For example <code>/hotels/{hotel}/*</code> has 1 URI variable and 1 wild card and is considered more specific than <code>/hotels/{hotel}/**</code> which as 1 URI
+variable and 2 wild cards.</p>
+</blockquote>
+<p>URI&#x6A21;&#x677F;&#x53D8;&#x91CF;&#x7684;&#x6570;&#x76EE;&#x548C;&#x901A;&#x914D;&#x7B26;&#x6570;&#x91CF;&#x7684;&#x603B;&#x548C;&#x6700;&#x5C11;&#x7684;&#x90A3;&#x4E2A;&#x8DEF;&#x5F84;&#x6A21;&#x677F;&#x66F4;&#x51C6;&#x786E;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;<code>/hotels/{hotel}/*</code>&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x62E5;&#x6709;&#x4E00;&#x4E2A;URI&#x53D8;&#x91CF;&#x548C;&#x4E00;&#x4E2A;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x800C;<code>/hotels/{hotel}/**</code>&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x5219;&#x62E5;&#x6709;&#x4E00;&#x4E2A;URI&#x53D8;&#x91CF;&#x548C;&#x4E24;&#x4E2A;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x8BA4;&#x4E3A;&#x524D;&#x8005;&#x662F;&#x66F4;&#x51C6;&#x786E;&#x7684;&#x8DEF;&#x5F84;&#x6A21;&#x677F;&#x3002;</p>
+<blockquote>
+<p>[Original] If two patterns have the same count, the one that is longer is considered more specific. For example <code>/foo/bar*</code> is longer and considered more specific than <code>/foo/*</code>.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x6A21;&#x677F;&#x7684;URI&#x6A21;&#x677F;&#x6570;&#x91CF;&#x548C;&#x901A;&#x914D;&#x7B26;&#x6570;&#x91CF;&#x603B;&#x548C;&#x4E00;&#x81F4;&#xFF0C;&#x5219;&#x8DEF;&#x5F84;&#x66F4;&#x957F;&#x7684;&#x90A3;&#x4E2A;&#x6A21;&#x677F;&#x66F4;&#x51C6;&#x786E;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;<code>/foo/bar*</code>&#x5C31;&#x88AB;&#x8BA4;&#x4E3A;&#x6BD4;<code>/foo/*</code>&#x66F4;&#x51C6;&#x786E;&#xFF0C;&#x56E0;&#x4E3A;&#x524D;&#x8005;&#x7684;&#x8DEF;&#x5F84;&#x66F4;&#x957F;&#x3002;</p>
+<blockquote>
+<p>[Original] When two patterns have the same count and length, the pattern with fewer wild cards is considered more specific. For example <code>/hotels/{hotel}</code> is more
+specific than <code>/hotels/*</code>.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x6A21;&#x677F;&#x7684;&#x6570;&#x91CF;&#x548C;&#x957F;&#x5EA6;&#x5747;&#x4E00;&#x81F4;&#xFF0C;&#x5219;&#x90A3;&#x4E2A;&#x5177;&#x6709;&#x66F4;&#x5C11;&#x901A;&#x914D;&#x7B26;&#x7684;&#x6A21;&#x677F;&#x662F;&#x66F4;&#x52A0;&#x51C6;&#x786E;&#x7684;&#x3002;&#x6BD4;&#x5982;&#xFF0C;<code>/hotels/{hotel}</code>&#x5C31;&#x6BD4;<code>/hotels/*</code>&#x66F4;&#x7CBE;&#x786E;&#x3002;</p>
+<blockquote>
+<p>[Original] There are also some additional special rules:</p>
+</blockquote>
+<p>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x7684;&#x89C4;&#x5219;&#xFF1A;</p>
+<blockquote>
+<p>[Original] <em> The <strong>default mapping pattern</strong> `/*</em><code>is less specific than any other pattern. For example</code>/api/{a}/{b}/{c}` is more specific.</p>
+<p>[Original] <em> A <strong>prefix pattern</strong> such as `/public/*</em><code>is less specific than any other pattern that doesn&apos;t contain double wildcards. For example</code>/public/path3/{a}/{b}/{c}` is more specific.</p>
+</blockquote>
+<ul>
+<li><strong>&#x9ED8;&#x8BA4;&#x7684;&#x901A;&#x914D;&#x6A21;&#x5F0F;</strong><code>/**</code>&#x6BD4;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x7684;&#x6A21;&#x5F0F;&#x90FD;&#x66F4;&#x201C;&#x4E0D;&#x51C6;&#x786E;&#x201D;&#x3002;&#x6BD4;&#x65B9;&#x8BF4;&#xFF0C;<code>/api/{a}/{b}/{c}</code>&#x5C31;&#x6BD4;&#x9ED8;&#x8BA4;&#x7684;&#x901A;&#x914D;&#x6A21;&#x5F0F;<code>/**</code>&#x8981;&#x66F4;&#x51C6;&#x786E;</li>
+<li><strong>&#x524D;&#x7F00;&#x901A;&#x914D;</strong>&#xFF08;&#x6BD4;&#x5982;<code>/public/**</code>)&#x88AB;&#x8BA4;&#x4E3A;&#x6BD4;&#x5176;&#x4ED6;&#x4EFB;&#x4F55;&#x4E0D;&#x5305;&#x62EC;&#x53CC;&#x901A;&#x914D;&#x7B26;&#x7684;&#x6A21;&#x5F0F;&#x66F4;&#x4E0D;&#x51C6;&#x786E;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;<code>/public/path3/{a}/{b}/{c}</code>&#x5C31;&#x6BD4;<code>/public/**</code>&#x66F4;&#x51C6;&#x786E;</li>
+</ul>
+<blockquote>
+<p>[Original] For the full details see <code>AntPatternComparator</code> in <code>AntPathMatcher</code>. Note that the PathMatcher can be customized (see <a href="mvc.html#mvc-config-path-matching" title="21.16.11 Path Matching">Section 21.16.11, &quot;Path
+Matching&quot;</a> in the
+section on configuring Spring MVC).</p>
+</blockquote>
+<p>&#x66F4;&#x591A;&#x7684;&#x7EC6;&#x8282;&#x8BF7;&#x53C2;&#x8003;&#x8FD9;&#x4E24;&#x4E2A;&#x7C7B;&#xFF1A;<code>AntPatternComparator</code>&#x548C;<code>AntPathMatcher</code>&#x3002;&#x503C;&#x5F97;&#x4E00;&#x63D0;&#x7684;&#x662F;&#xFF0C;PathMatcher&#x7C7B;&#x662F;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x7684;&#xFF08;&#x89C1;&#x201C;&#x914D;&#x7F6E;Spring MVC&#x201D;&#x4E00;&#x8282;&#x4E2D;&#x7684;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/html#mvc-config-path-matching" title="21.16.11 Path Matching" target="_blank">21.16.11 &#x8DEF;&#x5F84;&#x7684;&#x5339;&#x914D;</a>&#x4E00;&#x8282;)&#x3002;</p>
+<h2 id="%E5%B8%A6%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E8%B7%AF%E5%BE%84%E6%A8%A1%E5%BC%8F%EF%BC%88path-patterns%EF%BC%89">&#x5E26;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x8DEF;&#x5F84;&#x6A21;&#x5F0F;&#xFF08;path patterns&#xFF09;</h2>
+<blockquote>
+<p>[Original] Patterns in <code>@RequestMapping</code> annotations support ${&#x2026;} placeholders against local properties and/or system properties and environment variables. This may be useful in cases where the path a controller is mapped to may need to be
+customized through configuration. For more information on placeholders, see
+the javadocs of the <code>PropertyPlaceholderConfigurer</code> class.</p>
+</blockquote>
+<p><code>@RequestMapping</code>&#x6CE8;&#x89E3;&#x652F;&#x6301;&#x5728;&#x8DEF;&#x5F84;&#x4E2D;&#x4F7F;&#x7528;&#x5360;&#x4F4D;&#x7B26;&#xFF0C;&#x4EE5;&#x53D6;&#x5F97;&#x4E00;&#x4E9B;&#x672C;&#x5730;&#x914D;&#x7F6E;&#x3001;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x3001;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x7B49;&#x3002;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x6709;&#x65F6;&#x5F88;&#x6709;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x63A7;&#x5236;&#x5668;&#x7684;&#x6620;&#x5C04;&#x8DEF;&#x5F84;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x6765;&#x5B9A;&#x5236;&#x7684;&#x573A;&#x666F;&#x3002;&#x5982;&#x679C;&#x60F3;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<code>PropertyPlaceholderConfigurer</code>&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x6587;&#x6863;&#x3002;</p>
+<h4 id="suffix-pattern-matching">Suffix Pattern Matching</h4>
+<h2 id="%E5%90%8E%E7%BC%80%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D">&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;</h2>
+<blockquote>
+<p>[Original] By default Spring MVC performs <code>&quot;.*&quot;</code> suffix pattern matching so that a
+controller mapped to <code>/person</code> is also implicitly mapped to <code>/person.*</code>. This
+makes it easy to request different representations of a resource through the
+URL path (e.g. <code>/person.pdf</code>, <code>/person.xml</code>).</p>
+</blockquote>
+<p>Spring MVC&#x9ED8;&#x8BA4;&#x91C7;&#x7528;<code>&quot;.*&quot;</code>&#x7684;&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x6765;&#x8FDB;&#x884C;&#x8DEF;&#x5F84;&#x5339;&#x914D;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x4E00;&#x4E2A;&#x6620;&#x5C04;&#x5230;<code>/person</code>&#x8DEF;&#x5F84;&#x7684;&#x63A7;&#x5236;&#x5668;&#x4E5F;&#x4F1A;&#x9690;&#x5F0F;&#x5730;&#x88AB;&#x6620;&#x5C04;&#x5230;<code>/person.*</code>&#x3002;&#x8FD9;&#x4F7F;&#x5F97;&#x901A;&#x8FC7;URL&#x6765;&#x8BF7;&#x6C42;&#x540C;&#x4E00;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x7684;&#x4E0D;&#x540C;&#x683C;&#x5F0F;&#x53D8;&#x5F97;&#x66F4;&#x7B80;&#x5355;&#xFF08;&#x6BD4;&#x5982;<code>/person.pdf</code>&#xFF0C;<code>/person.xml</code>&#xFF09;&#x3002;</p>
+<blockquote>
+<p>[Original] Suffix pattern matching can be turned off or restricted to a set of path extensions explicitly registered for content negotiation purposes. This is
+generally recommended to minimize ambiguity with common request mappings such
+as <code>/person/{id}</code> where a dot might not represent a file extension, e.g.
+<code>/person/joe@email.com</code> vs <code>/person/joe@email.com.json)</code>. Furthermore as explained in the note below suffix pattern matching as well as content negotiation may be used
+in some circumstances to attempt malicious attacks and there are good reasons
+to restrict them meaningfully.</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x9ED8;&#x8BA4;&#x7684;&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#xFF0C;&#x6216;&#x8005;&#x663E;&#x5F0F;&#x5730;&#x5C06;&#x8DEF;&#x5F84;&#x540E;&#x7F00;&#x9650;&#x5B9A;&#x5230;&#x4E00;&#x4E9B;&#x7279;&#x5B9A;&#x683C;&#x5F0F;&#x4E0A;for content negotiation purpose&#x3002;&#x6211;&#x4EEC;&#x63A8;&#x8350;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x6620;&#x5C04;&#x8BF7;&#x6C42;&#x65F6;&#x53EF;&#x4EE5;&#x5E26;&#x6765;&#x7684;&#x4E00;&#x4E9B;&#x4E8C;&#x4E49;&#x6027;&#xFF0C;&#x6BD4;&#x5982;&#x8BF7;&#x6C42;&#x4EE5;&#x4E0B;&#x8DEF;&#x5F84;<code>/person/{id}</code>&#x65F6;&#xFF0C;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x70B9;&#x53F7;&#x540E;&#x9762;&#x5E26;&#x7684;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x63CF;&#x8FF0;&#x5185;&#x5BB9;&#x683C;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;<code>/person/joe@email.com</code> vs <code>/person/joe@email.com.json</code>&#x3002;&#x800C;&#x4E14;&#x6B63;&#x5982;&#x4E0B;&#x9762;&#x9A6C;&#x4E0A;&#x8981;&#x63D0;&#x5230;&#x7684;&#xFF0C;&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x901A;&#x914D;&#x4EE5;&#x53CA;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x6709;&#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x9ED1;&#x5BA2;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x653B;&#x51FB;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x540E;&#x7F00;&#x901A;&#x914D;&#x8FDB;&#x884C;&#x6709;&#x610F;&#x4E49;&#x7684;&#x9650;&#x5B9A;&#x662F;&#x6709;&#x597D;&#x5904;&#x7684;&#x3002;</p>
+<blockquote>
+<p>[Original] See <a href="mvc.html#mvc-config-path-matching" title="21.16.11 Path Matching">Section 21.16.11, &quot;Path Matching&quot;</a> for suffix pattern matching configuration and also <a href="mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation">Section 21.16.6, &quot;Content Negotiation&quot;</a> for content negotiation configuration.</p>
+</blockquote>
+<p>&#x5173;&#x4E8E;&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x7684;&#x914D;&#x7F6E;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-path-matching" title="21.16.11 Path Matching" target="_blank">&#x7B2C;21.16.11&#x5C0F;&#x8282; &quot;&#x8DEF;&#x5F84;&#x5339;&#x914D;&quot;</a>&#xFF1B;&#x5173;&#x4E8E;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x7684;&#x914D;&#x7F6E;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation" target="_blank">&#x7B2C;21.16.6&#x5C0F;&#x8282; &quot;&#x5185;&#x5BB9;&#x534F;&#x5546;&quot;</a>&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h2 id="%E5%90%8E%E7%BC%80%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E4%B8%8Erfd">&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x4E0E;RFD</h2>
+<blockquote>
+<p>[Original] Reflected file download (RFD) attack was first described in a <a href="https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/" target="_blank">paper by
+Trustwave</a> in 2014. The attack is similar to XSS in that it relies on input (e.g. query parameter, URI variable) being reflected in the response. However instead of inserting JavaScript into HTML, an RFD attack relies on the browser switching to perform a download and treating the response as an executable script if double-clicked based on the file extension (e.g. .bat, .cmd).</p>
+</blockquote>
+<p>RFD(Reflected file download)&#x653B;&#x51FB;&#x6700;&#x5148;&#x662F;2014&#x5E74;&#x5728;<a href="https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/" target="_blank">Trustwave&#x7684;&#x4E00;&#x7BC7;&#x8BBA;&#x6587;</a>&#x4E2D;&#x88AB;&#x63D0;&#x51FA;&#x7684;&#x3002;&#x5B83;&#x4E0E;XSS&#x653B;&#x51FB;&#x6709;&#x4E9B;&#x76F8;&#x4F3C;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x79CD;&#x653B;&#x51FB;&#x65B9;&#x5F0F;&#x4E5F;&#x4F9D;&#x8D56;&#x4E8E;&#x67D0;&#x4E9B;&#x7279;&#x5F81;&#xFF0C;&#x5373;&#x9700;&#x8981;&#x4F60;&#x7684;&#x8F93;&#x5165;&#xFF08;&#x6BD4;&#x5982;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#xFF0C;URI&#x53D8;&#x91CF;&#x7B49;&#xFF09;&#x7B49;&#x4E5F;&#x5728;&#x8F93;&#x51FA;&#xFF08;response&#xFF09;&#x4E2D;&#x4EE5;&#x67D0;&#x79CD;&#x5F62;&#x5F0F;&#x51FA;&#x73B0;&#x3002;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;RFD&#x653B;&#x51FB;&#x5E76;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x5728;HTML&#x4E2D;&#x5199;&#x5165;JavaScript&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x4F9D;&#x8D56;&#x4E8E;&#x6D4F;&#x89C8;&#x5668;&#x6765;&#x8DF3;&#x8F6C;&#x5230;&#x4E0B;&#x8F7D;&#x9875;&#x9762;&#xFF0C;&#x5E76;&#x628A;&#x7279;&#x5B9A;&#x683C;&#x5F0F;&#xFF08;&#x6BD4;&#x5982;.bat&#xFF0C;.cmd&#x7B49;&#xFF09;&#x7684;response&#x5F53;&#x6210;&#x662F;&#x53EF;&#x6267;&#x884C;&#x811A;&#x672C;&#xFF0C;&#x53CC;&#x51FB;&#x5B83;&#x5C31;&#x4F1A;&#x6267;&#x884C;&#x3002;</p>
+<blockquote>
+<p>[Original] In Spring MVC <code>@ResponseBody</code> and <code>ResponseEntity</code> methods are at risk because they can render different content types which clients can request including via URL path extensions. Note however that neither disabling suffix pattern matching nor disabling the use of path extensions for content negotiation purposes alone are effective at preventing RFD attacks.</p>
+</blockquote>
+<p>Spring MVC&#x7684;<code>@ResponseBody</code>&#x548C;<code>ResponseEntity</code>&#x65B9;&#x6CD5;&#x662F;&#x6709;&#x98CE;&#x9669;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x4F1A;&#x6839;&#x636E;&#x5BA2;&#x6237;&#x7684;&#x8BF7;&#x6C42;&#x2014;&#x2014;&#x5305;&#x62EC;URL&#x7684;&#x8DEF;&#x5F84;&#x540E;&#x7F00;&#xFF0C;&#x6765;&#x6E32;&#x67D3;&#x4E0D;&#x540C;&#x7684;&#x5185;&#x5BB9;&#x7C7B;&#x578B;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x7981;&#x7528;&#x540E;&#x7F00;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x6216;&#x8005;&#x7981;&#x7528;&#x4EC5;&#x4E3A;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x5F00;&#x542F;&#x7684;&#x8DEF;&#x5F84;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x540D;&#x643A;&#x5E26;&#xFF0C;&#x90FD;&#x662F;&#x9632;&#x8303;RFD&#x653B;&#x51FB;&#x7684;&#x6709;&#x6548;&#x65B9;&#x5F0F;&#x3002;</p>
+<blockquote>
+<p>[Original] For comprehensive protection against RFD, prior to rendering the response body Spring MVC adds a <code>Content-Disposition:inline;filename=f.txt</code> header to suggest a fixed and safe download file filename. This is done only if the URL path contains a file extension that is neither whitelisted nor explicitly registered for content negotiation purposes. However it may potentially have side effects when URLs are typed directly into a browser.</p>
+</blockquote>
+<p>&#x82E5;&#x8981;&#x5F00;&#x542F;&#x5BF9;RFD&#x66F4;&#x9AD8;&#x7EA7;&#x7684;&#x4FDD;&#x62A4;&#x6A21;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;Spring MVC&#x6E32;&#x67D3;&#x5F00;&#x59CB;&#x8BF7;&#x6C42;&#x6B63;&#x6587;&#x4E4B;&#x524D;&#xFF0C;&#x5728;&#x8BF7;&#x6C42;&#x5934;&#x4E2D;&#x589E;&#x52A0;&#x4E00;&#x884C;&#x914D;&#x7F6E;<code>Content-Disposition:inline;filename=f.txt</code>&#xFF0C;&#x6307;&#x5B9A;&#x56FA;&#x5B9A;&#x7684;&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x3002;&#x8FD9;&#x4EC5;&#x5728;URL&#x8DEF;&#x5F84;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x7B26;&#x5408;&#x4EE5;&#x4E0B;&#x7279;&#x5F81;&#x7684;&#x62D3;&#x5C55;&#x540D;&#x65F6;&#x9002;&#x7528;&#xFF1A;&#x8BE5;&#x6269;&#x5C55;&#x540D;&#x65E2;&#x4E0D;&#x5728;&#x4FE1;&#x4EFB;&#x5217;&#x8868;&#xFF08;&#x767D;&#x540D;&#x5355;&#xFF09;&#x4E2D;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x88AB;&#x663E;&#x5F0F;&#x5730;&#x88AB;&#x6CE8;&#x518C;&#x4E8E;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x65F6;&#x4F7F;&#x7528;&#x3002;&#x5E76;&#x4E14;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x8FD8;&#x53EF;&#x4EE5;&#x6709;&#x4E00;&#x4E9B;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x5F53;URL&#x662F;&#x901A;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x624B;&#x52A8;&#x8F93;&#x5165;&#x7684;&#x65F6;&#x5019;&#x3002;</p>
+<blockquote>
+<p>[Original] Many common path extensions are whitelisted by default. Furthermore REST API calls are typically not meant to be used as URLs directly in browsers. Nevertheless applications that use custom <code>HttpMessageConverter</code> implementations can explicitly register file extensions for content negotiation and the Content-Disposition header will not be added for such extensions. See <a href="mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation">Section 21.16.6, &quot;Content Negotiation&quot;</a>.</p>
+</blockquote>
+<p>&#x5F88;&#x591A;&#x5E38;&#x7528;&#x7684;&#x8DEF;&#x5F84;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x9ED8;&#x8BA4;&#x662F;&#x88AB;&#x4FE1;&#x4EFB;&#x7684;&#x3002;&#x53E6;&#x5916;&#xFF0C;REST&#x7684;API&#x4E00;&#x822C;&#x662F;&#x4E0D;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x7528;&#x505A;URL&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5B9A;&#x5236;<code>HttpMessageConverter</code>&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7136;&#x540E;&#x663E;&#x5F0F;&#x5730;&#x6CE8;&#x518C;&#x7528;&#x4E8E;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x7684;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x5F62;&#x4E0B;Content-Disposition&#x5934;&#x5C06;&#x4E0D;&#x4F1A;&#x88AB;&#x52A0;&#x5165;&#x5230;&#x8BF7;&#x6C42;&#x5934;&#x4E2D;&#x3002;&#x8BE6;&#x89C1;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation" target="_blank">&#x7B2C;21.16.6&#x8282;&#x4E2D;&#x201C;&#x5185;&#x5BB9;&#x534F;&#x5546;&#x201D;&#x7684;&#x5185;&#x5BB9;</a>&#x3002;</p>
+<blockquote>
+<p>[Original] This was originally introduced as part of work for <a href="http://pivotal.io/security/cve-2015-5211" target="_blank">CVE-2015-5211</a>. Below are additional recommendations from the report:</p>
+<ul>
+<li>Encode rather than escape JSON responses. This is also an OWASP XSS recommendation. For an example of how to do that with Spring see <a href="https://github.com/rwinch/spring-jackson-owasp" target="_blank">spring-jackson-owasp</a>.</li>
+<li>Configure suffix pattern matching to be turned off or restricted to explicitly registered suffixes only.</li>
+<li>Configure content negotiation with the properties &quot;useJaf&quot; and &quot;ignoreUnknownPathExtensions&quot; set to false which would result in a 406 response for URLs with unknown extensions. Note however that this may not be an option if URLs are naturally expected to have a dot towards the end.</li>
+<li>Add <code>X-Content-Type-Options: nosniff</code> header to responses. Spring Security 4 does this by default.</li>
+</ul>
+</blockquote>
+<p>&#x611F;&#x89C9;&#x8FD9;&#x8282;&#x7684;&#x7FFB;&#x8BD1;&#x8D28;&#x91CF;&#x8FD8;&#x6709;&#x9650;&#xFF0C;&#x9700;&#x8981;&#x7EE7;&#x7EED;&#x4E86;&#x89E3;XSS&#x653B;&#x51FB;&#x548C;RFD&#x653B;&#x51FB;&#x7684;&#x7EC6;&#x8282;&#x518D;&#x7FFB;&#x3002;</p>
+<h2 id="%E7%9F%A9%E9%98%B5%E5%8F%98%E9%87%8F">&#x77E9;&#x9635;&#x53D8;&#x91CF;</h2>
+<blockquote>
+<p>[Original] The URI specification <a href="http://tools.ietf.org/html/rfc3986#section-3.3" target="_blank">RFC 3986</a> defines the possibility of including name-value pairs within path segments. There is no specific term used in the spec. The general &quot;URI path parameters&quot; could be applied although the more unique <a href="http://www.w3.org/DesignIssues/MatrixURIs.html" target="_blank">&quot;Matrix URIs&quot;</a>, originating from an old post by Tim Berners-Lee, is also frequently used and fairly well known. Within Spring MVC these are referred to as matrix variables.</p>
+</blockquote>
+<p>&#x539F;&#x6765;&#x7684;URI&#x89C4;&#x8303;<a href="http://tools.ietf.org/html/rfc3986#section-3.3" target="_blank">RFC 3986</a>&#x4E2D;&#x5141;&#x8BB8;&#x5728;&#x8DEF;&#x5F84;&#x6BB5;&#x843D;&#x4E2D;&#x643A;&#x5E26;&#x952E;&#x503C;&#x5BF9;&#xFF0C;&#x4F46;&#x89C4;&#x8303;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x7ED9;&#x8FD9;&#x6837;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x5B9A;&#x4E49;&#x672F;&#x8BED;&#x3002;&#x6709;&#x4EBA;&#x53EB;&#x201C;URI&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#x201D;&#xFF0C;&#x4E5F;&#x6709;&#x53EB;<a href="http://www.w3.org/DesignIssues/MatrixURIs.html" target="_blank">&#x201C;&#x77E9;&#x9635;URI&#x201D;</a>&#x7684;&#x3002;&#x540E;&#x8005;&#x662F;Tim Berners-Lee&#x9996;&#x5148;&#x5728;&#x5176;&#x535A;&#x5BA2;&#x4E2D;&#x63D0;&#x5230;&#x7684;&#x672F;&#x8BED;&#xFF0C;&#x88AB;&#x4F7F;&#x7528;&#x5F97;&#x8981;&#x66F4;&#x52A0;&#x9891;&#x7E41;&#x4E00;&#x4E9B;&#xFF0C;&#x77E5;&#x540D;&#x5EA6;&#x4E5F;&#x66F4;&#x9AD8;&#x4E9B;&#x3002;&#x800C;&#x5728;Spring MVC&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x79F0;&#x8FD9;&#x6837;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x4E3A;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x3002;</p>
+<blockquote>
+<p>[Original] Matrix variables can appear in any path segment, each matrix variable separated with a &quot;;&quot; (semicolon). For example: <code>&quot;/cars;color=red;year=2012&quot;</code>. Multiple values may be either &quot;,&quot; (comma) separated <code>&quot;color=red,green,blue&quot;</code> or the variable name may be repeated <code>&quot;color=red;color=green;color=blue&quot;</code>.</p>
+</blockquote>
+<p>&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x8DEF;&#x5F84;&#x6BB5;&#x843D;&#x4E2D;&#x51FA;&#x73B0;&#xFF0C;&#x6BCF;&#x5BF9;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5206;&#x53F7;&#x201C;;&#x201D;&#x9694;&#x5F00;&#x3002;&#x6BD4;&#x5982;&#x8FD9;&#x6837;&#x7684;URI&#xFF1A;<code>&quot;/cars;color=red;year=2012&quot;</code>&#x3002;&#x591A;&#x4E2A;&#x503C;&#x53EF;&#x4EE5;&#x7528;&#x9017;&#x53F7;&#x9694;&#x5F00;<code>&quot;color=red,green,blue&quot;</code>&#xFF0C;&#x6216;&#x8005;&#x91CD;&#x590D;&#x53D8;&#x91CF;&#x540D;&#x591A;&#x6B21;<code>&quot;color=red;color=green;color=blue&quot;</code>&#x3002;</p>
+<blockquote>
+<p>[Original] If a URL is expected to contain matrix variables, the request mapping pattern must represent them with a URI template. This ensures the request can be matched correctly regardless of whether matrix variables are present or not and in what order they are provided.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;URL&#x6709;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5305;&#x542B;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x8BF7;&#x6C42;&#x8DEF;&#x5F84;&#x7684;&#x6620;&#x5C04;&#x914D;&#x7F6E;&#x4E0A;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;URI&#x6A21;&#x677F;&#x6765;&#x4F53;&#x73B0;&#x8FD9;&#x4E00;&#x70B9;&#x3002;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x786E;&#x4FDD;&#x8BF7;&#x6C42;&#x53EF;&#x4EE5;&#x88AB;&#x6B63;&#x786E;&#x5730;&#x6620;&#x5C04;&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x5728;URI&#x4E2D;&#x662F;&#x5426;&#x51FA;&#x73B0;&#x3001;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x5E8F;&#x662F;&#x600E;&#x6837;&#x7B49;&#x3002;</p>
+<blockquote>
+<p>[Original] Below is an example of extracting the matrix variable &quot;q&quot;:</p>
+</blockquote>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x6211;&#x4EEC;&#x5982;&#x4F55;&#x4ECE;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x53D8;&#x91CF;&#x201C;q&#x201D;&#x7684;&#x503C;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// GET /pets/42;q=11;r=22</span>
+
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets/{petId}&quot;</span>, method = RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(@PathVariable String petId, @MatrixVariable <span class="hljs-keyword">int</span> q)</span> </span>{
+
+    <span class="hljs-comment">// petId == 42</span>
+    <span class="hljs-comment">// q == 11</span>
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] Since all path segments may contain matrix variables, in some cases you need to be more specific to identify where the variable is expected to be:</p>
+</blockquote>
+<p>&#x7531;&#x4E8E;&#x4EFB;&#x610F;&#x8DEF;&#x5F84;&#x6BB5;&#x843D;&#x4E2D;&#x90FD;&#x53EF;&#x4EE5;&#x542B;&#x6709;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#xFF0C;&#x5728;&#x67D0;&#x4E9B;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x7528;&#x66F4;&#x7CBE;&#x786E;&#x7684;&#x4FE1;&#x606F;&#x6765;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x7684;&#x4F4D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// GET /owners/42;q=11/pets/21;q=22</span>
+
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/owners/{ownerId}/pets/{petId}&quot;</span>, method = RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(
+    @MatrixVariable(name=<span class="hljs-string">&quot;q&quot;</span>, pathVar=<span class="hljs-string">&quot;ownerId&quot;</span>)</span> <span class="hljs-keyword">int</span> q1,
+    @<span class="hljs-title">MatrixVariable</span><span class="hljs-params">(name=<span class="hljs-string">&quot;q&quot;</span>, pathVar=<span class="hljs-string">&quot;petId&quot;</span>)</span> <span class="hljs-keyword">int</span> q2) </span>{
+
+    <span class="hljs-comment">// q1 == 11</span>
+    <span class="hljs-comment">// q2 == 22</span>
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] A matrix variable may be defined as optional and a default value specified:</p>
+</blockquote>
+<p>&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x4E0D;&#x662F;&#x5FC5;&#x987B;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x5E76;&#x7ED9;&#x5B83;&#x8D4B;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x503C;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// GET /pets/42</span>
+
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets/{petId}&quot;</span>, method = RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(@MatrixVariable(required=<span class="hljs-keyword">false</span>, defaultValue=<span class="hljs-string">&quot;1&quot;</span>)</span> <span class="hljs-keyword">int</span> q) </span>{
+
+    <span class="hljs-comment">// q == 1</span>
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] All matrix variables may be obtained in a Map:</p>
+</blockquote>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;Map&#x6765;&#x5B58;&#x50A8;&#x6240;&#x6709;&#x7684;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// GET /owners/42;q=11;r=12/pets/21;q=22;s=23</span>
+
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/owners/{ownerId}/pets/{petId}&quot;</span>, method = RequestMethod.GET)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(
+    @MatrixVariable Map&lt;String, String&gt; matrixVars,
+    @MatrixVariable(pathVar=<span class="hljs-string">&quot;petId&quot;</span>)</span> Map&lt;String, String&gt; petMatrixVars) </span>{
+
+    <span class="hljs-comment">// matrixVars: [&quot;q&quot; : [11,22], &quot;r&quot; : 12, &quot;s&quot; : 23]</span>
+    <span class="hljs-comment">// petMatrixVars: [&quot;q&quot; : 11, &quot;s&quot; : 23]</span>
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] Note that to enable the use of matrix variables, you must set the <code>removeSemicolonContent</code> property of <code>RequestMappingHandlerMapping</code> to <code>false</code>. By default it is set to <code>true</code>.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x8981;&#x5141;&#x8BB8;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x628A;<code>RequestMappingHandlerMapping</code>&#x7C7B;&#x7684;<code>removeSemicolonContent</code>&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A;<code>false</code>&#x3002;&#x8BE5;&#x503C;&#x9ED8;&#x8BA4;&#x662F;<code>true</code>&#x7684;&#x3002;</p>
+<blockquote>
+<p>[Original] The MVC Java config and the MVC namespace both provide options for enabling the use of matrix variables.</p>
+<p>MVC&#x7684;Java&#x7F16;&#x7A0B;&#x914D;&#x7F6E;&#x548C;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x914D;&#x7F6E;&#x90FD;&#x63D0;&#x4F9B;&#x4E86;&#x542F;&#x7528;&#x77E9;&#x9635;&#x53D8;&#x91CF;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>[Original] If you are using Java config, The <a href="mvc.html#mvc-config-advanced-java" title="21.16.13 Advanced Customizations with MVC Java Config">Advanced Customizations with MVC Java Config</a> section describes how the <code>RequestMappingHandlerMapping</code> can be customized.</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x4F7F;&#x7528;Java&#x7F16;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-advanced-java" title="21.16.13 Advanced Customizations with MVC Java Config" target="_blank">&#x201C;MVC Java&#x9AD8;&#x7EA7;&#x5B9A;&#x5236;&#x5316;&#x914D;&#x7F6E;&#x201D;&#x4E00;&#x8282;</a>&#x63CF;&#x8FF0;&#x4E86;&#x5982;&#x4F55;&#x5BF9;<code>RequestMappingHandlerMapping</code>&#x8FDB;&#x884C;&#x5B9A;&#x5236;&#x3002;</p>
+<p>[Original] In the MVC namespace, the <code>&lt;mvc:annotation-driven&gt;</code> element has an <code>enable-matrix-variables</code> attribute that should be set to <code>true</code>. By default it is set to <code>false</code>.</p>
+<p>&#x800C;&#x4F7F;&#x7528;MVC&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x914D;&#x7F6E;&#x65F6;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x628A;<code>&lt;mvc:annotation-driven&gt;</code>&#x5143;&#x7D20;&#x4E0B;&#x7684;<code>enable-matrix-variables</code>&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A;<code>true</code>&#x3002;&#x8BE5;&#x503C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x662F;&#x914D;&#x7F6E;&#x4E3A;<code>false</code>&#x7684;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">beans</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">&quot;http://www.springframework.org/schema/beans&quot;</span>
+    <span class="hljs-attribute">xmlns:mvc</span>=<span class="hljs-value">&quot;http://www.springframework.org/schema/mvc&quot;</span>
+    <span class="hljs-attribute">xmlns:xsi</span>=<span class="hljs-value">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+    <span class="hljs-attribute">xsi:schemaLocation</span>=<span class="hljs-value">&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">mvc:annotation-driven</span> <span class="hljs-attribute">enable-matrix-variables</span>=<span class="hljs-value">&quot;true&quot;</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">beans</span>&gt;</span>
+</code></pre>
+<h2 id="%E5%8F%AF%E6%B6%88%E8%B4%B9%E7%9A%84%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B">&#x53EF;&#x6D88;&#x8D39;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;</h2>
+<blockquote>
+<p>[Original] You can narrow the primary mapping by specifying a list of consumable media types. The request will be matched only if the <em>Content-Type</em> request header matches the specified media type. For example:</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4E00;&#x7EC4;&#x53EF;&#x6D88;&#x8D39;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#xFF0C;&#x7F29;&#x5C0F;&#x6620;&#x5C04;&#x7684;&#x8303;&#x56F4;&#x3002;&#x8FD9;&#x6837;&#x53EA;&#x6709;&#x5F53;&#x8BF7;&#x6C42;&#x5934;&#x4E2D; <em>Content-Type</em> &#x7684;&#x503C;&#x4E0E;&#x6307;&#x5B9A;&#x53EF;&#x6D88;&#x8D39;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x4E2D;&#x6709;&#x76F8;&#x540C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BF7;&#x6C42;&#x624D;&#x4F1A;&#x88AB;&#x5339;&#x914D;&#x3002;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets&quot;</span>, method = RequestMethod.POST, consumes=<span class="hljs-string">&quot;application/json&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addPet</span><span class="hljs-params">(@RequestBody Pet pet, Model model)</span> </span>{
+    <span class="hljs-comment">// &#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7701;&#x7565;</span>
+}
+</code></pre>
+<blockquote>
+<p>[Original] Consumable media type expressions can also be negated as in <em>!text/plain</em> to match to all requests other than those with <em>Content-Type</em> of <em>text/plain</em>. Also consider using constants provided in <code>MediaType</code> such as <code>APPLICATION_JSON_VALUE</code> and <code>APPLICATION_JSON_UTF8_VALUE</code>.</p>
+</blockquote>
+<p>&#x6307;&#x5B9A;&#x53EF;&#x6D88;&#x8D39;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5426;&#x5B9A;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <em>!text/plain</em> &#x6765;&#x5339;&#x914D;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x5934; <em>Content-Type</em> &#x4E2D;&#x4E0D;&#x542B; <em>text/plain</em> &#x7684;&#x8BF7;&#x6C42;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x5728;<code>MediaType</code>&#x7C7B;&#x4E2D;&#x8FD8;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E9B;&#x5E38;&#x91CF;&#xFF0C;&#x6BD4;&#x5982;<code>APPLICATION_JSON_VALUE</code>&#x3001;<code>APPLICATION_JSON_UTF8_VALUE</code>&#x7B49;&#xFF0C;&#x63A8;&#x8350;&#x66F4;&#x591A;&#x5730;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#x3002;</p>
+<blockquote>
+<p>[Original] The <em>consumes</em> condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.</p>
+<p><em>consumes</em>&#x5C5E;&#x6027;&#x63D0;&#x4F9B;&#x7684;&#x662F;&#x65B9;&#x6CD5;&#x7EA7;&#x7684;&#x7C7B;&#x578B;&#x652F;&#x6301;&#x3002;&#x4E0E;&#x5176;&#x4ED6;&#x5C5E;&#x6027;&#x4E0D;&#x540C;&#xFF0C;&#x5F53;&#x5728;&#x7C7B;&#x578B;&#x7EA7;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x65B9;&#x6CD5;&#x7EA7;&#x7684;&#x6D88;&#x8D39;&#x7C7B;&#x578B;&#x5C06;&#x8986;&#x76D6;&#x7C7B;&#x578B;&#x7EA7;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x800C;&#x975E;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x3002;</p>
+</blockquote>
+<h2 id="%E5%8F%AF%E7%94%9F%E4%BA%A7%E7%9A%84%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B">&#x53EF;&#x751F;&#x4EA7;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;</h2>
+<blockquote>
+<p>[Original] You can narrow the primary mapping by specifying a list of producible media types. The request will be matched only if the <em>Accept</em> request header matches one of these values. Furthermore, use of the <em>produces</em> condition ensures the actual content type used to generate the response respects the media types specified in the <em>produces</em> condition. For example:</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4E00;&#x7EC4;&#x53EF;&#x751F;&#x4EA7;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#xFF0C;&#x7F29;&#x5C0F;&#x6620;&#x5C04;&#x7684;&#x8303;&#x56F4;&#x3002;&#x8FD9;&#x6837;&#x53EA;&#x6709;&#x5F53;&#x8BF7;&#x6C42;&#x5934;&#x4E2D; <em>Accept</em> &#x7684;&#x503C;&#x4E0E;&#x6307;&#x5B9A;&#x53EF;&#x751F;&#x4EA7;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x4E2D;&#x6709;&#x76F8;&#x540C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BF7;&#x6C42;&#x624D;&#x4F1A;&#x88AB;&#x5339;&#x914D;&#x3002;&#x800C;&#x4E14;&#xFF0C;&#x4F7F;&#x7528; <em>produces</em> &#x6761;&#x4EF6;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x54CD;&#x5E94;&#xFF08;response&#xFF09;&#x7684;&#x5185;&#x5BB9;&#x4E0E;&#x6307;&#x5B9A;&#x7684;&#x53EF;&#x751F;&#x4EA7;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x662F;&#x76F8;&#x540C;&#x7684;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets/{petId}&quot;</span>, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+<span class="hljs-annotation">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Pet <span class="hljs-title">getPet</span><span class="hljs-params">(@PathVariable String petId, Model model)</span> </span>{
+    <span class="hljs-comment">// &#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7701;&#x7565;</span>
+}
+</code></pre>
+<blockquote>
+<p>[Original] Be aware that the media type specified in the <em>produces</em> condition can also optionally specify a character set. For example, in the code snippet above we
+specify the same media type than the default one configured in <code>MappingJackson2HttpMessageConverter</code>, including the <code>UTF-8</code> charset.</p>
+<p>&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x901A;&#x8FC7; <em>condition</em> &#x6761;&#x4EF6;&#x6307;&#x5B9A;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x4E5F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x96C6;&#x3002;&#x6BD4;&#x5982;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x5C0F;&#x6BB5;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x8986;&#x5199;&#x4E86;<code>MappingJackson2HttpMessageConverter</code>&#x7C7B;&#x4E2D;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x8FD8;&#x6307;&#x5B9A;&#x4E86;&#x4F7F;&#x7528;<code>UTF-8</code>&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x3002;</p>
+<p>[Original] Just like with <em>consumes</em>, producible media type expressions can be negated as in <em>!text/plain</em> to match to all requests other than those with an <em>Accept</em> header value of <em>text/plain</em>. Also consider using constants provided in <code>MediaType</code> such as <code>APPLICATION_JSON_VALUE</code> and <code>APPLICATION_JSON_UTF8_VALUE</code>.</p>
+</blockquote>
+<p>&#x4E0E; <em>consumes</em> &#x6761;&#x4EF6;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EF;&#x751F;&#x4EA7;&#x7684;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x8868;&#x8FBE;&#x5F0F;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5426;&#x5B9A;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <em>!text/plain</em> &#x6765;&#x5339;&#x914D;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x5934; <em>Accept</em> &#x4E2D;&#x4E0D;&#x542B; <em>text/plain</em> &#x7684;&#x8BF7;&#x6C42;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x5728;<code>MediaType</code>&#x7C7B;&#x4E2D;&#x8FD8;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E9B;&#x5E38;&#x91CF;&#xFF0C;&#x6BD4;&#x5982;<code>APPLICATION_JSON_VALUE</code>&#x3001;<code>APPLICATION_JSON_UTF8_VALUE</code>&#x7B49;&#xFF0C;&#x63A8;&#x8350;&#x66F4;&#x591A;&#x5730;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#x3002;</p>
+<blockquote>
+<p>[Original] The <em>produces</em> condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level
+producible types override rather than extend type-level producible types.</p>
+<p><em>produces</em>&#x5C5E;&#x6027;&#x63D0;&#x4F9B;&#x7684;&#x662F;&#x65B9;&#x6CD5;&#x7EA7;&#x7684;&#x7C7B;&#x578B;&#x652F;&#x6301;&#x3002;&#x4E0E;&#x5176;&#x4ED6;&#x5C5E;&#x6027;&#x4E0D;&#x540C;&#xFF0C;&#x5F53;&#x5728;&#x7C7B;&#x578B;&#x7EA7;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x65B9;&#x6CD5;&#x7EA7;&#x7684;&#x6D88;&#x8D39;&#x7C7B;&#x578B;&#x5C06;&#x8986;&#x76D6;&#x7C7B;&#x578B;&#x7EA7;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x800C;&#x975E;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x3002;</p>
+</blockquote>
+<h2 id="%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%A4%B4%E7%9A%84%E5%80%BC">&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x4E0E;&#x8BF7;&#x6C42;&#x5934;&#x7684;&#x503C;</h2>
+<blockquote>
+<p>[Original] You can narrow request matching through request parameter conditions such as <code>&quot;myParam&quot;</code>, <code>&quot;!myParam&quot;</code>, or <code>&quot;myParam=myValue&quot;</code>. The first two test for request parameter presence/absence and the third for a specific parameter value. Here is an example with a request parameter value condition:</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7B5B;&#x9009;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x7684;&#x6761;&#x4EF6;&#x6765;&#x7F29;&#x5C0F;&#x8BF7;&#x6C42;&#x5339;&#x914D;&#x8303;&#x56F4;&#xFF0C;&#x6BD4;&#x5982;<code>&quot;myParam&quot;</code>&#x3001;<code>&quot;!myParam&quot;</code>&#x53CA;<code>&quot;myParam=myValue&quot;</code>&#x7B49;&#x3002;&#x524D;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#x7528;&#x4E8E;&#x7B5B;&#x9009;&#x5B58;&#x5728;/&#x4E0D;&#x5B58;&#x5728;&#x67D0;&#x4E9B;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x6761;&#x4EF6;&#x7B5B;&#x9009;&#x5177;&#x6709;&#x7279;&#x5B9A;&#x53C2;&#x6570;&#x503C;&#x7684;&#x8BF7;&#x6C42;&#x3002;&#x4E0B;&#x9762;&#x6709;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x503C;&#x7684;&#x7B5B;&#x9009;&#x6761;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/owners/{ownerId}&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RelativePathUriTemplateController</span> </span>{
+
+    <span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets/{petId}&quot;</span>, method = RequestMethod.GET, params=<span class="hljs-string">&quot;myParam=myValue&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(@PathVariable String ownerId, @PathVariable String petId, Model model)</span> </span>{
+        <span class="hljs-comment">// &#x5B9E;&#x9645;&#x5B9E;&#x73B0;&#x7701;&#x7565;</span>
+    }
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] The same can be done to test for request header presence/absence or to match based on a specific request header value:</p>
+</blockquote>
+<p>&#x540C;&#x6837;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x76F8;&#x540C;&#x7684;&#x6761;&#x4EF6;&#x6765;&#x7B5B;&#x9009;&#x8BF7;&#x6C42;&#x5934;&#x7684;&#x51FA;&#x73B0;&#x4E0E;&#x5426;&#xFF0C;&#x6216;&#x8005;&#x7B5B;&#x9009;&#x51FA;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x7279;&#x5B9A;&#x503C;&#x7684;&#x8BF7;&#x6C42;&#x5934;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Controller</span>
+<span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">&quot;/owners/{ownerId}&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RelativePathUriTemplateController</span> </span>{
+
+    <span class="hljs-annotation">@RequestMapping</span>(path = <span class="hljs-string">&quot;/pets&quot;</span>, method = RequestMethod.GET, headers=<span class="hljs-string">&quot;myHeader=myValue&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findPet</span><span class="hljs-params">(@PathVariable String ownerId, @PathVariable String petId, Model model)</span> </span>{
+        <span class="hljs-comment">// &#x65B9;&#x6CD5;&#x4F53;&#x5B9E;&#x73B0;&#x7701;&#x7565;</span>
+    }
+
+}
+</code></pre>
+<blockquote>
+<p>[Original] Although you can match to <em>Content-Type</em> and <em>Accept</em> header values using media type wild cards (for example <em>&quot;content-type=text/*&quot;</em> will match to <em>&quot;text/plain&quot;</em> and <em>&quot;text/html&quot;</em>), it is recommended to use the <em>consumes</em> and <em>produces</em> conditions respectively instead. They are intended specifically for that purpose.</p>
+<p>&#x5C3D;&#x7BA1;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5A92;&#x4F53;&#x7C7B;&#x578B;&#x7684;&#x901A;&#x914D;&#x7B26;&#xFF08;&#x6BD4;&#x5982; <em>&quot;content-type=text/*&quot;</em>&#xFF09;&#x6765;&#x5339;&#x914D;&#x8BF7;&#x6C42;&#x5934; <em>Content-Type</em>&#x548C; <em>Accept</em>&#x7684;&#x503C;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x66F4;&#x63A8;&#x8350;&#x72EC;&#x7ACB;&#x4F7F;&#x7528; <em>consumes</em>&#x548C; <em>produces</em>&#x6761;&#x4EF6;&#x6765;&#x7B5B;&#x9009;&#x5404;&#x81EA;&#x7684;&#x8BF7;&#x6C42;&#x3002;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5C31;&#x662F;&#x4E13;&#x95E8;&#x4E3A;&#x533A;&#x5206;&#x8FD9;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x573A;&#x666F;&#x800C;&#x751F;&#x7684;&#x3002;</p>
+</blockquote>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../publish/21-3/1-defining-a-controller-with-@controller.html" class="navigation navigation-prev " aria-label="Previous page: 使用@Controller注解定义一个控制器"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../publish/21-3/3-defining-@requestmapping-handler-methods.html" class="navigation navigation-next " aria-label="Next page: 定义@RequestMapping注解的处理方法"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,0 +1,1444 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>DispatcherServlet的处理流程 | Spring MVC中文文档翻译稿 - Chinese Translation for Spring MVC Reference Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.1.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../publish/21-3/implementing-controllers.html" />
+    
+    
+    <link rel="prev" href="../../publish/21-2/2-default-dispatcherservlet-configuration.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="2.3" data-basepath="../.." data-revision="Mon Jun 13 2016 15:23:39 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="publish/21-1/introduction-to-spring-web-mvc-framework.html">
+            
+                
+                    <a href="../../publish/21-1/introduction-to-spring-web-mvc-framework.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Spring Web MVC框架简介
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="publish/21-1/1-features-of-spring-web-mvc.html">
+            
+                
+                    <a href="../../publish/21-1/1-features-of-spring-web-mvc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Spring Web MVC的特性
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="publish/21-1/2-pluggability-of-other-mvc-implementations.html">
+            
+                
+                    <a href="../../publish/21-1/2-pluggability-of-other-mvc-implementations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        允许其他MVC实现
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="publish/21-2/the-dispatcher-servlet.html">
+            
+                
+                    <a href="../../publish/21-2/the-dispatcher-servlet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        DispatcherServlet
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="publish/21-2/1-special-bean-types-in-the-webapplicationcontext.html">
+            
+                
+                    <a href="../../publish/21-2/1-special-bean-types-in-the-webapplicationcontext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        WebApplicationContext中特别的Bean类型
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="publish/21-2/2-default-dispatcherservlet-configuration.html">
+            
+                
+                    <a href="../../publish/21-2/2-default-dispatcherservlet-configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        默认的DispatcherServlet配置
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="publish/21-2/3-dispatcherservlet-processing-sequence.html">
+            
+                
+                    <a href="../../publish/21-2/3-dispatcherservlet-processing-sequence.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        DispatcherServlet的处理流程
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="publish/21-3/implementing-controllers.html">
+            
+                
+                    <a href="../../publish/21-3/implementing-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        控制器的实现
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="publish/21-3/1-defining-a-controller-with-@controller.html">
+            
+                
+                    <a href="../../publish/21-3/1-defining-a-controller-with-@controller.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        使用@Controller注解定义一个控制器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="publish/21-3/2-mapping-requests-with-@requestmapping.html">
+            
+                
+                    <a href="../../publish/21-3/2-mapping-requests-with-@requestmapping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        使用@RequestMapping注解映射请求路径
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="publish/21-3/3-defining-@requestmapping-handler-methods.html">
+            
+                
+                    <a href="../../publish/21-3/3-defining-@requestmapping-handler-methods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        定义@RequestMapping注解的处理方法
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="publish/21-3/4-asynchronous-request-processing.html">
+            
+                
+                    <a href="../../publish/21-3/4-asynchronous-request-processing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        异步请求的处理
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="publish/21-3/5-testing-controllers.html">
+            
+                
+                    <a href="../../publish/21-3/5-testing-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        对控制器测试
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="publish/21-4/handler-mappings.html">
+            
+                
+                    <a href="../../publish/21-4/handler-mappings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        处理器映射
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="publish/21-4/1-intercepting-requests-with-a-handler-interceptor.html">
+            
+                
+                    <a href="../../publish/21-4/1-intercepting-requests-with-a-handler-interceptor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        使用HandlerInterceptor拦截请求
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="publish/21-5/resolving-views.html">
+            
+                
+                    <a href="../../publish/21-5/resolving-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        视图解析
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="publish/21-5/1-resolving-views-with-the-view-resolver-interface.html">
+            
+                
+                    <a href="../../publish/21-5/1-resolving-views-with-the-view-resolver-interface.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        使用ViewResolver接口解析视图
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="publish/21-5/2-chaining-view-resolvers.html">
+            
+                
+                    <a href="../../publish/21-5/2-chaining-view-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        视图链
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="publish/21-5/3-redirecting-to-views.html">
+            
+                
+                    <a href="../../publish/21-5/3-redirecting-to-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        视图重定向
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="publish/21-5/4-content-negotiating-view-resolver.html">
+            
+                
+                    <a href="../../publish/21-5/4-content-negotiating-view-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        内容协商解析器ContentNegotiatingViewResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="publish/21-6/using-flash-attributes.html">
+            
+                
+                    <a href="../../publish/21-6/using-flash-attributes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        使用闪存属性FlashAttributes
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="publish/21-7/building-uris.html">
+            
+                
+                    <a href="../../publish/21-7/building-uris.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        URI构造
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="publish/21-7/1-building-uris-to-controllers-and-methods.html">
+            
+                
+                    <a href="../../publish/21-7/1-building-uris-to-controllers-and-methods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        为控制器和方法指定URI
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="publish/21-7/2-building-uris-to-controllers-and-methods-from-views.html">
+            
+                
+                    <a href="../../publish/21-7/2-building-uris-to-controllers-and-methods-from-views.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        在视图中为控制器和方法指定URI
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="publish/21-8/using-locales.html">
+            
+                
+                    <a href="../../publish/21-8/using-locales.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        地区信息
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="publish/21-8/1-obtaining-time-zone-information.html">
+            
+                
+                    <a href="../../publish/21-8/1-obtaining-time-zone-information.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        获取时区信息
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="publish/21-8/2-accept-header-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/2-accept-header-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Accept请求头解析器AcceptHeaderLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="publish/21-8/3-cookie-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/3-cookie-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Cookie解析器CookieLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="publish/21-8/4-session-locale-resolver.html">
+            
+                
+                    <a href="../../publish/21-8/4-session-locale-resolver.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Session解析器SessionLocaleResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="publish/21-8/5-locale-change-interceptor.html">
+            
+                
+                    <a href="../../publish/21-8/5-locale-change-interceptor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        地区更改拦截器LocaleChangeInterceptor
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="publish/21-9/using-themes.html">
+            
+                
+                    <a href="../../publish/21-9/using-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        主题 themes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="publish/21-9/1-overview-of-themes.html">
+            
+                
+                    <a href="../../publish/21-9/1-overview-of-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        关于主题：概览
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="publish/21-9/2-defining-themes.html">
+            
+                
+                    <a href="../../publish/21-9/2-defining-themes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        定义主题
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="publish/21-9/3-theme-resolvers.html">
+            
+                
+                    <a href="../../publish/21-9/3-theme-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        主题解析器
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="publish/21-10/springs-multipart-file-upload-support.html">
+            
+                
+                    <a href="../../publish/21-10/springs-multipart-file-upload-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Spring的多路传输（文件上传）支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="publish/21-10/1-introduction.html">
+            
+                
+                    <a href="../../publish/21-10/1-introduction.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        概述
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="publish/21-10/2-using-a-multipart-resolver-with-commons-fileupload.html">
+            
+                
+                    <a href="../../publish/21-10/2-using-a-multipart-resolver-with-commons-fileupload.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        使用MultipartResolver与Commons FileUpload传输文件
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="publish/21-10/3-using-a-multipart-resolver-with-servlet-3.html">
+            
+                
+                    <a href="../../publish/21-10/3-using-a-multipart-resolver-with-servlet-3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Servlet 3.0下的MultipartResolver
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="publish/21-10/4-handling-a-file-upload-in-a-form.html">
+            
+                
+                    <a href="../../publish/21-10/4-handling-a-file-upload-in-a-form.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        处理表单中的文件上传
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5" data-path="publish/21-10/5-handling-a-file-upload-request-from-programmatic-clients.html">
+            
+                
+                    <a href="../../publish/21-10/5-handling-a-file-upload-request-from-programmatic-clients.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                        处理客户端发起的文件上传请求
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="publish/21-11/handling-exceptions.html">
+            
+                
+                    <a href="../../publish/21-11/handling-exceptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        异常处理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="publish/21-11/1-handler-exception-handler.html">
+            
+                
+                    <a href="../../publish/21-11/1-handler-exception-handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        处理器异常解析器HandlerExceptionHandler
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="publish/21-11/2-@exception-handler.html">
+            
+                
+                    <a href="../../publish/21-11/2-@exception-handler.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        @ExceptionHandler注解
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="publish/21-11/3-handling-standard-spring-mvc-exceptions.html">
+            
+                
+                    <a href="../../publish/21-11/3-handling-standard-spring-mvc-exceptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        处理一般的Spring MVC异常
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="publish/21-11/4-annotating-business-exceptions-with-@response-status.html">
+            
+                
+                    <a href="../../publish/21-11/4-annotating-business-exceptions-with-@response-status.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        使用@ResponseStatus注解业务异常
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="publish/21-11/5-customizing-the-default-servlet-container-error-page.html">
+            
+                
+                    <a href="../../publish/21-11/5-customizing-the-default-servlet-container-error-page.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Servlet默认容器错误页面的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="publish/21-12/web-security.html">
+            
+                
+                    <a href="../../publish/21-12/web-security.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Web安全
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="publish/21-13/convention-over-configuration-support.html">
+            
+                
+                    <a href="../../publish/21-13/convention-over-configuration-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        &quot;约定优于配置&quot;的支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1" data-path="publish/21-13/1-the-controller-controller-class-name-handler-mapping.html">
+            
+                
+                    <a href="../../publish/21-13/1-the-controller-controller-class-name-handler-mapping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                        控制器类名-处理器映射ControllerClassNameHandlerMapping
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2" data-path="publish/21-13/2-the-model-modelmap-modelandview.html">
+            
+                
+                    <a href="../../publish/21-13/2-the-model-modelmap-modelandview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                        模型ModelMap(ModelAndView)
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.3" data-path="publish/21-13/3-the-view-request-to-view-name-translator.html">
+            
+                
+                    <a href="../../publish/21-13/3-the-view-request-to-view-name-translator.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                        视图-请求与视图名的映射
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="publish/21-14/http-caching-support.html">
+            
+                
+                    <a href="../../publish/21-14/http-caching-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        HTTP缓存支持
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1" data-path="publish/21-14/1-cache-control-http-header.html">
+            
+                
+                    <a href="../../publish/21-14/1-cache-control-http-header.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                        HTTP请求头Cache-Control
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="publish/21-14/2-http-caching-support-for-static-resources.html">
+            
+                
+                    <a href="../../publish/21-14/2-http-caching-support-for-static-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                        对静态资源的HTTP缓存支持
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="publish/21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.html">
+            
+                
+                    <a href="../../publish/21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                        在控制器中设置Cache-Control、ETag和Last-Modified响应头
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="publish/21-14/4-shallow-etag-support.html">
+            
+                
+                    <a href="../../publish/21-14/4-shallow-etag-support.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.4.</b>
+                        
+                        忽略ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="publish/21-15/code-based-servlet-container-initialization.html">
+            
+                
+                    <a href="../../publish/21-15/code-based-servlet-container-initialization.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        基于代码的Servlet容器初始化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="publish/21-16/configuring-spring-mvc.html">
+            
+                
+                    <a href="../../publish/21-16/configuring-spring-mvc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        配置Spring MVC
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.html">
+            
+                
+                    <a href="../../publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        启用MVC Java编程配置或MVC命名空间配置方式
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="publish/21-16/2-customizing-the-provided-configuration.html">
+            
+                
+                    <a href="../../publish/21-16/2-customizing-the-provided-configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        默认配置的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="publish/21-16/3-conversion-and-formatting.html">
+            
+                
+                    <a href="../../publish/21-16/3-conversion-and-formatting.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        转换与格式化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="publish/21-16/4-validation.html">
+            
+                
+                    <a href="../../publish/21-16/4-validation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        验证
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="publish/21-16/5-interceptors.html">
+            
+                
+                    <a href="../../publish/21-16/5-interceptors.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        拦截器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="publish/21-16/6-content-negotiation.html">
+            
+                
+                    <a href="../../publish/21-16/6-content-negotiation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.6.</b>
+                        
+                        内容协商
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.7" data-path="publish/21-16/7-view-controllers.html">
+            
+                
+                    <a href="../../publish/21-16/7-view-controllers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.7.</b>
+                        
+                        视图控制器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.8" data-path="publish/21-16/8-view-resolvers.html">
+            
+                
+                    <a href="../../publish/21-16/8-view-resolvers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.8.</b>
+                        
+                        视图解析器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.9" data-path="publish/21-16/9-serving-of-resources.html">
+            
+                
+                    <a href="../../publish/21-16/9-serving-of-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.9.</b>
+                        
+                        资源的服务
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.10" data-path="publish/21-16/10-falling-back-on-the-default-servlet-to-serve-resources.html">
+            
+                
+                    <a href="../../publish/21-16/10-falling-back-on-the-default-servlet-to-serve-resources.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.10.</b>
+                        
+                        回到默认的Servlet来进行资源服务
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.11" data-path="publish/21-16/11-path-matching.html">
+            
+                
+                    <a href="../../publish/21-16/11-path-matching.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.11.</b>
+                        
+                        路径匹配
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.12" data-path="publish/21-16/12-message-converters.html">
+            
+                
+                    <a href="../../publish/21-16/12-message-converters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.12.</b>
+                        
+                        消息转换器
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.13" data-path="publish/21-16/13-advanced-customizations-with-mvc-java-config.html">
+            
+                
+                    <a href="../../publish/21-16/13-advanced-customizations-with-mvc-java-config.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.13.</b>
+                        
+                        使用MVC Java编程进行高级的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.14" data-path="publish/21-16/14-advanced-customizations-with-the-mvc-namespace.html">
+            
+                
+                    <a href="../../publish/21-16/14-advanced-customizations-with-the-mvc-namespace.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.</b>
+                        
+                        使用MVC命名空间进行高级的定制化
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Spring MVC中文文档翻译稿 - Chinese Translation for Spring MVC Reference Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="21-2-3-dispatcherservlet%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B">21.2.3 DispatcherServlet&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h1>
+<blockquote>
+<p>After you set up a <code>DispatcherServlet</code>, and a request comes in for that specific <code>DispatcherServlet</code>, the <code>DispatcherServlet</code> starts processing the request as follows:</p>
+</blockquote>
+<p>&#x914D;&#x7F6E;&#x597D;<code>DispatcherServlet</code>&#x4EE5;&#x540E;&#xFF0C;&#x5F53;&#x6709;&#x8BF7;&#x6C42;&#x7ECF;&#x8FC7;&#x8FD9;&#x4E2A;<code>DispatcherServlet</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>DispatcherServlet</code>&#x4F1A;&#x5F00;&#x59CB;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x6B21;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<blockquote>
+<ul>
+<li>The <code>WebApplicationContext</code> is searched for and bound in the request as an attribute that the controller and other elements in the process can use. It is bound by default under the key <code>DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE</code>.</li>
+<li>The locale resolver is bound to the request to enable elements in the process to resolve the locale to use when processing the request (rendering the view, preparing data, and so on). If you do not need locale resolving, you do not need it.</li>
+<li>The theme resolver is bound to the request to let elements such as views determine which theme to use. If you do not use themes, you can ignore it.</li>
+<li>If you specify a multipart file resolver, the request is inspected for multiparts; if multiparts are found, the request is wrapped in a <code>MultipartHttpServletRequest</code> for further processing by other elements in the process. See Section 21.10, &#x201C;Spring&#x2019;s multipart (file upload) support&#x201D; for further information about multipart handling.</li>
+<li>An appropriate handler is searched for. If a handler is found, the execution chain associated with the handler (preprocessors, postprocessors, and controllers) is executed in order to prepare a model or rendering.</li>
+<li>If a model is returned, the view is rendered. If no model is returned, (may be due to a preprocessor or postprocessor intercepting the request, perhaps for security reasons), no view is rendered, because the request could already have been fulfilled.</li>
+</ul>
+</blockquote>
+<ul>
+<li>&#x9996;&#x5148;&#xFF0C;&#x641C;&#x7D22;&#x5E94;&#x7528;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;<code>WebApplicationContext</code>&#x5E76;&#x628A;&#x5B83;&#x4F5C;&#x4E3A;&#x8BF7;&#x6C42;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF08;attribute&#xFF09;&#x7ED1;&#x5B9A;&#x5230;&#x8BF7;&#x6C42;&#x4E0A;&#xFF0C;&#x4EE5;&#x4FBF;&#x63A7;&#x5236;&#x5668;controller&#x548C;&#x5176;&#x4ED6;&#x5904;&#x7406;&#x7EC4;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x3002;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;&#x9ED8;&#x8BA4;&#x4EE5;&#x952E;&#x540D;<code>DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE</code>&#x88AB;&#x7ED1;&#x5B9A;&#x5230;&#x8BF7;&#x6C42;&#x4E0A;</li>
+<li>&#x5C06;&#x533A;&#x57DF;&#x89E3;&#x6790;&#x5668;&#xFF08;locale resolver&#xFF09;&#x7ED1;&#x5B9A;&#x5230;&#x8BF7;&#x6C42;&#x4E0A;&#xFF0C;&#x4EE5;&#x4FBF;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x5728;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#xFF08;&#x6E32;&#x67D3;&#x89C6;&#x56FE;&#x3001;&#x51C6;&#x5907;&#x6570;&#x636E;&#x7B49;&#xFF09;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x533A;&#x57DF;&#x76F8;&#x5173;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x5E94;&#x7528;&#x4E0D;&#x9700;&#x8981;&#x89E3;&#x6790;&#x533A;&#x57DF;&#x76F8;&#x5173;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x7279;&#x522B;&#x7684;&#x914D;&#x7F6E;</li>
+<li>&#x5C06;&#x4E3B;&#x9898;&#x89E3;&#x6790;&#x5668;&#xFF08;theme resolver&#xFF09;&#x7ED1;&#x5B9A;&#x5230;&#x8BF7;&#x6C42;&#x4E0A;&#xFF0C;&#x4EE5;&#x4FBF;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#xFF0C;&#x6BD4;&#x5982;&#x89C6;&#x56FE;&#x7B49;&#xFF0C;&#x80FD;&#x591F;&#x4E86;&#x89E3;&#x8981;&#x6E32;&#x67D3;&#x54EA;&#x4E2A;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E3B;&#x9898;&#x76F8;&#x5173;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;&#x90E8;&#x5206;</li>
+<li>&#x5982;&#x679C;&#x4F60;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x914D;&#x7F6E;&#x4E86;&#x5176;&#x4ED6;&#x7684;multipart&#x6587;&#x4EF6;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x90A3;&#x4E48;&#x6846;&#x67B6;&#x5C06;&#x67E5;&#x627E;&#x8BE5;&#x6587;&#x4EF6;&#x662F;&#x4E0D;&#x662F;&#x5206;&#x591A;&#x6B21;&#x4F20;&#x8F93;&#x7684;&#x3002;&#x82E5;&#x662F;&#xFF0C;&#x5219;&#x8BE5;&#x8BF7;&#x6C42;&#x5C06;&#x88AB;&#x5305;&#x88C5;&#x6210;&#x4E00;&#x4E2A;&#x591A;&#x8DEF;&#x8BF7;&#x6C42;&#x5BF9;&#x8C61;<code>MultipartHttpServletRequest</code>&#xFF0C;&#x4EE5;&#x4FBF;&#x5904;&#x7406;&#x94FE;&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x5BF9;&#x5B83;&#x8FDB;&#x884C;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x5904;&#x7406;&#x3002;&#x5173;&#x4E8E;Spring&#x5BF9;multipart&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#x5904;&#x7406;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x7B2C;21.10&#x8282;&#xFF08;Spring&#x7684;&#x591A;&#x8DEF;&#xFF08;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#xFF09;&#x652F;&#x6301;&#xFF09;</li>
+<li>&#x4E3A;&#x8BE5;&#x8BF7;&#x6C42;&#x67E5;&#x627E;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x5904;&#x7406;&#x5668;&#x3002;&#x5982;&#x679C;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5219;&#x4E0E;&#x8BE5;&#x5904;&#x7406;&#x5668;&#x76F8;&#x5173;&#x7684;&#x6574;&#x6761;&#x6267;&#x884C;&#x94FE;&#xFF08;&#x524D;&#x5904;&#x7406;&#x5668;&#x3001;&#x540E;&#x5904;&#x7406;&#x5668;&#x3001;&#x63A7;&#x5236;&#x5668;controller&#x7B49;&#xFF09;&#x90FD;&#x4F1A;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x4EE5;&#x51C6;&#x5907;&#x76F8;&#x5E94;&#x7684;&#x6A21;&#x578B;&#xFF08;model&#xFF09;&#x548C;&#x89C6;&#x56FE;&#x53EF;&#x4F9B;&#x6E32;&#x67D3;&#xFF08;view&#xFF09;</li>
+<li>&#x5982;&#x679C;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x6A21;&#x578B;&#xFF08;model&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x76F8;&#x5E94;&#x7684;&#x89C6;&#x56FE;&#x5C06;&#x4F1A;&#x88AB;&#x6E32;&#x67D3;&#x3002;&#x82E5;&#x8FD4;&#x56DE;&#x7684;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6A21;&#x578B;&#xFF08;&#x53EF;&#x80FD;&#x662F;&#x56E0;&#x4E3A;&#x524D;&#x540E;&#x7684;&#x5904;&#x7406;&#x5668;&#x56E0;&#x4E3A;&#x67D0;&#x4E9B;&#x5B89;&#x5168;&#x7684;&#x539F;&#x56E0;&#x62E6;&#x622A;&#x4E86;&#x8BF7;&#x6C42;&#x7B49;&#xFF09;&#xFF0C;&#x5219;&#x6CA1;&#x6709;&#x89C6;&#x56FE;&#x4F1A;&#x88AB;&#x6E32;&#x67D3;&#xFF0C;&#x56E0;&#x4E3A;&#xFF0C;&#x8BF7;&#x6C42;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x88AB;fulfilled&#x4E86;&#xFF08;&#x5F85;&#x9009;&#x8BCD;&#xFF09;</li>
+</ul>
+<blockquote>
+<p>Handler exception resolvers that are declared in the <code>WebApplicationContext</code> pick up exceptions that are thrown during processing of the request. Using these exception resolvers allows you to define custom behaviors to address exceptions.</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x629B;&#x51FA;&#x4E86;&#x5F02;&#x5E38;&#xFF0C;&#x90A3;&#x4E48;&#x4E0A;&#x4E0B;&#x6587;<code>WebApplicationContext</code>&#x5BF9;&#x8C61;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x5668;&#x5C06;&#x4F1A;&#x8D1F;&#x8D23;&#x6355;&#x83B7;&#x5B83;&#x4EEC;&#x3002;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5B9A;&#x5236;&#x81EA;&#x5DF1;&#x5904;&#x7406;&#x5F02;&#x5E38;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<blockquote>
+<p>The Spring <code>DispatcherServlet</code> also supports the return of the <em>last-modification-date</em>, as specified by the Servlet API. The process of determining the last modification date for a specific request is straightforward: the <code>DispatcherServlet</code> looks up an appropriate handler mapping and tests whether the handler that is found implements the <em>LastModified</em> interface. If so, the value of the <code>long getLastModified(request)</code> method of the <code>LastModified</code> interface is returned to the client.</p>
+</blockquote>
+<p>Spring&#x7684;<code>DispatcherServlet</code>&#x540C;&#x65F6;&#x4E5F;&#x652F;&#x6301;&#x8FD4;&#x56DE;Servlet API&#x89C4;&#x8303;&#x4E2D;&#x6240;&#x5B9A;&#x4E49;&#x7684;<em>&#x6700;&#x540E;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#x6233;&#xFF08;last-modification-date&#xFF09;</em>&#x503C;&#x3002;&#x5904;&#x7406;&#x6700;&#x540E;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#x7684;&#x65B9;&#x5F0F;&#x5F88;&#x76F4;&#x63A5;&#xFF1A;<code>DispatcherServlet</code>&#x4F1A;&#x67E5;&#x627E;&#x6620;&#x5C04;&#x8868;&#x6765;&#x627E;&#x5230;&#x8BF7;&#x6C42;&#x5BF9;&#x5E94;&#x7684;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x68C0;&#x6D4B;&#x5B83;&#x662F;&#x5426;&#x5B9E;&#x73B0;&#x4E86;<em>LastModified</em>&#x63A5;&#x53E3;&#x3002;&#x82E5;&#x662F;&#xFF0C;&#x5219;&#x8C03;&#x7528;&#x63A5;&#x53E3;&#x7684;<code>long getLastModified(request)</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x5C06;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<blockquote>
+<p>You can customize individual <code>DispatcherServlet</code> instances by adding Servlet initialization parameters (<code>init-param</code> elements) to the Servlet declaration in the <code>web.xml</code> file. See the following table for the list of supported parameters.</p>
+</blockquote>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x5728;servlet&#x7684;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;<code>web.xml</code>&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;servlet&#x7684;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#xFF08;&#x6BD4;&#x5982;<code>init-param</code>&#x7B49;&#xFF09;&#x6765;&#x5B9A;&#x5236;&#x4E0D;&#x540C;&#x7684;<code>DispatcherServlet</code>&#x5B9E;&#x4F8B;&#x3002;&#x53EF;&#x9009;&#x7684;&#x53C2;&#x6570;&#x8BF7;&#x89C1;&#x4E0B;&#x8868;&#xFF1A;</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>contextClass</code></td>
+<td style="text-align:left">Class that implements <code>WebApplicationContext</code>, which instantiates the context used by this Servlet. By default, the <code>XmlWebApplicationContext</code> is used.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>contextConfigLocation</code></td>
+<td style="text-align:left">String that is passed to the context instance (specified by <code>contextClass</code>) to indicate where context(s) can be found. The string consists potentially of multiple strings (using a comma as a delimiter) to support multiple contexts. In case of multiple context locations with beans that are defined twice, the latest location takes precedence.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>namespace</code></td>
+<td style="text-align:left">Namespace of the <code>WebApplicationContext</code>. Defaults to <code>[servlet-name]-servlet</code>.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x53EF;&#x9009;&#x53C2;&#x6570;</th>
+<th style="text-align:left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>contextClass</code></td>
+<td style="text-align:left">&#x4EFB;&#x610F;&#x5B9E;&#x73B0;&#x4E86;<code>WebApplicationContext</code>&#x7684;&#x7C7B;&#x3002;&#x8FD9;&#x4E2A;&#x7C7B;&#x4F1A;&#x521D;&#x59CB;&#x5316;&#x8BE5;servlet&#x6240;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6846;&#x67B6;&#x4F1A;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;<code>XmlWebApplicationContext</code>&#x5BF9;&#x8C61;</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>contextConfigLocation</code></td>
+<td style="text-align:left">&#x4E00;&#x4E2A;&#x6307;&#x5B9A;&#x4E86;context&#x8DEF;&#x5F84;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4F1A;&#x88AB;&#x4F20;&#x5165;&#x7ED9;<code>contextClass</code>&#x6240;&#x6307;&#x5B9A;&#x7684;context&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#x3002;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x53C8;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x4E4B;&#x95F4;&#x4EE5;&#x9017;&#x53F7;&#x5206;&#x9694;&#xFF0C;&#x4EE5;&#x6B64;&#x6765;&#x652F;&#x6301;&#x591A;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x5728;&#x5B58;&#x5728;&#x591A;&#x4E2A;context&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x91CD;&#x590D;&#x5B9A;&#x4E49;&#x7684;bean&#x5C06;&#x4EE5;&#x6700;&#x540E;&#x88AB;&#x52A0;&#x8F7D;&#x7684;bean&#x5B9A;&#x4E49;&#x4E3A;&#x51C6;</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>namespace</code></td>
+<td style="text-align:left"><code>WebApplicationContext</code>&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;&#x9ED8;&#x8BA4;&#x662F;<code>[servlet-name]-servlet</code></td>
+</tr>
+</tbody>
+</table>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../publish/21-2/2-default-dispatcherservlet-configuration.html" class="navigation navigation-prev " aria-label="Previous page: 默认的DispatcherServlet配置"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../publish/21-3/implementing-controllers.html" class="navigation navigation-next " aria-label="Next page: 控制器的实现"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
