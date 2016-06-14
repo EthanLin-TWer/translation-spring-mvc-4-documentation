@@ -42,28 +42,20 @@ deferredResult.setResult(data);
 * 控制器先返回一个`Callable`对象
 * Spring MVC开始进行异步处理，并把该`Callable`对象提交给另一个独立线程的执行器`TaskExecutor`处理
 * `DispatcherServlet`和所有过滤器都退出Servlet容器线程，但此时方法的响应对象仍未返回
-* `Callable`对象最终产生一个返回结果，此时Spring MVC会重新把请求分配回Servlet容器，恢复处理
-* 
+* `Callable`对象最终产生一个返回结果，此时Spring MVC会重新把请求分派回Servlet容器，恢复处理
+* `DispatcherServlet`再次被调用，恢复对`Callable`异步处理所返回结果的处理
 
-  * Controller returns a `Callable`.
-  * Spring MVC starts asynchronous processing and submits the `Callable` to a `TaskExecutor` for processing in a separate thread.
-  * The `DispatcherServlet` and all Filter's exit the Servlet container thread but the response remains open.
-  * The `Callable` produces a result and Spring MVC dispatches the request back to the Servlet container to resume processing.
-  * The `DispatcherServlet` is invoked again and processing resumes with the asynchronously produced result from the `Callable`.
+对`DeferredResult`异步请求的处理顺序也非常类似，区别仅在于应用可以通过任何线程来计算返回一个结果：
 
-The sequence for `DeferredResult` is very similar except it's up to the
-application to produce the asynchronous result from any thread:
+* 控制器先返回一个`DeferredResult`对象，并把它存取在内存（队列或列表等）中以便存取
+* Spring MVC开始进行异步处理
+* `DispatcherServlet`和所有过滤器都退出Servlet容器线程，但此时方法的响应对象仍未返回
+* 由处理该请求的线程对 `DeferredResult`进行设值，然后Spring MVC会重新把请求分派回Servlet容器，恢复处理
+* `DispatcherServlet`再次被调用，恢复对该异步返回结果的处理
 
-  * Controller returns a `DeferredResult` and saves it in some in-memory queue or list where it can be accessed.
-  * Spring MVC starts async processing.
-  * The `DispatcherServlet` and all configured Filter's exit the request processing thread but the response remains open.
-  * The application sets the `DeferredResult` from some thread and Spring MVC dispatches the request back to the Servlet container.
-  * The `DispatcherServlet` is invoked again and processing resumes with the asynchronously produced result.
+关于引入异步请求处理的背景和原因，以及什么时候使用它、为什么使用异步请求处理等问题，你可以从[这个系列的博客](https://spring.io/blog/2012/05/07/spring-mvc-3-2-preview-introducing-servlet-3-async-support)中了解更多信息。
 
-For further background on the motivation for async request processing and when
-or why to use it please read [this blog post
-series](https://spring.io/blog/2012/05/07/spring-mvc-3-2-preview-introducing-
-servlet-3-async-support).
+
 
 #### Exception Handling for Async Requests
 
