@@ -59,26 +59,15 @@ deferredResult.setResult(data);
 
 若控制器返回的`Callable`在执行过程中抛出了异常，又会发生什么事情？简单来说，这与一般的控制器方法抛出异常是一样的。它会被正常的异常处理流程捕获处理。更具体地说呢，当`Callable`抛出异常时，Spring MVC会把一个`Exception`对象分派给Servlet容器进行处理，而不是正常返回方法的返回值，然后容器恢复对此异步请求异常的处理。若方法返回的是一个`DeferredResult`对象，你可以选择调`Exception`实例的`setResult`方法还是`setErrorResult`方法。
 
+## 拦截异步请求
 
+处理器拦截器`HandlerInterceptor`可以实现`AsyncHandlerInterceptor`接口拦截异步请求，因为在异步请求开始时，被调用的回调方法是该接口的`afterConcurrentHandlingStarted`方法，而非一般的`postHandle`和`afterCompletion`方法。
 
-#### Intercepting Async Requests
+如果需要与异步请求处理的生命流程有更深的集成，比如需要处理timeout的事件等，则`HandlerInterceptor`需要注册一个`CallableProcessingInterceptor`或`DeferredResultProcessingInterceptor`拦截器。具体的细节可以参考`AsyncHandlerInterceptor`类的Java文档。
 
-A `HandlerInterceptor` can also implement `AsyncHandlerInterceptor` in order
-to implement the `afterConcurrentHandlingStarted` callback, which is called
-instead of `postHandle` and `afterCompletion` when asynchronous processing
-starts.
+`DeferredResult`类还提供了`onTimeout(Runnable)`和`onCompletion(Runnable)`等方法，具体的细节可以参考`DeferredResult`类的Java文档。
 
-A `HandlerInterceptor` can also register a `CallableProcessingInterceptor` or
-a `DeferredResultProcessingInterceptor` in order to integrate more deeply with
-the lifecycle of an asynchronous request and for example handle a timeout
-event. See the Javadoc of `AsyncHandlerInterceptor` for more details.
-
-The `DeferredResult` type also provides methods such as `onTimeout(Runnable)`
-and `onCompletion(Runnable)`. See the Javadoc of `DeferredResult` for more
-details.
-
-When using a `Callable` you can wrap it with an instance of `WebAsyncTask`
-which also provides registration methods for timeout and completion.
+`Callable`需要请求过期(timeout)和完成后的拦截时，可以把它包装在一个`WebAsyncTask`实例中，后者提供了相关的支持。
 
 #### HTTP Streaming
 
