@@ -110,31 +110,26 @@ Note that `ResponseBodyEmitter` can also be used as the body in a
 需要注意的是，Internet Explorer并不支持这项服务器端事件推送的技术。另外，对于更大型的web应用及更精致的消息传输场景——比如在线游戏、在线协作、金融应用等——来说，使用Spring的WebSocket（包含SockJS风格的实时WebSocket）更成熟一些，因为它支持的浏览器范围非常广（包括IE），并且，对于一个以消息为中心的架构中，它为服务器端-客户端间的事件发布-订阅模型的交互提供了更高层级的消息模式（messaging patterns）的支持。
 
 
-#### HTTP Streaming Directly To The OutputStream
+## 直接写回输出流OutputStream的HTTP Streaming
 
-`ResponseBodyEmitter` allows sending events by writing Objects to the response
-through an `HttpMessageConverter`. This is probably the most common case, for
-example when writing JSON data. However sometimes it is useful to bypass
-message conversion and write directly to the response `OutputStream` for
-example for a file download. This can be done with the help of the
-`StreamingResponseBody` return value type.
+`ResponseBodyEmitter`也允许通过`HttpMessageConverter`向响应体中支持写事件对象。这可能是最常见的情形，比如写返回的JSON数据的时候。但有时，跳过消息转换的阶段，直接把数据写回响应的输出流`OutputStream`可能更有效，比如文件下载这样的场景。这可以通过返回一个`StreamingResponseBody`类型的对象来实现。
 
-Here is an example of that:
+以下是一个实现的例子：
 
+```java
+@RequestMapping("/download")
+public StreamingResponseBody handle() {
+    return new StreamingResponseBody() {
+        @Override
+        public void writeTo(OutputStream outputStream) throws IOException {
+            // write...
+        }
+    };
+}
+```
 
+`ResponseBodyEmitter`也可以被放到`ResponseEntity`体里面使用，这可以对响应状态和响应头做一些定制。
 
-    _@RequestMapping("/download")_
-    public StreamingResponseBody handle() {
-        return new StreamingResponseBody() {
-            _@Override_
-            public void writeTo(OutputStream outputStream) throws IOException {
-                // write...
-            }
-        };
-    }
-
-Note that `StreamingResponseBody` can also be used as the body in a
-`ResponseEntity` in order to customize the status and headers of the response.
 
 #### Configuring Asynchronous Request Processing
 
