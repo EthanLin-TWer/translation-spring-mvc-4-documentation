@@ -63,61 +63,51 @@ deferredResult.setResult(data);
 
 处理器拦截器`HandlerInterceptor`可以实现`AsyncHandlerInterceptor`接口拦截异步请求，因为在异步请求开始时，被调用的回调方法是该接口的`afterConcurrentHandlingStarted`方法，而非一般的`postHandle`和`afterCompletion`方法。
 
-如果需要与异步请求处理的生命流程有更深的集成，比如需要处理timeout的事件等，则`HandlerInterceptor`需要注册一个`CallableProcessingInterceptor`或`DeferredResultProcessingInterceptor`拦截器。具体的细节可以参考`AsyncHandlerInterceptor`类的Java文档。
+如果需要与异步请求处理的生命流程有更深入的集成，比如需要处理timeout的事件等，则`HandlerInterceptor`需要注册一个`CallableProcessingInterceptor`或`DeferredResultProcessingInterceptor`拦截器。具体的细节可以参考`AsyncHandlerInterceptor`类的Java文档。
 
 `DeferredResult`类还提供了`onTimeout(Runnable)`和`onCompletion(Runnable)`等方法，具体的细节可以参考`DeferredResult`类的Java文档。
 
 `Callable`需要请求过期(timeout)和完成后的拦截时，可以把它包装在一个`WebAsyncTask`实例中，后者提供了相关的支持。
 
-#### HTTP Streaming
+## HTTP streaming(不知道怎么翻)
 
-A controller method can use `DeferredResult` and `Callable` to produce its
-return value asynchronously and that can be used to implement techniques such
-as [long polling](http://spring.io/blog/2012/05/08/spring-mvc-3-2-preview-
-techniques-for-real-time-updates/) where the server can push an event to the
-client as soon as possible.
+如前所述，控制器可以使用`DeferredResult`或`Callable`对象来异步地计算其返回值，这可以用于实现一些有用的技术，比如 [long polling](http://spring.io/blog/2012/05/08/spring-mvc-3-2-preview-techniques-for-real-time-updates/)技术，让服务器可以尽可能快地向客户端推送事件。
 
-What if you wanted to push multiple events on a single HTTP response? This is
-a technique related to "Long Polling" that is known as "HTTP Streaming".
-Spring MVC makes this possible through the `ResponseBodyEmitter` return value
-type which can be used to send multiple Objects, instead of one as is normally
-the case with `@ResponseBody`, where each Object sent is written to the
-response with an `HttpMessageConverter`.
+如果你想在一个HTTP响应中同时推送多个事件，怎么办？这样的技术已经存在，与"Long Polling"相关，叫"HTTP Streaming"。Spring MVC支持这项技术，你可以通过让方法返回一个`ResponseBodyEmitter`类型对象来实现，该对象可被用于发送多个对象。通常我们所使用的`@ResponseBody`只能返回一个对象，它是通过`HttpMessageConverter`写到响应体中的。
 
-Here is an example of that:
+下面是一个实现该技术的例子：
 
+```java
+@RequestMapping("/events")
+public ResponseBodyEmitter handle() {
+    ResponseBodyEmitter emitter = new ResponseBodyEmitter();
+    // Save the emitter somewhere..
+    return emitter;
+}
 
+// In some other thread
+emitter.send("Hello once");
 
-    _@RequestMapping("/events")_
-    public ResponseBodyEmitter handle() {
-        ResponseBodyEmitter emitter = new ResponseBodyEmitter();
-        // Save the emitter somewhere..
-        return emitter;
-    }
+// and again later on
+emitter.send("Hello again");
 
-    // In some other thread
-    emitter.send("Hello once");
+// and done at some point
+emitter.complete();
+```
 
-    // and again later on
-    emitter.send("Hello again");
-
-    // and done at some point
-    emitter.complete();
+`ResponseBodyEmitter`也可以被放到`ResponseEntity`体里面使用，这可以对响应状态和响应头做一些定制。
 
 Note that `ResponseBodyEmitter` can also be used as the body in a
 `ResponseEntity` in order to customize the status and headers of the response.
 
-#### HTTP Streaming With Server-Sent Events
 
-`SseEmitter` is a sub-class of `ResponseBodyEmitter` providing support for
-[Server-Sent Events](http://www.w3.org/TR/eventsource/). Server-sent events is
-a just another variation on the same "HTTP Streaming" technique except events
-pushed from the server are formatted according to the W3C Server-Sent Events
-specification.
+## 使用“服务器端事件推送”的HTTP Streaming
 
-Server-Sent Events can be used for their intended purpose, that is to push
-events from the server to clients. It is quite easy to do in Spring MVC and
-requires simply returning a value of type `SseEmitter`.
+`SseEmitter`是`ResponseBodyEmitter`的一个子类，提供了对[服务器端事件推送](http://www.w3.org/TR/eventsource/)的技术的支持。服务器端事件推送其实只是一种HTTP Streaming的类似实现，只不过它服务器端所推送的事件遵循了W3C Server-Sent Events规范中定义的事件格式。
+
+“服务器端事件推送”技术正如其名，是用于由服务器端向客户端进行的事件推送。这在Spring MVC中很容易做到，只需要方法返回一个`SseEmitter`类型的对象即可。
+
+
 
 Note however that Internet Explorer does not support Server-Sent Events and
 that for more advanced web application messaging scenarios such as online
