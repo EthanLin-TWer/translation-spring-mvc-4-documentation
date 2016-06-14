@@ -130,35 +130,26 @@ public StreamingResponseBody handle() {
 
 `ResponseBodyEmitter`也可以被放到`ResponseEntity`体里面使用，这可以对响应状态和响应头做一些定制。
 
+## 异步请求处理的相关配置
 
-#### Configuring Asynchronous Request Processing
+### Servlet容器配置
 
-##### Servlet Container Configuration
+对于那些使用`web.xml`配置文件的应用，请确保`web.xml`的版本更新到3.0：
 
-For applications configured with a `web.xml` be sure to update to version 3.0:
+```xml
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance http://java.sun.com/xml/ns/javaee
+                    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
+    ...
 
+</web-app>
+```
 
-    <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                http://java.sun.com/xml/ns/javaee
-                http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-        version="3.0">
+异步请求必须在`web.xml`将`DispatcherServlet`下的子元素`<async-supported>true</async-supported>`设置为true。此外，所有可能参与异步请求处理的过滤器`Filter`都必须配置为支持ASYNC类型的请求分派。在Spring框架中为过滤器启用支持ASYNC类型的请求分派应是安全的，因为这些过滤器一般都继承了基类`OncePerRequestFilter`，后者在运行时会检查该过滤器是否需要参与到异步分派的请求处理中。
 
-        ...
-
-    </web-app>
-
-Asynchronous support must be enabled on the `DispatcherServlet` through the
-`<async-supported>true</async-supported>` web.xml sub-element. Additionally
-any `Filter` that participates in asyncrequest processing must be configured
-to support the ASYNC dispatcher type. It should be safe to enable the ASYNC
-dispatcher type for all filters provided with the Spring Framework since they
-usually extend `OncePerRequestFilter` and that has runtime checks for whether
-the filter needs to be involved in async dispatches or not.
-
-Below is some example web.xml configuration:
-
+以下是一个例子，展示了`web.xml`的配置：
 
 ```xml
     <web-app xmlns="http://java.sun.com/xml/ns/javaee"
@@ -184,12 +175,8 @@ Below is some example web.xml configuration:
     </web-app>
 ```
 
-If using Servlet 3, Java based configuration for example via
-`WebApplicationInitializer`, you'll also need to set the "asyncSupported" flag
-as well as the ASYNC dispatcher type just like with `web.xml`. To simplify all
-this configuration, consider extending `AbstractDispatcherServletInitializer`
-or `AbstractAnnotationConfigDispatcherServletInitializer` which automatically
-set those options and make it very easy to register `Filter` instances.
+如果应用使用的是Servlet 3规范基于Java编程的配置方式，比如通过`WebApplicationInitializer`，那么你也需要设置"asyncSupported"标志和ASYNC分派类型的支持，就像你在`web.xml`中所配置的一样。你可以考虑直接继承`AbstractDispatcherServletInitializer`或`AbstractAnnotationConfigDispatcherServletInitializer`来简化配置，它们都自动地为你设置了这些配置项，并使得注册`Filter`过滤器实例变得非常简单。
+
 
 ##### Spring MVC Configuration
 
