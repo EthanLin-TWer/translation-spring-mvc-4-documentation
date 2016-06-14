@@ -178,24 +178,10 @@ public StreamingResponseBody handle() {
 如果应用使用的是Servlet 3规范基于Java编程的配置方式，比如通过`WebApplicationInitializer`，那么你也需要设置"asyncSupported"标志和ASYNC分派类型的支持，就像你在`web.xml`中所配置的一样。你可以考虑直接继承`AbstractDispatcherServletInitializer`或`AbstractAnnotationConfigDispatcherServletInitializer`来简化配置，它们都自动地为你设置了这些配置项，并使得注册`Filter`过滤器实例变得非常简单。
 
 
-##### Spring MVC Configuration
+### Spring MVC配置
 
-The MVC Java config and the MVC namespace provide options for configuring
-asynchronous request processing. `WebMvcConfigurer` has the method
-`configureAsyncSupport` while `<mvc:annotation-driven>` has an `<async-
-support>` sub-element.
+MVC Java编程配置和MVC命名空间配置方式都提供了配置异步请求处理支持的选择。`WebMvcConfigurer`提供了`configureAsyncSupport`方法，而`<mvc:annotation-driven>`有一个子元素`<async-support>`，它们都用以为此提供支持。
 
-Those allow you to configure the default timeout value to use for async
-requests, which if not set depends on the underlying Servlet container (e.g.
-10 seconds on Tomcat). You can also configure an `AsyncTaskExecutor` to use
-for executing `Callable` instances returned from controller methods. It is
-highly recommended to configure this property since by default Spring MVC uses
-`SimpleAsyncTaskExecutor`. The MVC Java config and the MVC namespace also
-allow you to register `CallableProcessingInterceptor` and
-`DeferredResultProcessingInterceptor` instances.
+这些配置允许你覆写异步请求默认的超时时间，在未显式设置时，它们的值与所依赖的Servlet容器是相关的（比如，Tomcat设置的超时时间是10秒）。你也可以配置用于执行控制器返回值`Callable`的执行器`AsyncTaskExecutor`。Spring强烈推荐你配置这个选项，因为Spring MVC默认使用的是普通的执行器`SimpleAsyncTaskExecutor`。MVC Java编程配置及MVC命名空间配置的方式都允许你注册自己的`CallableProcessingInterceptor`和`DeferredResultProcessingInterceptor`拦截器实例。
 
-If you need to override the default timeout value for a specific
-`DeferredResult`, you can do so by using the appropriate class constructor.
-Similarly, for a `Callable`, you can wrap it in a `WebAsyncTask` and use the
-appropriate class constructor to customize the timeout value. The class
-constructor of `WebAsyncTask` also allows providing an `AsyncTaskExecutor`.
+若你需要为特定的`DeferredResult`覆写默认的超时时间，你可以选用合适的构造方法来实现。类似，对于`Callable`返回，你可以把它包装在一个`WebAsyncTask`对象中，并使用合适的构造方法定义超时时间。`WebAsyncTask`类的构造方法同时也能接受一个任务执行器`AsyncTaskExecutor`类型的参数。
