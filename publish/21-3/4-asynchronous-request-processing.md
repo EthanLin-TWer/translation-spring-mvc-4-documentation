@@ -55,19 +55,11 @@ deferredResult.setResult(data);
 
 关于引入异步请求处理的背景和原因，以及什么时候使用它、为什么使用异步请求处理等问题，你可以从[这个系列的博客](https://spring.io/blog/2012/05/07/spring-mvc-3-2-preview-introducing-servlet-3-async-support)中了解更多信息。
 
+## 异步请求的异常处理
+
+若控制器返回的`Callable`在执行过程中抛出了异常，又会发生什么事情？简单来说，这与一般的控制器方法抛出异常是一样的。它会被正常的异常处理流程捕获处理。更具体地说呢，当`Callable`抛出异常时，Spring MVC会把一个`Exception`对象分派给Servlet容器进行处理，而不是正常返回方法的返回值，然后容器恢复对此异步请求异常的处理。若方法返回的是一个`DeferredResult`对象，你可以选择调`Exception`实例的`setResult`方法还是`setErrorResult`方法。
 
 
-#### Exception Handling for Async Requests
-
-What happens if a `Callable` returned from a controller method raises an
-Exception while being executed? The short answer is the same as what happens
-when a controller method raises an exception. It goes through the regular
-exception handling mechanism. The longer explanation is that when a `Callable`
-raises an Exception Spring MVC dispatches to the Servlet container with the
-`Exception` as the result and that leads to resume request processing with the
-`Exception` instead of a controller method return value. When using a
-`DeferredResult` you have a choice whether to call `setResult` or
-`setErrorResult` with an `Exception` instance.
 
 #### Intercepting Async Requests
 
