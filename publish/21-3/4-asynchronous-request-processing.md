@@ -107,18 +107,8 @@ Note that `ResponseBodyEmitter` can also be used as the body in a
 
 “服务器端事件推送”技术正如其名，是用于由服务器端向客户端进行的事件推送。这在Spring MVC中很容易做到，只需要方法返回一个`SseEmitter`类型的对象即可。
 
+需要注意的是，Internet Explorer并不支持这项服务器端事件推送的技术。另外，对于更大型的web应用及更精致的消息传输场景——比如在线游戏、在线协作、金融应用等——来说，使用Spring的WebSocket（包含SockJS风格的实时WebSocket）更成熟一些，因为它支持的浏览器范围非常广（包括IE），并且，对于一个以消息为中心的架构中，它为服务器端-客户端间的事件发布-订阅模型的交互提供了更高层级的消息模式（messaging patterns）的支持。
 
-
-Note however that Internet Explorer does not support Server-Sent Events and
-that for more advanced web application messaging scenarios such as online
-games, collaboration, financial applicatinos, and others it's better to
-consider Spring's WebSocket support that includes SockJS-style WebSocket
-emulation falling back to a very wide range of browsers (including Internet
-Explorer) and also higher-level messaging patterns for interacting with
-clients through a publish-subscribe model within a more messaging-centric
-architecture. For further background on this see [the following blog
-post](http://blog.pivotal.io/pivotal/products/websocket-architecture-in-
-spring-4-0).
 
 #### HTTP Streaming Directly To The OutputStream
 
