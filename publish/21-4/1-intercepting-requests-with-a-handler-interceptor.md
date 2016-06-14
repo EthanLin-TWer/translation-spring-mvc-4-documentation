@@ -1,8 +1,6 @@
 # 21.4.1 使用HandlerInterceptor拦截请求
 
-Spring's handler mapping mechanism includes handler interceptors, which are
-useful when you want to apply specific functionality to certain requests, for
-example, checking for a principal.
+Spring的处理器映射机制包含了处理器拦截器。拦截器在你需要为特定类型的请求应用一些功能时可能很有用，比如，检查用户身份等。
 
 Interceptors located in the handler mapping must implement
 `HandlerInterceptor` from the `org.springframework.web.servlet` package. This
