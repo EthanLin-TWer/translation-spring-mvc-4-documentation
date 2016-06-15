@@ -4,7 +4,7 @@
 
 关于Spring文档翻译一些进行中的项目可以参见下文，在Spring MVC单独的这一块上，目前尚没有出现完整的译本，这也肯定了本项目的独立价值，而非仅在做重复性工作。共勉。
 
-原文地址：[http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html)
+原文地址：[http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html)
 
 译文地址：[mvc.linesh.tw](http://mvc.linesh.tw)
 
@@ -26,6 +26,7 @@
 ## 反馈与建议
 阅读过程有任何反馈或建议或不爽，有以下方式可以联系作者：
 * 邮箱：linesh.simpcity@gmail.com
-* 给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
-* 给这个项目提[pull request](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/pulls)。该方式对于大型的反馈或建议比较推荐，否则工力太大
+* 留言：在Gitbook讨论里给我留言： [Gitbook Discussions Gitbook讨论](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
+* issue：在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
+* pull-request：在Github里给这个项目提[pull request](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/pulls)。该方式对于大型的反馈或建议比较推荐，否则工力太大
 * 在gitbook上的段落右侧浮现`+`号时留comments（评论），[點擊這裡前往](http://mvc.linesh.tw)
