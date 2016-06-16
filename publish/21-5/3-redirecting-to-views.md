@@ -10,23 +10,11 @@
 
 如果你决定返回`RedirectView`，并且这个视图实例是由控制器内部创建出来的，那我们更推荐在外部配置重定向URL然后注入到控制器中来，而不是写在控制器里面。这样它就可以与视图名一起在配置文件中配置。关于如何实现这个解耦，请参考 [重定向前缀：redirect:](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-redirecting-redirect-prefix "The redirect: prefix")一小节。
 
+## 向重定向目标传递数据
 
-##### Passing Data To the Redirect Target
+模型中的所有属性默认都会考虑作为URI模板变量被添加到重定向URL中。剩下的其他属性，如果是基本类型或者基本类型的集合或数组，那它们将被自动添加到URL的查询参数中去。如果model是专门为该重定向所准备的，那么把所有基本类型的属性添加到查询参数中可能是我们期望那个的结果。但是，在包含注解的控制器中，model可能包含了专门作为渲染用途的属性（比如一个下拉列表的字段值等）。为了避免把这样的属性也暴露在URL中，`@RequestMapping`方法可以声明一个`RedirectAttributes`类型的方法参数，用它来指定专门供重定向视图`RedirectView`取用的属性。如果重定向成功发生，那么`RedirectAttributes`对象中的内容就会被使用；否则则使用模型model中的数据。
 
-By default all model attributes are considered to be exposed as URI template
-variables in the redirect URL. Of the remaining attributes those that are
-primitive types or collections/arrays of primitive types are automatically
-appended as query parameters.
 
-Appending primitive type attributes as query parameters may be the desired
-result if a model instance was prepared specifically for the redirect.
-However, in annotated controllers the model may contain additional attributes
-added for rendering purposes (e.g. drop-down field values). To avoid the
-possibility of having such attributes appear in the URL, an `@RequestMapping`
-method can declare an argument of type `RedirectAttributes` and use it to
-specify the exact attributes to make available to `RedirectView`. If the
-method does redirect, the content of `RedirectAttributes` is used. Otherwise
-the content of the model is used.
 
 The `RequestMappingHandlerAdapter` provides a flag called
 `"ignoreDefaultModelOnRedirect"` that can be used to indicate the content of
