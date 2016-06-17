@@ -10,8 +10,7 @@ Spring的处理器映射机制包含了处理器拦截器。拦截器在你需�
 
 ```xml
 <beans>
-    <bean id="handlerMapping"
-            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
             <list>
                 <ref bean="officeHoursInterceptor"/>
@@ -19,8 +18,7 @@ Spring的处理器映射机制包含了处理器拦截器。拦截器在你需�
         </property>
     </bean>
 
-    <bean id="officeHoursInterceptor"
-            class="samples.TimeBasedAccessInterceptor">
+    <bean id="officeHoursInterceptor" class="samples.TimeBasedAccessInterceptor">
         <property name="openingTime" value="9"/>
         <property name="closingTime" value="18"/>
     </bean>
