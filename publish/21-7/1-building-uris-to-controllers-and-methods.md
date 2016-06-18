@@ -1,7 +1,6 @@
 # 21.7.1 为控制器和方法指定URI
 
-Spring MVC also provides a mechanism for building links to controller methods.
-For example, given:
+Spring MVC也提供了构造指定控制器方法链接的机制。以下面代码为例子，假设我们有这样一个控制器：
 
 ```java
 @Controller
@@ -9,7 +8,7 @@ For example, given:
 public class BookingController {
 
     @RequestMapping("/bookings/{booking}")
-    public String getBooking(_@PathVariable_ Long booking) {
+    public String getBooking(@PathVariable Long booking) {
 
     // ...
 
@@ -17,23 +16,18 @@ public class BookingController {
 }
 ```
 
+你可以通过引用方法名字的办法来准备一个链接：
 
-You can prepare a link by referring to the method by name:
+```java
+UriComponents uriComponents = MvcUriComponentsBuilder
+    .fromMethodName(BookingController.class, "getBooking", 21).buildAndExpand(42);
+
+URI uri = uriComponents.encode().toUri();
+```
+
+在上面的例子中，我们为方法参数准备了填充值：一个long型的变量值21，以用于填充路径变量并插入到URL中。另外，我们还提供了一个值42，以用于填充其他剩余的URI变量，比如从类层级的请求映射中继承来的`hotel`变量。如果方法还有更多的参数，你可以为那些不需要参与URL构造的变量赋予null值。一般而言，只有`@PathVariable`和`@RequestParam`注解的参数才与URL的构造相关。
 
 
-
-    UriComponents uriComponents = MvcUriComponentsBuilder
-        .fromMethodName(BookingController.class, "getBooking", 21).buildAndExpand(42);
-
-    URI uri = uriComponents.encode().toUri();
-
-In the above example we provided actual method argument values, in this case
-the long value 21, to be used as a path variable and inserted into the URL.
-Furthermore, we provided the value 42 in order to fill in any remaining URI
-variables such as the "hotel" variable inherited from the type-level request
-mapping. If the method had more arguments you can supply null for arguments
-not needed for the URL. In general only `@PathVariable` and `@RequestParam`
-arguments are relevant for constructing the URL.
 
 There are additional ways to use `MvcUriComponentsBuilder`. For example you
 can use a technique akin to mock testing through proxies to avoid referring to
