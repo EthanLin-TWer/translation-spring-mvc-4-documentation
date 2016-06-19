@@ -7,7 +7,7 @@
 
     <property name="cookieName" value="clientlanguage"/>
 
-    <!-- in seconds. If set to -1, the cookie is not persisted (deleted when browser shuts down) -->
+    <!-- 单位为秒。若设置为-1，则cookie不会被持久化（客户端关闭浏览器后即被删除） -->
     <property name="cookieMaxAge" value="100000">
 
 </bean>
