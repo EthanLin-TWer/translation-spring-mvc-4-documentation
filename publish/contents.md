@@ -1,7 +1,5 @@
 # 目录
 
-# Summary
-
 * [Spring Web MVC框架简介](21-1/introduction-to-spring-web-mvc-framework.md)
     * [Spring Web MVC的特性](21-1/1-features-of-spring-web-mvc.md)
     * [允许其他MVC实现](21-1/2-pluggability-of-other-mvc-implementations.md)
