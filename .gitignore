@@ -3,3 +3,6 @@
 
 # Gitbook Generated File When Building The Book
 _book
+
+# Gitbook plugins installed by npm
+node_modules

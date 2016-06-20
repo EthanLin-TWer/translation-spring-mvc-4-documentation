@@ -1,4 +1,5 @@
 {
+    "plugins": ["multipart"],
     "pluginsConfig": {
         "theme-default": {
             "showLevel": true
