@@ -1,20 +1,10 @@
 # 21.10.3 Servlet 3.0下的MultipartResolver
 
-In order to use Servlet 3.0 based multipart parsing, you need to mark the
-`DispatcherServlet` with a `"multipart-config"` section in `web.xml`, or with
-a `javax.servlet.MultipartConfigElement` in programmatic Servlet registration,
-or in case of a custom Servlet class possibly with a
-`javax.servlet.annotation.MultipartConfig` annotation on your Servlet class.
-Configuration settings such as maximum sizes or storage locations need to be
-applied at that Servlet registration level as Servlet 3.0 does not allow for
-those settings to be done from the MultipartResolver.
+要使用基于Servlet 3.0的多路传输转换功能，你必须在`web.xml`中为`DispatcherServlet`添加一个`multipart-config`元素，或者通过Servlet编程的方法使用`javax.servlet.MultipartConfigElement`进行注册，或你自己定制了自己的Servlet类，那你必须使用`javax.servlet.annotation.MultipartConfig`对其进行注解。其他诸如最大文件大小或存储位置等配置选项都必须在这个Servlet级别进行注册，因为Servlet 3.0不允许在解析器MultipartResolver的层级配置这些信息。
 
-Once Servlet 3.0 multipart parsing has been enabled in one of the above
-mentioned ways you can add the `StandardServletMultipartResolver` to your
-Spring configuration:
+当你通过以上任一种方式启用了Servlet 3.0多路传输转换功能，你就可以把一个`StandardServletMultipartResolver`解析器添加到你的Spring配置中去了：
 
-
-
-    <bean id="multipartResolver"
-            class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-    </bean>
+```xml
+<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+</bean>
+```
