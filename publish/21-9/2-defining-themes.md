@@ -11,7 +11,7 @@
 
 属性的键（key）是主题元素在视图代码中被引用的名字。对于JSP视图来说，一般通过`spring:theme`这个定制化的标签（tag）来做，它与`spring:message`标签很相似。以下的JSP代码即使用了上段代码片段中定义的主题，用以定制整体的皮肤：
 
-```jsp
+```html
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
     <head>
