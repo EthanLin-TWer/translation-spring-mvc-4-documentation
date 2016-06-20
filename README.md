@@ -17,13 +17,19 @@
 
 ## 本翻译项目进度
 
-目前我已翻译了21.1~21.10.3节中的大部分文档，剩下21.10.3~21.16小节的内容尚未翻译。本README更新日期为2016年6月21日，具体进度可能无法在此一一实时更新，详细信息以文档内容为准。
+目前我已翻译了21.1~21.10.3节中的大部分文档，剩下21.10.3~21.16小节的内容尚未翻译。总体进度是60%左右，比目前Spring MVC部分翻译最多的项目spring.cndocs.tk完成度已经更多一些。本README更新日期为2016年6月21日，具体进度无法在此一一实时更新，详细信息以文档进行及内容为准。
 
 ## 其他相关翻译项目
 
 本段有待重新撰写。
 
-以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中规模比较大的组织性翻译有[这个团队](http://blog.csdn.net/isea533/article/details/50450289)正在进行的翻译，翻译的是Spring(而不仅仅是MVC部分)4.1.3.RELEASE的版本，从项目起止和发布时间来看，基本上是新版本开始发布就组织翻译了。其中Spring MVC的章节已经进行了一大部分，文档排版很不错，翻译质量尚未仔细阅读，但看起来品质较好。该项目的可阅读版文档在：[http://spring.cndocs.tk](http://spring.cndocs.tk)，项目托管在OSC的仓库上：[点这里](http://git.oschina.net/free/spring-framework-reference)。
+以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中值得留意的有这些项目：
+
+| 项目 | 作者 | 描述 | 链接 |
+| :---: | :---: | :--- | :--- |
+| [Spring框架参考文档 翻译](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | http://git.oschina.net/free/spring-framework-reference |
+
+规模比较大的组织性翻译有[这个团队](http://blog.csdn.net/isea533/article/details/50450289)正在进行的翻译，翻译的是Spring(而不仅仅是MVC部分)4.1.3.RELEASE的版本，从项目起止和发布时间来看，基本上是新版本开始发布就组织翻译了。其中Spring MVC的章节已经进行了一大部分，文档排版很不错，翻译质量尚未仔细阅读，但看起来品质较好。该项目的可阅读版文档在：[http://spring.cndocs.tk](http://spring.cndocs.tk)，项目托管在OSC的仓库上：[点这里](http://git.oschina.net/free/spring-framework-reference)。
 
 其他的项目还有：
 * [sunrh](https://github.com/sunrh)对Spring 4.x的翻译稿：[https://sunrh.gitbooks.io/spring4-reference-chinese/content/](https://sunrh.gitbooks.io/spring4-reference-chinese/content/)，目前看起来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到提交日期是8个月以前，作者暂时性弃坑的可能性看来较大…
