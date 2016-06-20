@@ -25,8 +25,8 @@
 
 | 项目 | 作者 | 描述 | 链接 |
 | :---: | :---: | :--- | :--- |
-| [Spring框架参考文档 翻译 spring.cndocs.tk](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | http://git.oschina.net/free/spring-framework-reference |
-| [Spring Framework 4.x参考文档 中文翻译]([https://waylau.gitbooks.io/spring-framework-4-reference/content/]) | [Github: waylau](https://github.com/waylau) | 已翻译了许多章节 | [https://github.com/waylau/spring-framework-4-reference](https://github.com/waylau/spring-framework-4-reference) |
-| [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [Github: sunrh](https://github.com/sunrh) | 目前看来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到最近一次提交已是1年前，目前认为作者暂时性弃坑的可能性较大 | [https://github.com/sunrh/spring-reference-chinese](https://github.com/sunrh/spring-reference-chinese) |
+| [Spring框架参考文档 翻译 spring.cndocs.tk](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | [Github地址](http://git.oschina.net/free/spring-framework-reference) |
+| [Spring Framework 4.x参考文档 中文翻译](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [Github: waylau](https://github.com/waylau) | 已翻译了许多章节 | [Github地址](https://github.com/waylau/spring-framework-4-reference) |
+| [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [Github: sunrh](https://github.com/sunrh) | 目前看来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到最近一次提交已是1年前，目前认为作者暂时性弃坑的可能性较大 | [Github地址](https://github.com/sunrh/spring-reference-chinese) |
 | [Spring 中文文档 3.1](https://wizardforcel.gitbooks.io/spring-doc-3x/content/) | [Github: wizardforcel](https://github.com/wizardforcel) | 翻译的Spring 3.1版本文档，未涉及MVC部分。楼主BIO专注单身二十年，竟有一种大学宿友~~不是我的宿友~~即视感 | - |
 | [Spring Framework 2.5 Reference翻译计划(phasel)](http://javasalatu.iteye.com/blog/1212618) | 满江红机构 | 也是看了该译稿的介绍才懂得要打理一下文档的README，但该机构首页和维基已打不开，另也没能在网上搜到2.5版本的翻译稿，故该译版似已成传说 | - |
