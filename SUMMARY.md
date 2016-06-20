@@ -3,7 +3,7 @@
 ### Part I: 目录与翻译注记(Table of contents and Notes)
 
 * [目录](publish/contents.md)
-* [翻译注记](publish/notes.md)
+* [翻译注记](NOTES.md)
 
 ### Part II: 文档内容(Documentation contents)
 

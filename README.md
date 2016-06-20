@@ -1,6 +1,6 @@
 # Spring MVC 4.2.4.RELEASE 中文文档
 
-本项目翻译的是Spring MVC官方最新4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。文档翻译尚未完成，翻译进度请见下面小节。在目前第一轮翻译过程，本着先快速把文档主要内容传译出来的想法，译时以准确转达内容为第一。其他工作，比如译文细化、术语定义、翻译规范、内容、样式等，将在第一轮整体翻译完成后开始。
+本项目翻译的是Spring MVC官方最新4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。文档翻译尚未完成，翻译进度请见下面小节。在目前第一轮翻译过程，本着先快速把文档主要内容传译出来的想法，译时以准确转达内容为第一。其他工作，比如译文细化、术语定义、翻译规范、内容、样式等，将在第一轮整体翻译完成后开始。翻译过程中遇到值得探讨的问题、取舍及最终解决方案，请见[翻译注记](NOTES.md)。
 
 另外还有其他一些正在进行的Spring文档翻译项目，关于它们的翻译范围与进度，有兴趣的读者可以参考下面小节。可以说的是，在Spring MVC单独的这一块上，目前尚未出现完整的译本，这也是本项目继续完成下去的动力之一。
 
@@ -30,14 +30,3 @@
 * [waylau](https://github.com/waylau)对Spring 4.x的翻译稿：[https://waylau.gitbooks.io/spring-framework-4-reference/content/](https://waylau.gitbooks.io/spring-framework-4-reference/content/)，已翻译了许多章节
 * [wizardforcel](https://github.com/wizardforcel)翻译的3.1版的文档： [https://wizardforcel.gitbooks.io/spring-doc-3x/content/](https://wizardforcel.gitbooks.io/spring-doc-3x/content/)
 * [Spring 2.5文档的翻译](http://javasalatu.iteye.com/blog/1212618)。该译稿看起来比较权威，但是满红红机构的首页和维基已打不开，也没有在网上搜到2.5版本的翻译稿，故成传说
-
-
-## TODOLIST
-
-本段考虑删掉或移到issues。
-
-* 更新README部分目录与索引，翻译完成后，要总结文档的基本内容到简介或README中
-* 以github/gitbook为中心，一键自动化同步推送到其他平台
-* 翻译完成后在Google/gitbook/github/oschina/javaeye等平台进行推广，试试水和各种各样的圈子
-* 探索翻译问题：团队协作（目前我不想尝试这种方式）；与原文档样式统一；
-* 翻译怎么样算好？具体到技术翻译这个上下文，全部照翻为好？谁都能意识到要适当变通，可变通的度是多少？如果要求的是字字都有对应译，还要符合中文风格，那此种翻译岂非只在寻求一个可能存在的“解”而失去任何可能的发挥？如果要求的是信达的同时可以体现风格，强调内在和谐胜于字句适配，那么风格的适当与否评价标准又在哪里？译者和作者的关系是怎样的？
