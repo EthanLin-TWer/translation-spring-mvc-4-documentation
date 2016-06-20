@@ -17,7 +17,7 @@
 
 ## 本翻译项目进度
 
-目前我已翻译了21.1~21.10.3节中的大部分文档，剩下21.10.3~21.16小节的内容尚未翻译。总体进度是60%左右，比目前Spring MVC部分翻译最多的项目spring.cndocs.tk完成度已经更多一些。本README更新日期为2016年6月21日，具体进度无法在此一一实时更新，详细信息以文档进行及内容为准。
+目前我已翻译了21.1~21.10.3节中的大部分文档，剩下21.10.3~21.16小节的内容尚未翻译。总体进度是60%左右，比目前Spring MVC部分翻译最多的项目[spring.cndocs.tk](spring.cndocs.tk)完成度已经更多一些。本README更新日期为2016年6月21日，具体进度无法在此一一实时更新，详细信息以文档进行及内容为准。
 
 ## 其他相关翻译项目
 
@@ -27,12 +27,12 @@
 
 | 项目 | 作者 | 描述 | 链接 |
 | :---: | :---: | :--- | :--- |
-| [Spring框架参考文档 翻译](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | http://git.oschina.net/free/spring-framework-reference |
+| [Spring框架参考文档 翻译 spring.cndocs.tk](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | http://git.oschina.net/free/spring-framework-reference |
+[https://github.com/sunrh/spring-reference-chinese](https://github.com/sunrh/spring-reference-chinese) |
 
-规模比较大的组织性翻译有[这个团队](http://blog.csdn.net/isea533/article/details/50450289)正在进行的翻译，翻译的是Spring(而不仅仅是MVC部分)4.1.3.RELEASE的版本，从项目起止和发布时间来看，基本上是新版本开始发布就组织翻译了。其中Spring MVC的章节已经进行了一大部分，文档排版很不错，翻译质量尚未仔细阅读，但看起来品质较好。该项目的可阅读版文档在：[http://spring.cndocs.tk](http://spring.cndocs.tk)，项目托管在OSC的仓库上：[点这里](http://git.oschina.net/free/spring-framework-reference)。
+| [Spring Framework 4.x参考文档 中文翻译]([https://waylau.gitbooks.io/spring-framework-4-reference/content/]) | [Github: waylau](https://github.com/waylau) | 已翻译了许多章节 | [https://github.com/waylau/spring-framework-4-reference](https://github.com/waylau/spring-framework-4-reference) |
 
-其他的项目还有：
-* [sunrh](https://github.com/sunrh)对Spring 4.x的翻译稿：[https://sunrh.gitbooks.io/spring4-reference-chinese/content/](https://sunrh.gitbooks.io/spring4-reference-chinese/content/)，目前看起来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到提交日期是8个月以前，作者暂时性弃坑的可能性看来较大…
-* [waylau](https://github.com/waylau)对Spring 4.x的翻译稿：[https://waylau.gitbooks.io/spring-framework-4-reference/content/](https://waylau.gitbooks.io/spring-framework-4-reference/content/)，已翻译了许多章节
+| [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [Github: sunrh](https://github.com/sunrh) | 目前看来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到最近一次提交已是1年前，目前认为作者暂时性弃坑的可能性较大 |
+
 * [wizardforcel](https://github.com/wizardforcel)翻译的3.1版的文档： [https://wizardforcel.gitbooks.io/spring-doc-3x/content/](https://wizardforcel.gitbooks.io/spring-doc-3x/content/)
 * [Spring 2.5文档的翻译](http://javasalatu.iteye.com/blog/1212618)。该译稿看起来比较权威，但是满红红机构的首页和维基已打不开，也没有在网上搜到2.5版本的翻译稿，故成传说
