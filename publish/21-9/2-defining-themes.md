@@ -23,11 +23,4 @@
 </html>
 ```
 
-By default, the `ResourceBundleThemeSource` uses an empty base name prefix. As
-a result, the properties files are loaded from the root of the classpath. Thus
-you would put the `cool.properties` theme definition in a directory at the
-root of the classpath, for example, in `/WEB-INF/classes`. The
-`ResourceBundleThemeSource` uses the standard Java resource bundle loading
-mechanism, allowing for full internationalization of themes. For example, we
-could have a `/WEB-INF/classes/cool_nl.properties` that references a special
-background image with Dutch text on it.
+默认情况下`ResourceBundleThemeSource`使用的基本名前缀（base name prefix）是空值。也即是说，配置文件是从根classpath路径下加载的。因此，你需要把主题的定义文件`cool.properties`放在classpath的根路径目录下，比如，`/WEB-INF/classes`。`ResourceBundleThemeSource`采用了Java的标准资源bundle加载机制，完全支持国际化主题。比如，你可以创建一个`/WEB-INF/classes/cool_nl.properties`配置文件，并在其中引用一副有荷兰文的背景图片。
