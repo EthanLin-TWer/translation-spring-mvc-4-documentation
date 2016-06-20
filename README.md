@@ -24,7 +24,7 @@
 以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中值得留意的有这些项目：
 
 | 项目 | 作者 | 描述 | 链接 |
-| :---: | :---: | :--- | :---: |
+| :---: | :---: | --- | :---: |
 | [Spring框架参考文档 翻译](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | 该项目是目前所见规模较大、参与人数较多的翻译项目，翻译内容是Spring 4.1.3.RELEASE版本全部文档。从项目起止和发布时间来看，组织者较早便开始关注与组织翻译。鉴于文档庞大，仍有一部分未译完，Spring MVC的部分也译了50%~60%。另外，该项目保留了spring文档格式adoc和样式，与原生文档风格较一致，这是很好的地方 | [Github地址](http://git.oschina.net/free/spring-framework-reference) [项目首页](http://spring.cndocs.tk) |
 | [Spring Framework 4.x参考文档 中文翻译](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | Github: [waylau](https://github.com/waylau) | 已翻译了许多章节 | [Github地址](https://github.com/waylau/spring-framework-4-reference) |
 | [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | Github: [sunrh](https://github.com/sunrh) | 目前看来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到最近一次提交已是1年前，目前认为作者暂时性弃坑的可能性较大 | [Github地址](https://github.com/sunrh/spring-reference-chinese) |
