@@ -3,6 +3,3 @@ handler method
 
 ## 响应
 response
-
-## MVC
-mvc means spring mvc
