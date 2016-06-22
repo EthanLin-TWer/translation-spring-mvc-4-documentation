@@ -30,3 +30,4 @@
 | [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | Github: [sunrh](https://github.com/sunrh) | 目前看来已经翻译了新特性、框架简介和容器的IOC三个部分。注意到最近一次提交已是1年前，目前认为作者暂时性弃坑的可能性较大 | [Github地址](https://github.com/sunrh/spring-reference-chinese) |
 | [Spring 中文文档 3.1](https://wizardforcel.gitbooks.io/spring-doc-3x/content/) | Github: [wizardforcel](https://github.com/wizardforcel) | 翻译的Spring 3.1版本文档，未涉及MVC部分。楼主BIO专注单身二十年，竟有一种大学宿友~~不是说我的宿友~~即视感 | - |
 | [Spring Framework 2.5 Reference翻译计划(phasel)](http://javasalatu.iteye.com/blog/1212618) | 满江红机构 | 也是看了该译稿的介绍才懂得要打理一下文档的README，但该机构首页和维基已打不开，另也没能在网上搜到2.5版本的翻译稿，故该译版似已成传说 | - |
+| http://jpkc.fudan.edu.cn/picture/article/216/63/a7/d383b40a49cea478371fa899cb2b/a3c2e796-fc8c-4e04-98a1-98f404133e29.pdf || 好像是05年翻译的文档，具体翻译范围和文档版本有待考察 ||
