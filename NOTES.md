@@ -1,6 +1,8 @@
 ## TODOLIST
 
 * 更新README部分目录与索引，翻译完成后，要总结文档的基本内容到简介或README中
+* 细化前3章
+* 完善项目GLOSSARY表
 * 以github/gitbook为中心，一键自动化同步推送到其他平台
 * 翻译完成后在Google/gitbook/github/oschina/javaeye等平台进行推广，试试水和各种各样的圈子
 * 探索翻译问题：团队协作（目前我不想尝试这种方式）；与原文档样式统一；
