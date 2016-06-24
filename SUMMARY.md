@@ -11,7 +11,7 @@
     * [Spring Web MVC的特性](publish/21-1/1-features-of-spring-web-mvc.md)
     * [允许其他MVC实现](publish/21-1/2-pluggability-of-other-mvc-implementations.md)
 * [DispatcherServlet](publish/21-2/the-dispatcher-servlet.md)
-    * [WebApplicationContext中特别的Bean类型](publish/21-2/1-special-bean-types-in-the-webapplicationcontext.md)
+    * [WebApplicationContext中特殊的Bean类型](publish/21-2/1-special-bean-types-in-the-webapplicationcontext.md)
     * [默认的DispatcherServlet配置](publish/21-2/2-default-dispatcherservlet-configuration.md)
     * [DispatcherServlet的处理流程](publish/21-2/3-dispatcherservlet-processing-sequence.md)
 * [控制器的实现](publish/21-3/implementing-controllers.md)
