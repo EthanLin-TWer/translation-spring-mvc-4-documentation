@@ -77,5 +77,5 @@
     * [回到默认的Servlet来进行资源服务](publish/21-16/10-falling-back-on-the-default-servlet-to-serve-resources.md)
     * [路径匹配](publish/21-16/11-path-matching.md)
     * [消息转换器](publish/21-16/12-message-converters.md)
-    * [使用MVC Java编程进行高级的定制化](publish/21-16/13-advanced-customizations-with-mvc-java-config.md)
-    * [使用MVC命名空间进行高级的定制化](publish/21-16/14-advanced-customizations-with-the-mvc-namespace.md)
+    * [使用MVC Java编程进行高级定制](publish/21-16/13-advanced-customizations-with-mvc-java-config.md)
+    * [使用MVC命名空间进行高级定制](publish/21-16/14-advanced-customizations-with-the-mvc-namespace.md)
