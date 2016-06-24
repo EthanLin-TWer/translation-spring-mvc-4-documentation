@@ -62,7 +62,7 @@
     * [HTTP请求头Cache-Control](publish/21-14/1-cache-control-http-header.md)
     * [对静态资源的HTTP缓存支持](publish/21-14/2-http-caching-support-for-static-resources.md)
     * [在控制器中设置Cache-Control、ETag和Last-Modified响应头](publish/21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.md)
-    * [忽略ETag](publish/21-14/4-shallow-etag-support.md)
+    * [弱ETag](publish/21-14/4-shallow-etag-support.md)
 * [基于代码的Servlet容器初始化](publish/21-15/code-based-servlet-container-initialization.md)
 * [配置Spring MVC](publish/21-16/configuring-spring-mvc.md)
     * [启用MVC Java编程配置或MVC命名空间配置方式](publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.md)
