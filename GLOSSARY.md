@@ -12,3 +12,6 @@ representation
 
 ## 上下文
 context(s)
+
+## 内容协商
+content negotiation

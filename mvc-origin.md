@@ -4654,7 +4654,7 @@ And in XML use the `<mvc:interceptors>` element:
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/admin/* *"/>
             <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
