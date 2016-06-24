@@ -65,7 +65,7 @@
     * [弱ETag](publish/21-14/4-shallow-etag-support.md)
 * [基于代码的Servlet容器初始化](publish/21-15/code-based-servlet-container-initialization.md)
 * [配置Spring MVC](publish/21-16/configuring-spring-mvc.md)
-    * [启用MVC Java编程配置或MVC命名空间配置方式](publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.md)
+    * [启用MVC Java编程配置或MVC命名空间](publish/21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.md)
     * [默认配置的定制化](publish/21-16/2-customizing-the-provided-configuration.md)
     * [转换与格式化](publish/21-16/3-conversion-and-formatting.md)
     * [验证](publish/21-16/4-validation.md)
