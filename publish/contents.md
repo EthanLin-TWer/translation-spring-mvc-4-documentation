@@ -1,10 +1,10 @@
-# 目录
+# Summary
 
 * [Spring Web MVC框架简介](21-1/introduction-to-spring-web-mvc-framework.md)
     * [Spring Web MVC的特性](21-1/1-features-of-spring-web-mvc.md)
     * [允许其他MVC实现](21-1/2-pluggability-of-other-mvc-implementations.md)
 * [DispatcherServlet](21-2/the-dispatcher-servlet.md)
-    * [WebApplicationContext中特别的Bean类型](21-2/1-special-bean-types-in-the-webapplicationcontext.md)
+    * [WebApplicationContext中特殊的Bean类型](21-2/1-special-bean-types-in-the-webapplicationcontext.md)
     * [默认的DispatcherServlet配置](21-2/2-default-dispatcherservlet-configuration.md)
     * [DispatcherServlet的处理流程](21-2/3-dispatcherservlet-processing-sequence.md)
 * [控制器的实现](21-3/implementing-controllers.md)
@@ -55,10 +55,10 @@
     * [HTTP请求头Cache-Control](21-14/1-cache-control-http-header.md)
     * [对静态资源的HTTP缓存支持](21-14/2-http-caching-support-for-static-resources.md)
     * [在控制器中设置Cache-Control、ETag和Last-Modified响应头](21-14/3-support-for-the-cache-control-etag-and-last-modified-response-header-in-controllers.md)
-    * [忽略ETag](21-14/4-shallow-etag-support.md)
+    * [弱ETag](21-14/4-shallow-etag-support.md)
 * [基于代码的Servlet容器初始化](21-15/code-based-servlet-container-initialization.md)
 * [配置Spring MVC](21-16/configuring-spring-mvc.md)
-    * [启用MVC Java编程配置或MVC命名空间配置方式](21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.md)
+    * [启用MVC Java编程配置或MVC命名空间](21-16/1-enabling-the-mvc-java-config-or-the-mvc-xml-namespace.md)
     * [默认配置的定制化](21-16/2-customizing-the-provided-configuration.md)
     * [转换与格式化](21-16/3-conversion-and-formatting.md)
     * [验证](21-16/4-validation.md)
@@ -70,5 +70,5 @@
     * [回到默认的Servlet来进行资源服务](21-16/10-falling-back-on-the-default-servlet-to-serve-resources.md)
     * [路径匹配](21-16/11-path-matching.md)
     * [消息转换器](21-16/12-message-converters.md)
-    * [使用MVC Java编程进行高级的定制化](21-16/13-advanced-customizations-with-mvc-java-config.md)
-    * [使用MVC命名空间进行高级的定制化](21-16/14-advanced-customizations-with-the-mvc-namespace.md)
+    * [使用MVC Java编程进行高级定制](21-16/13-advanced-customizations-with-mvc-java-config.md)
+    * [使用MVC命名空间进行高级定制](21-16/14-advanced-customizations-with-the-mvc-namespace.md)
