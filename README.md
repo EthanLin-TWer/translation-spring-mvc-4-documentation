@@ -6,7 +6,8 @@
 
 如果觉得文档对你有帮助，可以右上点star哦~接下来可以前往这里[mvc.linesh.tw](http://mvc.linesh.tw)看一看了。
 
-阅读过程任何想法建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~、无论关于翻译、技术、样式等，随时留言：
+阅读过程任何想法建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~，无论关于翻译、技术、样式等，随时反馈：
+* 点赞表示无言支持
 * 在Gitbook讨论里[给我留言](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
 * 在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
 * [在文档上进行即时评论](http://mvc.linesh.tw)：在gitbook文档上，鼠标划过任何段落右侧，浮现`+`号时点击即可评论
