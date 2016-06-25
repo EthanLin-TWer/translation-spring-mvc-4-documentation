@@ -25,6 +25,15 @@
 ## 视图解析器
 21.1 view resolver
 
+## 验证器
+21.1.1 validator
+
+## 会话
+21.1.1 session
+
+## scope
+21.1.1 scope，不翻译
+
 ## 表示
 representation
 
