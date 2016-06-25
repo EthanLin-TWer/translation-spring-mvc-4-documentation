@@ -1,19 +1,14 @@
-# 21.1.1 Spring Web MVC的特性
+# 21.1.1 Spring Web MVC的新特性
 
 > Spring Web Flow
 >
-> Spring Web Flow (SWF) aims to be the best solution for the management of web application page flow.
+> Spring Web Flow (SWF) 意在成为web应用中的页面流(page flow)管理中最好的解决方案。
 >
-> SWF integrates with existing frameworks like Spring MVC and JSF, in both Servlet and Portlet environments. If you have a business process (or processes) that would benefit from a conversational model as opposed to a purely request model, then SWF may be the solution.
+> SWF在Servlet环境和Portlet环境下集成了现有的框架，如Spring MVC和JSF等。如果你的业务流程有一个贯穿始终的模型，而非单纯分立的请求，那么SWF可能是适合你的解决方案。
 >
-> SWF allows you to capture logical page flows as self-contained modules that are reusable in different situations, and as such is ideal for building web application modules that guide the user through controlled navigations that drive business processes.
-> 
-> For more information about SWF, consult the Spring Web Flow website.
-
-> Spring Web Flow(SWF)目标是成为最好的web应用页面跳转流程管理的解决方案。
-> 
-> SWF整合了已有的框架，比如Spring MVC和JSF，in both Servlet and Portlet environments。【这一整段都很难翻】
-> 
+> SWF允许你将逻辑上的页面流抽取成独立可复用的模块，这对于构建一个web应用的多个模块是有益的。that guide the user through controlled navigations that drive business processes.
+>
+> 关于SWF的更多信息，请访问[Spring Web Flow的官网](http://projects.spring.io/spring-webflow/)。
 
 
 > Spring’s web module includes many unique web support features:

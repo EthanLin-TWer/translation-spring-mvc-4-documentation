@@ -8,7 +8,7 @@
 ### Part II: 文档内容(Documentation contents)
 
 * [Spring Web MVC框架简介](publish/21-1/introduction-to-spring-web-mvc-framework.md)
-    * [Spring Web MVC的特性](publish/21-1/1-features-of-spring-web-mvc.md)
+    * [Spring Web MVC的新特性](publish/21-1/1-features-of-spring-web-mvc.md)
     * [允许其他MVC实现](publish/21-1/2-pluggability-of-other-mvc-implementations.md)
 * [DispatcherServlet](publish/21-2/the-dispatcher-servlet.md)
     * [WebApplicationContext中特殊的Bean类型](publish/21-2/1-special-bean-types-in-the-webapplicationcontext.md)
