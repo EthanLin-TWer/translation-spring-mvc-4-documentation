@@ -28,4 +28,4 @@
 | [Spring Framework 4.x参考文档](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [waylau](https://github.com/waylau) | 翻译了Spring文档的简介、新特性和核心技术的容器IOC的一部分，不包含Spring MVC部分 | [项目Github](https://github.com/waylau/spring-framework-4-reference) |
 | [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [sunrh](https://github.com/sunrh) | 翻译了Spring文档的简介、新特性和核心技术的容器IOC三个部分。但最近一次提交已是1年前 | [项目Github](https://github.com/sunrh/spring-reference-chinese) |
 | [Spring 中文文档3.1](https://wizardforcel.gitbooks.io/spring-doc-3x/content/) | [wizardforcel](https://github.com/wizardforcel) | 主页已标记废弃的项目。楼主BIO是专注单身二十年，言语间竟有一种大学宿友~~不是说我的宿友~~的即视感 | - |
-| [Spring Framework 2.5 Reference翻译计划(phasel)](http://javasalatu.iteye.com/blog/1212618) | 满江红机构 | 文档版本为较早前的2.5，机构首页和维基已打不开，其2.5版本的翻译稿也未能在网上搜到，似已成传说 | - |
+| [Spring Framework 2.5翻译计划](http://javasalatu.iteye.com/blog/1212618) | 满江红机构 | 文档版本为较早前的2.5，机构首页和维基已打不开，其2.5版本的翻译稿也未能在网上搜到，似已成传说 | - |
