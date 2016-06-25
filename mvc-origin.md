@@ -5002,7 +5002,7 @@ src="/jquery/1.2.0/jquery.min.js"/>`.
 This allows for mapping the `DispatcherServlet` to "/" (thus overriding the
 mapping of the container's default Servlet), while still allowing static
 resource requests to be handled by the container's default Servlet. It
-configures a `DefaultServletHttpRequestHandler` with a URL mapping of "/**"
+configures a `DefaultServletHttpRequestHandler` with a URL mapping of "/* * "
 and the lowest priority relative to other URL mappings.
 
 This handler will forward all requests to the default Servlet. Therefore it is
