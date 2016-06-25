@@ -8,7 +8,7 @@ Spring的模型-视图-控制器（MVC）框架是围绕一个`DispatcherServlet
 >
 > 关于该原则的详细解释，你可以参考Seth Ladd等人所著的“深入解析Spring Web MVC与Web Flow”一书。相关信息在第117页，“设计初探（A Look At Design）”一节。或者，你可以参考：
 >
-> Bob Martin所写的“开闭原则（The Open-Closed Principle）”（PDF）
+> * [Bob Martin所写的“开闭原则（The Open-Closed Principle）”（PDF）](http://www.objectmentor.com/resources/articles/ocp.pdf)
 >
 > 你无法增强Spring MVC中的`final`方法，比如`AbstractController.setSynchronizeOnSession()`方法等。请参考[10.6.1 理解AOP代理](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/aop.html#aop-understanding-aop-proxies)一节，其中解释了AOP代理的相关知识，论述了为什么你不能对`final`方法进行增强。
 
