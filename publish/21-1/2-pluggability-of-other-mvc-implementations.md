@@ -4,4 +4,4 @@
 
 如果你确实不想使用Spring的Web MVC，但又希望能从Spring提供的一些解决方案中受益，那么将你所使用的框架和Spring进行集成也很容易。只需要在`ContextLoaderListener`中启动一个Spring的根应用上下文（root application context），然后你就可以在任何action对象中通过其`ServletContext`属性（或通过Spring对应的helper方法）取得。不需要任何侵入性的插件，因此不需要复杂的集成。从应用层的视角来看，你只是将Spring当成依赖库使用，并且将它的根应用上下文实例作为应用进入点。
 
-即使不用Spring的Web MVC框架，你配置的其他Spring的bean和服务也都能很方便地取得。在这种场景下，Spring与其他web框架的使用不冲突。Spring只是在许多问题上提出了其他纯web MVC框架未曾提出过的解决方案，比如bean的配置、数据存取、事务处理等，仅此而已。
+即使不用Spring的Web MVC框架，你配置的其他Spring的bean和服务也都能很方便地取得。在这种场景下，Spring与其他web框架的使用不冲突。Spring只是在许多问题上提出了其他纯web MVC框架未曾提出过的解决方案，比如bean的配置、数据存取、事务处理等，仅此而已。因此，如果你只是想使用Spring的一部分特性来增强你的应用，比如Spring提供的JDBC/Hibernate事务抽象等，那么你可以将Spring作为一个中间层和/或数据存取层来使用。
