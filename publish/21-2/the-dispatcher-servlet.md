@@ -25,7 +25,7 @@ Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有�
 
 > In the preceding example, all requests starting with `/example` will be handled by the `DispatcherServlet` instance named example. In a Servlet 3.0+ environment, you also have the option of configuring the Servlet container programmatically. Below is the code based equivalent of the above web.xml example:
 
-在上面的例子中，所有以`/example`开头的请求都会被`DispatcherServlet`处理，并且该`DispatcherServlet`实例的名字为`example`。在Servlet 3.0+的环境下，你还可以用代码来配置Servlet容器。下面这段代码就展示了这种用法，它与我们所写的`web.xml`配置文件是等效的。
+在上面的例子中，所有路径以`/example`开头的请求都会被名字为`example`的`DispatcherServlet`处理。在Servlet 3.0+的环境下，你还可以用编程的方式配置Servlet容器。下面是一段这种基于代码配置的例子，它与上面定义的`web.xml`配置文件是等效的。
 
 ```java
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
@@ -40,17 +40,12 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 }
 ```
 
-> WebApplicationInitializer is an interface provided by Spring MVC that ensures your code-based configuration is detected and automatically used to initialize any Servlet 3 container. An abstract base class implementation of this interface named AbstractDispatcherServletInitializer makes it even easier to register the DispatcherServlet by simply specifying its servlet mapping. See Code-based Servlet container initialization for more details.
+`WebApplicationInitializer`是Spring MVC提供的一个接口，它会查找你所有基于代码的配置，并应用它们来初始化Servlet 3版本以上的web容器。它有一个抽象的实现`AbstractDispatcherServletInitializer`，用以简化`DispatcherServlet`的注册工作：你只需要指定其servlet映射（mapping）即可。若想了解更多细节，可以参考[基于代码的Servlet容器初始化](../21-15/code-based-servlet-container-initialization.md)一节。
 
-`WebApplicationInitializer`是Spring MVC提供的接口，它会查找你通过编程方式进行配置的代码，并应用它们来初始化Servlet 3版本以上的web容器。它有一个抽象的实现`AbstractDispatcherServletInitializer`，它简化了`DispatcherServlet`的注册工作，你只需要指定servlet的映射（mapping）即可。如果想要了解更多的细节，可以参考其他基于代码配置的servlet容器。
 
-> The above is only the first step in setting up Spring Web MVC. You now need to configure the various beans used by the Spring Web MVC framework (over and above the DispatcherServlet itself).
+上面只是配置Spring Web MVC的第一步，接下来你需要配置其他的一些bean（除了`DispatcherServlet`以外的其他bean），它们也会被Spring Web MVC框架使用到。
 
-上面只是配置Spring Web MVC的第一步，你还需要配置其他的一些bean，它们也会被Spring Web MVC框架使用到（除了`DispatcherServlet`以外的其他bean）。
-
-> As detailed in Section 6.15, “Additional Capabilities of the ApplicationContext”, ApplicationContext instances in Spring can be scoped. In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans can be overridden in the servlet-specific scope, and you can define new scope-specific beans local to a given Servlet instance.
-
-6.15节“Additional Capabilities of the ApplicationContext(ApplicationContext的其他作用)”中我们聊到，`ApplicationContext`实例是可以有范围（scope）的。在Web MVC框架中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根`WebApplicationContext`对象中已经定义的所有bean。这些继承的bean可以在每个servlet的特定scope内被重载，在每个Servlet实例中你也可以定义其scope内新的bean。（这句翻译得渣渣我知道……）
+在[6.15 应用上下文ApplicationContext的其他作用)](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/beans.html#context-introduction)一节中我们聊到，Spring中的`ApplicationContext`实例是可以有范围（scope）的。在Spring MVC中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根（root）`WebApplicationContext`对象中已经定义的所有bean。这些继承的bean可以在具体的Servlet实例中被重载，在每个Servlet实例中你也可以定义其scope下的新bean。
 
 ![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
