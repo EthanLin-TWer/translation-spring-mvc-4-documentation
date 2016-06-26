@@ -34,6 +34,9 @@
 ## scope
 21.1.1 scope，不翻译
 
+## 分发
+21.2.1 dispatch，Spring的中央处理器就是这个`DispatcherServlet`，它负责的事情，就是分发(dispatch)请求
+
 ## 表示
 representation
 
