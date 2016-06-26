@@ -4,12 +4,13 @@
 
 目前大部分章节翻译均已完成，只剩小部分章节仍在进行。接下来维护阶段的工作主要有译文细化、术语定义、翻译规范、内容、样式等。翻译过程中遇到值得探讨的问题、取舍及最终解决方案，请见[翻译注记](NOTES.md)。
 
-如果觉得文档对你有帮助，可以右上点star哦~接下来可以前往这里[mvc.linesh.tw](http://mvc.linesh.tw)看一看了。
+如果觉得文档对你有帮助，[马上前往github star~~被消费~~一个](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)！！！译文戳这里马上阅读[mvc.linesh.tw](http://mvc.linesh.tw)。
 
 阅读过程任何想法建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~，无论关于翻译、技术、样式等，随时反馈：
 * [点赞](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)表示无言支持
 * 在Gitbook讨论里[给我留言](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
 * 在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
+* 在Github里给这个项目提[pull request](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/pulls)
 * [在文档上进行即时评论](http://mvc.linesh.tw)：在gitbook文档上，鼠标划过任何段落右侧，浮现`+`号时点击即可评论
 * **邮箱**：linesh.simpcity@gmail.com
 
