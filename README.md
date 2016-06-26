@@ -1,6 +1,6 @@
 # Spring MVC 4.2.4.RELEASE 中文文档
 
-![Spring Logo](/images/2016/06/spring-logo.png)
+![Spring Logo](./spring-logo.png)
 
 本项目翻译的是Spring MVC官方4.2.4.RELEASE版本（截至16年6月23日最新版本为4.3.0）的文档，包含原文档第21章Spring MVC部分的全部内容。本项目只为完成一份有品质的翻译，首先原意的准确传达，其次尽量保证译文简练、自然、具有风格和质感。关于Spring文档翻译有一些项目，不过在Spring MVC单独的这一块上，本文档是目前相对最完整的版本了。
 
