@@ -1,28 +1,29 @@
 {
-    "name": "spring-mvc-documentation",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.html",
-    "dependencies": {
-        "gitbook-cli": "^2.3.0"
-    },
-    "devDependencies": {},
-    "scripts": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
-    },
-    "keywords": [
-        "spring",
-        "mvc",
-        "documentation",
-        "文档",
-        "中文"
-    ],
-    "author": "Linesh (林从羽)",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
-    },
-    "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
+  "name": "spring-mvc-documentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "gitbook": "^3.1.1",
+    "gitbook-cli": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
+  },
+  "keywords": [
+    "spring",
+    "mvc",
+    "documentation",
+    "文档",
+    "中文"
+  ],
+  "author": "Linesh (林从羽)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
+  },
+  "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
 }
