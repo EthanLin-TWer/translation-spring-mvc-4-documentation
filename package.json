@@ -1,15 +1,13 @@
 {
     "name": "spring-mvc-documentation",
     "version": "1.0.0",
-    "description": "![Spring Logo](./spring-logo.png)",
+    "description": "",
     "main": "index.html",
     "dependencies": {
         "gitbook-cli": "^2.3.0"
     },
     "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
+    "scripts": {},
     "repository": {
         "type": "git",
         "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
