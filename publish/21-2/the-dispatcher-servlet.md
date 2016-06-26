@@ -49,13 +49,9 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 ![图21.2 Spring Web MVC中常见的context层级结构](./figures/figure-21-2-typical-context-hierarchy-in-spring-web-mvc.png)
 
-> Upon initialization of a DispatcherServlet, Spring MVC looks for a file named [servlet-name]-servlet.xml in the WEB-INF directory of your web application and creates the beans defined there, overriding the definitions of any beans defined with the same name in the global scope.
+`DispatcherServlet`的初始化过程中，Spring MVC会在你web应用的`WEB-INF`目录下查找一个名为[servlet-name]-servlet.xml的配置文件，并创建其中所定义的bean。如果在全局上下文中存在相同名字的bean，则它们将被新定义的同名bean覆盖。
 
-在`DispatcherServlet`的初始化过程中，框架会在你web应用的WEB-INF目录下查找一个名为[servlet-name]-servlet.xml的配置文件，创建其中所定义的bean。如果在全局作用域(global scope)中存在相同名字的bean，则它们将被新的bean定义覆盖。
-
-> Consider the following DispatcherServlet Servlet configuration (in the web.xml file):
-
-请看下面这个`DispatcherServlet`的配置（定义于web.xml文件中）：
+看看下面这个`DispatcherServlet`的Servlet配置（定义于web.xml文件中）：
 
 ```xml
 <web-app>
