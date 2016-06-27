@@ -1,4 +1,8 @@
 node ('main') {
-    stage 'What will be in the workspace if not pulling from git?'
+    stage 'Pull latest changes from SCM'
+    git([
+        url: 'git@github.com:linesh-simplicity/translation-spring-mvc-4-documentation.git',
+        branch: 'master'
+    ])
     sh 'tree'
 }
