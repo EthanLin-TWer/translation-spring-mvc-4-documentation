@@ -4,5 +4,7 @@ node ('main') {
         url: 'git@github.com:linesh-simplicity/translation-spring-mvc-4-documentation.git',
         branch: 'master'
     ])
-    sh 'tree'
+
+    stage 'Download dependencies: Gitbook & Gitbook command line'
+    sh 'npm install'
 }
