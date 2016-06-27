@@ -36,6 +36,6 @@
 
 ## 贡献者 Contributor
 
-感谢为这个项目提PR并且让它变得更好的人们！
+感谢为这个项目提PR并且让它变得更好的人们。
 
-* ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=60) [Sun](https://github.com/yaming116)
+* ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20) [Sun](https://github.com/yaming116)
