@@ -19,7 +19,7 @@
 ## 中文文档地址
 
 * Gitbook主站：[mvc.linesh.tw](http://mvc.linesh.tw)
-* 国内七牛镜像：[一个奇怪的域名](7xvpsh.com1.z0.glb.clouddn.com)
+* 国内七牛镜像：[一个奇怪的域名](http://7xvpsh.com1.z0.glb.clouddn.com)（国内访问稳定，速度更快）
 
 Gitbook是最容易托管的一个站点，但国内访问有时不稳定。若有此种情况，请访问后面这个七牛上的CDN。它们的内容是同步的，而且七牛的站点速度更快，体验更好。
 
