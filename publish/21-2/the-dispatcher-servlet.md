@@ -67,19 +67,15 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 </web-app>
 ```
 
-> With the above Servlet configuration in place, you will need to have a file called /WEB-INF/golfing-servlet.xml in your application; this file will contain all of your Spring Web MVC-specific components (beans). You can change the exact location of this configuration file through a Servlet initialization parameter (see below for details).
+有了以上的Servlet配置文件，你还需要在应用中的`/WEB-INF/`路径下创建一个`golfing-servlet.xml`文件，在该文件中定义所有Spring MVC相关的组件（比如bean等）。你可以通过servlet初始化参数为这个配置文件指定其他的路径（见下面的例子）：
 
-假设我们有一个如上定义的配置文件，那么我们还需要在应用中的`/WEB-INF/`路径下配置一个`golfing-servlet.xml`文件，该文件必须包含所有Spring Web MVC相关的组件的定义（比如bean等）。你也可以改变这个配置文件所在的目录，这需要在一个servlet初始化参数中指定（见下面的例子）：
-
-> It is also possible to have just one root context for single DispatcherServlet scenarios.
+你也可以改变这个配置文件所在的目录。。。
 
 当你的应用中只需要一个`DispatcherServlet`时，只配置一个根context对象也是可行的。
 
 ![图21.3 Spring Web MVC中的根context](./figures/figure-21-3-single-root-context-in-spring-web-mvc.png)
 
-> This can be configured by setting an empty contextConfigLocation servlet init parameter, as shown below:
-
-若要配置一个唯一的根context对象，可以通过在servlet的初始化参数中配置一个空的contextConfigLocation来做到，如下所示：
+要配置一个唯一的根context对象，可以通过在servlet初始化参数中配置一个空的contextConfigLocation来做到，如下所示：
 
 ```xml
 <web-app>
@@ -106,6 +102,4 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 </web-app>
 ```
 
-> The WebApplicationContext is an extension of the plain ApplicationContext that has some extra features necessary for web applications. It differs from a normal ApplicationContext in that it is capable of resolving themes (see Section 21.9, “Using themes”), and that it knows which Servlet it is associated with (by having a link to the ServletContext). The WebApplicationContext is bound in the ServletContext, and by using static methods on the RequestContextUtils class you can always look up the WebApplicationContext if you need access to it.
-
-`WebApplicationContext`继承自`ApplicationContext`，包含了一些web应用经常需要用到的特性。它与普通的`ApplicationContext`不同的地方在于，它支持主题（theme）的解析（见21.9节“主题（theme）的使用”），并且它与持有它的servlet关联在一起（通过持有一个`ServletContext`的引用来实现）。`WebApplicationContext`与`ServletContext`是绑定的，如果需要的话，你可以通过`RequestContextUtils`工具类中的静态方法来拿到这个web应用的上下文`WebApplicationContext`。
+`WebApplicationContext`继承自`ApplicationContext`，它提供了一些web应用经常需要用到的特性。它与普通的`ApplicationContext`不同的地方在于，它支持主题的解析（详见[21.9 主题Themes](../21-9/using-themes.md)一小节），并且知道它关联到的是哪个servlet（它持有一个该`ServletContext`的引用）。`WebApplicationContext`被绑定在`ServletContext`中。如果需要获取它，你可以通过`RequestContextUtils`工具类中的静态方法来拿到这个web应用的上下文`WebApplicationContext`。
