@@ -7,4 +7,8 @@ node ('main') {
 
     stage 'Download dependencies: Gitbook & Gitbook command line'
     sh 'npm install'
+
+    stage 'Build book serving directory through Gitbook'
+    sh 'gitbook build --gitbook=3.1.1'
+    sh 'tree'
 }
