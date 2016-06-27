@@ -1,0 +1,1 @@
+var qiniu = require("qiniu");
