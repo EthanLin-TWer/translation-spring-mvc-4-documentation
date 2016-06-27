@@ -185,7 +185,7 @@ public String helloWorld() {
 ```java
 @RequestMapping("/something")
 public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
-    String requestHeader = requestEntity.getHeaders().getFirst("MyRequestHeader"));
+    String requestHeader = requestEntity.getHeaders().getFirst("MyRequestHeader");
     byte[] requestBody = requestEntity.getBody();
 
     // do something with request header and body
