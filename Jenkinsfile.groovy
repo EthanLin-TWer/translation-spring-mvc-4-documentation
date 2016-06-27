@@ -10,7 +10,6 @@ node ('main') {
 
     stage 'Build book serving directory through Gitbook'
     sh 'gitbook build --gitbook=3.1.1'
-    sh 'tree'
 
     stage 'Upload production _book to Qiniu through their API'
     sh './jenkins/sync-book-to-qiniu.sh'
