@@ -160,7 +160,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 > 为了处理`@PathVariables`注解，Spring MVC必须通过变量名来找到URI模板中相对应的变量。你可以在注解中直接声明：
 > ```java
 > @RequestMapping(path="/owners/{ownerId}}", method=RequestMethod.GET)
-> public String findOwner(@PathVariable("ownerID") String theOwner, Model model) {
+> public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
 >     // 具体的方法代码…
 > }
 > ```
