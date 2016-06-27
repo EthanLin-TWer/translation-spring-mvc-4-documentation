@@ -21,7 +21,9 @@
 * Gitbook主站：[mvc.linesh.tw](http://mvc.linesh.tw)
 * 国内七牛镜像：[一个奇怪的域名](7xvpsh.com1.z0.glb.clouddn.com)
 
-Gitbook是最容易托管的一个站点，但国内访问有时不稳定。若有此种情况，请访问后面这个七牛上的CDN。它们的内容是同步的，翻译更新后首先Gitbook会构建一次站点，同样的内容也会被构建然后上传到国内的七牛空间，同步时间间隔是15分钟左右。到七牛的同步是通过[CI Jenkins 2.0](https://jenkins.io/2.0/)完成的，具体的构建，有兴趣的同学可以参考 [Jenkinsfile.groovy](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/blob/master/Jenkinsfile.groovy)构建脚本。
+Gitbook是最容易托管的一个站点，但国内访问有时不稳定。若有此种情况，请访问后面这个七牛上的CDN。它们的内容是同步的，而且七牛的站点速度更快，体验更好。
+
+关于同步与构建：翻译更新后首先Gitbook会构建一次站点，同样的内容也会被构建然后上传到国内的七牛空间，同步时间间隔是15分钟左右。到七牛的同步是通过[CI Jenkins 2.0](https://jenkins.io/2.0/)完成的，具体的构建，有兴趣的同学可以参考 [Jenkinsfile.groovy](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/blob/master/Jenkinsfile.groovy)构建脚本。
 
 ## 原文地址
 [Spring MVC 4.2.4.RELEASE Documentation](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html)
