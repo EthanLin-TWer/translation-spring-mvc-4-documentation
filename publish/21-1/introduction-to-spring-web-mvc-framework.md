@@ -1,6 +1,6 @@
 # 21.1 Spring Web MVC框架简介
 
-Spring的模型-视图-控制器（MVC）框架是围绕一个`DispatcherServlet`来设计的，这个Servlet会把请求分发给各个处理器，并支持可配置的处理器映射、视图渲染、本地化、时区与主题渲染等，甚至还能支持文件上传。处理器是你的应用中注解了`@Controller`和`@RequestMapping`的类和方法，Spring为处理器方法提供了极其多样灵活的配置。Spring 3.0后的`@PathVariable`注解以及一些其他的特性，`@Controller`注解机制同时也允许你创建RESTful的Web站点和应用开发。
+Spring的模型-视图-控制器（MVC）框架是围绕一个`DispatcherServlet`来设计的，这个Servlet会把请求分发给各个处理器，并支持可配置的处理器映射、视图渲染、本地化、时区与主题渲染等，甚至还能支持文件上传。处理器是你的应用中注解了`@Controller`和`@RequestMapping`的类和方法，Spring为处理器方法提供了极其多样灵活的配置。Spring 3.0以后提供了`@Controller`注解机制、`@PathVariable`注解以及一些其他的特性，你可以使用它们来进行RESTful web站点和应用的开发。
 
 > “对扩展开放”是Spring Web MVC框架一个重要的设计原则，而对于Spring的整个完整框架来说，其设计原则则是“对扩展开放，对修改闭合”。
 >
