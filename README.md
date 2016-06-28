@@ -2,7 +2,7 @@
 
 ![Spring Logo](./spring-logo.png)
 
-本项目翻译的是Spring MVC官方4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。译文尽力于准确传达原意的同时，能保证其符合中文习惯、自然、简练。至于风格和质感，则是追求，仍在努力。截至目前，本文档是在Spring MVC单独的这一块上相对较完整的译本了。 ——2016年6月28 交房租日
+本项目翻译的是Spring MVC官方4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。译文尽力于准确传达原意的同时，能使其更符合中文习惯，自然、简练。至于风格和质感，则是追求，仍在努力。截至目前，本文档是在Spring MVC单独的这一块上相对较完整的译本了。 ——2016年6月28 交房租日
 
 目前已完成大部分章节的翻译，剩小部分章节仍在进行。接下来仍有维护工作，主要是译文细化、术语定义、翻译规范、内容、样式等。翻译过程中遇到值得探讨的问题、取舍及最终解决方案，读者可见[翻译注记](NOTES.md)。
 
@@ -23,7 +23,7 @@
 
 * 七牛主站：[mvc.linesh.tw](http://mvc.linesh.tw)（更快更稳定）
 * 国内镜像：[一个奇怪的域名](http://7xvpsh.com1.z0.glb.clouddn.com)（主站不稳定时使用）
-* [国外Gitbook原站：](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
+* [国外Gitbook原站](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
 
 多个站点的构建与同步部分是通过[CI Jenkins 2.0](https://jenkins.io/2.0/)完成，感兴趣的同学可以参考[Jenkinsfile.groovy](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/blob/master/Jenkinsfile.groovy)这个构建脚本。
 
