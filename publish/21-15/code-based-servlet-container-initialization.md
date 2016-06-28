@@ -1,6 +1,6 @@
 # 21.15 基于代码的Servlet容器初始化
 
-在Servlet 3.0以上的环境相爱，你可以通过编程的方式来配置Servlet容器了。你可以完全放弃`web.xml`，也可以两种配置方式同时使用。以下是一个注册`DispatcherServlet`的例子：
+在Servlet 3.0以上的环境下，你可以通过编程的方式来配置Servlet容器了。你可以完全放弃`web.xml`，也可以两种配置方式同时使用。以下是一个注册`DispatcherServlet`的例子：
 
 ```java
 import org.springframework.web.WebApplicationInitializer;
