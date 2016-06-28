@@ -2,14 +2,17 @@
 
 ![Spring Logo](./spring-logo.png)
 
-本项目翻译的是Spring MVC官方4.2.4.RELEASE版本（截至16年6月23日最新版本为4.3.0）的文档，包含原文档第21章Spring MVC部分的全部内容。本项目只为完成一份有品质的翻译，首先原意的准确传达，其次尽量保证译文简练、自然、具有风格和质感。关于Spring文档翻译有一些项目，不过在Spring MVC单独的这一块上，本文档是目前相对最完整的版本了。
+本项目翻译的是Spring MVC官方4.2.4.RELEASE版本的文档，包含原文档第21章Spring MVC部分的全部内容。译文尽力于准确传达原意的同时，能保证其符合中文习惯、自然、简练。至于风格和质感，则是追求，仍在努力。截至目前，本文档是在Spring MVC单独的这一块上相对较完整的译本了。 ——2016年6月28 交房租日
 
-目前大部分章节翻译均已完成，只剩小部分章节仍在进行。接下来维护阶段的工作主要有译文细化、术语定义、翻译规范、内容、样式等。翻译过程中遇到值得探讨的问题、取舍及最终解决方案，请见[翻译注记](NOTES.md)。
+目前已完成大部分章节的翻译，剩小部分章节仍在进行。接下来仍有维护工作，主要是译文细化、术语定义、翻译规范、内容、样式等。翻译过程中遇到值得探讨的问题、取舍及最终解决方案，读者可见[翻译注记](NOTES.md)。
 
-如果觉得文档对你有帮助，[马上前往github star~~被消费~~一个](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)！！！译文戳这里马上阅读[mvc.linesh.tw](http://mvc.linesh.tw)。
+本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。其附带价值则不是我所应思考的。如果文档能够对可能的读者（你）有所帮助，则是幸运。
 
-阅读过程任何想法建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~，无论关于翻译、技术、样式等，随时反馈：
-* [点赞](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)表示无言支持
+译文戳这里马上阅读[mvc.linesh.tw](http://mvc.linesh.tw)。
+
+阅读过程任何想法、建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~、觉得赞、觉得不赞，无论关于翻译、技术、样式等，欢迎让我听到你们的声音。你可以：
+
+* [来Github赞我~~被消费一个~~](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)
 * 在Gitbook讨论里[给我留言](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
 * 在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
 * 在Github里给这个项目提[pull request](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/pulls)
@@ -18,30 +21,36 @@
 
 ## 中文文档地址
 
-* Gitbook主站：[mvc.linesh.tw](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
-* 国内七牛镜像：[一个奇怪的域名](http://7xvpsh.com1.z0.glb.clouddn.com)（国内访问稳定，速度更快）
+* 七牛主站：[mvc.linesh.tw](http://mvc.linesh.tw)（更快更稳定）
+* 国内镜像：[一个奇怪的域名](http://7xvpsh.com1.z0.glb.clouddn.com)（主站不稳定时使用）
+* [国外Gitbook原站：](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
 
-Gitbook是最容易托管的一个站点，但国内访问有时不稳定。若有此种情况，请访问后面这个七牛上的CDN。它们的内容是同步的，而且七牛的站点速度更快，体验更好。
-
-关于同步与构建：翻译更新后首先Gitbook会构建一次站点，同样的内容也会被构建然后上传到国内的七牛空间，同步时间间隔是15分钟左右。到七牛的同步是通过[CI Jenkins 2.0](https://jenkins.io/2.0/)完成的，具体的构建，有兴趣的同学可以参考 [Jenkinsfile.groovy](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/blob/master/Jenkinsfile.groovy)构建脚本。
+多个站点的构建与同步部分是通过[CI Jenkins 2.0](https://jenkins.io/2.0/)完成，感兴趣的同学可以参考[Jenkinsfile.groovy](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/blob/master/Jenkinsfile.groovy)这个构建脚本。
 
 ## 原文地址
 [Spring MVC 4.2.4.RELEASE Documentation](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html)
 
 ## 其他相关翻译项目
 
-以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中值得留意的有以下项目，总结起来，除了第一个项目，其他翻译都未涉及Spring MVC的部分：
+以“Spring MVC 中文 文档 翻译”作为关键词，浏览其在google和baidu上前6页的搜索结果就可以对目前文档翻译现状有个大致的了解。其中值得留意的有以下项目，其中除了第一个项目，其他翻译未涉及Spring MVC的部分：
 
 | 项目 | 作者 | 项目Github | 描述 |
 | :---: | :---: | :---: | --- |
 | [Spring框架参考文档](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | [Github](http://git.oschina.net/free/spring-framework-reference) | 该项目规模较大、参与人数较多，进度似也因此较慢。翻译内容是Spring 4.1.3.RELEASE版本全部文档，其中MVC部分的文档翻译了大概50%~60%。另其项目主页保留了与原生Spring文档较一致的样式，很不错 |
-| [Spring Framework 4.x参考文档](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [waylau](https://github.com/waylau) | [Github](https://github.com/waylau/spring-framework-4-reference) | 翻译了Spring文档的简介、新特性和容器IOC部分内容，不包含Spring MVC翻译 |
-| [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [sunrh](https://github.com/sunrh) | [Github](https://github.com/sunrh/spring-reference-chinese) | 翻译了Spring文档的简介、新特性和容器IOC部分，不包含Spring MVC翻译。但已是1年为更新 |
+| [Spring Framework 4.x参考文档](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [waylau](https://github.com/waylau) | [Github](https://github.com/waylau/spring-framework-4-reference) | 翻译了Spring文档的简介、新特性和容器IOC部分内容 |
+| [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [sunrh](https://github.com/sunrh) | [Github](https://github.com/sunrh/spring-reference-chinese) | 翻译了Spring文档的简介、新特性和容器IOC部分。最近更新已在一年前 |
 | [Spring 中文文档3.1](https://wizardforcel.gitbooks.io/spring-doc-3x/content/) | [wizardforcel](https://github.com/wizardforcel) | - | 主页已标记废弃的项目。楼主BIO是专注单身二十年，言语间竟有一种大学宿友~~不是说我的宿友~~的即视感 |
 | [Spring Framework 2.5翻译计划](http://javasalatu.iteye.com/blog/1212618) | 满江红机构 | - | 文档版本为较早前的2.5，机构首页和维基已打不开，其2.5版本的翻译稿也未能在网上搜到，似已成传说 |
 
+## 其他链接与推广
+
+在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如[OSC](http://my.oschina.net/u/1581831/blog/700769)/[CSDN](http://blog.csdn.net/codecleaner/article/details/51758452)/[Iteye](http://sodagreen-simplicity.iteye.com/admin/blogs/2307252)/[博客园](http://www.cnblogs.com/natasha-yarovenko/p/5616369.html)/[掘金](https://gold.xitu.io/entry/576e56962e958a00572bdb38/detail)/[v2ex](http://www.v2ex.com/t/288717#reply34)等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。但那篇小东西不会包含在这个README里面，而是发表在了自己的博客上。有兴趣的同学，可以前往下面地址浏览。
+
+[**linesh.tw：Spring MVC官方文档翻译稿发布**](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
+
 ## 贡献者 Contributor
 
-感谢为这个项目提PR并且让它变得更好的人们。
+感谢那些让这个项目变得更好的人们。
 
+* ![]( https://avatars0.githubusercontent.com/u/4997466?v=3&s=20)[吕立青](https://github.com/JimmyLv)
 * ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20) [Sun](https://github.com/yaming116)
