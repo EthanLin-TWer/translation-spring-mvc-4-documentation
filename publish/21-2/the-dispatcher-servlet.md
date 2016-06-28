@@ -42,7 +42,6 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 `WebApplicationInitializer`是Spring MVC提供的一个接口，它会查找你所有基于代码的配置，并应用它们来初始化Servlet 3版本以上的web容器。它有一个抽象的实现`AbstractDispatcherServletInitializer`，用以简化`DispatcherServlet`的注册工作：你只需要指定其servlet映射（mapping）即可。若想了解更多细节，可以参考[基于代码的Servlet容器初始化](../21-15/code-based-servlet-container-initialization.md)一节。
 
-
 上面只是配置Spring Web MVC的第一步，接下来你需要配置其他的一些bean（除了`DispatcherServlet`以外的其他bean），它们也会被Spring Web MVC框架使用到。
 
 在[6.15 应用上下文ApplicationContext的其他作用)](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/beans.html#context-introduction)一节中我们聊到，Spring中的`ApplicationContext`实例是可以有范围（scope）的。在Spring MVC中，每个`DispatcherServlet`都持有一个自己的上下文对象`WebApplicationContext`，它又继承了根（root）`WebApplicationContext`对象中已经定义的所有bean。这些继承的bean可以在具体的Servlet实例中被重载，在每个Servlet实例中你也可以定义其scope下的新bean。
@@ -68,8 +67,6 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 ```
 
 有了以上的Servlet配置文件，你还需要在应用中的`/WEB-INF/`路径下创建一个`golfing-servlet.xml`文件，在该文件中定义所有Spring MVC相关的组件（比如bean等）。你可以通过servlet初始化参数为这个配置文件指定其他的路径（见下面的例子）：
-
-你也可以改变这个配置文件所在的目录。。。
 
 当你的应用中只需要一个`DispatcherServlet`时，只配置一个根context对象也是可行的。
 
