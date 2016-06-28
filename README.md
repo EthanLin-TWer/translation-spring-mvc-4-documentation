@@ -46,7 +46,7 @@
 
 在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如[OSC](http://my.oschina.net/u/1581831/blog/700769)/[CSDN](http://blog.csdn.net/codecleaner/article/details/51758452)/[Iteye](http://sodagreen-simplicity.iteye.com/admin/blogs/2307252)/[博客园](http://www.cnblogs.com/natasha-yarovenko/p/5616369.html)/[掘金](https://gold.xitu.io/entry/576e56962e958a00572bdb38/detail)/[v2ex](http://www.v2ex.com/t/288717#reply34)等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。但那篇小东西不会包含在这个README里面，而是发表在了自己的博客上。有兴趣的同学，可以前往下面地址浏览。
 
-[**linesh.tw：Spring MVC官方文档翻译稿发布**](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
+[**linesh.tw**：Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
 
 ## 贡献者 Contributor
 
