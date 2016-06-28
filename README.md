@@ -10,9 +10,9 @@
 
 译文戳这里马上阅读[mvc.linesh.tw](http://mvc.linesh.tw)。
 
-阅读过程任何想法、建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~、觉得赞、觉得不赞，无论关于翻译、技术、样式等，欢迎让我听到你们的声音。你可以：
+阅读过程任何想法、建议、吐槽、强迫症~~不给译者狂点100个赞就浑身不舒服~~、觉得赞、觉得不赞，无论关于翻译、技术、样式等，请让我知道。你可以：
 
-* [来Github赞我~~被消费一个~~](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)
+* [来Github赞我 ~~被消费一个~~](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation)
 * 在Gitbook讨论里[给我留言](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
 * 在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
 * 在Github里给这个项目提[pull request](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/pulls)
@@ -44,7 +44,7 @@
 
 ## 其他链接与推广
 
-在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。但那篇小东西不会包含在这个README里面，而是发表在了自己的博客上。有兴趣的同学，可以前往下面地址浏览。
+在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。但那篇小东西不会包含在这个README里面，而是发表在了自己的博客上。有兴趣的同学，可以前往下面地址浏览。
 
 [**linesh.tw**：Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
 
@@ -52,5 +52,5 @@
 
 感谢那些让这个项目变得更好的人们。
 
-* ![]( https://avatars0.githubusercontent.com/u/4997466?v=3&s=20)[吕立青](https://github.com/JimmyLv)
+* ![](https://avatars0.githubusercontent.com/u/4997466?v=3&s=20)[吕立青](https://github.com/JimmyLv)
 * ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20) [Sun](https://github.com/yaming116)
