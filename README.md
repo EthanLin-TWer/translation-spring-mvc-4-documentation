@@ -53,5 +53,6 @@
 感谢那些让这个项目变得更好的人们。
 
 * ![](https://avatars0.githubusercontent.com/u/4997466?v=3&s=20)[ 吕立青](https://github.com/JimmyLv)
-* ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20) [ Sun](https://github.com/yaming116)
+* ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20)[ Sun](https://github.com/yaming116)
 * ![](https://avatars0.githubusercontent.com/u/7877752?v=3&s=20)[ SongWang](https://github.com/aCoder2013)
+* ![](https://avatars3.githubusercontent.com/u/1506425?v=3&s=20)[ 易枭寒](https://github.com/Yixiaohan)
