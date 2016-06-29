@@ -6,7 +6,7 @@
 
 > Spring 2.5 introduced an annotation-based programming model for MVC controllers that uses annotations such as `@RequestMapping`, `@RequestParam`, `@ModelAttribute`, and so on. This annotation support is available for both Servlet MVC and Portlet MVC. Controllers implemented in this style do not have to extend specific base classes or implement specific interfaces. Furthermore, they do not usually have direct dependencies on Servlet or Portlet APIs, although you can easily configure access to Servlet or Portlet facilities.
 
-Spring 2.5开始采用基于注解的编程方式，使用了`@RequestMapping`、`@RequestParam`、`@ModelAttribute`等注解来支持MVC的控制器实现。这些注解即可应用于基于Servlet的MVC，也可应用于基于Portlet的MVC。通过此种方式实现的控制器既无需继承某个特定的基类，也无需实现某些特定的接口。事实上，它通常也不会直接依赖于Servlet或者Portlet的API来进行编程，但你仍然可以很容易地获取Servlet或Portlet的一些基础配置或设施。
+Spring 2.5开始采用基于注解的编程方式，使用了`@RequestMapping`、`@RequestParam`、`@ModelAttribute`等注解来支持MVC的控制器实现。这些注解既可应用于基于Servlet的MVC，也可应用于基于Portlet的MVC。通过此种方式实现的控制器既无需继承某个特定的基类，也无需实现某些特定的接口。事实上，它通常也不会直接依赖于Servlet或者Portlet的API来进行编程，但你仍然可以很容易地获取Servlet或Portlet的一些基础配置或设施。
 
 > > Available in the spring-projects Org on Github, a number of web applications leverage the annotation support described in this section including MvcShowcase, MvcAjax, MvcBasic, PetClinic, PetCare, and others.
 
