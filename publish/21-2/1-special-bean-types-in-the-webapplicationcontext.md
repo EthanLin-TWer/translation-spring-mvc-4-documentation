@@ -2,17 +2,6 @@
 
 Spring的`DispatcherServlet`使用了特殊的bean来处理请求、渲染视图等，这些特定的bean是Spring MVC框架的一部分。如果你想指定使用哪个特定的bean，你可以在web应用上下文`WebApplicationContext`中简单地配置它们。当然这只是可选的，Spring MVC维护了一个默认的bean列表，如果你没有进行特别的配置，框架将会使用默认的bean。下一小节会介绍更多的细节，这里，我们将先快速地看一下，`DispatcherServlet`都依赖于哪些特殊的bean来进行它的初始化。
 
-> | Bean Type | Explanation |
-> | :-------- | :---------- |
-> | [`HandlerMapping`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-handlermapping)| Maps incoming requests to handlers and a list of pre- and post-processors (handler interceptors) based on some criteria the details of which vary by `HandlerMapping` implementation. The most popular implementation supports annotated controllers but other implementations exists as well. |
-> | `HandlerAdapter` | Helps the `DispatcherServlet` to invoke a handler mapped to a request regardless of the handler is actually invoked. For example, invoking an annotated controller requires resolving various annotations. Thus the main purpose of a `HandlerAdapter` is to shield the `DispatcherServlet` from such details. |
-> | [`HandlerExceptionResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-exceptionhandlers)| Maps exceptions to views also allowing for more complex exception handling code. |
-> | [`ViewResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-viewresolver)| Resolves logical String-based view names to actual View types. |
-> | [`LocaleResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-localeresolver) & [`LocaleContextResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-timezone)| Resolves the locale a client is using and possibly their time zone, in order to be able to offer internationalized views. |
-> | [`ThemeResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-themeresolver) | Resolves themes your web application can use, for example, to offer personalized layouts. |
-> | [`MultipartResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-multipart) | Parses multi-part requests for example to support processing file uploads from HTML forms. |
-> | [`FlashMapManager`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-flash-attributes) | Stores and retrieves the "input" and the "output" `FlashMap` that can be used to pass attributes from one request to another, usually across a redirect. |
-
 
 | bean的类型 | 作用 |
 | :-------- | :---------- |
@@ -21,6 +10,6 @@ Spring的`DispatcherServlet`使用了特殊的bean来处理请求、渲染视图
 | [`HandlerExceptionResolver`](../21-11/1-handler-exception-handler.md)| 处理器异常解析器。它负责将捕获的异常映射到不同的视图上去，此外还支持更复杂的异常处理代码。 |
 | [`ViewResolver`](../21-5/resolving-views.md) | 视图解析器。它负责将一个代表逻辑视图名的字符串（String）映射到实际的视图类型`View`上。 |
 | [`LocaleResolver`](../21-8/using-locales.md) & [`LocaleContextResolver`](../21-8/1-obtaining-time-zone-information.md)| 地区解析器 和 地区上下文解析器。它们负责解析客户端所在的地区信息甚至时区信息，为国际化的视图定制提供了支持。 |
-| [`ThemeResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-themeresolver) | 解析web应用所能使用的主题，比如提供一些定制化的布局、视图等。 |
-| [`MultipartResolver`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-multipart) | 解析多部分传输的请求，比如支持通过HTML表单进行的文件上传的处理等。 |
-| [`FlashMapManager`](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-flash-attributes) | 能够存储并取回负责输入输出（input and output）的`FlashMap`对象。后者可用于在请求之间传递数据，通常是在请求的重定向情境下使用。 |
+| [`ThemeResolver`](../21-9/1-overview-of-themes.md) | 主题解析器。它负责解析你web应用中可用的主题，比如，提供一些个性化定制的布局等。 |
+| [`MultipartResolver`](../21-10/springs-multipart-file-upload-support.md) | 解析multi-part的传输请求，比如支持通过HTML表单进行的文件上传等。 |
+| [`FlashMapManager`](../21-6/using-flash-attributes.md) | FlashMap管理器。它能够存储并取回两次请求之间的`FlashMap`对象。后者可用于在请求之间传递数据，通常是在请求重定向的情境下使用。 |
