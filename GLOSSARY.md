@@ -43,6 +43,16 @@
 ## 处理器适配器
 21.2.1 handler adapter
 
+## 处理器异常解析器
+21.2.1 handler exception resolver
+
+## 逻辑视图名
+21.2.1 logical view names
+
+## 地区信息
+### 地区
+21.2.1 locale(s)
+
 ## 表示
 representation
 
