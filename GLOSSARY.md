@@ -37,6 +37,12 @@
 ## 分发
 21.2.1 dispatch，Spring的中央处理器就是这个`DispatcherServlet`，它负责的事情，就是分发(dispatch)请求
 
+## 处理器映射
+21.2.1 handler mapping
+
+## 处理器适配器
+21.2.1 handler adapter
+
 ## 表示
 representation
 
