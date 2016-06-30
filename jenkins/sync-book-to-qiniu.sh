@@ -1,8 +1,6 @@
 # !/bin/sh
 
-node ./jenkins/sync-book-to-qiniu.js
+node ./jenkins/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY
 
-pwd
-
-echo $ACCESS_KEY
-echo $SECRET_KEY
+pwd 
+tree -L 3
