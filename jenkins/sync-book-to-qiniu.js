@@ -12,11 +12,12 @@ console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
 console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
-const uploadingBookDirectory = glob.sync('_book/**/*.*', {}).map(name => name.substring(6, name.length))
+const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {}).map(name => name.substring(6, name.length))
 console.log('all: ' + uploadingBookDirectory);
 
-all.foreach(key => {
-    uploadFile(policyToken(buckey, key), key, key)
+uploadingBookDirectoryFiles.foreach(filename => {
+    const resource_key_in_qiniu_api = filename;
+    uploadFile(policyToken(buckey, resource_key_in_qiniu_api), resource_key_in_qiniu_api, filename)
 })
 
 function policyToken(bucket, key) {
