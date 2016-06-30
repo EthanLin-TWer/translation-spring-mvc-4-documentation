@@ -14,9 +14,11 @@ console.log('BUCKET: ' + bucket);
 
 console.log('below should get executed: ');
 
-const uploadingBookDirectory = glob.sync('_book/**/*.*', {}).split(',').map(name => name.substring(0, 6))
+const bookDirectoryList = glob.sync('_book/**/*.*', {});
+console.log(bookDirectoryList);
 
-console.log('all: ' + uploadingBookDirectory);
+const uploadingFiles = bookDirectoryList.split(',').map(name => name.substring(0, 6))
+console.log('all: ' + uploadingFiles);
 //
 // all.foreach(file => {
 //     let key = file.substring(9, file.length);
