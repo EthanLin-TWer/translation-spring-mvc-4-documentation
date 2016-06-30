@@ -13,7 +13,6 @@ console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
 const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {}).map(name => name.substring(6, name.length))
-console.log('all: ' + uploadingBookDirectory);
 
 uploadingBookDirectoryFiles.foreach(filename => {
     const resource_key_in_qiniu_api = filename;
