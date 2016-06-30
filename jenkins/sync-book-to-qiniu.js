@@ -3,8 +3,10 @@ let fs = require('fs');
 let glob = require('glob');
 let crypto = require('crypto-js')
 
-let accessKey = process.argv.slice(2);
-let secretKey = process.argv.slice(3);
+let qiniukeys = process.argv.slice(2).split(',');
+
+let accessKey = qiniukeys[0];
+let secretKey = qiniukeys[1];
 
 console.log('ak: ' + accessKey);
 console.log('sk: ' + secretKey);
