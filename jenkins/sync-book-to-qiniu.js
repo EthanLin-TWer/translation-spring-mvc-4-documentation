@@ -12,13 +12,10 @@ console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
 console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
-console.log('below should get executed: ');
-
-const bookDirectoryList = glob.sync('_book/**/*.*', {});
-console.log(bookDirectoryList);
-
-const uploadingFiles = bookDirectoryList.split(',').map(name => name.substring(0, 6))
 console.log('all: ' + uploadingFiles);
+
+const uploadingBookDirectory = glob.sync('_book/**/*.*', {}).map(name => name.substring(0, 6))
+console.log('all: ' + uploadingBookDirectory);
 //
 // all.foreach(file => {
 //     let key = file.substring(9, file.length);
