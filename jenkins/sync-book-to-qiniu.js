@@ -1,25 +1,22 @@
-const qiniu = require("qiniu");
-const glob = require('glob');
+const qiniu  = require("qiniu");
+const glob   = require('glob');
+const crypto = require('crypto-js')
 
-// node ./jenkins/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY $ENCRYPTOR
+// node ./jenkins/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY
 let qiniuAccessKey = process.argv.slice(2, 3);
 let qiniuSecretKey = process.argv.slice(3);
 
-qiniu.conf.ACCESS_KEY = qiniuAccessKey;
-qiniu.conf.SECRET_KEY = qiniuSecretKey;
-const bucket = 'mvc-linesh-tw';
-
-console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
-console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
-console.log('BUCKET: ' + bucket);
+qiniu.conf.ACCESS_KEY = qiniuAccessKey.toString(crypto.enc.Utf8);;
+qiniu.conf.SECRET_KEY = qiniuSecretKey.toString(crypto.enc.Utf8);;
+bucket = 'mvc-linesh-tw';
 
 const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {})
 
 uploadingBookDirectoryFiles.forEach(filename => {
     const resource_key_in_qiniu_api = filename.substring('_book/'.length, filename.length);
-    console.log('key: ' + resource_key_in_qiniu_api);
-    console.log('filepath: ' + filename);
-    uploadFile(policyToken(bucket, resource_key_in_qiniu_api), resource_key_in_qiniu_api, filename)
+
+    const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();
+    uploadFile(policyToken, resource_key_in_qiniu_api, filename)
 })
 
 function policyToken(bucket, key) {

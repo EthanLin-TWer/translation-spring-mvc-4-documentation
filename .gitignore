@@ -6,3 +6,9 @@ _book
 
 # Gitbook plugins installed by npm
 node_modules
+
+# Intellij files
+.idea
+*.ipr
+*.iws
+*.iml
