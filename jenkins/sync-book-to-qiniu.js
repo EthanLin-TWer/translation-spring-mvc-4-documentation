@@ -22,7 +22,7 @@ glob.sync('_book/**/*.*', {}).forEach(filename => {
 function uploadFile(uptoken, key, localFile) {
     let extra = new qiniu.io.PutExtra();
     qiniu.io.putFile(uptoken, key, localFile, extra, function(error, response) {
-        if(!err) {
+        if(!error) {
             console.log('[Success] File uploaded: ' + response.key);
         } else {
             console.log(error);
