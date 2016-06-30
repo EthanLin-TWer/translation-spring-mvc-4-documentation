@@ -15,6 +15,7 @@ console.log('BUCKET: ' + bucket);
 const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {}).map(name => name.substring(6, name.length))
 
 console.log(uploadingBookDirectoryFiles);
+console.log('uploadingBookDirectoryFiles instanceof Array: ' + uploadingBookDirectoryFiles instanceof Array);
 
 uploadingBookDirectoryFiles.foreach(filename => {
     const resource_key_in_qiniu_api = filename;
