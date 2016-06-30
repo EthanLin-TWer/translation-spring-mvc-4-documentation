@@ -12,8 +12,6 @@ console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
 console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
-console.log('all: ' + uploadingFiles);
-
 const uploadingBookDirectory = glob.sync('_book/**/*.*', {}).map(name => name.substring(0, 6))
 console.log('all: ' + uploadingBookDirectory);
 //
