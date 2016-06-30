@@ -12,6 +12,19 @@ console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
 console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
+console.log('below should get executed: ');
+
+const all = glob.sync('../_book/**/*.*', {})
+
+console.log('all: ' + all);
+//
+// all.foreach(file => {
+//     let key = file.substring(9, file.length);
+//     console.log('key:' + key);
+//     let token = uptoken(bucket, key);
+//     console.log('token:' + token);
+//     uploadFile(token, key, file)
+// })
 
 function uptoken(bucket, key) {
   return new qiniu.rs.PutPolicy(bucket + ":" + key).token(); // ':' means allow override upload
@@ -33,16 +46,3 @@ function uploadFile(uptoken, key, localFile) {
       }
   });
 }
-
-
-const all = glob.sync('../_book/**/*.*', {})
-
-console.log(all);
-//
-// all.foreach(file => {
-//     let key = file.substring(9, file.length);
-//     console.log('key:' + key);
-//     let token = uptoken(bucket, key);
-//     console.log('token:' + token);
-//     uploadFile(token, key, file)
-// })
