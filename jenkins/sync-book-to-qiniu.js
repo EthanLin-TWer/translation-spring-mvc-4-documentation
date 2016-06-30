@@ -12,7 +12,7 @@ qiniu.conf.ACCESS_KEY = decrypt(crypto, encryptedAccessKeyFromPipeline, encrypto
 qiniu.conf.SECRET_KEY = decrypt(crypto, encryptedSecretKeyFromPipeline, encryptor);
 bucket = 'mvc-linesh-tw';
 
-decrypt(crypto, qiniu_key, encrytpor) {
+function decrypt(crypto, qiniu_key, encrytpor) {
     return crypto.AES.decrypt(qiniu_key, encryptor).toString(crypto.enc.Utf8);
 }
 
