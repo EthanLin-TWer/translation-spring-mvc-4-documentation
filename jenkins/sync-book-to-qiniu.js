@@ -13,17 +13,12 @@ bucket = 'mvc-linesh-tw';
 
 glob.sync('_book/**/*.*', {}).forEach(filename => {
     const resource_key_in_qiniu_api = filename.substring('_book/'.length, filename.length);
-    const policyToken = policyToken(bucket, resource_key_in_qiniu_api);
+    // ':' means allow override upload. For further details refer to offical API docs
+    const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();
 
     uploadFile(policyToken, resource_key_in_qiniu_api, filename)
 })
 
-function policyToken(bucket, key) {
-    // ':' means allow override upload. For further details refer to offical API docs
-    return new qiniu.rs.PutPolicy(bucket + ":" + key).token();
-}
-
-//构造上传函数
 function uploadFile(uptoken, key, localFile) {
     let extra = new qiniu.io.PutExtra();
     qiniu.io.putFile(uptoken, key, localFile, extra, function(error, response) {
