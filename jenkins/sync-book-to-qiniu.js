@@ -14,7 +14,7 @@ console.log('BUCKET: ' + bucket);
 
 console.log('below should get executed: ');
 
-const all = glob.sync('../_book/**/*.*', {})
+const all = glob.sync('_book/**/*.*', {})
 
 console.log('all: ' + all);
 //
