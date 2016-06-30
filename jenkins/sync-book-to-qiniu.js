@@ -1,7 +1,5 @@
 const qiniu = require("qiniu");
-const fs = require('fs');
 const glob = require('glob');
-const crypto = require('crypto-js')
 
 let qiniuAccessKey = process.argv.slice(2, 3);
 let qiniuSecretKey = process.argv.slice(3);
@@ -37,13 +35,14 @@ function uploadFile(uptoken, key, localFile) {
 }
 
 
-glob('_book/**/*.*', {}, (error, files) => {
-    files.map(file => {
-        let key = file.substring(9, file.length);
-        console.log('key:' + key);
-        let token = uptoken(bucket, key);
-        console.log('token:' + token);
-        uploadFile(token, key, file)
-    })
+const all = glob.sync('../_book/**/*.*', {})
 
-})
+console.log(all);
+//
+// all.foreach(file => {
+//     let key = file.substring(9, file.length);
+//     console.log('key:' + key);
+//     let token = uptoken(bucket, key);
+//     console.log('token:' + token);
+//     uploadFile(token, key, file)
+// })
