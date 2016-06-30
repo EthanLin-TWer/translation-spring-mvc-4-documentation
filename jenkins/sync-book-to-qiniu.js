@@ -24,11 +24,11 @@ glob.sync('_book/**/*.*', {}).filter(filename => {
         if (filename.endsWith(ignored)) return false;
     }
     return true;
-}).forEach(filename => {
-    const resource_key_in_qiniu_api = filename.substring('_book/'.length, filename.length);
+}).forEach(filepath => {
+    const resource_key_in_qiniu_api = filepath.substring('_book/'.length, filepath.length);
     // ':' means allow override upload. For further details refer to offical API docs
     const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();
-    uploadFile(policyToken, resource_key_in_qiniu_api, filename)
+    uploadFile(policyToken, resource_key_in_qiniu_api, filepath)
 })
 
 function uploadFile(uptoken, key, localFile) {
