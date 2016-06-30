@@ -37,7 +37,7 @@ function uploadFile(uptoken, key, localFile) {
 }
 
 
-glob('../_book/**/*.*', {}, (error, files) => {
+glob('_book/**/*.*', {}, (error, files) => {
     files.map(file => {
         let key = file.substring(9, file.length);
         console.log('key:' + key);
