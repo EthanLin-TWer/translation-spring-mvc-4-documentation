@@ -1,6 +1,7 @@
 const qiniu = require("qiniu");
 const glob = require('glob');
 
+// node ./jenkins/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY $ENCRYPTOR
 let qiniuAccessKey = process.argv.slice(2, 3);
 let qiniuSecretKey = process.argv.slice(3);
 
@@ -15,7 +16,7 @@ console.log('BUCKET: ' + bucket);
 const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {})
 
 uploadingBookDirectoryFiles.forEach(filename => {
-    const resource_key_in_qiniu_api = filename.substring(6, filename.length);
+    const resource_key_in_qiniu_api = filename.substring('_book/'.length, filename.length);
     console.log('key: ' + resource_key_in_qiniu_api);
     console.log('filepath: ' + filename);
     uploadFile(policyToken(bucket, resource_key_in_qiniu_api), resource_key_in_qiniu_api, filename)
