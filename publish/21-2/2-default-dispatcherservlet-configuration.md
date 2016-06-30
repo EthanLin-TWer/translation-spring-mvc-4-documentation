@@ -1,12 +1,8 @@
 # 21.2.2 默认的DispatcherServlet配置
 
-> As mentioned in the previous section for each special bean the `DispatcherServlet` maintains a list of implementations to use by default. This information is kept in the file `DispatcherServlet.properties` in the package `org.springframework.web.servlet`.
+上一小节讲到，`DispatcherServlet`维护了一个列表，其中保存了其所依赖的所有bean的默认实现。这个列表保存在包`org.springframework.web.servlet`下的`DispatcherServlet.properties`文件中。
 
-正如前一个小节所描述的，`DispatcherServlet`维护了一个列表，其中保存了所有依赖的bean的一个默认实现。这份信息配置在包`org.springframework.web.servlet`下的`DispatcherServlet.properties`中.
-
-> All special beans have some reasonable defaults of their own. Sooner or later though you’ll need to customize one or more of the properties these beans provide. For example it’s quite common to configure an `InternalResourceViewResolver` settings its `prefix` property to the parent location of view files.
-
-所有特定的bean都有一些基本的默认行为。而或多或少你都可能需要对它们提供的一些默认属性进行配置，比如说一个很常用的定制是，通过配置`InternalResourceViewResolver`类中的`prefix`属性，使其指向视图文件所在的目录。
+这些特殊的bean都有一些基本的默认行为。或早或晚，你可能需要对它们提供的一些默认配置进行定制。比如说，通常你需要配置`InternalResourceViewResolver`类提供的`prefix`属性，使其指向视图文件所在的目录。
 
 > Regardless of the details, the important concept to understand here is that once you configure a special bean such as an InternalResourceViewResolver in your WebApplicationContext, you effectively override the list of default implementations that would have been used otherwise for that special bean type. For example if you configure an InternalResourceViewResolver, the default list of ViewResolver implementations is ignored.
 
