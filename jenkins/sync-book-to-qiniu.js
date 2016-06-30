@@ -6,30 +6,29 @@ let qiniuSecretKey = process.argv.slice(3);
 
 qiniu.conf.ACCESS_KEY = qiniuAccessKey;
 qiniu.conf.SECRET_KEY = qiniuSecretKey;
-bucket = 'mvc-linesh-tw';
+const bucket = 'mvc-linesh-tw';
 
 console.log('QINIU_ACCESS_KEY: ' + qiniu.conf.ACCESS_KEY);
 console.log('QINIU_SECRET_KEY: ' + qiniu.conf.SECRET_KEY);
 console.log('BUCKET: ' + bucket);
 
-const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {}).map(name => name.substring(6, name.length))
+const uploadingBookDirectoryFiles = glob.sync('_book/**/*.*', {})
 
-console.log(uploadingBookDirectoryFiles);
-console.log('uploadingBookDirectoryFiles instanceof Array: ' + uploadingBookDirectoryFiles instanceof Array);
-
-uploadingBookDirectoryFiles.foreach(filename => {
-    const resource_key_in_qiniu_api = filename;
-    uploadFile(policyToken(buckey, resource_key_in_qiniu_api), resource_key_in_qiniu_api, filename)
+uploadingBookDirectoryFiles.forEach(filename => {
+    const resource_key_in_qiniu_api = filename.substring(6, filename.length);
+    console.log('key: ' + resource_key_in_qiniu_api);
+    console.log('filepath: ' + filename);
+    uploadFile(policyToken(bucket, resource_key_in_qiniu_api), resource_key_in_qiniu_api, filename)
 })
 
 function policyToken(bucket, key) {
   return new qiniu.rs.PutPolicy(bucket + ":" + key).token(); // ':' means allow override upload
 }
 
-
 //构造上传函数
 function uploadFile(uptoken, key, localFile) {
-  var extra = new qiniu.io.PutExtra();
+    var extra = new qiniu.io.PutExtra();
+    console.log('------------- Uploading file -------------')
     qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
       if(!err) {
         // 上传成功， 处理返回值
@@ -40,5 +39,5 @@ function uploadFile(uptoken, key, localFile) {
         console.log('==========================Boom===========================');
         console.log(err);
       }
-  });
+    });
 }
