@@ -19,7 +19,7 @@
 
 本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。其附带价值则不是我所应思考的。如果文档能够对可能的读者有所帮助，则是幸运。
 
-在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章也是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。
+在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/segmentfault/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章也是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。
 
 * [Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
 * [我是如何进行Spring MVC文档翻译项目的环境搭建、项目管理及自动化构建工作的](http://blog.linesh.tw/#/posts/2016-06-26-auto-deploy-translation-to-production-using-jenkins-and-qiniu)
