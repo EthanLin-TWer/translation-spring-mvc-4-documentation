@@ -2,15 +2,12 @@
 
 配置好`DispatcherServlet`以后，开始有请求会经过这个`DispatcherServlet`。此时，`DispatcherServlet`会依照以下的次序对请求进行处理：
 
-> * An appropriate handler is searched for. If a handler is found, the execution chain associated with the handler (preprocessors, postprocessors, and controllers) is executed in order to prepare a model or rendering.
-> * If a model is returned, the view is rendered. If no model is returned, (may be due to a preprocessor or postprocessor intercepting the request, perhaps for security reasons), no view is rendered, because the request could already have been fulfilled.
-
 * 首先，搜索应用的上下文对象`WebApplicationContext`并把它作为一个属性（attribute）绑定到该请求上，以便控制器和其他组件能够使用它。属性的键名默认为`DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE`
 * 将地区（locale）解析器绑定到请求上，以便其他组件在处理请求（渲染视图、准备数据等）时可以获取区域相关的信息。如果你的应用不需要解析区域相关的信息，忽略它即可
 * 将主题（theme）解析器绑定到请求上，以便其他组件（比如视图等）能够了解要渲染哪个主题文件。同样，如果你不需要使用主题相关的特性，忽略它即可
 * 如果你配置了multipart文件处理器，那么框架将查找该文件是不是multipart（分为多个部分连续上传）的。若是，则将该请求包装成一个`MultipartHttpServletRequest`对象，以便处理链中的其他组件对它做进一步的处理。关于Spring对multipart文件传输处理的支持，读者可以参考[21.10 Spring的multipart（文件上传）支持](../21-10/springs-multipart-file-upload-support.md)一小节
-* 为该请求查找一个合适的处理器。如果可以找到对应的处理器，则与该处理器相关的整条执行链（前处理器、后处理器、控制器controller等）都会依次执行，以准备相应的模型（model）和视图可供渲染（view）
-* 如果返回的是一个模型（model），那么相应的视图将会被渲染。若返回的不是一个模型（可能是因为前后的处理器因为某些安全的原因拦截了请求等），则没有视图会被渲染，因为，请求可能已经被fulfilled了（待选词）
+* 为该请求查找一个合适的处理器。如果可以找到对应的处理器，则与该处理器关联的整条执行链（前处理器、后处理器、控制器等）都会被执行，以完成相应模型的准备或视图的渲染
+* 如果处理器返回的是一个模型（model），那么框架将渲染相应的视图。若没有返回任何模型（可能是因为前后的处理器出于某些原因拦截了请求等，比如，安全问题），则框架不会渲染任何视图，此时认为对请求的处理可能已经由处理链完成了
 
 > Handler exception resolvers that are declared in the `WebApplicationContext` pick up exceptions that are thrown during processing of the request. Using these exception resolvers allows you to define custom behaviors to address exceptions.
 
