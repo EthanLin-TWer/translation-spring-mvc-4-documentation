@@ -3,7 +3,7 @@
 一些术语难翻的点可能有以下各个方面，比如：
 
 * 具有宽泛的外延/内涵/比喻义/象征义/指代义（比如request/response，有时指一个HTTP层面的请求，有时指一个应用层级的请求，有时又特指一个请求对象，有时又具体到特定类型`HttpServletRequest`请求对象中的内容或请求头等，又比如mapping，可以动词映射，也可以是名词什么什么映射，有时它还可以省略映射的目标或源对象)
-* 具有相对自治、完整的业务含义（比如scope、action、bean、flashmap、session/conversation等），而该业务领域在中文技术世界又尚无对应词汇
+* 具有相对自治、完整的业务含义（比如scope、action、bean、flashmap、multipart、session/conversation等），而该业务领域在中文技术世界又尚无对应词汇
 
 目前大致的处理方式是：
 

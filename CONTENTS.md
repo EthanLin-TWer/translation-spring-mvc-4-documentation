@@ -34,7 +34,7 @@
     * [关于主题：概览](publish/21-9/1-overview-of-themes.md)
     * [定义主题](publish/21-9/2-defining-themes.md)
     * [主题解析器](publish/21-9/3-theme-resolvers.md)
-* [Spring的多路传输（文件上传）支持](publish/21-10/springs-multipart-file-upload-support.md)
+* [Spring的multipart（文件上传）支持](publish/21-10/springs-multipart-file-upload-support.md)
     * [概述](publish/21-10/1-introduction.md)
     * [使用MultipartResolver与Commons FileUpload传输文件](publish/21-10/2-using-a-multipart-resolver-with-commons-fileupload.md)
     * [Servlet 3.0下的MultipartResolver](publish/21-10/3-using-a-multipart-resolver-with-servlet-3.md)
