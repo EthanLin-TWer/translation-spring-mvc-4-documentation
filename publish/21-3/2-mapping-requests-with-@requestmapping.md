@@ -1,12 +1,10 @@
 # 21.3.2 使用@RequestMapping注解映射请求路径
 
-> [Original] You use the `@RequestMapping` annotation to map URLs such as `/appointments` onto an entire class or a particular handler method. Typically the class-level annotation maps a specific request path (or path pattern) onto a form controller, with additional method-level annotations narrowing the primary mapping for a specific HTTP method request method ("GET", "POST", etc.) or an HTTP request parameter condition.
-
-你可以使用`@RequestMapping`注解来将请求的URL（比如`/appointments`之类的）路径映射到整个类或某个特定的处理方法上去。一般来说，类级别的注解负责将一个特定的请求路径（或者一个符合某种模式的请求路径）映射到一个固定的控制器上，同时通过方法级别的注解来细化映射，即根据HTTP方法的请求方式（“GET”“POST”方法等）或者HTTP请求中携带的参数特征来将请求映射到匹配的方法上。
+你可以使用`@RequestMapping`注解来将请求URL，如`/appointments`等，映射到整个类上或某个特定的处理器方法上。一般来说，类级别的注解负责将一个特定（或符合某种模式）的请求路径映射到一个控制器上，同时通过方法级别的注解来细化映射，即根据特定的HTTP请求方法（“GET”“POST”方法等）、HTTP请求中是否携带特定参数等条件，将请求映射到匹配的方法上。
 
 > [Original] The following example from the Petcare sample shows a controller in a Spring MVC application that uses this annotation:
 
-下面这段代码示例来自Petcare，它展示了在Spring MVC的应用中如何在控制器上使用这个注解：
+下面这段代码示例来自Petcare，它展示了在Spring MVC中如何在控制器上使用`@RequestMapping`注解：
 
 ```java
 @Controller
@@ -46,13 +44,9 @@ public class AppointmentsController {
 }
 ```
 
-> [Original] In the example, the `@RequestMapping` is used in a number of places. The first usage is on the type (class) level, which indicates that all handling methods on this controller are relative to the `/appointments` path. The `get()` method has a further `@RequestMapping` refinement: it only accepts GET requests, meaning that an HTTP GET for `/appointments` invokes this method. The `add()` has a similar refinement, and the `getNewForm()` combines the definition of HTTP method and path into one, so that GET requests for `appointments/new` are handled by that method.
+在上面的示例中，许多地方都使用到了`@RequestMapping`注解。第一次使用点是作用于类级别的，它指示了所有`/appointments`开头的路径都会被映射到控制器下。`get()`方法上的`@RequestMapping`注解对请求路径进行了进一步细化：它仅接受GET方法的请求。这样，一个请求路径为`/appointments`、HTTP方法为GET的请求，将会最终进入到这个方法被处理。`add()`方法也做了类似的细化，而`getNewForm()`方法则同时注解了能够接受的请求的HTTP方法和路径。这种情况下，一个路径为`appointments/new`、HTTP方法为GET的请求将会被这个方法所处理。
 
-在上面的示例中有许多地方都使用到了`@RequestMapping`注解。第一次出现是作用于类型（类）级别的，指示了该控制器下的所有处理方法都将以`/appointments`开头。`get()`方法上的`@RequestMapping`注解将其接受的请求进行了进一步的细化：它只接收GET方法。这样，一个请求路径为`/appointments`的HTTP GET请求将会最终调用到这个方法。`add()`方法也做了类似的细化，而`getNewForm()`方法则同时注解了能够接受的请求的HTTP方法和路径。在这种情况下，一个路径为`appointments/new`的GET请求将会被这个方法所处理。
-
-> [Original] The `getForDay()` method shows another usage of `@RequestMapping`: URI templates. [(See the next section)](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates).
-
-`getForDay()`方法则展示了`@RequestMapping`注解的另一个作用：URI模板。（这个内容请[见下节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates)）
+`getForDay()`方法则展示了使用`@RequestMapping`注解的另一个技巧：URI模板。（关于URI模板，请[见下小节]()）
 
 > [Original] A `@RequestMapping` on the class level is not required. Without it, all paths are simply absolute, and not relative. The following example from the PetClinic sample application shows a multi-action controller using `@RequestMapping`:
 
@@ -164,7 +158,7 @@ URI模板"`/owners/{ownerId}`"指定了一个变量，名为`ownerId`。当控�
 >     // 具体的方法代码…
 > }
 > ```
-> 
+>
 > 或者，如果URI模板中的变量名与方法的参数名是相同的，则你可以不必再指定一次。只要你在编译的时候留下debug信息，Spring MVC就可以自动匹配URL模板中与方法参数名相同的变量名。
 > ```java
 > @RequestMapping(path="/owners/{ownerId}", method=RequestMethod.GET)
@@ -269,7 +263,7 @@ specific than `/hotels/*`.
 除此之外，还有一些其他的规则：
 
 > [Original] * The **default mapping pattern** `/**` is less specific than any other pattern. For example `/api/{a}/{b}/{c}` is more specific.
-> 
+>
 > [Original] * A **prefix pattern** such as `/public/**` is less specific than any other pattern that doesn't contain double wildcards. For example `/public/path3/{a}/{b}/{c}` is more specific.
 
 * __默认的通配模式__`/**`比其他所有的模式都更“不准确”。比方说，`/api/{a}/{b}/{c}`就比默认的通配模式`/**`要更准确
