@@ -48,9 +48,7 @@ public class AppointmentsController {
 
 `getForDay()`方法则展示了使用`@RequestMapping`注解的另一个技巧：URI模板。（关于URI模板，请[见下小节]()）
 
-> [Original] A `@RequestMapping` on the class level is not required. Without it, all paths are simply absolute, and not relative. The following example from the PetClinic sample application shows a multi-action controller using `@RequestMapping`:
-
-类级别的`@RequestMapping`注解并不是必须的。没有指定它的话则所有的路径都是绝对路径，而非相对路径。以下的代码示例来自PetClinic，它展示了一个具备多个处理方法的控制器：
+类级别的`@RequestMapping`注解并不是必须的。不配置的话则所有的路径都是绝对路径，而非相对路径。以下的代码示例来自PetClinic，它展示了一个具有多个处理器方法的控制器：
 
 ```java
 @Controller
@@ -75,11 +73,7 @@ public class ClinicController {
 }
 ```
 
-> [Original] The above example does not specify GET vs. PUT, POST, and so forth, because `@RequestMapping` maps all HTTP methods by default. Use `@RequestMapping(method=GET)` to narrow the mapping.
-
-以上代码并不区分请求是GET方法还是PUT/POST或其他方法，因此`@RequestMapping`注解默认是映射所有的HTTP请求方法的。如果想要指定相应的请求方法类型，请使用`@RequestMapping(method=GET)`来缩小范围。
-
-> [Original] ## @Controller and AOP Proxying
+以上代码没有指定请求必须是GET方法还是PUT/POST或其他方法，`@RequestMapping`注解默认会映射所有的HTTP请求方法。如果仅想接收某种请求方法，请在注解中指定之`@RequestMapping(method=GET)`以缩小范围。
 
 ## @Controller和面向切面（AOP）代理
 
