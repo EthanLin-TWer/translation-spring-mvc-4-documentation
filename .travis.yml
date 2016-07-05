@@ -1,5 +1,8 @@
 language: node_js
 node_js:
-  - "6.1"
+    - "6.1"
 install:
-  - npm install
+    - npm install
+script:
+    - gitbook build
+    - ./jenkins/sync-book-to-qiniu.sh
