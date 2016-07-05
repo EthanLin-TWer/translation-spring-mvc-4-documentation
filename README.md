@@ -15,14 +15,15 @@
 ## 原文地址
 [Spring MVC 4.2.4.RELEASE Documentation](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html)
 
-## 其他链接与推广
+## 友情链接
 
-本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。其附带价值则不是我所应思考的。如果文档能够对可能的读者有所帮助，则是幸运。
+本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。“我不确知多少读者需要读此文档，不知多少人果真读之而受益。这不是我能估测、所能评断之事。”昨晚在看陈丹青的《木心谈木心》，讲到他犹豫于出版木心先生这本私房话的心境。正好最近在做翻译、推广，面对我的读者，读之，感觉真挚感动。不敢自比木心，我在我的风中等消息。
 
-在marketing这个译本的时候，我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/segmentfault/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章也是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。
+这个译本我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/segmentfault/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。最末，连同本项目托管在Travis上的自动化构建网址一并附上。
 
 * [Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
 * [我是如何进行Spring MVC文档翻译项目的环境搭建、项目管理及自动化构建工作的](http://blog.linesh.tw/#/posts/2016-06-26-auto-deploy-translation-to-production-using-jenkins-and-qiniu)
+* [Travis: 本项目的CI](https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation)
 
 ## 其他相关翻译项目
 
@@ -55,3 +56,4 @@
 * ![](https://avatars0.githubusercontent.com/u/2171071?v=3&s=20)[ Sun](https://github.com/yaming116)
 * ![](https://avatars0.githubusercontent.com/u/7877752?v=3&s=20)[ SongWang](https://github.com/aCoder2013)
 * ![](https://avatars3.githubusercontent.com/u/1506425?v=3&s=20)[ 易枭寒](https://github.com/Yixiaohan)
+* ![](https://avatars1.githubusercontent.com/u/5453359?v=3&s=20)[ xcatliu](https://github.com/xcatliu)
