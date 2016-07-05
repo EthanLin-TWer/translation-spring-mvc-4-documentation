@@ -8,4 +8,5 @@ install:
     - npm install
 script:
     - gitbook build
+    - tree
     - ./jenkins/sync-book-to-qiniu.sh
