@@ -4,6 +4,7 @@ node_js:
 cache:
     directories:
         - node_modules
+        - $HOME/travis/.nvm/versions/node/v6.1.0/lib/node_modules # Caches global gitbook-cli
 before_install:
     - npm uninstall -g gitbook
     - npm install -g gitbook-cli
@@ -11,8 +12,7 @@ install:
     - npm install
 script:
     - gitbook build
-    - tree
-    - ./jenkins/sync-book-to-qiniu.sh
+    - ./travis/sync-book-to-qiniu.sh
 env:
     global:
         - secure: p3RmHREYbuwCCmUPtP50Xishon+ikLwD+eyf8EEnbvh7YqNZDZAcrl/wHkWKu5cwm36VZtgeWoHlaFAnvjCgQTMwO+LGGy2XWBm9kpaiN2AVo3dTHT+1bQFYLMY2Wy16yhqBjDGD6bw8XyhfoSsyu8c8kY5TpiKJzHxd7rsnUPsrfUT0ADkIB9ehaRltqhOEzeEQn3hSHvCS0hd28D6sLY9qFMlsgk6919LuTYEXuQZ95Or0qc8xAZjufmMasUEbGKBbNqcWnozyUWfQumLq8wWhceXOdqKb0LibeHrA7818Wko1qUT2HtGcB+GApbdFlKVR5XESpCaVNDSg524A+6ZlEeuz06nJFBXobemjgKZ1M8XnJp/KBQjhj7nbXnkHkLV00Ske+tJ2VIvf6FOVhTHTNl+4RfGG5RYZ2PgbbO3zg5rH7AY6L2E0lgMu7jW/dcDG5I8zEuOqIZxsWZRiiVrA0C2u6SvxLQ5eL89PVpinIiJLBgHbhJg4+aDNlp4lTjVA2sfynsi4TBjwG+gXv8CyuqRkU2GE5NHutBnB3fU3AbPzh1zT9JsVFu0G8dg7CK6beA6fz5sdTBEGEZy6IGa1AZwv7JcmGNvDZGZmMIG1VYgqSdd/w53Alo6brIlHGplOO0UazY4Qwl61fuy0GKrUBBEKuGwjo7n01aEBKJs=
