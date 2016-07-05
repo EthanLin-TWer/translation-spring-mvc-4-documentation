@@ -3,7 +3,6 @@ const glob   = require('glob');
 const crypto = require('crypto-js')
 
 const ignoredFiles = [
-    'Jenkinsfile.groovy',
     '.travis.yml',
     'sync-book-to-qiniu.js',
     'sync-book-to-qiniu.sh',
