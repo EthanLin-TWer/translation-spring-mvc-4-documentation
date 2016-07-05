@@ -14,7 +14,7 @@
     * [异步请求的处理](publish/21-3/4-asynchronous-request-processing.md)
     * [对控制器测试](publish/21-3/5-testing-controllers.md)
 * [处理器映射](publish/21-4/handler-mappings.md)
-    * [使用HandlerInterceptor拦截请求](publish/21-4/1-intercepting-requests-with-a-handler-interceptor.md);
+    * [使用HandlerInterceptor拦截请求](publish/21-4/1-intercepting-requests-with-a-handler-interceptor.md)
 * [视图解析](publish/21-5/resolving-views.md)
     * [使用ViewResolver接口解析视图](publish/21-5/1-resolving-views-with-the-view-resolver-interface.md)
     * [视图链](publish/21-5/2-chaining-view-resolvers.md)
