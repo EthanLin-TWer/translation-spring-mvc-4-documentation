@@ -4,7 +4,7 @@ node_js:
 cache:
     directories:
         - node_modules
-        - $HOME/travis/.nvm/versions/node/v6.1.0/lib/node_modules # Caches global gitbook-cli
+        - home/travis/.nvm/versions/node/v6.1.0/lib/node_modules # Caches global gitbook-cli
 before_install:
     - npm uninstall -g gitbook
     - npm install -g gitbook-cli
