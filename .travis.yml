@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-    - "6.1"
+    - '6.1'
 before_install:
     - npm uninstall -g gitbook
     - npm install -g gitbook-cli
@@ -10,3 +10,7 @@ script:
     - gitbook build
     - tree
     - ./jenkins/sync-book-to-qiniu.sh
+env:
+    global:
+        - secure: p3RmHREYbuwCCmUPtP50Xishon+ikLwD+eyf8EEnbvh7YqNZDZAcrl/wHkWKu5cwm36VZtgeWoHlaFAnvjCgQTMwO+LGGy2XWBm9kpaiN2AVo3dTHT+1bQFYLMY2Wy16yhqBjDGD6bw8XyhfoSsyu8c8kY5TpiKJzHxd7rsnUPsrfUT0ADkIB9ehaRltqhOEzeEQn3hSHvCS0hd28D6sLY9qFMlsgk6919LuTYEXuQZ95Or0qc8xAZjufmMasUEbGKBbNqcWnozyUWfQumLq8wWhceXOdqKb0LibeHrA7818Wko1qUT2HtGcB+GApbdFlKVR5XESpCaVNDSg524A+6ZlEeuz06nJFBXobemjgKZ1M8XnJp/KBQjhj7nbXnkHkLV00Ske+tJ2VIvf6FOVhTHTNl+4RfGG5RYZ2PgbbO3zg5rH7AY6L2E0lgMu7jW/dcDG5I8zEuOqIZxsWZRiiVrA0C2u6SvxLQ5eL89PVpinIiJLBgHbhJg4+aDNlp4lTjVA2sfynsi4TBjwG+gXv8CyuqRkU2GE5NHutBnB3fU3AbPzh1zT9JsVFu0G8dg7CK6beA6fz5sdTBEGEZy6IGa1AZwv7JcmGNvDZGZmMIG1VYgqSdd/w53Alo6brIlHGplOO0UazY4Qwl61fuy0GKrUBBEKuGwjo7n01aEBKJs=
+        - secure: dDu3V7mtfyTLt9wXLFfTo0jnONYO60C/RwL/oBX+i6hVShu+Nsk5hoJSPH3xY+bdAJAjWnyxc4lbVDaFdVEgcb/4ExOR1yM0Pdy+MjWXwM1V7fyB33Lk8s5GAF2WGSqZKryR6rCecQBczKAh8lkxME3hLs5ru/MQreUTYZ7B3HBeXxTsLepTtR4Om9ezmiTY7zciu++GiGhTVXdpMZVEcG6nAa4TGwZDrFSoZf5ZL3AoI6Yrq4H24c9WHLkky11W/UWptpMpx5XwgwsQhCm0Vk6lRTZaGEcEny0qCQVgXBAULmDXTEKlADQoXMWw5D0EytQeByc2J9SN3fp29accsX2+eckgdScH2SiAf+bJRZUnOIfrpYgMv0G1GLub0hKqKWlQ1NbBtcuX95DBGqA/v3lpSunS6LoSz0Mb87v+C148JvsBN6OxWHI9nWZiTmqWAsYL91WZ1QXOYkCU9co4+zCEF/oaf1gO8SlbTx9DY8MTog7ybjHdD+ZfNWEeH/ycX1gVQS/T/4ukUmVx9TL3OXnFWgN2jfVABHTh1BzaCO9xEvOgGZI37/518q6URQlUEX/BCkLMa5PSnd3NsQ+ZRR/jZJEgLv3u7qN9tLSMiM8gRzL7opmXWu8Fp9VFRDGTgxGusH4NpNF/TzP8DYv5e9OhkcCZFshENE1DkyiSRSg=
