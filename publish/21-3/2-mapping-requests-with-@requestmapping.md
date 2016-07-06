@@ -77,9 +77,7 @@ public class ClinicController {
 
 ## @Controller和面向切面（AOP）代理
 
-> [Original] In some cases a controller may need to be decorated with an AOP proxy at runtime. One example is if you choose to have `@Transactional` annotations directly on the controller. When this is the case, for controllers specifically, we recommend using class-based proxying. This is typically the default choice with controllers. However if a controller must implement an interface that is not a Spring Context callback (e.g. `InitializingBean`, `*Aware`, etc), you may need to explicitly configure class-based proxying. For example with `<tx:annotation-driven/>`, change to `<tx:annotation-driven proxy-target-class="true"/>`.
-
-在某些情形下，一个控制器可能需要在运行时配置AOP代理来做一些工作。一个很好的例子就是当你直接使用`@Transactional`注解来标注一个控制器的时候。如果——更多的时候是指控制器——有这样的需要，我们推荐使用类级别的代理方式。这是代理控制器的默认做法，但如果控制器同时必须实现另一些不支持Spring Context回调（比如`InitializingBean`, `*Aware`等）的接口，可能就需要你手动地去配置类级别的代理了。比如，配置文件可能需要由`<tx:annotation-driven/>`改为`<tx:annotation-driven proxy-target-class="true"/>`。
+有时，我们希望在运行时使用AOP代理来装饰控制器，比如当你直接在控制器上使用`@Transactional`注解时。这种情况下，我们推荐使用类级别（在控制器上使用）的代理方式。这一般是代理控制器的默认做法。如果控制器必须实现一些接口，而该接口又不支持Spring Context的回调（比如`InitializingBean`, `*Aware`等接口），那要配置类级别的代理就必须手动配置了。比如，原来的配置文件`<tx:annotation-driven/>`需要显式配置为`<tx:annotation-driven proxy-target-class="true"/>`。
 
 > [Original] ## New Support Classes for @RequestMapping methods in Spring MVC 3.1
 
