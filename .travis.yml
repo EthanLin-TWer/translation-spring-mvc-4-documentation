@@ -6,7 +6,7 @@ cache:
         - node_modules
         - /home/travis/.nvm/versions/node/v6.1.0/lib/node_modules # Caches global gitbook-cli
 before_install:
-    - npm install -g gitbook-cli
+    # - npm install -g gitbook-cli # Run this only once, and caches it for later build
 install:
     - npm install
 script:
