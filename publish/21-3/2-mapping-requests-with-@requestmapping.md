@@ -89,7 +89,7 @@ Spring 3.1中新增了一组支持`@RequestMapping`注解的类，分别是`Requ
 
 > [Original] Prior to Spring 3.1, type and method-level request mappings were examined in two separate stages — a controller was selected first by the `DefaultAnnotationHandlerMapping` and the actual method to invoke was narrowed down second by the `AnnotationMethodHandlerAdapter`.
 
-在Spring的3.1版本之前，类级别和方法级别的请求映射是分别在两个阶段中完成的——首先`DefaultAnnotationHanlderMapping`会先选中一个控制器，然后再通过`AnnotationMethodHandlerAdapter`把请求定位到具体要调用的那个方法上。
+在Spring的3.1版本之前，类级别和方法级别的请求映射，框架会在两个不同阶段查找它们——首先`DefaultAnnotationHanlderMapping`会先选中一个控制器，然后再通过`AnnotationMethodHandlerAdapter`把请求定位到具体要调用的那个方法上。
 
 > [Original] With the new support classes in Spring 3.1, the `RequestMappingHandlerMapping` is the only place where a decision is made about which method should process the request. Think of controller methods as a collection of unique endpoints with mappings for each method derived from type and method-level `@RequestMapping` information.
 
