@@ -45,7 +45,7 @@
 * 在Gitbook讨论里[给我留言](https://www.gitbook.com/book/linesh/spring-mvc-documentation-linesh-translation/discussions)
 * 在Github里给这个项目提[issue](https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues)
 * 在Github里给这个项目提[pull request](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/pulls)
-* [在文档上进行即时评论](http://mvc.linesh.tw)：在gitbook文档上，鼠标划过任何段落右侧，浮现`+`号时点击即可评论
+* [在文档上进行即时评论](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)：在gitbook文档上，鼠标划过任何段落右侧，浮现`+`号时点击即可评论
 * **邮箱**：linesh.simpcity@gmail.com
 
 ## License
