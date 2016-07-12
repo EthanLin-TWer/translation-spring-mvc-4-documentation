@@ -48,6 +48,10 @@
 * [在文档上进行即时评论](http://mvc.linesh.tw)：在gitbook文档上，鼠标划过任何段落右侧，浮现`+`号时点击即可评论
 * **邮箱**：linesh.simpcity@gmail.com
 
+## License
+
+MIT License
+
 ## 贡献者 Contributor
 
 感谢那些让这个项目变得更好的人们。
