@@ -1,8 +1,8 @@
 # 21.3 控制器(Controller)的实现
 
-> Controllers provide access to the application behavior that you typically define through a service interface. Controllers interpret user input and transform it into a model that is represented to the user by the view. Spring implements a controller in a very abstract way, which enables you to create a wide variety of controllers.
+> ...Spring implements a controller in a very abstract way, which enables you to create a wide variety of controllers.
 
-控制器作为应用程序逻辑的处理入口，它会负责去调用你已经实现的一些服务。通常，一个控制器会接收并解析用户的请求，然后把它转换成一个模型交给视图，由视图渲染出页面最终呈现给用户。Spring以高度的抽象来定义控制器，这使得你可以创建多种类型的控制器。
+控制器作为应用程序逻辑的处理入口，它会负责去调用你已经实现的一些服务。通常，一个控制器会接收并解析用户的请求，然后把它转换成一个模型交给视图，由视图渲染出页面最终呈现给用户。Spring对控制器的定义非常宽松，这意味着你在实现控制器时非常自由。
 
 Spring 2.5以后引入了基于注解的编程模型，你可以在你的控制器实现上添加`@RequestMapping`、`@RequestParam`、`@ModelAttribute`等注解。注解特性既支持基于Servlet的MVC，也可支持基于Portlet的MVC。通过此种方式实现的控制器既无需继承某个特定的基类，也无需实现某些特定的接口。而且，它通常也不会直接依赖于Servlet或Portlet的API来进行编程，不过你仍然可以很容易地获取Servlet或Portlet相关的变量、特性和设施等。
 
