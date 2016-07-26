@@ -79,13 +79,11 @@ public class ClinicController {
 
 ## Spring MVC 3.1中新增支持@RequestMapping的一些类
 
-> They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward. This section describes 1a few important differences between the old and the new support classes.
+> They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward.
 
-Spring 3.1中新增了一组类用以增强`@RequestMapping`，分别是`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`。我们推荐你用一用。有部分Spring MVC 3.1之后新增的特性，这两个注解甚至是必须的。在MVC命名空间和MVC Java编程配置方式下，这组类及其新特性默认是开启的。但若你使用其他配置方式，则该特性必须手动配置才能使用。本小节将简要描述新类与之前的相比有什么主要的不同。
+Spring 3.1中新增了一组类用以增强`@RequestMapping`，分别是`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`。我们推荐你用一用。有部分Spring MVC 3.1之后新增的特性，这两个注解甚至是必须的。在MVC命名空间和MVC Java编程配置方式下，这组类及其新特性默认是开启的。但若你使用其他配置方式，则该特性必须手动配置才能使用。本小节将简要介绍一下，新类相比之前的一些重要变化。
 
-> [Original] Prior to Spring 3.1, type and method-level request mappings were examined in two separate stages — a controller was selected first by the `DefaultAnnotationHandlerMapping` and the actual method to invoke was narrowed down second by the `AnnotationMethodHandlerAdapter`.
-
-在Spring的3.1版本之前，类级别和方法级别的请求映射，框架会在两个不同阶段查找它们——首先`DefaultAnnotationHanlderMapping`会先选中一个控制器，然后再通过`AnnotationMethodHandlerAdapter`把请求定位到具体要调用的那个方法上。
+在Spring 3.1之前，框架会在两个不同的阶段分别检查类级别和方法级别的请求映射——首先，`DefaultAnnotationHanlderMapping`会先在类级别上选中一个控制器，然后再通过`AnnotationMethodHandlerAdapter`定位到具体要调用的方法。
 
 > [Original] With the new support classes in Spring 3.1, the `RequestMappingHandlerMapping` is the only place where a decision is made about which method should process the request. Think of controller methods as a collection of unique endpoints with mappings for each method derived from type and method-level `@RequestMapping` information.
 
