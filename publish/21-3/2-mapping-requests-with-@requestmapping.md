@@ -2,8 +2,6 @@
 
 你可以使用`@RequestMapping`注解来将请求URL，如`/appointments`等，映射到整个类上或某个特定的处理器方法上。一般来说，类级别的注解负责将一个特定（或符合某种模式）的请求路径映射到一个控制器上，同时通过方法级别的注解来细化映射，即根据特定的HTTP请求方法（“GET”“POST”方法等）、HTTP请求中是否携带特定参数等条件，将请求映射到匹配的方法上。
 
-> [Original] The following example from the Petcare sample shows a controller in a Spring MVC application that uses this annotation:
-
 下面这段代码示例来自Petcare，它展示了在Spring MVC中如何在控制器上使用`@RequestMapping`注解：
 
 ```java
@@ -81,9 +79,9 @@ public class ClinicController {
 
 ## Spring MVC 3.1中新增支持@RequestMapping的一些类
 
-> [Original] Spring 3.1 introduced a new set of support classes for `@RequestMapping` methods called `RequestMappingHandlerMapping` and `RequestMappingHandlerAdapter` respectively. They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward. The new support classes are enabled by default by the MVC namespace and the MVC Java config but must be configured explicitly if using neither. This section describes a few important differences between the old and the new support classes.
+> They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward. This section describes 1a few important differences between the old and the new support classes.
 
-Spring 3.1中新增了一组支持`@RequestMapping`注解的类，分别是`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`。我们推荐你使用它们，有些Spring MVC 3.1之后的版本才新增的特性，这几个注解甚至是必须的。不管是通过MVC的命名空间还是通过MVC Java编程的方式来配置，这组新增的类及其功能默认是开启的，但若你哪种方式都不想用，则必须通过手动去配置。本小节将简要描述新支持的类与旧的哪些有什么主要的不同。
+Spring 3.1中新增了一组类用以增强`@RequestMapping`，分别是`RequestMappingHandlerMapping`和`RequestMappingHandlerAdapter`。我们推荐你用一用。有部分Spring MVC 3.1之后新增的特性，这两个注解甚至是必须的。在MVC命名空间和MVC Java编程配置方式下，这组类及其新特性默认是开启的。但若你使用其他配置方式，则该特性必须手动配置才能使用。本小节将简要描述新类与之前的相比有什么主要的不同。
 
 > [Original] Prior to Spring 3.1, type and method-level request mappings were examined in two separate stages — a controller was selected first by the `DefaultAnnotationHandlerMapping` and the actual method to invoke was narrowed down second by the `AnnotationMethodHandlerAdapter`.
 
@@ -91,7 +89,7 @@ Spring 3.1中新增了一组支持`@RequestMapping`注解的类，分别是`Requ
 
 > [Original] With the new support classes in Spring 3.1, the `RequestMappingHandlerMapping` is the only place where a decision is made about which method should process the request. Think of controller methods as a collection of unique endpoints with mappings for each method derived from type and method-level `@RequestMapping` information.
 
-现在有了Spring 3.1后引入的这组新类，`RequestMappingHandlerMapping`成为了这两个决策实际发生的唯一一个地方。你可以把控制器中的一系列处理方法当成是一系列独立的服务节点，每个从类级别和方法级别的`@RequestMapping`注解中获取到足够请求路径映射信息。
+现在有了Spring 3.1后引入的这组新类，`RequestMappingHandlerMapping`成为了这两个决策实际发生的唯一一个地方。你可以把控制器中的一系列处理方法当成是一系列独立的服务节点，每个从类级别和方法级别的`@RequestMapping`注解中获取到足够请求1路径映射信息。
 
 > [Original] This enables some new possibilities. For once a `HandlerInterceptor` or a `HandlerExceptionResolver` can now expect the Object-based handler to be a `HandlerMethod`, which allows them to examine the exact method, its parameters and associated annotations. The processing for a URL no longer needs to be split across different controllers.
 
