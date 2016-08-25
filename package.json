@@ -1,32 +1,35 @@
 {
-    "name": "spring-mvc-documentation",
-    "version": "1.0.0",
-    "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
-    "main": "index.html",
-    "dependencies": {},
-    "devDependencies": {
-        "crypto-js": "^3.1.6",
-        "gitbook": "^3.1.1",
-        "glob": "^7.0.5",
-        "qiniu": "^6.1.11"
-    },
-    "scripts": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
-    },
-    "keywords": [
-        "spring",
-        "mvc",
-        "documentation",
-        "文档",
-        "中文",
-        "翻译"
-    ],
-    "author": "Linesh (林从羽)",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
-    },
-    "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
+  "name": "spring-mvc-documentation",
+  "version": "1.0.0",
+  "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "crypto-js": "^3.1.6",
+    "gitbook": "^3.1.1",
+    "glob": "^7.0.5",
+    "gulp": "^3.9.1",
+    "gulp-stylus": "^2.5.0",
+    "qiniu": "^6.1.11",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
+  },
+  "keywords": [
+    "spring",
+    "mvc",
+    "documentation",
+    "文档",
+    "中文",
+    "翻译"
+  ],
+  "author": "Linesh (林从羽)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
+  },
+  "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
 }
