@@ -12,33 +12,48 @@
         </nav>
 
         <div class="documentation-main chapter">
-            <section class="normal markdown-section">
-
-                                <h1 id="213-控制器controller的实现">21.3 控制器(Controller)的实现</h1>
-<blockquote>
-<p class="comments-section">...Spring implements a controller in a very abstract way, which enables you to create a wide variety of controllers.</p>
-</blockquote>
-<p class="comments-section">控制器作为应用程序逻辑的处理入口，它会负责去调用你已经实现的一些服务。通常，一个控制器会接收并解析用户的请求，然后把它转换成一个模型交给视图，由视图渲染出页面最终呈现给用户。Spring对控制器的定义非常宽松，这意味着你在实现控制器时非常自由。</p>
-<p class="comments-section">Spring 2.5以后引入了基于注解的编程模型，你可以在你的控制器实现上添加<code>@RequestMapping</code>、<code>@RequestParam</code>、<code>@ModelAttribute</code>等注解。注解特性既支持基于Servlet的MVC，也可支持基于Portlet的MVC。通过此种方式实现的控制器既无需继承某个特定的基类，也无需实现某些特定的接口。而且，它通常也不会直接依赖于Servlet或Portlet的API来进行编程，不过你仍然可以很容易地获取Servlet或Portlet相关的变量、特性和设施等。</p>
-<blockquote>
-<p class="comments-section">在<a href="https://github.com/spring-projects" target="_blank">Spring项目的官方Github</a>上你可以找到许多项目，它们对本节所述以后的注解支持提供了进一步增强，比如说MvcShowcase，MvcAjax，MvcBasic，PetClinic，PetCare等。</p>
-</blockquote>
-<pre><code class="lang-java"><span class="hljs-meta">@Controller</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldController</span> </span>{
-
-    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/helloWorld"</span>)
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">helloWorld</span><span class="hljs-params">(Model model)</span> </span>{
-        model.addAttribute(<span class="hljs-string">"message"</span>, <span class="hljs-string">"Hello World!"</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"helloWorld"</span>;
-    }
-}
-</code></pre>
-<p class="comments-section">你可以看到，<code>@Controller</code>注解和<code>@RequestMapping</code>注解支持多样的方法名和方法签名。在上面这个例子中，方法接受一个<code>Model</code>类型的参数并返回一个字符串<code>String</code>类型的视图名。但事实上，方法所支持的参数和返回值有非常多的选择，这个我们在本小节的后面部分会提及。<code>@Controller</code>和<code>@RequestMapping</code>及其他的一些注解，共同构成了Spring MVC框架的基本实现。本节将详细地介绍这些注解，以及它们在一个Servlet环境下最常被使用到的一些场景。</p>
-
-
-
-
-                                </section>
+            <table>
+    <thead>
+    <tr>
+    <th style="text-align:left">bean的类型</th>
+    <th style="text-align:left">作用</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="text-align:left"><a href="../21-4/handler-mappings.html"><code>HandlerMapping</code></a></td>
+    <td style="text-align:left">处理器映射。它会根据某些规则将进入容器的请求映射到具体的处理器以及一系列前处理器和后处理器（即处理器拦截器）上。具体的规则视<code>HandlerMapping</code>类的实现不同而有所不同。其最常用的一个实现支持你在控制器上添加注解，配置请求路径。当然，也存在其他的实现。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><code>HandlerAdapter</code></td>
+    <td style="text-align:left">处理器适配器。拿到请求所对应的处理器后，适配器将负责去调用该处理器，这使得<code>DispatcherServlet</code>无需关心具体的调用细节。比方说，要调用的是一个基于注解配置的控制器，那么调用前还需要从许多注解中解析出一些相应的信息。因此，<code>HandlerAdapter</code>的主要任务就是对<code>DispatcherServlet</code>屏蔽这些具体的细节。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-11/1-handler-exception-handler.html"><code>HandlerExceptionResolver</code></a></td>
+    <td style="text-align:left">处理器异常解析器。它负责将捕获的异常映射到不同的视图上去，此外还支持更复杂的异常处理代码。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-5/resolving-views.html"><code>ViewResolver</code></a></td>
+    <td style="text-align:left">视图解析器。它负责将一个代表逻辑视图名的字符串（String）映射到实际的视图类型<code>View</code>上。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-8/using-locales.html"><code>LocaleResolver</code></a> &amp; <a href="../21-8/1-obtaining-time-zone-information.html"><code>LocaleContextResolver</code></a></td>
+    <td style="text-align:left">地区解析器 和 地区上下文解析器。它们负责解析客户端所在的地区信息甚至时区信息，为国际化的视图定制提供了支持。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-9/1-overview-of-themes.html"><code>ThemeResolver</code></a></td>
+    <td style="text-align:left">主题解析器。它负责解析你web应用中可用的主题，比如，提供一些个性化定制的布局等。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-10/springs-multipart-file-upload-support.html"><code>MultipartResolver</code></a></td>
+    <td style="text-align:left">解析multi-part的传输请求，比如支持通过HTML表单进行的文件上传等。</td>
+    </tr>
+    <tr>
+    <td style="text-align:left"><a href="../21-6/using-flash-attributes.html"><code>FlashMapManager</code></a></td>
+    <td style="text-align:left">FlashMap管理器。它能够存储并取回两次请求之间的<code>FlashMap</code>对象。后者可用于在请求之间传递数据，通常是在请求重定向的情境下使用。</td>
+    </tr>
+    </tbody>
+    </table>
         </div>
     </body>
 </html>
