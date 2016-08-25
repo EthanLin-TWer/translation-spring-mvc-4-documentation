@@ -1,4 +1,59 @@
-body {
-    margin: 15px 30px
-    
-}
+border = 1px solid #ccc
+general-code-color = #6D180B
+link-color = #4183C4
+background-color = #f8f8f8
+
+body
+   margin: 15px 30px
+   font-family: Helvetica, Arial, Freesans, Clean, Sans-serif
+   background: url("/dist/images/background.png") no-repeat center top
+   background-color: white
+   color: #333
+   line-height: 1.6
+   -webkit-font-smoothing: antialiased
+
+   nav
+      padding-top: 10px
+      padding-bottom: 10px
+      border-bottom: 1px solid #ccc
+
+      .title
+         text-align: center
+
+   .documentation-main
+      max-width: 1200px
+      margin: 0 auto
+
+   h1, h2, h3
+      margin-top: 40px
+      margin-bottom: 10px
+
+   blockquote
+      margin: 0
+      padding: 0 20px
+      border: border
+      border-radius: 3px
+      background-color: background-color
+
+   p
+      display: block
+      margin: 15px 0
+      text-align: left
+
+   a
+      color: link-color
+      text-decoration: none
+
+   :not(pre)>code
+      font-family: Consolas, "Liberation Mono", Courier, monospace
+      padding: 1px 3px
+      border: border
+      border-radius: 4px
+      color: general-code-color
+      background-color: #f2f2f2
+
+   pre
+      margin: 15px 0
+      padding: 5px 10px
+      color: black
+      font-size: 15px
