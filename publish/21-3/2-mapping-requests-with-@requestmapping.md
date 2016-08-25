@@ -67,7 +67,6 @@ public class ClinicController {
     public ModelMap vetsHandler() {
         return new ModelMap(this.clinic.getVets());
     }
-
 }
 ```
 
@@ -76,6 +75,7 @@ public class ClinicController {
 ## @Controller和面向切面（AOP）代理
 
 有时，我们希望在运行时使用AOP代理来装饰控制器，比如当你直接在控制器上使用`@Transactional`注解时。这种情况下，我们推荐使用类级别（在控制器上使用）的代理方式。这一般是代理控制器的默认做法。如果控制器必须实现一些接口，而该接口又不支持Spring Context的回调（比如`InitializingBean`, `*Aware`等接口），那要配置类级别的代理就必须手动配置了。比如，原来的配置文件`<tx:annotation-driven/>`需要显式配置为`<tx:annotation-driven proxy-target-class="true"/>`。
+
 
 ## Spring MVC 3.1中新增支持@RequestMapping的一些类
 
