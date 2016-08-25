@@ -36,16 +36,7 @@
 <p class="comments-section">你可以看到，<code>@Controller</code>注解和<code>@RequestMapping</code>注解支持多样的方法名和方法签名。在上面这个例子中，方法接受一个<code>Model</code>类型的参数并返回一个字符串<code>String</code>类型的视图名。但事实上，方法所支持的参数和返回值有非常多的选择，这个我们在本小节的后面部分会提及。<code>@Controller</code>和<code>@RequestMapping</code>及其他的一些注解，共同构成了Spring MVC框架的基本实现。本节将详细地介绍这些注解，以及它们在一个Servlet环境下最常被使用到的一些场景。</p>
 
 
-<pre><code class="lang-java"><span class="hljs-meta">@Controller</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldController</span> </span>{
 
-    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/helloWorld"</span>)
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">helloWorld</span><span class="hljs-params">(Model model)</span> </span>{
-        model.addAttribute(<span class="hljs-string">"message"</span>, <span class="hljs-string">"Hello World!"</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"helloWorld"</span>;
-    }
-}
-</code></pre>
 
                                 </section>
         </div>

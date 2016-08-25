@@ -2,6 +2,14 @@ border = 1px solid #ccc
 general-code-color = #6D180B
 link-color = #4183C4
 background-color = #f8f8f8
+code-font-family = Consolas, "Liberation Mono", Courier, monospace !important
+
+block-style(left-right-padding)
+   margin: 15px 0
+   padding: 5px left-right-padding
+   border: border
+   border-radius: 3px
+   background-color: background-color
 
 body
    margin: 15px 30px
@@ -29,11 +37,7 @@ body
       margin-bottom: 10px
 
    blockquote
-      margin: 0
-      padding: 0 20px
-      border: border
-      border-radius: 3px
-      background-color: background-color
+      block-style(20px)
 
    p
       display: block
@@ -45,7 +49,7 @@ body
       text-decoration: none
 
    :not(pre)>code
-      font-family: Consolas, "Liberation Mono", Courier, monospace
+      font-family: code-font-family
       padding: 1px 3px
       border: border
       border-radius: 4px
@@ -53,7 +57,5 @@ body
       background-color: #f2f2f2
 
    pre
-      margin: 15px 0
-      padding: 5px 10px
-      color: black
-      font-size: 15px
+      block-style(10px)
+      font-family: code-font-family
