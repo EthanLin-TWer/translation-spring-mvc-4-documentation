@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="springDocumentation">
     <head>
         <meta charset="utf-8">
         <title>Spring</title>
 
         <link rel="stylesheet" href="/dist/css/main.css" charset="utf-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script type="text/javascript" src="node_modules/marked/lib/marked.js"></script>
+        <script type="text/javascript" src="node_modules/angular-marked/dist/angular-marked.js"></script>
+        <script type="text/javascript">
+            angular.module('springDocumentation', ['hc.marked']);
+            angular.module('springDocumentation').controller('SectionController', function($scope, $http) {
+                $http.get('./publish/21-1/introduction-to-spring-web-mvc-framework.md').then(function(data) {
+                    $scope.sections = data.data
+                })
+            }).config(['markedProvider', function (markedProvider) {
+                markedProvider.setOptions({gfm: true});
+            }]);
+        </script>
     </head>
-    <body>
+    <body ng-controller="SectionController">
         <nav>
             <div class="title">21. Web Mvc framework</div>
         </nav>
 
         <div class="documentation-main chapter">
-            <div class="tip">
-                <div class="icon"></div>
-                <div class="content">
-                    <p>
-                        Available in the spring-projects Org on Github, a number of web applications leverage the annotation support described in this section including MvcShowcase, MvcAjax, MvcBasic, PetClinic, PetCare, and others.
-                    </p>
-                </div>
-            </div>
+            <section>
+                <div marked="sections"></div>
+            </section>
         </div>
     </body>
 </html>
