@@ -6,6 +6,7 @@ _book
 
 # Gitbook plugins installed by npm
 node_modules
+npm*debug.log
 
 # Intellij files
 .idea

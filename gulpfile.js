@@ -1,5 +1,3 @@
-const gulp = require('gulp')
-const markdown = require('gulp-markdown')
 const fs = require('fs')
 const glob = require('glob')
 
@@ -40,12 +38,3 @@ function extractDocs() {
 }
 
 extractDocs()
-
-
-gulp.task('markdown-to-html', function() {
-    return gulp.src('./publish/**/*.md')
-        .pipe(markdown())
-        .pipe(gulp.dest('./dist/build/'))
-})
-
-gulp.task('default', [ 'markdown-to-html' ])
