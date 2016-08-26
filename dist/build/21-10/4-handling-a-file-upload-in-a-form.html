@@ -1,0 +1,50 @@
+<h1 id="21-10-4-">21.10.4 处理表单中的文件上传</h1>
+<p>当解析器<code>MultipartResolver</code>完成处理时，请求便会像其他请求一样被正常流程处理。首先，创建一个接受文件上传的表单将允许用于直接上传整个表单。编码属性（<code>enctype=&quot;multipart/form-data&quot;</code>）能让浏览器知道如何对多路上传请求的表单进行编码（encode）。</p>
+<pre><code class="lang-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Upload a file please&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Please upload a file&lt;/h1&gt;
+        &lt;form method=&quot;post&quot; action=&quot;/form&quot; enctype=&quot;multipart/form-data&quot;&gt;
+            &lt;input type=&quot;text&quot; name=&quot;name&quot;/&gt;
+            &lt;input type=&quot;file&quot; name=&quot;file&quot;/&gt;
+            &lt;input type=&quot;submit&quot;/&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>下一步是创建一个能处理文件上传的控制器。这里需要的控制器与<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-controller" title="21.3.1 Defining a controller with @Controller">一般注解了<code>@Controller</code>的控制器</a>基本一样，除了它接受的方法参数类型是<code>MultipartHttpServletRequest</code>，或<code>MultipartFile</code>。</p>
+<pre><code class="lang-java">@Controller
+public class FileUploadController {
+
+    @RequestMapping(path = &quot;/form&quot;, method = RequestMethod.POST)
+    public String handleFormUpload(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;file&quot;) MultipartFile file) {
+
+        if (!file.isEmpty()) {
+            byte[] bytes = file.getBytes();
+            // store the bytes somewhere
+            return &quot;redirect:uploadSuccess&quot;;
+        }
+
+        return &quot;redirect:uploadFailure&quot;;
+    }
+
+}
+</code></pre>
+<p>请留意<code>@RequestParam</code>注解是如何将方法参数对应到表单中的定义的输入字段的。在上面的例子中，我们拿到了<code>byte[]</code>文件数据，只是没对它做任何事。在实际应用中，你可能会将它保存到数据库、存储在文件系统上，或做其他的处理。</p>
+<p>当使用Servlet 3.0的多路传输转换时，你也可以使用<code>javax.servlet.http.Part</code>作为方法参数：</p>
+<pre><code class="lang-java">@Controller
+public class FileUploadController {
+
+    @RequestMapping(path = &quot;/form&quot;, method = RequestMethod.POST)
+    public String handleFormUpload(@RequestParam(&quot;name&quot;) String name, @RequestParam(&quot;file&quot;) Part file) {
+
+        InputStream inputStream = file.getInputStream();
+        // store bytes from uploaded file somewhere
+
+        return &quot;redirect:uploadSuccess&quot;;
+    }
+
+}
+</code></pre>

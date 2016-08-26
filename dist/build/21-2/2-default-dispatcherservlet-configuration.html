@@ -1,0 +1,6 @@
+<h1 id="21-2-2-dispatcherservlet-">21.2.2 默认的DispatcherServlet配置</h1>
+<p>上一小节讲到，<code>DispatcherServlet</code>维护了一个列表，其中保存了其所依赖的所有bean的默认实现。这个列表保存在包<code>org.springframework.web.servlet</code>下的<code>DispatcherServlet.properties</code>文件中。</p>
+<p>这些特殊的bean都有一些基本的默认行为。或早或晚，你可能需要对它们提供的一些默认配置进行定制。比如说，通常你需要配置<code>InternalResourceViewResolver</code>类提供的<code>prefix</code>属性，使其指向视图文件所在的目录。
+
+这里需要理解的一个事情是，一旦你在web应用上下文<code>WebApplicationContext</code>中配置了某个特殊bean以后（比如<code>InternalResourceViewResolver</code>），实际上你也覆写了该bean的默认实现。比方说，如果你配置了<code>InternalResourceViewResolver</code>，那么框架就不会再使用bean<code>ViewResolver</code>的默认实现。</p>
+<p>在<a href="../21-16/configuring-spring-mvc.md">21.16节 Spring MVC的配置</a>中，我们介绍了其他配置Spring MVC的方式，比如通过Java编程配置或者通过MVC XML命名空间进行配置。它们为配置一个Spring MVC应用提供了简易的开始方式，也不需要你对框架实现细节有太多了解。当然，无论你选用何种方式开始配置，本节所介绍的一些概念都是基础且普适的，它们对你后续的学习都应有所助益。</p>

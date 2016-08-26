@@ -1,0 +1,3 @@
+<h1 id="21-8-4-session-sessionlocaleresolver">21.8.4 Session解析器SessionLocaleResolver</h1>
+<p><code>SessionLocaleResolver</code>允许你从session中取得可能与用户请求相关联的地区<code>Locale</code>和时区<code>TimeZone</code>信息。与<code>CookieLocaleResolver</code>不同，这种存取策略仅将Servlet容器的<code>HttpSession</code>中相关的地区信息存取到本地。因此，这些设置仅会为该会话（session）临时保存，session结束后，这些设置就会失效。</p>
+<p>不过请注意，该解析器与其他外部session管理机制，比如Spring的Session项目等，并没有直接联系。该<code>SessionLocaleResolver</code>仅会简单地从与当前请求<code>HttpServletRequest</code>相关的<code>HttpSession</code>对象中，取出对应的属性，并修改其值，仅此而已。</p>

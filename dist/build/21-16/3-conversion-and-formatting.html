@@ -1,0 +1,51 @@
+<h1 id="21-16-3-">21.16.3 转换与格式化</h1>
+<p>数字的<code>Number</code>类型和日期<code>Date</code>类型的格式化是默认安装了的，包括<code>@NumberFormat</code>注解和<code>@DateTimeFormat</code>注解。如果classpath路径下存在Joda Time依赖，那么完美支持Joda Time的时间格式化库也会被安装好。如果要注册定制的格式化器或转换器，请覆写<code>addFormatters</code>方法：</p>
+<pre><code class="lang-java">@Configuration
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        // Add formatters and/or converters
+    }
+
+}
+</code></pre>
+<p>使用MVC命名空间时，<code>&lt;mvc:annotation-driven&gt;</code>也会进行同样的默认配置。要注册定制的格式化器和转换器，只需要提供一个转换服务<code>ConversionService</code>：</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+
+    &lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;/&gt;
+
+    &lt;bean id=&quot;conversionService&quot;
+            class=&quot;org.springframework.format.support.FormattingConversionServiceFactoryBean&quot;&gt;
+        &lt;property name=&quot;converters&quot;&gt;
+            &lt;set&gt;
+                &lt;bean class=&quot;org.example.MyConverter&quot;/&gt;
+            &lt;/set&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;formatters&quot;&gt;
+            &lt;set&gt;
+                &lt;bean class=&quot;org.example.MyFormatter&quot;/&gt;
+                &lt;bean class=&quot;org.example.MyAnnotationFormatterFactory&quot;/&gt;
+            &lt;/set&gt;
+        &lt;/property&gt;
+        &lt;property name=&quot;formatterRegistrars&quot;&gt;
+            &lt;set&gt;
+                &lt;bean class=&quot;org.example.MyFormatterRegistrar&quot;/&gt;
+            &lt;/set&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<blockquote>
+<p>关于如何使用格式化管理器FormatterRegistrar，请参考 <a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#format-FormatterRegistrar-SPI">8.6.4 FormatterRegistrar SPI</a>一节，以及<code>FormattingConversionServiceFactoryBean</code>的文档。</p>
+</blockquote>

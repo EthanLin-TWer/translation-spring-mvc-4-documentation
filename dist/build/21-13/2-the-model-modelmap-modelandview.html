@@ -1,0 +1,37 @@
+<h1 id="21-13-2-modelmap-modelandview-">21.13.2 模型ModelMap(ModelAndView)</h1>
+<p><code>ModelMap</code>类其实就是一个豪华版的 <code>Map</code>，它使得你为视图展示需要所添加的对象都遵循一个显而易见的约定被命名。请看下面这个 <code>Controller</code>实现，并请注意，添加到<code>ModelAndView</code>中去的对象都没有显式地指定键名。</p>
+<pre><code class="lang-java">public class DisplayShoppingCartController implements Controller {
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+
+        List cartItems = // 拿到一个CartItem对象的列表
+        User user = // 拿到当前购物的用户User
+
+        ModelAndView mav = new ModelAndView(&quot;displayShoppingCart&quot;); &lt;-- 逻辑视图名
+
+        mav.addObject(cartItems); &lt;-- 啊哈，直接添加的对象，没有指定名称
+        mav.addObject(user); &lt;-- 啊哈再来一次
+
+        return mav;
+    }
+}
+</code></pre>
+<p><code>ModelAndView</code>内部使用了一个<code>ModelMap</code>类，它是<code>Map</code>的一个实现，会自动为添加进来的对象生成一个键名。为添加对象生成名称的策略是，若添加对象是一个纯Java bean（a scalar object），比如<code>User</code>，那么使用对象类的短类名（short class name）来作为该对象的名称。下面是一些例子，展示了为添加到<code>ModelMap</code>实例中的纯Java对象所生成的名称：</p>
+<ul>
+<li>添加一个<code>x.y.User</code>实例，为其生成的名称为<code>user</code></li>
+<li>添加一个<code>x.y.Registration</code>实例，为其生成的名称为<code>registration</code></li>
+<li>添加一个<code>x.y.Foo</code>实例，为其生成的名称为<code>foo</code></li>
+<li>添加一个<code>java.util.HashMap</code>实例，为其生成的名称为<code>hashMap</code>。这种情况下，显式地声明一个键名可能更好，因为<code>hashMap</code>的约定并非那么符合直觉</li>
+<li>添加一个<code>null</code>值将导致程序抛出一个<code>IllegalArgumentException</code>参数非法异常。若你所添加的（多个）对象有可能为<code>null</code>值，那你也需要显式地指定它（们）的名字</li>
+</ul>
+<p><strong>啥？键名不能自动变复数形式么？</strong></p>
+<p>Spring Web MVC的约定优于配置支持尚不能支持自动复数转换。这意思是，你不能期望往<code>ModelAndView</code>中添加一个<code>Person</code>对象的<code>List</code>列表时，框架会自动为其生成一个名称<code>people</code>。</p>
+<p>这个决定是经过许多争论后的结果，最终“最小惊喜原则”胜出并为大家所接受。</p>
+<p>为集合<code>Set</code>或列表<code>List</code>生成键名所采取的策略，是先检查集合的元素类型、拿到第一个对象的短类名，然后在其后面添加<code>List</code>作为名称。添加数组对象也是同理，尽管对于数组我们就不需再检查数组内容了。下面给出的几个例子可以阐释一些东西，让集合的名称生成语义变得更加清晰：</p>
+<ul>
+<li>添加一个带零个或多个<code>x.y.User</code>元素类型的数组<code>x.y.User[]</code>，为其生成的键名是<code>userList</code></li>
+<li>添加一个带零个或多个<code>x.y.User</code>元素类型的数组<code>x.y.Foo[]</code>，为其生成的键名是<code>fooList</code></li>
+<li>添加一个带零个或多个<code>x.y.User</code>元素类型的数组<code>java.util.ArrayList</code>，为其生成的键名是<code>userList</code></li>
+<li>添加一个带零个或多个<code>x.y.Foo</code>元素类型的数组<code>java.util.HashSet</code>，为其生成的键名是<code>fooList</code></li>
+<li>一个 <em>空的</em> <code>java.util.ArrayList</code>则根本不会被添加</li>
+</ul>

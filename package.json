@@ -14,6 +14,7 @@
     "gulp-stylus": "^2.5.0",
     "gulp-watch": "^4.3.9",
     "qiniu": "^6.1.11",
+    "ramda": "^0.22.1",
     "stylus": "^0.54.5"
   },
   "scripts": {},

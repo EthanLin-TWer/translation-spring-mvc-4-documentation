@@ -1,0 +1,11 @@
+<h1 id="21-16-2-">21.16.2 默认配置的定制化</h1>
+<p>在MVC Java编程配置方式下，如果你想对默认配置进行定制，你可以自己实现<code>WebMvcConfigurer</code>接口，要么继承<code>WebMvcConfigurerAdapter</code>类并覆写你需要定制的方法：</p>
+<pre><code class="lang-java">@Configuration
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    // Override configuration methods...
+
+}
+</code></pre>
+<p>在MVC XML命名空间下，如果你想对默认配置进行定制，请查看<code>&lt;mvc:annotation-driven/&gt;</code>元素支持的属性和子元素。你可以查看<a href="http://schema.spring.io/mvc/spring-mvc.xsd">Spring MVC XML schema</a>，或使用IDE的自动补全功能来查看有哪些属性和子元素是可以配置的。</p>

@@ -1,0 +1,56 @@
+<h1 id="21-4-1-handlerinterceptor-">21.4.1 使用HandlerInterceptor拦截请求</h1>
+<p>Spring的处理器映射机制包含了处理器拦截器。拦截器在你需要为特定类型的请求应用一些功能时可能很有用，比如，检查用户身份等。</p>
+<p>处理器映射处理过程配置的拦截器，必须实现 <code>org.springframework.web.servlet</code>包下的 <code>HandlerInterceptor</code>接口。这个接口定义了三个方法： <code>preHandle(..)</code>，它在处理器实际执行 <em>之前</em> 会被执行； <code>postHandle(..)</code>，它在处理器执行 <em>完毕</em> 以后被执行； <code>afterCompletion(..)</code>，它在 <em>整个请求处理完成</em> 之后被执行。这三个方法为各种类型的前处理和后处理需求提供了足够的灵活性。</p>
+<p><code>preHandle(..)</code>方法返回一个boolean值。你可以通过这个方法来决定是否继续执行处理链中的部件。当方法返回 <code>true</code>时，处理器链会继续执行；若方法返回 <code>false</code>， <code>DispatcherServlet</code>即认为拦截器自身已经完成了对请求的处理（比如说，已经渲染了一个合适的视图），那么其余的拦截器以及执行链中的其他处理器就不会再被执行了。</p>
+<p>拦截器可以通过<code>interceptors</code>属性来配置，该选项在所有继承了<code>AbstractHandlerMapping</code>的处理器映射类<code>HandlerMapping</code>都提供了配置的接口。如下面代码样例所示：</p>
+<pre><code class="lang-xml">&lt;beans&gt;
+    &lt;bean id=&quot;handlerMapping&quot; class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;&gt;
+        &lt;property name=&quot;interceptors&quot;&gt;
+            &lt;list&gt;
+                &lt;ref bean=&quot;officeHoursInterceptor&quot;/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id=&quot;officeHoursInterceptor&quot; class=&quot;samples.TimeBasedAccessInterceptor&quot;&gt;
+        &lt;property name=&quot;openingTime&quot; value=&quot;9&quot;/&gt;
+        &lt;property name=&quot;closingTime&quot; value=&quot;18&quot;/&gt;
+    &lt;/bean&gt;
+&lt;beans&gt;
+</code></pre>
+<pre><code class="lang-java">package samples;
+
+public class TimeBasedAccessInterceptor extends HandlerInterceptorAdapter {
+
+    private int openingTime;
+    private int closingTime;
+
+    public void setOpeningTime(int openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public void setClosingTime(int closingTime) {
+        this.closingTime = closingTime;
+    }
+
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+            Object handler) throws Exception {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(HOUR_OF_DAY);
+        if (openingTime &lt;= hour &amp;&amp; hour &lt; closingTime) {
+            return true;
+        }
+        response.sendRedirect(&quot;http://host.com/outsideOfficeHours.html&quot;);
+        return false;
+    }
+}
+</code></pre>
+<p>在上面的例子中，所有被此处理器处理的请求都会被<code>TimeBasedAccessInterceptor</code>拦截器拦截。如果当前时间在工作时间以外，那么用户就会被重定向到一个HTML文件提示用户，比如显示“你只有在工作时间才可以访问本网站”之类的信息。</p>
+<blockquote>
+<p>使用<code>RequestMappingHandlerMapping</code>时，实际的处理器是一个处理器方法<code>HandlerMethod</code>的实例，它标识了一个将被用于处理该请求的控制器方法。</p>
+</blockquote>
+<p>如你所见，Spring的拦截器适配器<code>HandlerInterceptorAdapter</code>让继承<code>HandlerInterceptor</code>接口变得更简单了。</p>
+<blockquote>
+<p>上面的例子中，所有控制器方法处理的请求都会被配置的拦截器先拦截到。如果你想进一步缩小拦截的URL范围，你可以通过MVC命名空间或MVC Java编程的方式来配置，或者，声明一个<code>MappedInterceptor</code>类型的bean实例来处理。具体请见 <a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable">21.16.1 启用MVC Java编程配置或MVC命名空间配置</a>一小节。</p>
+</blockquote>
+<p>需要注意的是，<code>HandlerInterceptor</code>的后拦截<code>postHandle</code>方法不一定总是适用于注解了<code>@ResponseBody</code>或<code>ResponseEntity</code>的方法。这些场景中，<code>HttpMessageConverter</code>会在拦截器的<code>postHandle</code>方法被调之前就把信息写回响应中。这样拦截器就无法再改变响应了，比如要增加一个响应头之类的。如果有这种需求，请让你的应用实现<code>ResponseBodyAdvice</code>接口，并将其定义为一个<code>@ControllerAdvice</code>bean或直接在<code>RequestMappingHandlerMapping</code>中配置。</p>

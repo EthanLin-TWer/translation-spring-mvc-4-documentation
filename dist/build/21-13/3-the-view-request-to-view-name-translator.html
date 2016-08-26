@@ -1,0 +1,44 @@
+<h1 id="21-13-3-">21.13.3 视图-请求与视图名的映射</h1>
+<p><code>RequestToViewNameTranslator</code>接口可以在逻辑视图名未被显式提供的情况下，决定一个可用的逻辑视图<code>View</code>名。</p>
+<p><code>DefaultRequestToViewNameTranslator</code>能够将请求URL映射到逻辑视图名上去，如下面代码例子所示：</p>
+<pre><code class="lang-java">public class RegistrationController implements Controller {
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+        // 处理请求……
+        ModelAndView mav = new ModelAndView();
+        // 向Model中添加需要的数据
+        return mav;
+        // 请注意这里，没有设置任何View对象或逻辑视图名
+    }
+
+}
+</code></pre>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+    &lt;!-- 这个众人皆知的bean将为我们自动生成视图名 --&gt;
+    &lt;bean id=&quot;viewNameTranslator&quot; class=&quot;org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator&quot;/&gt;
+
+    &lt;bean class=&quot;x.y.RegistrationController&quot;&gt;
+        &lt;!-- 如果需要，注入依赖 --&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 请请求URL映射到控制器名 --&gt;
+    &lt;bean class=&quot;org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping&quot;/&gt;
+
+    &lt;bean id=&quot;viewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>请注意在<code>handleRequest(...)</code>方法实现中，返回的<code>ModelAndView</code>对象上自始至终未设置任何<code>View</code>对象或逻辑视图名。这是由<code>DefaultRequestToViewNameTranslator</code>完成的，它的任务就是从请求的URL中生成一个<em>逻辑视图名</em>。在上面的例子中，<code>RegistrationController</code>与配置的<code>ControllerClassNameHandlerMapping</code>一起使用的结果是，一个URL为<code>&lt;http://localhost/registration.html&gt;</code>的请求，会经由<code>DefaultRequestToViewNameTranslator</code>生成并对应到一个逻辑视图名<code>registration</code>上。该逻辑视图名又会由<code>InternalResourceViewResolver</code>bean解析到<code>/WEB-INF/jsp/registration.jsp</code>视图上。</p>
+<blockquote>
+<p>你无需显式地定义一个<code>DefaultRequestToViewNameTranslator</code>bean。如果默认的<code>DefaultRequestToViewNameTranslator</code>配置已能满足你的需求，那么你无需配置，Spring Web MVC的<code>DispatcherServlet</code>会为你实例化这样一个默认的对象。</p>
+</blockquote>
+<p>当然，如果你需要更改默认的设置，那你就需要手动地配置自己的<code>DefaultRequestToViewNameTranslator</code>bean。关于可配置属性的一些详细信息，你可以去咨询<code>DefaultRequestToViewNameTranslator</code>类详细的java文档。</p>

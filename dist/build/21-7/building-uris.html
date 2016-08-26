@@ -1,0 +1,41 @@
+<h1 id="21-7-uri-">21.7 URI构造</h1>
+<p>在Spring MVC中，使用了<code>UriComponentsBuilder</code>和<code>UriComponents</code>两个类来提供一种构造和加密URI的机制。</p>
+<p>比如，你可以通过一个URI模板字符串来填充并加密一个URI：</p>
+<pre><code class="lang-java">UriComponents uriComponents = UriComponentsBuilder.fromUriString(
+        &quot;http://example.com/hotels/{hotel}/bookings/{booking}&quot;).build();
+
+URI uri = uriComponents.expand(&quot;42&quot;, &quot;21&quot;).encode().toUri();
+</code></pre>
+<p>请注意<code>UriComponents</code>是不可变对象。因此<code>expand()</code>与<code>encode()</code>操作在必要的时候会返回一个新的实例。</p>
+<p>你也可以使用一个URI组件实例对象来实现URI的填充与加密：</p>
+<pre><code class="lang-java">UriComponents uriComponents = UriComponentsBuilder.newInstance()
+        .scheme(&quot;http&quot;).host(&quot;example.com&quot;).path(&quot;/hotels/{hotel}/bookings/{booking}&quot;).build()
+        .expand(&quot;42&quot;, &quot;21&quot;)
+        .encode();
+</code></pre>
+<p>在Servlet环境下，<code>ServletUriComponentsBuilder</code>类提供了一个静态的工厂方法，可以用于从Servlet请求中获取URL信息：</p>
+<pre><code class="lang-java">HttpServletRequest request = ...
+
+// 主机名、schema, 端口号、请求路径和查询字符串都重用请求里已有的值
+// 替换了其中的&quot;accountId&quot;查询参数
+
+ServletUriComponentsBuilder ucb = ServletUriComponentsBuilder.fromRequest(request)
+        .replaceQueryParam(&quot;accountId&quot;, &quot;{id}&quot;).build()
+        .expand(&quot;123&quot;)
+        .encode();
+</code></pre>
+<p>或者，你也可以选择只复用请求中一部分的信息：</p>
+<pre><code class="lang-java">    // 重用主机名、端口号和context path
+    // 在路径后添加&quot;/accounts&quot;
+
+    ServletUriComponentsBuilder ucb = ServletUriComponentsBuilder.fromContextPath(request)
+            .path(&quot;/accounts&quot;).build()
+</code></pre>
+<p>或者，如果你的<code>DispatcherServlet</code>是通过名字（比如，<code>/main/*</code>）映射请求的，you can also have the literal part of the servlet mapping included:</p>
+<pre><code class="lang-java">    // Re-use host, port, context path
+    // Append the literal part of the servlet mapping to the path
+    // Append &quot;/accounts&quot; to the path
+
+    ServletUriComponentsBuilder ucb = ServletUriComponentsBuilder.fromServletMapping(request)
+            .path(&quot;/accounts&quot;).build()
+</code></pre>

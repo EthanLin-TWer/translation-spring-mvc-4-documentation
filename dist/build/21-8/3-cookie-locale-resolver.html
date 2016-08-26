@@ -1,0 +1,38 @@
+<h1 id="21-8-3-cookie-cookielocaleresolver">21.8.3 Cookie解析器CookieLocaleResolver</h1>
+<p><code>CookieLocaleResolver</code>解析会检查客户端是否有<code>Cookie</code>，里面可能存放了地区<code>Locale</code>或时区<code>TimeZone</code>信息。如果检查到相应的值，解析器就使用它们。通过该解析器的属性，你可以指定cookie的名称和其最大的存活时间。请见下面的例子，它展示了如何定义一个<code>CookieLocaleResolver</code>：</p>
+<pre><code class="lang-xml">&lt;bean id=&quot;localeResolver&quot; class=&quot;org.springframework.web.servlet.i18n.CookieLocaleResolver&quot;&gt;
+
+    &lt;property name=&quot;cookieName&quot; value=&quot;clientlanguage&quot;/&gt;
+
+    &lt;!-- 单位为秒。若设置为-1，则cookie不会被持久化（客户端关闭浏览器后即被删除） --&gt;
+    &lt;property name=&quot;cookieMaxAge&quot; value=&quot;100000&quot;&gt;
+
+&lt;/bean&gt;
+</code></pre>
+<p><strong>表21.4. CookieLocaleResolver支持的属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cookieName</td>
+<td>classname + LOCALE</td>
+<td>cookie名</td>
+</tr>
+<tr>
+<td>cookieMaxAge</td>
+<td>Integer.MAX_INT</td>
+<td>cookie被保存在客户端的最长时间。如果该值为-1，那么cookie将不会被持久化，在客户端浏览器关闭之后就失效了</td>
+</tr>
+<tr>
+<td>cookiePath</td>
+<td>/</td>
+<td>限制了cookie仅对站点下的某些特定路径可见。如果指定了cookiePath，那么cookie将仅对该路径及其子路径下的所有站点可见</td>
+</tr>
+</tbody>
+</table>

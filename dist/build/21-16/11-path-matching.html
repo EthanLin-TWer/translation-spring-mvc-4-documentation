@@ -1,0 +1,42 @@
+<h1 id="21-16-11-">21.16.11 路径匹配</h1>
+<p>这些配置允许你对许多与URL映射和路径匹配有关的设置进行定制。关于所有可用的配置选项，请参考<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/config/annotation/PathMatchConfigurer.html">PathMatchConfigurer</a>类的API文档。</p>
+<p>下面是采用MVC Java编程配置的一段代码：</p>
+<pre><code class="lang-java">    @Configuration
+    @EnableWebMvc
+    public class WebConfig extends WebMvcConfigurerAdapter {
+
+        @Override
+        public void configurePathMatch(PathMatchConfigurer configurer) {
+            configurer
+                .setUseSuffixPatternMatch(true)
+                .setUseTrailingSlashMatch(false)
+                .setUseRegisteredSuffixPatternMatch(true)
+                .setPathMatcher(antPathMatcher())
+                .setUrlPathHelper(urlPathHelper());
+        }
+
+        @Bean
+        public UrlPathHelper urlPathHelper() {
+            //...
+        }
+
+        @Bean
+        public PathMatcher antPathMatcher() {
+            //...
+        }
+
+    }
+</code></pre>
+<p>在XML命名空间下实现同样的功能，可以使用<code>&lt;mvc:path-matching&gt;</code>元素：</p>
+<pre><code class="lang-xml">    &lt;mvc:annotation-driven&gt;
+        &lt;mvc:path-matching
+            suffix-pattern=&quot;true&quot;
+            trailing-slash=&quot;false&quot;
+            registered-suffixes-only=&quot;true&quot;
+            path-helper=&quot;pathHelper&quot;
+            path-matcher=&quot;pathMatcher&quot;/&gt;
+    &lt;/mvc:annotation-driven&gt;
+
+    &lt;bean id=&quot;pathHelper&quot; class=&quot;org.example.app.MyPathHelper&quot;/&gt;
+    &lt;bean id=&quot;pathMatcher&quot; class=&quot;org.example.app.MyPathMatcher&quot;/&gt;
+</code></pre>

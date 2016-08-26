@@ -1,0 +1,88 @@
+<h1 id="21-11-3-spring-mvc-">21.11.3 处理一般的Spring MVC异常</h1>
+<p>处理请求的过程中，Spring MVC可能会抛出一些的异常。<code>SimpleMappingExceptionResolver</code>可以根据需要很方便地将任何异常映射到一个默认的错误视图。但，如果客户端是通过自动检测响应的方式来分发处理异常的，那么后端就需要为响应设置对应的状态码。根据抛出异常的类型不同，可能需要设置不同的状态码来标识是客户端错误（4xx）还是服务器端错误（5xx）。</p>
+<p>默认处理器异常解析器<code>DefaultHandlerExceptionResolver</code>会将Spring MVC抛出的异常转换成对应的错误状态码。该解析器在MVC命名空间配置或MVC Java配置的方式下默认已经被注册了，另外，通过<code>DispatcherServlet</code>注册也是可行的（即不使用MVC命名空间或Java编程方式进行配置的时候）。下表列出了该解析器能处理的一些异常，及他们对应的状态码。</p>
+<table>
+<thead>
+<tr>
+<th>异常</th>
+<th>HTTP状态码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BindException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>ConversionNotSupportedException</code></td>
+<td>500 (服务器内部错误)</td>
+</tr>
+<tr>
+<td><code>HttpMediaTypeNotAcceptableException</code></td>
+<td>406 (不接受)</td>
+</tr>
+<tr>
+<td><code>HttpMediaTypeNotSupportedException</code></td>
+<td>415 (不支持的媒体类型)</td>
+</tr>
+<tr>
+<td><code>HttpMessageNotReadableException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>HttpMessageNotWritableException</code></td>
+<td>500 (服务器内部错误)</td>
+</tr>
+<tr>
+<td><code>HttpRequestMethodNotSupportedException</code></td>
+<td>405 (不支持的方法)</td>
+</tr>
+<tr>
+<td><code>MethodArgumentNotValidException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>MissingServletRequestParameterException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>MissingServletRequestPartException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>NoHandlerFoundException</code></td>
+<td>404 (请求未找到)</td>
+</tr>
+<tr>
+<td><code>NoSuchRequestHandlingMethodException</code></td>
+<td>404 (请求未找到)</td>
+</tr>
+<tr>
+<td><code>TypeMismatchException</code></td>
+<td>400 (无效请求)</td>
+</tr>
+<tr>
+<td><code>MissingPathVariableException</code></td>
+<td>500 (服务器内部错误)</td>
+</tr>
+<tr>
+<td><code>NoHandlerFoundException</code></td>
+<td>404 (请求未找到)</td>
+</tr>
+</tbody>
+</table>
+<p>以下待翻译。</p>
+<p>The <code>DefaultHandlerExceptionResolver</code> works transparently by setting the
+status of the response. However, it stops short of writing any error content
+to the body of the response while your application may need to add developer-
+friendly content to every error response for example when providing a REST
+API. You can prepare a <code>ModelAndView</code> and render error content through view
+resolution -- i.e. by configuring a <code>ContentNegotiatingViewResolver</code>,
+<code>MappingJackson2JsonView</code>, and so on. However, you may prefer to use
+<code>@ExceptionHandler</code> methods instead.</p>
+<p>If you prefer to write error content via <code>@ExceptionHandler</code> methods you can
+extend <code>ResponseEntityExceptionHandler</code> instead. This is a convenient base for
+<code>@ControllerAdvice</code> classes providing an <code>@ExceptionHandler</code> method to handle
+standard Spring MVC exceptions and return <code>ResponseEntity</code>. That allows you to
+customize the response and write error content with message converters. See
+the <code>ResponseEntityExceptionHandler</code> javadocs for more details.</p>

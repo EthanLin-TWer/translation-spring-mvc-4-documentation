@@ -1,0 +1,22 @@
+<h1 id="21-5-2-">21.5.2 视图链</h1>
+<p>Spring支持同时使用多个视图解析器。因此，你可以配置一个解析器链，并做更多的事比如，在特定条件下覆写一个视图等。你可以通过把多个视图解析器设置到应用上下文(application context)中的方式来串联它们。如果需要指定它们的次序，那么设置<code>order</code>属性即可。请记住，order属性的值越大，该视图解析器在链中的位置就越靠后。</p>
+<p>在下面的代码例子中，视图解析器链中包含了两个解析器：一个是<code>InternalResourceViewResolver</code>，它总是自动被放置在解析器链的最后；另一个是<code>XmlViewResolver</code>，它用来指定Excel视图。<code>InternalResourceViewResolver</code>不支持Excel视图。</p>
+<pre><code class="lang-xml">&lt;bean id=&quot;jspViewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;excelViewResolver&quot; class=&quot;org.springframework.web.servlet.view.XmlViewResolver&quot;&gt;
+    &lt;property name=&quot;order&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;location&quot; value=&quot;/WEB-INF/views.xml&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;!-- in views.xml --&gt;
+
+&lt;beans&gt;
+    &lt;bean name=&quot;report&quot; class=&quot;org.springframework.example.ReportExcelView&quot;/&gt;
+&lt;/beans&gt;
+</code></pre>
+<p>如果一个视图解析器不能返回一个视图，那么Spring会继续检查上下文中其他的视图解析器。此时如果存在其他的解析器，Spring会继续调用它们，直到产生一个视图返回为止。如果最后所有视图解析器都不能返回一个视图，Spring就抛出一个<code>ServletException</code>。</p>
+<p>视图解析器的接口清楚声明了，一个视图解析器是<em>可以</em>返回null值的，这表示不能找到任何合适的视图。并非所有的视图解析器都这么做，但是也存在不得不如此的场景，即解析器确实无法检测对应的视图是否存在。比如，<code>InternalResourceViewResolver</code>在内部使用了<code>RequestDispatcher</code>，并且进入分派过程是检测一个JSP视图是否存在的唯一方法，但这个过程仅可能发生唯一一次。同样的<code>VelocityViewResolver</code>和部分其他的视图解析器也存在这样的情况。具体的请查阅某个特定的视图解析器的Java文档，看它是否会report不存在的视图。因此，如果不把<code>InternalResourceViewResolver</code>放置在解析器链的最后，将可能导致解析器链无法完全执行，因为<code>InternalResourceViewResolver</code><em>永远都会</em> 返回一个视图。</p>

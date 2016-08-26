@@ -1,0 +1,51 @@
+<h1 id="21-16-12-">21.16.12 消息转换器</h1>
+<p>使用MVC Java编程配置方式时，如果你想替换Spring MVC提供的默认转换器，完全定制自己的<code>HttpMessageConverter</code>，这可以通过覆写<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html#configureMessageConverters-java.util.List-"><code>configureMessageConverters()</code></a>方法来实现。如果你只是想定制一下，或者想在默认转换器之外再添加其他的转换器，那么可以通过覆写<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html#extendMessageConverters-java.util.List-"><code>extendMessageConverters()</code></a>方法来实现。</p>
+<p>下面是一段例子，它使用定制的<code>ObjectMapper</code>构造了新的Jackson的JSON和XML转换器，并用它们替换了默认提供的转换器：</p>
+<pre><code class="lang-java">    @Configuration
+    @EnableWebMvc
+    public class WebConfiguration extends WebMvcConfigurerAdapter {
+
+        @Override
+        public void configureMessageConverters(List&lt;HttpMessageConverter&lt;?&gt;&gt; converters) {
+            Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+                    .indentOutput(true)
+                    .dateFormat(new SimpleDateFormat(&quot;yyyy-MM-dd&quot;))
+                    .modulesToInstall(new ParameterNamesModule());
+            converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+            converters.add(new MappingJackson2XmlHttpMessageConverter(builder.xml().build()));
+        }
+
+    }
+</code></pre>
+<p>在上面的例子中，<code>Jackson2ObjectMapperBuilder</code>用于为<code>MappingJackson2HttpMessageConverter</code>和<code>MappingJackson2XmlHttpMessageConverter</code>转换器创建公共的配置，比如启用tab缩进、定制的日期格式，并注册了一个模块<a href="https://github.com/FasterXML/jackson-module-parameter-names">jackson-module-parameter-names</a>用于获取参数名（Java 8新增的特性）</p>
+<blockquote>
+<p>除了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22jackson-
+dataformat-xml%22"><code>jackson-
+dataformat-xml</code></a>，要启用Jackson XML的tab缩进支持，还需要一个<a href="h
+ttp://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.codehaus.woodstox%22%20A
+ND%20a%3A%22woodstox-core-asl%22"><code>woodstox-core-asl</code></a>依赖。</p>
+</blockquote>
+<p>还有其他有用的Jackson模块可以使用：</p>
+<ol>
+<li><a href="https://github.com/zalando/jackson-datatype-money">jackson-datatype-money</a>：提供了对<code>javax.money</code>类型的支持（非官方模块）</li>
+<li><a href="https://github.com/FasterXML/jackson-datatype-hibernate">jackson-datatype-hibernate</a>：提供了Hibernate相关的类型和属性支持（包含懒加载aspects）</li>
+</ol>
+<p>在XML做同样的事也是可能的：</p>
+<pre><code class="lang-xml">&lt;mvc:annotation-driven&gt;
+    &lt;mvc:message-converters&gt;
+        &lt;bean class=&quot;org.springframework.http.converter.json.MappingJackson2HttpMessageConverter&quot;&gt;
+            &lt;property name=&quot;objectMapper&quot; ref=&quot;objectMapper&quot;/&gt;
+        &lt;/bean&gt;
+        &lt;bean class=&quot;org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter&quot;&gt;
+            &lt;property name=&quot;objectMapper&quot; ref=&quot;xmlMapper&quot;/&gt;
+        &lt;/bean&gt;
+    &lt;/mvc:message-converters&gt;
+&lt;/mvc:annotation-driven&gt;
+
+&lt;bean id=&quot;objectMapper&quot; class=&quot;org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean&quot;
+      p:indentOutput=&quot;true&quot;
+      p:simpleDateFormat=&quot;yyyy-MM-dd&quot;
+      p:modulesToInstall=&quot;com.fasterxml.jackson.module.paramnames.ParameterNamesModule&quot;/&gt;
+
+&lt;bean id=&quot;xmlMapper&quot; parent=&quot;objectMapper&quot; p:createXmlMapper=&quot;true&quot;/&gt;
+</code></pre>

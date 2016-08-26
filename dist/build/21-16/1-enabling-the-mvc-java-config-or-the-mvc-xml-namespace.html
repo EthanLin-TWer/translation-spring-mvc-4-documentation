@@ -1,0 +1,67 @@
+<h1 id="21-16-1-mvc-java-mvc-">21.16.1 启用MVC Java编程配置或MVC命名空间</h1>
+<p>要启用MVC Java编程配置，你需要在其中一个注解了<code>@Configuration</code>的类上添加<code>@EnableWebMvc</code>注解：</p>
+<pre><code class="lang-java">@Configuration
+@EnableWebMvc
+public class WebConfig {
+
+}
+</code></pre>
+<p>要启用XML命名空间，请在你的DispatcherServlet上下文中（如果没有定义任何DispatcherServlet上下文，那么就在根上下文中）添加一个<code>mvc:annotation-driven</code>元素：</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+
+    &lt;mvc:annotation-driven/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p>上面的简单的声明代码，就已经默认注册了一个<code>RequestMappingHandlerMapping</code>、一个<code>RequestMappingHandlerAdapter</code>，以及一个<code>ExceptionHandlerExceptionResolver</code>，以支持对使用了<code>@RequestMapping</code>、<code>@ExceptionHandler</code>及其他注解的控制器方法的请求处理。</p>
+<p>同时，上面的代码还启用了以下的特性：</p>
+<ol>
+<li>Spring 3风格的类型转换支持。这是使用一个配置的转换服务<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#core-convert" title="8.5 Spring Type Conversion">ConversionService</a>实例，以及the JavaBeans PropertyEditors used for Data Binding.</li>
+<li>使用<code>@NumberFormat</code>对数字字段进行<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#format" title="8.6 Spring Field Formatting">格式化</a>，类型转换由<code>ConversionService</code>实现</li>
+<li>使用<code>@DateTimeFormat</code>注解对<code>Date</code>、<code>Calendar</code>、<code>Long</code>及Joda Time类型的字段进行<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#format" title="8.6 Spring Field Formatting">格式化</a></li>
+<li>使用<code>@Valid</code>注解对<code>@Controller</code>输入进行<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-validation" title="21.16.4 Validation">验证</a>——前提是classpath路径下比如提供符合JSR-303规范的验证器</li>
+<li>HTTP消息转换<code>HttpMessageConverter</code>的支持，对注解了<code>@RequestMapping</code>或<code>@ExceptionHandler</code>方法的<code>@RequestBody</code>方法参数或<code>@ResponseBody</code>返回值生效</li>
+</ol>
+<p>下面给出了一份由<code>mvc:annotation-driven</code>注册可用的HTTP消息转换器的完整列表：</p>
+<ol>
+<li>转换字节数组的<code>ByteArrayHttpMessageConverter</code></li>
+<li>转换字符串的<code>StringHttpMessageConverter</code></li>
+<li><code>ResourceHttpMessageConverter</code>：<code>org.springframework.core.io.Resource</code>与所有媒体类型之间的互相转换</li>
+<li><code>SourceHttpMessageConverter</code>：从（到）<code>javax.xml.transform.Source</code>的转换</li>
+<li><code>FormHttpMessageConverter</code>：数据与<code>MultiValueMap&lt;String, String&gt;</code>之间的互相转换</li>
+<li><code>Jaxb2RootElementHttpMessageConverter</code>：Java对象与XML之间的互相转换——该转换器在classpath路径下有JAXB2依赖并且没有Jackson 2 XML扩展时被注册</li>
+<li><code>MappingJackson2HttpMessageConverter</code>：从（到）JSON的转换——该转换器在classpath下有Jackson 2依赖时被注册</li>
+<li><code>MappingJackson2XmlHttpMessageConverter</code>：从（到）XML的转换——该转换器在classpath下有<a href="https://github.com/FasterXML/jackson-dataformat-xml">Jackson 2 XML扩展</a>时被注册</li>
+<li><code>AtomFeedHttpMessageConverter</code>：Atom源的转换——该转换器在classpath路径下有Rome时被注册</li>
+<li><code>RssChannelHttpMessageConverter</code>：RSS源的转换——该转换器在classpath路径下有Rome时被注册</li>
+</ol>
+<p>你可以参考<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-message-converters" title="21.16.12 Message Converters">21.16.12 消息转换器</a>一小节，了解如何进一步定制这些默认的转换器。</p>
+<blockquote>
+<p>Jackson JSON和XML转换器是通过<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/http/converter/json/Jackson2ObjectMapperBuilder.html"><code>Jackson2ObjectMapperBuilder</code></a>创建的<code>ObjectMapper</code>实例创建的，目的在于提供更好的默认配置</p>
+<p>该builder会使用以下的默认属性对Jackson进行配置：</p>
+<ol>
+<li><p>禁用<a href="http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/DeserializationFeature.html#FAIL_ON_UNKNOWN_PROPERTIES"><code>DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES</code></a></p>
+</li>
+<li><p>禁用<a href="http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/MapperFeature.html#DEFAULT_VIEW_INCLUSION"><code>MapperFeature.DEFAULT_VIEW_INCLUSION</code></a></p>
+</li>
+</ol>
+<p>同时，如果检测到在classpath路径下存在这些模块，该builder也会自动地注册它们：</p>
+<ol>
+<li><p><a href="https://github.com/FasterXML/jackson-datatype-jdk7">jackson-datatype-jdk7</a>: 支持Java 7的一些类型，例如<code>java.nio.file.Path</code></p>
+</li>
+<li><p><a href="https://github.com/FasterXML/jackson-datatype-joda">jackson-datatype-joda</a>: 支持Joda-Time类型</p>
+</li>
+<li><p><a href="https://github.com/FasterXML/jackson-datatype-jsr310">jackson-datatype-jsr310</a>: 支持Java 8的Date &amp; Time API类型</p>
+</li>
+<li><p><a href="https://github.com/FasterXML/jackson-datatype-jdk8">jackson-datatype-jdk8</a>: 支持Java 8其他的一些类型，比如<code>Optional</code>等</p>
+</li>
+</ol>
+</blockquote>
