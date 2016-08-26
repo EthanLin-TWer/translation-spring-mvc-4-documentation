@@ -1,33 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="springDocumentation">
+<html>
     <head>
         <meta charset="utf-8">
         <title>Spring</title>
 
         <link rel="stylesheet" href="/dist/css/main.css" charset="utf-8">
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script type="text/javascript" src="node_modules/marked/lib/marked.js"></script>
-        <script type="text/javascript" src="node_modules/angular-marked/dist/angular-marked.js"></script>
-        <script type="text/javascript">
-            angular.module('springDocumentation', ['hc.marked']);
-            angular.module('springDocumentation').controller('SectionController', function($scope, $http) {
-                $http.get('./publish/21-1/introduction-to-spring-web-mvc-framework.md').then(function(data) {
-                    $scope.sections = data.data
-                })
-            }).config(['markedProvider', function (markedProvider) {
-                markedProvider.setOptions({gfm: true});
-            }]);
-        </script>
     </head>
-    <body ng-controller="SectionController">
+    <body>
         <nav>
             <div class="title">21. Web Mvc framework</div>
         </nav>
 
         <div class="documentation-main chapter">
-            <section>
-                <div marked="sections"></div>
-            </section>
+            <!-- interpolation -->
         </div>
     </body>
 </html>
