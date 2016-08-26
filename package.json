@@ -10,13 +10,12 @@
     "glob": "^7.0.5",
     "gulp": "^3.9.1",
     "gulp-markdown": "^1.2.0",
-    "gulp-stylus": "^2.5.0",
-    "gulp-watch": "^4.3.9",
     "qiniu": "^6.1.11",
     "stylus": "^0.54.5"
   },
   "scripts": {
-      "stylus": "stylus css/*.styl --compress --out dist/css"
+    "stylus": "stylus css/*.styl --compress --out dist/css",
+    "stylus:dev": "npm run stylus -- --watch"
   },
   "repository": {
     "type": "git",
