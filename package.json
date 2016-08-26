@@ -19,6 +19,7 @@
     "stylus": "stylus css/*.styl --compress --out dist/css",
     "markdown2html": "node build/markdown-to-html.js",
     "html-interpolation": "node build/docs-html-interpolation.js",
+    "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
     "stylus:dev": "npm run stylus -- --watch",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093"
   },
