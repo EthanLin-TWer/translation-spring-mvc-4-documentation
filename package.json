@@ -15,7 +15,9 @@
     "qiniu": "^6.1.11",
     "stylus": "^0.54.5"
   },
-  "scripts": {},
+  "scripts": {
+      "stylus": "stylus css/*.styl --compress --out dist/css"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
