@@ -4,21 +4,21 @@
   "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
   "main": "index.html",
   "dependencies": {
-    "marked": "^0.3.6"
-  },
-  "devDependencies": {
-    "crypto-js": "^3.1.6",
+    "marked": "^0.3.6",
     "fs-extra": "^0.30.0",
     "gitbook": "^3.1.1",
     "glob": "^7.0.5",
-    "qiniu": "^6.1.11",
     "stylus": "^0.54.5"
+  },
+  "devDependencies": {
+    "crypto-js": "^3.1.6",
+    "qiniu": "^6.1.11"
   },
   "scripts": {
     "stylus": "stylus css/*.styl --compress --out dist/css",
-    "stylus:dev": "npm run stylus -- --watch",
     "markdown2html": "node build/markdown-to-html.js",
-    "local:gitbook": "gitbook serve --port 8087 --lrport 45093"
+    "stylus:dev": "npm run stylus -- --watch",
+    "gitbook:dev": "gitbook serve --port 8087 --lrport 45093"
   },
   "repository": {
     "type": "git",
