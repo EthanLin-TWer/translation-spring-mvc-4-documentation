@@ -4,7 +4,6 @@ const markdown = require('gulp-markdown')
 const watch = require('gulp-watch')
 const fs = require('fs')
 const glob = require('glob')
-const ramda = require('ramda')
 
 function extractDocs() {
     const all = glob.sync('dist/build/**/*.html', {}).sort((previous, next) => {
@@ -61,5 +60,6 @@ gulp.task('watch', ['stylus'], function () {
     gulp.watch('./css/*.styl' , ['stylus'])
 })
 
-gulp.task('default', [ 'stylus', 'watch' ])
-gulp.task('build', [ 'stylus', 'markdown-to-html' ])
+gulp.task('default', [ 'markdown-to-html', 'stylus', 'watch' ])
+gulp.task('style', [ 'stylus', 'watch' ])
+gulp.task('build', [ 'markdown-to-html', 'stylus' ])
