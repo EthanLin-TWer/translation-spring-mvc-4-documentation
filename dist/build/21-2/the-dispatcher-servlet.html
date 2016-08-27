@@ -1,4 +1,4 @@
-<h1 id="21-2-dispatcherservlet">21.2 DispatcherServlet</h1>
+<h2 id="21-2-dispatcherservlet">21.2 DispatcherServlet</h2>
 <p>Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有设计都围绕着一个中央Servlet来展开，它负责把所有请求分发到控制器；同时提供其他web应用开发所需要的功能。不过Spring的中央处理器，<code>DispatcherServlet</code>，能做的比这更多。它与Spring IoC容器做到了无缝集成，这意味着，Spring提供的任何特性，在Spring MVC中你都可以使用。</p>
 <p>下图展示了Spring Web MVC的<code>DispatcherServlet</code>处理请求的工作流。熟悉设计模式的朋友会发现，<code>DispatcherServlet</code>应用的其实就是一个“前端控制器”的设计模式（其他很多优秀的web框架也都使用了这个设计模式）。</p>
 <p><img src="./figures/figure-21-1-the-request-processing-workflow-in-spring-web-mvc.png" alt="图21.1 Spring Web MVC处理请求的（高层抽象）工作流"></p>

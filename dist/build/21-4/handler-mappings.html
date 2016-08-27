@@ -1,4 +1,4 @@
-<h1 id="21-4-handler-mappings-">21.4 处理器映射（Handler Mappings）</h1>
+<h2 id="21-4-handler-mappings-">21.4 处理器映射（Handler Mappings）</h2>
 <p>在Spring的上个版本中，用户需要在web应用的上下文中定义一个或多个的<code>HandlerMapping</code>bean，用以将进入容器的web请求映射到合适的处理器方法上。允许在控制器上添加注解后，通常你就不必这么做了，因为<code>RequestMappingHandlerMapping</code>类会自动查找所有注解了<code>@RequestMapping</code>的<code>@Controller</code>控制器bean。同时也请知道，所有继承自<code>AbstractHandlerMapping</code>的处理器方法映射<code>HandlerMapping</code>类都拥有下列的属性，你可以对它们进行定制：</p>
 <ul>
 <li>一个<code>interceptors</code>列表，指示了应用其上的一个拦截器列表。处理器方法拦截器会在 <a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-handlermapping-interceptor" title="21.4.1 Intercepting requests with a HandlerInterceptor">21.4.1小节 使用HandlerInterceptor拦截请求</a>中讨论。</li>

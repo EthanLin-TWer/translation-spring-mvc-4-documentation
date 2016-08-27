@@ -1,4 +1,4 @@
-<h1 id="21-6-flashattributes">21.6 使用闪存属性FlashAttributes</h1>
+<h2 id="21-6-flashattributes">21.6 使用闪存属性FlashAttributes</h2>
 <p>Flash属性（flash attributes）提供了一个请求为另一个请求存储有用属性的方法。这在重定向的时候最常使用，比如常见的 <em>POST/REDIRECT/GET</em> 模式。Flash属性会在重定向前被暂时地保存起来（通常是保存在session中），重定向后会重新被下一个请求取用并立即从原保存地移除。</p>
 <p>为支持flash属性，Spring MVC提供了两个抽象。<code>FlashMap</code>被用来存储flash属性，而用<code>FlashMapManager</code>来存储、取回、管理<code>FlashMap</code>的实例。</p>
 <p>对flash属性的支持默认是启用的，并不需要显式声明，不过没用到它时它绝不会主动地去创建HTTP会话（session）。对于每个请求，框架都会“传进”一个<code>FlashMap</code>，里面存储了从上个请求（如果有）保存下来的属性；同时，每个请求也会“输出”一个<code>FlashMap</code>，里面保存了要给下个请求使用的属性。两个<code>FlashMap</code>实例在Spring MVC应用中的任何地点都可以通过<code>RequestContextUtils</code>工具类的静态方法取得。</p>
