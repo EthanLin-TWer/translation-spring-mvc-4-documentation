@@ -19,9 +19,14 @@ glob.sync('publish/**/*', {}).forEach(md => {
                                  'detailed message below:\n' + error + '\n')
         }
 
-        fse.copySync(md, md.replace('publish', 'dist/build'))
-        console.log('[markdown]: ' + md + ' copy finished')
-        return console.log('[markdown]: ' + md + ', copying to destination...')
+        console.log('---------------------------')
+        console.log('[markdown-start]: ' + md + '   , copying to destination...')
+        const destination = md.replace('publish', 'dist/build')
+        fse.copySync(md, destination)
+        console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
+
+        console.log('[preprocessing] : ' + destination + ', start overview section header from h2(##)')
+        replaceHeaders(destination)
     })
 })
 
@@ -30,7 +35,7 @@ glob.sync('publish/**/*', {}).forEach(md => {
 // would probably start from header 1 '#', and since now we're combining all these chapters/sections
 // into one index page, in that way we have to adjust the headers so that section headers have a lower
 // level than the chapter one, and sub-sections lower than sections and etc.
-glob.sync('dist/build/**/*', {}).filter(file => file.endsWith('.md')).forEach(md => {
+function replaceHeaders(md) {
     if (is_overview_section(md)) {
         // keep header level start from h2, this case is easy to handle for now
         fse.readFile(md, 'utf-8', (error, content) => {
@@ -39,9 +44,9 @@ glob.sync('dist/build/**/*', {}).filter(file => file.endsWith('.md')).forEach(md
     } else if (is_ordinary_section(md)) {
         // keep header level start from h3
     } else {
-        return console.error('file is not valid chapter/sectoin file: ' + md);
+        return console.error('file is not valid chapter/sectoin file: ' + md)
     }
-})
+}
 
 function is_overview_section(section) {
     return /21-\d{1,2}\/(\D+)/gi.test(section)
