@@ -7,6 +7,8 @@ code-font-family = Consolas, "Liberation Mono", Courier, monospace
 block-style(left-right-padding)
    margin: 15px 0
    padding: 5px left-right-padding
+   font-size: 15px
+   line-height: 1.5
    border: border
    border-radius: 3px
    background-color: background-color
@@ -71,8 +73,6 @@ a
 blockquote
    block-style(20px)
    display: block
-   font-size: 15px
-   line-height: 1.5
 
 :not(pre)>code
    font-family: code-font-family
@@ -86,7 +86,11 @@ blockquote
 
 pre
    block-style(10px)
-   font-family: code-font-family !important
+   color: #000
+   overflow-x: scroll
+
+   code
+      font-family: code-font-family !important
 
 table
    margin: 16px
