@@ -1,4 +1,4 @@
-<h1 id="21-4-1-handlerinterceptor-">21.4.1 使用HandlerInterceptor拦截请求</h1>
+<h3 id="21-4-1-handlerinterceptor-">21.4.1 使用HandlerInterceptor拦截请求</h3>
 <p>Spring的处理器映射机制包含了处理器拦截器。拦截器在你需要为特定类型的请求应用一些功能时可能很有用，比如，检查用户身份等。</p>
 <p>处理器映射处理过程配置的拦截器，必须实现 <code>org.springframework.web.servlet</code>包下的 <code>HandlerInterceptor</code>接口。这个接口定义了三个方法： <code>preHandle(..)</code>，它在处理器实际执行 <em>之前</em> 会被执行； <code>postHandle(..)</code>，它在处理器执行 <em>完毕</em> 以后被执行； <code>afterCompletion(..)</code>，它在 <em>整个请求处理完成</em> 之后被执行。这三个方法为各种类型的前处理和后处理需求提供了足够的灵活性。</p>
 <p><code>preHandle(..)</code>方法返回一个boolean值。你可以通过这个方法来决定是否继续执行处理链中的部件。当方法返回 <code>true</code>时，处理器链会继续执行；若方法返回 <code>false</code>， <code>DispatcherServlet</code>即认为拦截器自身已经完成了对请求的处理（比如说，已经渲染了一个合适的视图），那么其余的拦截器以及执行链中的其他处理器就不会再被执行了。</p>

@@ -1,4 +1,4 @@
-<h1 id="21-11-3-spring-mvc-">21.11.3 处理一般的Spring MVC异常</h1>
+<h3 id="21-11-3-spring-mvc-">21.11.3 处理一般的Spring MVC异常</h3>
 <p>处理请求的过程中，Spring MVC可能会抛出一些的异常。<code>SimpleMappingExceptionResolver</code>可以根据需要很方便地将任何异常映射到一个默认的错误视图。但，如果客户端是通过自动检测响应的方式来分发处理异常的，那么后端就需要为响应设置对应的状态码。根据抛出异常的类型不同，可能需要设置不同的状态码来标识是客户端错误（4xx）还是服务器端错误（5xx）。</p>
 <p>默认处理器异常解析器<code>DefaultHandlerExceptionResolver</code>会将Spring MVC抛出的异常转换成对应的错误状态码。该解析器在MVC命名空间配置或MVC Java配置的方式下默认已经被注册了，另外，通过<code>DispatcherServlet</code>注册也是可行的（即不使用MVC命名空间或Java编程方式进行配置的时候）。下表列出了该解析器能处理的一些异常，及他们对应的状态码。</p>
 <table>

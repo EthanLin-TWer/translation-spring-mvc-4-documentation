@@ -1,4 +1,4 @@
-<h1 id="21-16-4-">21.16.4 验证</h1>
+<h3 id="21-16-4-">21.16.4 验证</h3>
 <p>Spring提供了一个<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#validator" title="8.2 Validation using Spring&#39;s Validator interface">验证器Validator接口</a>，应用的任何一层都可以使用它来做验证。在Spring MVC中，你可以配置一个全局的<code>Validator</code>实例，用以处理所有注解了<code>@Valid</code>的元素或注解了<code>@Validated</code>的控制器方法参数、以及/或在控制器内的<code>@InitBinder</code>方法中用作局部的<code>Validator</code>。全局验证器与局部验证器实例可以结合起来使用，提供组合验证。</p>
 <p>Spring还<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/validation.html#validation-beanvalidation-overview" title="8.8.1 Overview of the JSR-303 Bean Validation API">支持JSR-303/JSR-349</a>的Bean验证。这是通过<code>LocalValidatorFactoryBean</code>类实现的，它为Spring的验证器接口<code>org.springframework.validation.Validator</code>到Bean验证的<code>javax.validation.Validator</code>接口做了适配。这个类可以插入到Spring MVC的上下文中，作为一个全局的验证器，如下所述。</p>
 <p>如果在classpath下存在Bean验证器，诸如Hibernate Validator等，那么<code>@EnableWebMvc</code>或<code>&lt;mvc:annotation-driven&gt;</code>默认会自动使用<code>LocalValidatorFactoryBean</code>为Spring MVC应用提供Bean验证的支持。</p>

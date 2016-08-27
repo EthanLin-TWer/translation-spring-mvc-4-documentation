@@ -1,4 +1,4 @@
-<h1 id="21-8-3-cookie-cookielocaleresolver">21.8.3 Cookie解析器CookieLocaleResolver</h1>
+<h3 id="21-8-3-cookie-cookielocaleresolver">21.8.3 Cookie解析器CookieLocaleResolver</h3>
 <p><code>CookieLocaleResolver</code>解析会检查客户端是否有<code>Cookie</code>，里面可能存放了地区<code>Locale</code>或时区<code>TimeZone</code>信息。如果检查到相应的值，解析器就使用它们。通过该解析器的属性，你可以指定cookie的名称和其最大的存活时间。请见下面的例子，它展示了如何定义一个<code>CookieLocaleResolver</code>：</p>
 <pre><code class="lang-xml">&lt;bean id=&quot;localeResolver&quot; class=&quot;org.springframework.web.servlet.i18n.CookieLocaleResolver&quot;&gt;
 

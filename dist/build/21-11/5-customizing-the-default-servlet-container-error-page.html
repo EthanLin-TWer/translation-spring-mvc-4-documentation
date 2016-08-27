@@ -1,4 +1,4 @@
-<h1 id="21-11-5-servlet-">21.11.5 Servlet默认容器错误页面的定制化</h1>
+<h3 id="21-11-5-servlet-">21.11.5 Servlet默认容器错误页面的定制化</h3>
 <p>当响应的状态码被设置为错误状态码，并且响应体中没有内容时，Servlet容器通常会渲染一个HTML错误页。若需要定制容器默认提供的错误页，你可以在<code>web.xml</code>中定义一个错误页面<code>&lt;error-page&gt;</code>元素。在Servlet 3规范出来之前，该错误页元素必须被显式指定映射到一个具体的错误码或一个异常类型。从Servlet 3开始，错误页不再需要映射到其他信息了，这意味着，你指定的位置就是对Servlet容器默认错误页的自定制了。</p>
 <pre><code class="lang-xml">&lt;error-page&gt;
     &lt;location&gt;/error&lt;/location&gt;

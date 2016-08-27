@@ -1,4 +1,4 @@
-<h1 id="21-14-2-http-">21.14.2 对静态资源的HTTP缓存支持</h1>
+<h3 id="21-14-2-http-">21.14.2 对静态资源的HTTP缓存支持</h3>
 <p>为优化站点性能，静态资源应该带有恰当的<code>&#39;Cache-Control&#39;</code>值与其他必要的头。<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-static-resources" title="21.16.9
 Serving of Resources">配置一个<code>ResourceHttpRequestHandler</code>处理器</a>服务静态资源请求不仅会读取文件的元数据并填充<code>&#39;Last-Modified&#39;</code>头的值，正确配置时<code>&#39;Cache-Control&#39;</code>头也会被填充。【这段翻得还不是很清晰】</p>
 <p>你可以设置<code>ResourceHttpRequestHandler</code>上的<code>cachePeriod</code>属性值，或使用一个<code>CacheControl</code>实例来支持更细致的指令：</p>

@@ -1,4 +1,4 @@
-<h1 id="21-2-3-dispatcherservlet-">21.2.3 DispatcherServlet的处理流程</h1>
+<h3 id="21-2-3-dispatcherservlet-">21.2.3 DispatcherServlet的处理流程</h3>
 <p>配置好<code>DispatcherServlet</code>以后，开始有请求会经过这个<code>DispatcherServlet</code>。此时，<code>DispatcherServlet</code>会依照以下的次序对请求进行处理：</p>
 <ul>
 <li>首先，搜索应用的上下文对象<code>WebApplicationContext</code>并把它作为一个属性（attribute）绑定到该请求上，以便控制器和其他组件能够使用它。属性的键名默认为<code>DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE</code></li>

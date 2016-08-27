@@ -1,4 +1,4 @@
-<h1 id="21-9-3-">21.9.3 主题解析器</h1>
+<h3 id="21-9-3-">21.9.3 主题解析器</h3>
 <p>上一小节，我们讲了如何定义主题，定义之后，你要决定使用哪个主题。<code>DispatcherServlet</code>会查找一个名称为<code>themeResolver</code>的bean以确定使用哪个<code>ThemeResolver</code>的实现。主题解析器的工作原理与地区解析器<code>LocaleResolver</code>的工作原理大同小异。它会检测，对于一个请求来说，应该使用哪个主题，同时它也可以修改一个请求所应应用的主题。Spring提供了下列的这些主题解析器：</p>
 <p><strong>表21.5. ThemeResolver接口的实现</strong></p>
 <table>

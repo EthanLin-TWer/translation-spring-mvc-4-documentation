@@ -1,4 +1,4 @@
-<h1 id="21-14-1-http-cache-control">21.14.1 HTTP请求头Cache-Control</h1>
+<h3 id="21-14-1-http-cache-control">21.14.1 HTTP请求头Cache-Control</h3>
 <p>Spring MVC提供了许多方式来配置&quot;Cache-Control&quot;请求头，支持在许多场景下使用它。关于该请求头完整详尽的所有用法，你可以参考<a href="https://tools.ietf.org/html/rfc7234#section-5.2.2">RFC 7234的第5.2.2小节</a>，这里我们只讲解最常用的几种用法。</p>
 <p>Spring MVC的许多API中都使用了这样的惯例配置：<code>setCachePeriod(int seconds)</code>，若返回值为：</p>
 <ul>

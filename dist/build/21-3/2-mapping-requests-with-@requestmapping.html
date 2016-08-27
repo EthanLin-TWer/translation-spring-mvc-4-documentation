@@ -1,4 +1,4 @@
-<h1 id="21-3-2-requestmapping-">21.3.2 使用@RequestMapping注解映射请求路径</h1>
+<h3 id="21-3-2-requestmapping-">21.3.2 使用@RequestMapping注解映射请求路径</h3>
 <p>你可以使用<code>@RequestMapping</code>注解来将请求URL，如<code>/appointments</code>等，映射到整个类上或某个特定的处理器方法上。一般来说，类级别的注解负责将一个特定（或符合某种模式）的请求路径映射到一个控制器上，同时通过方法级别的注解来细化映射，即根据特定的HTTP请求方法（“GET”“POST”方法等）、HTTP请求中是否携带特定参数等条件，将请求映射到匹配的方法上。</p>
 <p>下面这段代码示例来自Petcare，它展示了在Spring MVC中如何在控制器上使用<code>@RequestMapping</code>注解：</p>
 <pre><code class="lang-java">@Controller
@@ -61,9 +61,9 @@ public class ClinicController {
 }
 </code></pre>
 <p>以上代码没有指定请求必须是GET方法还是PUT/POST或其他方法，<code>@RequestMapping</code>注解默认会映射所有的HTTP请求方法。如果仅想接收某种请求方法，请在注解中指定之<code>@RequestMapping(method=GET)</code>以缩小范围。</p>
-<h2 id="-controller-aop-">@Controller和面向切面（AOP）代理</h2>
+<h4 id="-controller-aop-">@Controller和面向切面（AOP）代理</h4>
 <p>有时，我们希望在运行时使用AOP代理来装饰控制器，比如当你直接在控制器上使用<code>@Transactional</code>注解时。这种情况下，我们推荐使用类级别（在控制器上使用）的代理方式。这一般是代理控制器的默认做法。如果控制器必须实现一些接口，而该接口又不支持Spring Context的回调（比如<code>InitializingBean</code>, <code>*Aware</code>等接口），那要配置类级别的代理就必须手动配置了。比如，原来的配置文件<code>&lt;tx:annotation-driven/&gt;</code>需要显式配置为<code>&lt;tx:annotation-driven proxy-target-class=&quot;true&quot;/&gt;</code>。</p>
-<h2 id="spring-mvc-3-1-requestmapping-">Spring MVC 3.1中新增支持@RequestMapping的一些类</h2>
+<h4 id="spring-mvc-3-1-requestmapping-">Spring MVC 3.1中新增支持@RequestMapping的一些类</h4>
 <blockquote>
 <p>They are recommended for use and even required to take advantage of new features in Spring MVC 3.1 and going forward.</p>
 </blockquote>
@@ -96,7 +96,7 @@ public class ClinicController {
 <blockquote>
 <p>[Original] ## URI Template Patterns</p>
 </blockquote>
-<h2 id="uri-">URI模板</h2>
+<h4 id="uri-">URI模板</h4>
 <blockquote>
 <p>[Original] URI templates can be used for convenient access to selected parts of a URL in a <code>@RequestMapping</code> method.</p>
 </blockquote>
@@ -174,7 +174,7 @@ initialization">the section called &quot;Customizing WebDataBinder
 initialization&quot;</a>.</p>
 </blockquote>
 <p><code>@PathVariable</code>可以被应用于所有 <em>简单类型</em> 的参数上，比如int、long、Date等类型。Spring会自动地帮你把参数转化成合适的类型，如果转换失败，就抛出一个<code>TypeMismatchException</code>。如果你需要处理其他数据类型的转换，也可以注册自己的类。若需要更详细的信息可以参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion" title="Method Parameters And Type Conversion">“方法参数与类型转换”一节</a>和<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder" title="Customizing WebDataBinder initialization">“定制WebDataBinder初始化过程”一节</a></p>
-<h2 id="-uri-">带正则表达式的URI模板</h2>
+<h4 id="-uri-">带正则表达式的URI模板</h4>
 <blockquote>
 <p>[Original] Sometimes you need more precision in defining URI template variables. Consider the URL <code>&quot;/spring-web/spring-web-3.0.5.jar&quot;</code>. How do you break it down into
 multiple parts?</p>
@@ -190,13 +190,13 @@ multiple parts?</p>
     }
 }
 </code></pre>
-<h2 id="path-patterns-">Path Patterns（不好翻，容易掉韵味）</h2>
+<h4 id="path-patterns-">Path Patterns（不好翻，容易掉韵味）</h4>
 <blockquote>
 <p>[Original] In addition to URI templates, the <code>@RequestMapping</code> annotation also supports Ant-style path patterns (for example, <code>/myPath/*.do</code>). A combination of URI
 template variables and Ant-style globs is also supported (e.g. <code>/owners/*/pets/{petId}</code>).</p>
 </blockquote>
 <p>除了URI模板外，<code>@RequestMapping</code>注解还支持Ant风格的路径模式（如<code>/myPath/*.do</code>等）。不仅如此，还可以把URI模板变量和Ant风格的glob组合起来使用（比如<code>/owners/*/pets/{petId}</code>这样的用法等）。</p>
-<h2 id="-path-pattern-comparison-">路径样式的匹配(Path Pattern Comparison)</h2>
+<h4 id="-path-pattern-comparison-">路径样式的匹配(Path Pattern Comparison)</h4>
 <blockquote>
 <p>[Original] When a URL matches multiple patterns, a sort is used to find the most specific match.</p>
 </blockquote>
@@ -233,15 +233,15 @@ Matching&quot;</a> in the
 section on configuring Spring MVC).</p>
 </blockquote>
 <p>更多的细节请参考这两个类：<code>AntPatternComparator</code>和<code>AntPathMatcher</code>。值得一提的是，PathMatcher类是可以配置的（见“配置Spring MVC”一节中的<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/html#mvc-config-path-matching" title="21.16.11 Path Matching">21.16.11 路径的匹配</a>一节)。</p>
-<h2 id="-path-patterns-">带占位符的路径模式（path patterns）</h2>
+<h4 id="-path-patterns-">带占位符的路径模式（path patterns）</h4>
 <blockquote>
 <p>[Original] Patterns in <code>@RequestMapping</code> annotations support ${…} placeholders against local properties and/or system properties and environment variables. This may be useful in cases where the path a controller is mapped to may need to be
 customized through configuration. For more information on placeholders, see
 the javadocs of the <code>PropertyPlaceholderConfigurer</code> class.</p>
 </blockquote>
 <p><code>@RequestMapping</code>注解支持在路径中使用占位符，以取得一些本地配置、系统配置、环境变量等。这个特性有时很有用，比如说控制器的映射路径需要通过配置来定制的场景。如果想了解更多关于占位符的信息，可以参考<code>PropertyPlaceholderConfigurer</code>这个类的文档。</p>
-<h2 id="suffix-pattern-matching">Suffix Pattern Matching</h2>
-<h2 id="-">后缀模式匹配</h2>
+<h4 id="suffix-pattern-matching">Suffix Pattern Matching</h4>
+<h4 id="-">后缀模式匹配</h4>
 <blockquote>
 <p>[Original] By default Spring MVC performs <code>&quot;.*&quot;</code> suffix pattern matching so that a
 controller mapped to <code>/person</code> is also implicitly mapped to <code>/person.*</code>. This
@@ -262,7 +262,7 @@ to restrict them meaningfully.</p>
 <p>[Original] See <a href="mvc.html#mvc-config-path-matching" title="21.16.11 Path Matching">Section 21.16.11, &quot;Path Matching&quot;</a> for suffix pattern matching configuration and also <a href="mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation">Section 21.16.6, &quot;Content Negotiation&quot;</a> for content negotiation configuration.</p>
 </blockquote>
 <p>关于后缀模式匹配的配置问题，可以参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-path-matching" title="21.16.11 Path Matching">第21.16.11小节 &quot;路径匹配&quot;</a>；关于内容协商的配置问题，可以参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-content-negotiation" title="21.16.6 Content Negotiation">第21.16.6小节 &quot;内容协商&quot;</a>的内容。</p>
-<h2 id="-rfd">后缀模式匹配与RFD</h2>
+<h4 id="-rfd">后缀模式匹配与RFD</h4>
 <blockquote>
 <p>[Original] Reflected file download (RFD) attack was first described in a <a href="https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/">paper by
 Trustwave</a> in 2014. The attack is similar to XSS in that it relies on input (e.g. query parameter, URI variable) being reflected in the response. However instead of inserting JavaScript into HTML, an RFD attack relies on the browser switching to perform a download and treating the response as an executable script if double-clicked based on the file extension (e.g. .bat, .cmd).</p>
@@ -290,7 +290,7 @@ Trustwave</a> in 2014. The attack is similar to XSS in that it relies on input (
 </ul>
 </blockquote>
 <p>感觉这节的翻译质量还有限，需要继续了解XSS攻击和RFD攻击的细节再翻。</p>
-<h2 id="-">矩阵变量</h2>
+<h4 id="-">矩阵变量</h4>
 <blockquote>
 <p>[Original] The URI specification <a href="http://tools.ietf.org/html/rfc3986#section-3.3">RFC 3986</a> defines the possibility of including name-value pairs within path segments. There is no specific term used in the spec. The general &quot;URI path parameters&quot; could be applied although the more unique <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">&quot;Matrix URIs&quot;</a>, originating from an old post by Tim Berners-Lee, is also frequently used and fairly well known. Within Spring MVC these are referred to as matrix variables.</p>
 </blockquote>
@@ -388,7 +388,7 @@ public void findPet(
 
 &lt;/beans&gt;
 </code></pre>
-<h2 id="-">可消费的媒体类型</h2>
+<h4 id="-">可消费的媒体类型</h4>
 <blockquote>
 <p>[Original] You can narrow the primary mapping by specifying a list of consumable media types. The request will be matched only if the <em>Content-Type</em> request header matches the specified media type. For example:</p>
 </blockquote>
@@ -407,7 +407,7 @@ public void addPet(@RequestBody Pet pet, Model model) {
 <p>[Original] The <em>consumes</em> condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.</p>
 <p><em>consumes</em> 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
 </blockquote>
-<h2 id="-">可生产的媒体类型</h2>
+<h4 id="-">可生产的媒体类型</h4>
 <blockquote>
 <p>[Original] You can narrow the primary mapping by specifying a list of producible media types. The request will be matched only if the <em>Accept</em> request header matches one of these values. Furthermore, use of the <em>produces</em> condition ensures the actual content type used to generate the response respects the media types specified in the <em>produces</em> condition. For example:</p>
 </blockquote>
@@ -431,7 +431,7 @@ specify the same media type than the default one configured in <code>MappingJack
 producible types override rather than extend type-level producible types.</p>
 <p><em>produces</em> 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
 </blockquote>
-<h2 id="-">请求参数与请求头的值</h2>
+<h4 id="-">请求参数与请求头的值</h4>
 <blockquote>
 <p>[Original] You can narrow request matching through request parameter conditions such as <code>&quot;myParam&quot;</code>, <code>&quot;!myParam&quot;</code>, or <code>&quot;myParam=myValue&quot;</code>. The first two test for request parameter presence/absence and the third for a specific parameter value. Here is an example with a request parameter value condition:</p>
 </blockquote>

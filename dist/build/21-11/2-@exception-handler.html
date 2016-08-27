@@ -1,4 +1,4 @@
-<h1 id="21-11-2-exceptionhandler-">21.11.2 @ExceptionHandler注解</h1>
+<h3 id="21-11-2-exceptionhandler-">21.11.2 @ExceptionHandler注解</h3>
 <p><code>HandlerExceptionResolver</code>接口以及<code>SimpleMappingExceptionResolver</code>解析器类的实现使得你能声明式地将异常映射到特定的视图上，还可以在异常被转发（forward）到对应的视图前使用Java代码做些判断和逻辑。不过在一些场景，特别是依靠<code>@ResponseBody</code>返回响应而非依赖视图解析机制的场景下，直接设置响应的状态码并将客户端需要的错误信息直接写回响应体中，可能是更方便的方法。</p>
 <p>你也可以使用<code>@ExceptionHandler</code>方法来做到这点。如果<code>@ExceptionHandler</code>方法是在控制器内部定义的，那么它会接收并处理由控制器（或其任何子类）中的<code>@RequestMapping</code>方法抛出的异常。如果你将<code>@ExceptionHandler</code>方法定义在<code>@ControllerAdvice</code>类中，那么它会处理相关控制器中抛出的异常。下面的代码就展示了一个定义在控制器内部的<code>@ExceptionHandler</code>方法：</p>
 <pre><code class="lang-java">@Controller

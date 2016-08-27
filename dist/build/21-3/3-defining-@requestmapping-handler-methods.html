@@ -1,9 +1,9 @@
-<h1 id="21-3-3-requestmapping-handler-method-">21.3.3 定义@RequestMapping注解的处理方法(handler method)</h1>
+<h3 id="21-3-3-requestmapping-handler-method-">21.3.3 定义@RequestMapping注解的处理方法(handler method)</h3>
 <p>使用<code>@RequestMapping</code>注解的处理方法可以拥有非常灵活的方法签名，它支持的方法参数及返回值类型将在接下来的小节讲述。大多数参数都可以任意的次序出现，除了唯一的一个例外：<code>BindingResult</code>参数。这在下节也会详细描述。</p>
 <blockquote>
 <p>Spring 3.1中新增了一些类，用以增强注解了<code>@RequestMapping</code>的处理方法，分别是<code>RequestMappingHandlerMapping</code>类和<code>RequestMappingHandlerAdapter</code>类。我们鼓励使用这组新的类，如果要使用Spring 3.1及以后版本的新特性，这组类甚至是必须使用的。这些增强类在MVC的命名空间配置和MVC的Java编程方式配置中都是默认开启的，如果不是使用这两种方法，那么就需要显式地配置。</p>
 </blockquote>
-<h2 id="-">支持的方法参数类型</h2>
+<h4 id="-">支持的方法参数类型</h4>
 <p>下面列出所有支持的方法参数类型：</p>
 <ul>
 <li>请求或响应对象（Servlet API）。可以是任何具体的请求或响应类型的对象，比如，<code>ServletRequest</code>或<code>HttpServletRequest</code>对象等。</li>
@@ -46,7 +46,7 @@ public String processSubmit(@ModelAttribute(&quot;pet&quot;) Pet pet, BindingRes
 <blockquote>
 <p>对于一些带有<code>required</code>属性的注解（比如<code>@RequestParam</code>、<code>@RequestHeader</code>等），JDK 1.8的<code>java.util.Optional</code>可以作为被它们注解的方法参数。在这种情况下，使用<code>java.util.Optional</code>与<code>required=false</code>的作用是相同的。</p>
 </blockquote>
-<h2 id="-">支持的方法返回类型</h2>
+<h4 id="-">支持的方法返回类型</h4>
 <p>以下是handler方法允许的所有返回类型：</p>
 <ul>
 <li><code>ModelAndView</code>对象，其中model隐含填充了命令对象，以及注解了<code>@ModelAttribute</code>字段的存取器被调用所返回的值。</li>
@@ -66,7 +66,7 @@ public String processSubmit(@ModelAttribute(&quot;pet&quot;) Pet pet, BindingRes
 <li><code>StreamingResponseBody</code>对象，可用它异步地向响应对象的输出流中写东西。also supported as the body within a <code>ResponseEntity</code></li>
 <li>其他任何返回类型，都会被处理成model的一个属性并返回给视图，该属性的名称为方法级的<code>@ModelAttribute</code>所注解的字段名（或者以返回类型的类名作为默认的属性名）。model隐含填充了命令对象以及注解了<code>@ModelAttribute</code>字段的存取器被调用所返回的值</li>
 </ul>
-<h2 id="-requestparam-">使用@RequestParam将请求参数绑定至方法参数</h2>
+<h4 id="-requestparam-">使用@RequestParam将请求参数绑定至方法参数</h4>
 <p>你可以使用<code>@RequestParam</code>注解将请求参数绑定到你控制器的方法参数上。</p>
 <p>下面这段代码展示了它的用法：</p>
 <pre><code class="lang-java">@Controller
@@ -88,7 +88,7 @@ public class EditPetForm {
 <p>若所注解的方法参数类型不是<code>String</code>，则类型转换会自动地发生。详见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion" title="Method Parameters And Type
 Conversion">&quot;方法参数与类型转换&quot;一节</a></p>
 <p>若<code>@RequestParam</code>注解的参数类型是<code>Map&lt;String, String&gt;</code>或者<code>MultiValueMap&lt;String, String&gt;</code>，则该Map中会自动填充所有的请求参数。</p>
-<h2 id="-requestbody-">使用@RequestBody注解映射请求体</h2>
+<h4 id="-requestbody-">使用@RequestBody注解映射请求体</h4>
 <p>方法参数中的<code>@RequestBody</code>注解暗示了方法参数应该被绑定了HTTP请求体的值。举个例子：</p>
 <pre><code class="lang-java">@RequestMapping(path = &quot;/something&quot;, method = RequestMethod.PUT)
 public void handle(@RequestBody String body, Writer writer) throws IOException {
@@ -128,7 +128,7 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 <blockquote>
 <p>关于如何通过MVC命令空间或MVC Java编程的方式配置消息转换器和验证器，也请参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable" title="21.16.1 Enabling the MVC Java Config or the MVC XML Namespace">&quot;启用MVC Java编程配置或MVC XML命令空间配置&quot;一节</a>。</p>
 </blockquote>
-<h2 id="-responsebody-">使用@ResponseBody注解映射响应体</h2>
+<h4 id="-responsebody-">使用@ResponseBody注解映射响应体</h4>
 <p><code>@ResponseBody</code>注解与<code>@RequestBody</code>注解类似。<code>@ResponseBody</code>注解可被应用于方法上，标志该方法的返回值（更正，原文是return type，看起来应该是返回值）应该被直接写回到HTTP响应体中去（而不会被被放置到Model中或被解释为一个视图名）。举个例子：</p>
 <pre><code class="lang-java">@RequestMapping(path = &quot;/something&quot;, method = RequestMethod.PUT)
 @ResponseBody
@@ -138,12 +138,12 @@ public String helloWorld() {
 </code></pre>
 <p>上面的代码结果是文本<code>Hello World</code>将被写入HTTP的响应流中。</p>
 <p>与<code>@RequestBody</code>注解类似，Spring使用了一个<code>HttpMessageConverter</code>来将返回对象转换到响应体中。关于这些转换器的更多信息，请参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion" title="27.10.2 HTTP Message Conversion">&quot;HTTP信息转换器&quot;一节</a>。</p>
-<h2 id="-restcontroller-rest-">使用@RestController注解创建REST控制器</h2>
+<h4 id="-restcontroller-rest-">使用@RestController注解创建REST控制器</h4>
 <p>当今让控制器实现一个REST API是非常常见的，这种场景下控制器只需要提供JSON、XML或其他自定义的媒体类型内容即可。你不需要在每个<code>@RequestMapping</code>方法上都增加一个<code>@ResponseBody</code>注解，更简明的做法是，给你的控制器加上一个<code>@RestController</code>的注解。</p>
 <p><a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE
 /javadoc-api/org/springframework/web/bind/annotation/RestController.html"><code>@RestController</code></a>是一个原生内置的注解，它结合了<code>@ResponseBody</code>与<code>@Controller</code>注解的功能。不仅如此，它也让你的控制器更表义，而且在框架未来的发布版本中，它也可能承载更多的意义。</p>
 <p>与普通的<code>@Controller</code>无异，<code>@RestController</code>也可以与<code>@ControllerAdvice</code>bean配合使用。更多细节，请见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice" title="Advising controllers with @ControllerAdvice">使用@ControllerAdvice辅助控制器</a>。</p>
-<h2 id="-http-httpentity">使用HTTP实体HttpEntity</h2>
+<h4 id="-http-httpentity">使用HTTP实体HttpEntity</h4>
 <p><code>HttpEntity</code>与<code>@RequestBody</code>和<code>@ResponseBody</code>很相似。除了能获得请求体和响应体中的内容之外，<code>HttpEntity</code>（以及专门负责处理响应的<code>ResponseEntity</code>子类）还可以存取请求头和响应头，像下面这样：</p>
 <pre><code class="lang-java">@RequestMapping(&quot;/something&quot;)
 public ResponseEntity&lt;String&gt; handle(HttpEntity&lt;byte[]&gt; requestEntity) throws UnsupportedEncodingException {
@@ -159,7 +159,7 @@ public ResponseEntity&lt;String&gt; handle(HttpEntity&lt;byte[]&gt; requestEntit
 </code></pre>
 <p>上面这段示例代码先是获取了<code>MyRequestHeader</code>请求头的值，然后读取请求体的主体内容。读完以后往影响头中添加了一个自己的响应头<code>MyResponseHeader</code>，然后向响应流中写了字符串<code>Hello World</code>，最后把响应状态码设置为201（创建成功）。</p>
 <p>与<code>@RequestBody</code>与<code>@ResponseBody</code>注解一样，Spring使用了<code>HttpMessageConverter</code>来对请求流和响应流进行转换。关于这些转换器的更多信息，请阅读上一小节以及<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion" title="27.10.2 HTTP Message Conversion">&quot;HTTP信息转换器&quot;这一节</a>。</p>
-<h2 id="-modelattribute-">对方法使用@ModelAttribute注解</h2>
+<h4 id="-modelattribute-">对方法使用@ModelAttribute注解</h4>
 <p><code>@ModelAttribute</code>注解可被应用在方法或方法参数上。本节将介绍其被注解于方法上时的用法，下节会介绍其被用于注解方法参数的用法。</p>
 <p>注解在方法上的<code>@ModelAttribute</code>说明了方法的作用是用于添加一个或多个属性到model上。这样的方法能接受与<code>@RequestMapping</code>注解相同的参数类型，只不过不能直接被映射到具体的请求上。在同一个控制器中，注解了<code>@ModelAttribute</code>的方法实际上会在<code>@RequestMapping</code>方法之前被调用。以下是几个例子：</p>
 <pre><code class="lang-java">// Add one attribute
@@ -187,7 +187,7 @@ public void populateModel(@RequestParam String number, Model model) {
 <p>属性名没有被显式指定的时候又当如何呢？在这种情况下，框架将根据属性的类型给予一个默认名称。举个例子，若方法返回一个<code>Account</code>类型的对象，则默认的属性名为&quot;account&quot;。你可以通过设置<code>@ModelAttribute</code>注解的值来改变默认值。当向<code>Model</code>中直接添加属性时，请使用合适的重载方法<code>addAttribute(..)</code>-即，带或不带属性名的方法。</p>
 </blockquote>
 <p><code>@ModelAttribute</code>注解也可以被用在<code>@RequestMapping</code>方法上。这种情况下，<code>@RequestMapping</code>方法的返回值将会被解释为model的一个属性，而非一个视图名。此时视图名将以视图命名约定来方式来决议，与返回值为void的方法所采用的处理方法类似——请见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-coc-r2vnt" title="21.13.3 The View - RequestToViewNameTranslator">视图：请求与视图名的对应</a>。</p>
-<h2 id="-modelattribute-">在方法参数上使用@ModelAttribute注解</h2>
+<h4 id="-modelattribute-">在方法参数上使用@ModelAttribute注解</h4>
 <p>如上一小节所解释，<code>@ModelAttribute</code>注解既可以被用在方法上，也可以被用在方法参数上。这一小节将介绍它注解在方法参数上时的用法。</p>
 <p>注解在方法参数上的<code>@ModelAttribute</code>说明了该方法参数的值将由model中取得。如果model中找不到，那么该参数会先被实例化，然后被添加到model中。在model中存在以后，请求中所有名称匹配的参数都会填充到该参数中。这在Spring MVC中被称为数据绑定，一个非常有用的特性，节约了你每次都需要手动从表格数据中转换这些字段数据的时间。</p>
 <pre><code class="lang-java">@RequestMapping(path = &quot;/owners/{ownerId}/pets/{petId}/edit&quot;, method = RequestMethod.POST)
@@ -246,7 +246,7 @@ public String processSubmit(@Valid @ModelAttribute(&quot;pet&quot;) Pet pet, Bin
 }
 </code></pre>
 <p>关于如何配置并使用验证，可以参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#validation-beanvalidation" title="8.8 Spring Validation">第8.8小节 &quot;Spring验证&quot;</a>和<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html" title="8. Validation, Data Binding, and Type Conversion">第8章 <em>验证，数据绑定和类型转换</em></a>。</p>
-<h2 id="-sessionattributes-http-">在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据</h2>
+<h4 id="-sessionattributes-http-">在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据</h4>
 <p>类型级别的<code>@SessionAttributes</code>注解声明了某个特定处理器所使用的会话属性。通常它会列出该类型希望存储到session或converstaion中的model属性名或model的类型名，一般是用于在请求之间保存一些表单数据的bean。</p>
 <p>以下的代码段演示了该注解的用法，它指定了模型属性的名称</p>
 <pre><code class="lang-java">@Controller
@@ -256,7 +256,7 @@ public class EditPetForm {
     // ...
 }
 </code></pre>
-<h2 id="-application-x-www-form-urlencoded-">使用&quot;application/x-www-form-urlencoded&quot;数据</h2>
+<h4 id="-application-x-www-form-urlencoded-">使用&quot;application/x-www-form-urlencoded&quot;数据</h4>
 <p>上一小节讲述了如何使用<code>@ModelAttribute</code>支持客户端浏览器的多次表单提交请求。对于不是使用的浏览器的客户端，我们也推荐使用这个注解来处理请求。但当请求是一个HTTP PUT方法的请求时，有一个事情需要注意。浏览器可以通过HTTP的GET方法或POST方法来提交表单数据，非浏览器的客户端还可以通过HTTP的PUT方法来提交表单。这就设计是个挑战，因为在Servlet规范中明确规定，<code>ServletRequest.getParameter*()</code>系列的方法只能支持通过HTTP POST方法的方式提交表单，而不支持HTTP PUT的方式。</p>
 <p>为了支持HTTP的PUT类型和PATCH类型的请求，Spring的<code>spring-web</code>模块提供了一个过滤器<code>HttpPutFormContentFilter</code>。你可以在<code>web.xml</code>文件中配置它：</p>
 <pre><code class="lang-xml">    &lt;filter&gt;
@@ -278,7 +278,7 @@ public class EditPetForm {
 <blockquote>
 <p>因为<code>HttpPutFormContentFilter</code>会消费请求体的内容，因此，它不应该用于处理那些依赖于其他<code>application/x-www-form-urlencoded</code>转换器的PUT和PATCH请求，这包括了<code>@RequestBodyMultiValueMap&lt;String, String&gt;</code>和<code>HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt;</code>。</p>
 </blockquote>
-<h2 id="-cookievalue-cookie-">使用@CookieValue注解映射cookie值</h2>
+<h4 id="-cookievalue-cookie-">使用@CookieValue注解映射cookie值</h4>
 <p><code>@CookieValue</code>注解能将一个方法参数与一个HTTP cookie的值进行绑定。</p>
 <p>看一个这样的场景：以下的这个cookie存储在一个HTTP请求中：</p>
 <pre><code>JSESSIONID=415A4AC178C59DACE0B2C9CA727CDD84
@@ -290,7 +290,7 @@ public void displayHeaderInfo(@CookieValue(&quot;JSESSIONID&quot;) String cookie
 </code></pre>
 <p>若注解的目标方法参数不是<code>String</code>类型，则类型转换会自动进行。详见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion" title="Method Parameters And Type Conversion">&quot;方法参数与类型转换&quot;</a>一节。</p>
 <p>这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。</p>
-<h2 id="-requestheader-">使用<code>@RequestHeader</code>注解映射请求头属性</h2>
+<h4 id="-requestheader-">使用<code>@RequestHeader</code>注解映射请求头属性</h4>
 <p><code>@RequestHeader</code>注解能将一个方法参数与一个请求头属性进行绑定。</p>
 <p>以下是一个请求头的例子：</p>
 <pre><code>    Host                    localhost:8080
@@ -312,11 +312,11 @@ public void displayHeaderInfo(@RequestHeader(&quot;Accept-Encoding&quot;) String
 <p>Spring内置支持将一个逗号分隔的字符串（或其他类型转换系统所能识别的类型）转换成一个String类型的列表/集合。举个例子，一个注解了<code>@RequestHeader(&quot;Accept&quot;)</code>的方法参数可以是一个<code>String</code>类型，但也可以是<code>String[]</code>或<code>List&lt;String&gt;</code>类型的。</p>
 </blockquote>
 <p>这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。</p>
-<h2 id="-">方法参数与类型转换</h2>
+<h4 id="-">方法参数与类型转换</h4>
 <p>从请求参数、路径变量、请求头属性或者cookie中抽取出来的<code>String</code>类型的值，可能需要被转换成其所绑定的目标方法参数或字段的类型（比如，通过<code>@ModelAttribute</code>将请求参数绑定到方法参数上）。如果目标类型不是<code>String</code>，Spring会自动进行类型转换。所有的简单类型诸如int、long、Date都有内置的支持。如果想进一步定制这个转换过程，你可以通过<code>WebDataBinder</code>（详见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder" title="Customizing WebDataBinder initialization">&quot;定制WebDataBinder的初始化&quot;</a>一节），或者为<code>Formatters</code>配置一个<code>FormattingConversionService</code>（详见<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#format" title="8.6 Spring Field Formatting">8.6节 &quot;Spring字段格式化&quot;</a>一节）来做到。</p>
-<h2 id="-webdatabinder-">定制WebDataBinder的初始化</h2>
+<h4 id="-webdatabinder-">定制WebDataBinder的初始化</h4>
 <p>如果想通过Spring的<code>WebDataBinder</code>在属性编辑器中做请求参数的绑定，你可以使用在控制器内使用<code>@InitBinder</code>注解的方法、在注解了<code>@ControllerAdvice</code>的类中使用<code>@InitBinder</code>注解的方法，或者提供一个定制的<code>WebBindingInitializer</code>。更多的细节，请参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice" title="Advising controllers with @ControllerAdvice">使用@ControllerAdvice辅助控制器</a>一节。</p>
-<h3 id="-initbinder">数据绑定的定制：使用@InitBinder</h3>
+<h5 id="-initbinder">数据绑定的定制：使用@InitBinder</h5>
 <p>使用<code>@InitBinder</code>注解控制器的方法，你可以直接在你的控制器类中定制应用的数据绑定。<code>@InitBinder</code>用来标记一些方法，这些方法会初始化一个<code>WebDataBinder</code>并用以为处理器方法填充命令对象和表单对象的参数。</p>
 <p>除了命令/表单对象以及相应的验证结果对象，这样的“绑定器初始化”方法能够接收<code>@RequestMapping</code>所支持的所有参数类型。“绑定器初始化”方法不能有返回值，因此，一般将它们声明为<code>void</code>返回类型。特别地，当<code>WebDataBinder</code>与<code>WebRequest</code>或<code>java.util.Locale</code>一起作为方法参数时，你可以在代码中注册上下文相关的编辑器。</p>
 <p>下面的代码示例演示了如何使用<code>@InitBinder</code>来配置一个<code>CustomerDateEditor</code>，后者会对所有<code>java.util.Date</code>类型的表单字段进行操作：</p>
@@ -345,7 +345,7 @@ public class MyFormController {
     // ...
 }
 </code></pre>
-<h3 id="-webbindinginitializer">配置定制的WebBindingInitializer</h3>
+<h5 id="-webbindinginitializer">配置定制的WebBindingInitializer</h5>
 <p>为了externalize数据绑定的初始化过程，你可以为<code>WebBindingInitializer</code>接口提供一个自己的实现，在其中你可以为<code>AnnotationMethodHandlerAdapter</code>提供一个默认的配置bean，以此来覆写默认的配置。</p>
 <p>以下的代码来自PetClinic的应用，它展示了为<code>WebBindingInitializer</code>接口提供一个自定义实现：<code>org.springframework.samples.petclinic.web.ClinicBindingInitializer</code>完整的配置过程。后者中配置了PetClinic应用中许多控制器所需要的属性编辑器PropertyEditors。</p>
 <pre><code class="lang-xml">&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;&gt;
@@ -356,7 +356,7 @@ public class MyFormController {
 &lt;/bean&gt;
 </code></pre>
 <p><code>@InitBinder</code>方法也可以定义在<code>@ControllerAdvice</code>注解的类上，这样配置可以为许多控制器所共享。这提供了除使用<code>WebBindingInitializer</code>外的另外一种方法。更多细节请参考<a href="http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice" title="Advising controllers with @ControllerAdvice">使用@ControllerAdvice辅助控制器</a>一节。</p>
-<h2 id="-controlleradvice-">使用@ControllerAdvice辅助控制器</h2>
+<h4 id="-controlleradvice-">使用@ControllerAdvice辅助控制器</h4>
 <p><code>@ControllerAdvice</code>是一个组件注解，它使得其实现类能够被classpath扫描自动发现。若应用是通过MVC命令空间或MVC Java编程方式配置，那么该特性默认是自动开启的。</p>
 <p>注解<code>@ControllerAdvice</code>的类可以拥有<code>@ExceptionHandler</code>、<code>@InitBinder</code>或<code>@ModelAttribute</code>注解的方法，并且这些方法会被应用至控制器类层次??的所有<code>@RequestMapping</code>方法上。</p>
 <p>你也可以通过<code>@ControllerAdvice</code>的属性来指定其只对一个子集的控制器生效：</p>
@@ -374,7 +374,7 @@ public class AssignableTypesAdvice {}
 </code></pre>
 <p>更多的细节，请查阅<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html"><code>@ControllerAdvice</code>的文档</a>。</p>
 <p>下面两节，还看不太懂，待译。</p>
-<h2 id="jackson-serialization-view-support">Jackson Serialization View Support</h2>
+<h4 id="jackson-serialization-view-support">Jackson Serialization View Support</h4>
 <p>It can sometimes be useful to filter contextually the object that will be
 serialized to the HTTP response body. In order to provide such capability,
 Spring MVC has built-in support for rendering with <a href="http://wiki.fasterxml.com/JacksonJsonViews">Jackson&#39;s Serialization
@@ -447,7 +447,7 @@ public class UserController extends AbstractController {
         return &quot;userView&quot;;
     }
 }
-</code></pre><h2 id="jackson-jsonp-support">Jackson JSONP Support</h2>
+</code></pre><h4 id="jackson-jsonp-support">Jackson JSONP Support</h4>
 <p>In order to enable <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a> support for
 <code>@ResponseBody</code> and <code>ResponseEntity</code> methods, declare an <code>@ControllerAdvice</code>
 bean that extends <code>AbstractJsonpResponseBodyAdvice</code> as shown below where the

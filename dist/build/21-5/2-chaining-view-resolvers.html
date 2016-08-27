@@ -1,4 +1,4 @@
-<h1 id="21-5-2-">21.5.2 视图链</h1>
+<h3 id="21-5-2-">21.5.2 视图链</h3>
 <p>Spring支持同时使用多个视图解析器。因此，你可以配置一个解析器链，并做更多的事比如，在特定条件下覆写一个视图等。你可以通过把多个视图解析器设置到应用上下文(application context)中的方式来串联它们。如果需要指定它们的次序，那么设置<code>order</code>属性即可。请记住，order属性的值越大，该视图解析器在链中的位置就越靠后。</p>
 <p>在下面的代码例子中，视图解析器链中包含了两个解析器：一个是<code>InternalResourceViewResolver</code>，它总是自动被放置在解析器链的最后；另一个是<code>XmlViewResolver</code>，它用来指定Excel视图。<code>InternalResourceViewResolver</code>不支持Excel视图。</p>
 <pre><code class="lang-xml">&lt;bean id=&quot;jspViewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;

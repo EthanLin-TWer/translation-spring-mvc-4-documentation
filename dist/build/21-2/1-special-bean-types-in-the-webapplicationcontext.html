@@ -1,4 +1,4 @@
-<h1 id="21-2-1-webapplicationcontext-bean-">21.2.1 WebApplicationContext中特殊的bean类型</h1>
+<h3 id="21-2-1-webapplicationcontext-bean-">21.2.1 WebApplicationContext中特殊的bean类型</h3>
 <p>Spring的<code>DispatcherServlet</code>使用了特殊的bean来处理请求、渲染视图等，这些特定的bean是Spring MVC框架的一部分。如果你想指定使用哪个特定的bean，你可以在web应用上下文<code>WebApplicationContext</code>中简单地配置它们。当然这只是可选的，Spring MVC维护了一个默认的bean列表，如果你没有进行特别的配置，框架将会使用默认的bean。下一小节会介绍更多的细节，这里，我们将先快速地看一下，<code>DispatcherServlet</code>都依赖于哪些特殊的bean来进行它的初始化。</p>
 <table>
 <thead>

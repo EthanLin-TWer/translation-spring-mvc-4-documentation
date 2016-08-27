@@ -1,4 +1,4 @@
-<h1 id="21-16-10-servlet-">21.16.10 回到默认的Servlet来进行资源服务</h1>
+<h3 id="21-16-10-servlet-">21.16.10 回到默认的Servlet来进行资源服务</h3>
 <p>这些配置允许你将<code>DispatcherServlet</code>映射到&quot;/&quot;路径（也即覆盖了容器默认Servlet的映射），但依然保留容器默认的Servlet以处理静态资源的请求。这可以通过配置一个URL映射到&quot;/**&quot;的处理器<code>DefaultServletHttpRequestHandler</code>来实现，并且该处理器在其他所有URL映射关系中优先级应该是最低的。</p>
 <p>该处理器会将所有请求转发（forward）到默认的Servlet，因此需要保证它在所有URL处理器映射<code>HandlerMappings</code>的最后。如果你是通过<code>&lt;mvc:annotation-driven&gt;</code>的方式进行配置，或自己定制了<code>HandlerMapping</code>实例，那么你需要确保该处理器<code>order</code>属性的值比<code>DefaultServletHttpRequestHandler</code>的次序值<code>Integer.MAXVALUE</code>小。</p>
 <p>使用默认的配置启用该特性，你可以：</p>

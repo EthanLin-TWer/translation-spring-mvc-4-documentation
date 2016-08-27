@@ -1,4 +1,4 @@
-<h1 id="21-9-2-">21.9.2 定义主题</h1>
+<h3 id="21-9-2-">21.9.2 定义主题</h3>
 <p>要在你的应用中使用主题，你必须实现一个<code>org.springframework.ui.context.ThemeSource</code>接口。<code>WebApplicationContext</code>接口继承了<code>ThemeSource</code>接口，但主要的工作它还是委托给接口具体的实现来完成。默认的实现是<code>org.springframework.ui.context.support.ResourceBundleThemeSource</code>，它会从classpath的根路径下去加载配置文件。如果需要定制<code>ThemeSource</code>的实现，或要配置<code>ResourceBundleThemeSource</code>的基本前缀名（base name prefix），你可以在应用上下文（application context）下注册一个名字为保留名<code>themeSource</code>的bean，web应用的上下文会自动检测名字为<code>themeSource</code>的bean并使用它。</p>
 <p>使用的是<code>ResourceBundleThemeSource</code>时，一个主题可以定义在一个简单的配置文件中。该配置文件会列出所有组成了该主题的资源。下面是个例子：</p>
 <pre><code>    styleSheet=/themes/cool/style.css

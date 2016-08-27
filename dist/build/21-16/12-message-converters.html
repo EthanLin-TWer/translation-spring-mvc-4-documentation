@@ -1,4 +1,4 @@
-<h1 id="21-16-12-">21.16.12 消息转换器</h1>
+<h3 id="21-16-12-">21.16.12 消息转换器</h3>
 <p>使用MVC Java编程配置方式时，如果你想替换Spring MVC提供的默认转换器，完全定制自己的<code>HttpMessageConverter</code>，这可以通过覆写<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html#configureMessageConverters-java.util.List-"><code>configureMessageConverters()</code></a>方法来实现。如果你只是想定制一下，或者想在默认转换器之外再添加其他的转换器，那么可以通过覆写<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html#extendMessageConverters-java.util.List-"><code>extendMessageConverters()</code></a>方法来实现。</p>
 <p>下面是一段例子，它使用定制的<code>ObjectMapper</code>构造了新的Jackson的JSON和XML转换器，并用它们替换了默认提供的转换器：</p>
 <pre><code class="lang-java">    @Configuration

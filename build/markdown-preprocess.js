@@ -41,7 +41,13 @@ function replaceHeaders(md, content) {
         fse.outputFile(md, content.replace(/^#{1,6}\s*/gmi, '## '), 'utf-8')
     } else if (is_ordinary_section(md)) {
         // keep header level start from h3
-        // console.log(/^(#+)\s*/gm.exec(content)[1])
+        const HEADER = /^(#+)/gm
+        const maxLevel = content.match(HEADER).reduce((min, current) => {
+            return current.length < min.length ? current : min
+        }).length
+        if (3 - maxLevel) {
+            fse.outputFile(md, content.replace(HEADER, "$1" + '#'.repeat(3 - maxLevel)), 'utf-8')
+        }
     } else {
         return console.error('file is not valid chapter/sectoin file: ' + md)
     }

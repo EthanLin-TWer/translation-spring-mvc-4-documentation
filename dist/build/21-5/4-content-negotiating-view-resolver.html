@@ -1,4 +1,4 @@
-<h1 id="21-5-4-contentnegotiatingviewresolver">21.5.4 内容协商解析器ContentNegotiatingViewResolver</h1>
+<h3 id="21-5-4-contentnegotiatingviewresolver">21.5.4 内容协商解析器ContentNegotiatingViewResolver</h3>
 <p><code>ContentNegotiatingViewResolver</code>自己并不会解析视图，而是委托给其他的视图解析器去处理。</p>
 <p>The <code>ContentNegotiatingViewResolver</code> does not resolve views itself but rather
 delegates to other view resolvers, selecting the view that resembles the
@@ -69,7 +69,7 @@ Negotiation&quot;</a>.</p>
 <p>The <code>InternalResourceViewResolver</code> handles the translation of view names and
 JSP pages, while the <code>BeanNameViewResolver</code> returns a view based on the name
 of a bean. (See &quot;[Resolving views with the ViewResolver interface](mvc.html</p>
-<p>#mvc-viewresolver-resolver &quot;21.5.1 Resolving views with the ViewResolver
+<p>###mvc-viewresolver-resolver &quot;21.5.1 Resolving views with the ViewResolver
 interface&quot; )&quot; for more details on how Spring looks up and instantiates a
 view.) In this example, the <code>content</code> bean is a class that inherits from
 <code>AbstractAtomFeedView</code>, which returns an Atom RSS feed. For more information

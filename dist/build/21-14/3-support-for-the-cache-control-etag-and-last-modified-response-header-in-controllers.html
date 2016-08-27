@@ -1,4 +1,4 @@
-<h1 id="21-14-3-cache-control-etag-last-modified-">21.14.3 在控制器中设置Cache-Control、ETag和Last-Modified响应头</h1>
+<h3 id="21-14-3-cache-control-etag-last-modified-">21.14.3 在控制器中设置Cache-Control、ETag和Last-Modified响应头</h3>
 <p>控制器能处理带有<code>&#39;Cache-Control&#39;</code>、<code>&#39;ETag&#39;</code>及/或<code>&#39;If-Modified-Since&#39;</code>头的请求，如果服务端在响应中设置了<code>&#39;Cache-Control&#39;</code>响应头，那么我们推荐在控制器内对这些请求头进行处理。这涉及一些工作：计算最后更改时间<code>long</code>和/或请求的ETag值、与请求头的<code>&#39;If-Modified-Since&#39;</code>值做比较，并且在资源未更改的情况下在响应中返回一个304（资源未更改）状态码。</p>
 <p>正如在<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-httpentity" title="Using HttpEntity">&quot;使用HttpEntity&quot;一节</a>中所讲，控制器可以通过<code>HttpEntity</code>类与请求/响应交互。返回<code>ResponseEntity</code>的控制器可以在响应中包含HTTP缓存的信息，如下代码所示：</p>
 <pre><code class="lang-java">@RequestMapping(&quot;/book/{id}&quot;)
