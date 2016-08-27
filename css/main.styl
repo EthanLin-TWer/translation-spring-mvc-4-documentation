@@ -2,7 +2,7 @@ border = 1px solid #ccc
 general-code-color = #6D180B
 link-color = #4183C4
 background-color = #f8f8f8
-code-font-family = Consolas, "Liberation Mono", Courier, monospace !important
+code-font-family = Consolas, "Liberation Mono", Courier, monospace
 
 block-style(left-right-padding)
    margin: 15px 0
@@ -11,13 +11,18 @@ block-style(left-right-padding)
    border-radius: 3px
    background-color: background-color
 
+html
+   margin: 0
+   padding: 0
+
 body
    margin: 15px 30px
+   font-size: 16px
    font-family: Helvetica, Arial, Freesans, Clean, Sans-serif
+   line-height: 1.6
    background: url("/dist/images/background.jpg") no-repeat center top
    background-color: white
    color: #333
-   line-height: 1.6
    -webkit-font-smoothing: antialiased
 
 header
@@ -29,8 +34,73 @@ header
       font-weight: bold
 
 .documentation-main
+   min-width: 400px
    max-width: 1200px
    margin: 0 auto
+
+h1, h2, h3, h4, h5, h6
+   color: #000
+   cursor: text
+   font-weight: bold
+   padding: 0
+
+h1, h2
+   margin: 30px 0
+
+h3, h4, h5, h6
+   margin: 20px 0
+
+h2
+   font-size: 24px
+
+h3
+   font-size: 20px
+
+h4, h5
+   font-size: 18px
+
+p
+   display: block
+   margin: 15px 0
+   text-align: left
+
+a
+   color: link-color
+   text-decoration: none
+
+blockquote
+   block-style(20px)
+   display: block
+   font-size: 15px
+   line-height: 1.5
+
+:not(pre)>code
+   font-family: code-font-family
+   padding: 1px 3px
+   border: border
+   border-radius: 4px
+   color: general-code-color
+   background-color: #f2f2f2
+   text-shadow: none
+   white-space: nowrap
+
+pre
+   block-style(10px)
+   font-family: code-font-family !important
+
+table
+   margin: 16px
+   padding: 8px
+   border: border
+   border-radius: 4px
+   border-spacing: 0
+
+   th
+      padding: 5px 8px
+
+   td
+      text-align: left
+      vertical-align: top
 
 .tip
    margin: 20px
@@ -50,63 +120,3 @@ header
 
       p
          margin: 5px 0
-
-h1, h2, h3, h4, h5, h6
-   color: #000
-   cursor: text
-   font-weight: bold
-   margin-bottom: 10px
-   padding: 0
-
-h1, h2, h3
-   margin-top: 30px
-
-h4, h5, h6
-   margin-top: 25px
-
-h2
-   font-size: 24px
-
-h3
-   font-size: 20px
-
-h4, h5
-   font-size: 18px
-
-blockquote
-   block-style(20px)
-
-p
-   display: block
-   margin: 15px 0
-   text-align: left
-
-a
-   color: link-color
-   text-decoration: none
-
-:not(pre)>code
-   font-family: code-font-family
-   padding: 1px 3px
-   border: border
-   border-radius: 4px
-   color: general-code-color
-   background-color: #f2f2f2
-
-pre
-   block-style(10px)
-   font-family: code-font-family
-
-table
-   margin: 16px
-   padding: 8px
-   border: border
-   border-radius: 4px
-   border-spacing: 0
-
-   th
-      padding: 5px 8px
-
-   td
-      text-align: left
-      vertical-align: top
