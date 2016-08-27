@@ -7,6 +7,6 @@ glob.sync('dist/build/**/*', {}).filter(file => file.endsWith('.md')).forEach(md
         fse.outputFile(md.replace('.md', '.html'), marked(content, { gfm: true }), 'utf-8')
         fse.remove(md)
 
-        return console.log('[html]: ' + md + ' converted to html, origin markdown removed')
+        return console.log('[html]: ' + md + ' converted to html')
     })
 })
