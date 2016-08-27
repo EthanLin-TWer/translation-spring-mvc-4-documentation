@@ -14,7 +14,7 @@ install:
 
 script:
     - gitbook build
-    - ./travis/sync-book-to-qiniu.sh
+    - npm run deploy:gitbook
 
 env:
     global:
