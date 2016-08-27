@@ -28,7 +28,7 @@
     "cleanindex:dev": "node build/clean-index-html.js",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
     "deploy:gitbook": "gitbook build && sh ./build/gitbook/sync-book-to-qiniu.sh",
-    "deploy:official": "npm run build && tree dist"
+    "deploy:official": "npm run build"
   },
   "repository": {
     "type": "git",
