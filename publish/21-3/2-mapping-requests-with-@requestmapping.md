@@ -271,7 +271,7 @@ the javadocs of the `PropertyPlaceholderConfigurer` class.
 `@RequestMapping`注解支持在路径中使用占位符，以取得一些本地配置、系统配置、环境变量等。这个特性有时很有用，比如说控制器的映射路径需要通过配置来定制的场景。如果想了解更多关于占位符的信息，可以参考`PropertyPlaceholderConfigurer`这个类的文档。
 
 
-#### Suffix Pattern Matching
+## Suffix Pattern Matching
 ## 后缀模式匹配
 
 > [Original] By default Spring MVC performs `".*"` suffix pattern matching so that a
@@ -455,7 +455,7 @@ public void addPet(@RequestBody Pet pet, Model model) {
 
 > [Original] The _consumes_ condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.
 
-> _consumes_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
+> _consumes_ 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
 
 ## 可生产的媒体类型
 
@@ -484,7 +484,7 @@ specify the same media type than the default one configured in `MappingJackson2H
 > [Original] The _produces_ condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level
 producible types override rather than extend type-level producible types.
 
-> _produces_属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
+> _produces_ 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。
 
 ## 请求参数与请求头的值
 

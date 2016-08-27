@@ -518,7 +518,7 @@ public class AssignableTypesAdvice {}
 
 下面两节，还看不太懂，待译。
 
-#### Jackson Serialization View Support
+## Jackson Serialization View Support
 
 It can sometimes be useful to filter contextually the object that will be
 serialized to the HTTP response body. In order to provide such capability,
@@ -592,7 +592,7 @@ class to the model:
         }
     }
 
-#### Jackson JSONP Support
+## Jackson JSONP Support
 
 In order to enable [JSONP](http://en.wikipedia.org/wiki/JSONP) support for
 `@ResponseBody` and `ResponseEntity` methods, declare an `@ControllerAdvice`
