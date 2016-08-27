@@ -240,7 +240,7 @@ customized through configuration. For more information on placeholders, see
 the javadocs of the <code>PropertyPlaceholderConfigurer</code> class.</p>
 </blockquote>
 <p><code>@RequestMapping</code>注解支持在路径中使用占位符，以取得一些本地配置、系统配置、环境变量等。这个特性有时很有用，比如说控制器的映射路径需要通过配置来定制的场景。如果想了解更多关于占位符的信息，可以参考<code>PropertyPlaceholderConfigurer</code>这个类的文档。</p>
-<h4 id="suffix-pattern-matching">Suffix Pattern Matching</h4>
+<h2 id="suffix-pattern-matching">Suffix Pattern Matching</h2>
 <h2 id="-">后缀模式匹配</h2>
 <blockquote>
 <p>[Original] By default Spring MVC performs <code>&quot;.*&quot;</code> suffix pattern matching so that a
@@ -405,7 +405,7 @@ public void addPet(@RequestBody Pet pet, Model model) {
 <p>指定可消费媒体类型的表达式中还可以使用否定，比如，可以使用 <em>!text/plain</em> 来匹配所有请求头 <em>Content-Type</em> 中不含 <em>text/plain</em> 的请求。同时，在<code>MediaType</code>类中还定义了一些常量，比如<code>APPLICATION_JSON_VALUE</code>、<code>APPLICATION_JSON_UTF8_VALUE</code>等，推荐更多地使用它们。</p>
 <blockquote>
 <p>[Original] The <em>consumes</em> condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level consumable types override rather than extend type-level consumable types.</p>
-<p><em>consumes</em>属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
+<p><em>consumes</em> 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
 </blockquote>
 <h2 id="-">可生产的媒体类型</h2>
 <blockquote>
@@ -429,7 +429,7 @@ specify the same media type than the default one configured in <code>MappingJack
 <blockquote>
 <p>[Original] The <em>produces</em> condition is supported on the type and on the method level. Unlike most other conditions, when used at the type level, method-level
 producible types override rather than extend type-level producible types.</p>
-<p><em>produces</em>属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
+<p><em>produces</em> 属性提供的是方法级的类型支持。与其他属性不同，当在类型级使用时，方法级的消费类型将覆盖类型级的配置，而非继承关系。</p>
 </blockquote>
 <h2 id="-">请求参数与请求头的值</h2>
 <blockquote>

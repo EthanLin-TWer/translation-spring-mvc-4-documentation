@@ -374,7 +374,7 @@ public class AssignableTypesAdvice {}
 </code></pre>
 <p>更多的细节，请查阅<a href="http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html"><code>@ControllerAdvice</code>的文档</a>。</p>
 <p>下面两节，还看不太懂，待译。</p>
-<h4 id="jackson-serialization-view-support">Jackson Serialization View Support</h4>
+<h2 id="jackson-serialization-view-support">Jackson Serialization View Support</h2>
 <p>It can sometimes be useful to filter contextually the object that will be
 serialized to the HTTP response body. In order to provide such capability,
 Spring MVC has built-in support for rendering with <a href="http://wiki.fasterxml.com/JacksonJsonViews">Jackson&#39;s Serialization
@@ -447,7 +447,7 @@ public class UserController extends AbstractController {
         return &quot;userView&quot;;
     }
 }
-</code></pre><h4 id="jackson-jsonp-support">Jackson JSONP Support</h4>
+</code></pre><h2 id="jackson-jsonp-support">Jackson JSONP Support</h2>
 <p>In order to enable <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a> support for
 <code>@ResponseBody</code> and <code>ResponseEntity</code> methods, declare an <code>@ControllerAdvice</code>
 bean that extends <code>AbstractJsonpResponseBodyAdvice</code> as shown below where the

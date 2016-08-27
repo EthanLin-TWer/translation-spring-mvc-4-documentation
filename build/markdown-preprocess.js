@@ -19,13 +19,13 @@ glob.sync('publish/**/*', {}).forEach(md => {
                                  'detailed message below:\n' + error + '\n')
         }
 
-        console.log('---------------------------')
-        console.log('[markdown-start]: ' + md + '   , copying to destination...')
+        // console.log('---------------------------')
+        // console.log('[markdown-start]: ' + md + '   , copying to destination...')
         const destination = md.replace('publish', 'dist/build')
         fse.copySync(md, destination)
-        console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
+        // console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
 
-        console.log('[preprocessing] : ' + destination + ', start overview section header from h2(##)')
+        // console.log('[preprocessing] : ' + destination + ', start overview section header from h2(##)')
         replaceHeaders(destination, content) // this can be async since they are operating on separate files
     })
 })
@@ -41,6 +41,7 @@ function replaceHeaders(md, content) {
         fse.outputFile(md, content.replace(/^#{1,6}\s*/gmi, '## '), 'utf-8')
     } else if (is_ordinary_section(md)) {
         // keep header level start from h3
+        // console.log(/^(#+)\s*/gm.exec(content)[1])
     } else {
         return console.error('file is not valid chapter/sectoin file: ' + md)
     }
