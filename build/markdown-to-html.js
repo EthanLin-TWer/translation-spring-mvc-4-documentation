@@ -4,7 +4,7 @@ const marked = require('marked')
 
 glob.sync('publish/**/*', {}).forEach(md => {
     if (['jpg', 'png', 'jpeg'].find(pic_format => md.endsWith(pic_format))) {
-        fse.copy(md, md.replace('publish', 'dist/build'))
+        fse.copy(md, md.replace(/publish\/.*?\//, 'dist/'))
         return console.log('[image]: ' + md + ', copying to destination...')
     }
 
