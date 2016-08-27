@@ -26,7 +26,7 @@ glob.sync('publish/**/*', {}).forEach(md => {
         console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
 
         console.log('[preprocessing] : ' + destination + ', start overview section header from h2(##)')
-        replaceHeaders(destination)
+        replaceHeaders(destination, content) // this can be async since they are operating on separate files
     })
 })
 
@@ -35,12 +35,10 @@ glob.sync('publish/**/*', {}).forEach(md => {
 // would probably start from header 1 '#', and since now we're combining all these chapters/sections
 // into one index page, in that way we have to adjust the headers so that section headers have a lower
 // level than the chapter one, and sub-sections lower than sections and etc.
-function replaceHeaders(md) {
+function replaceHeaders(md, content) {
     if (is_overview_section(md)) {
         // keep header level start from h2, this case is easy to handle for now
-        fse.readFile(md, 'utf-8', (error, content) => {
-            fse.outputFile(md, content.replace(/^#{1,6}\s*/gmi, '## '), 'utf-8')
-        })
+        fse.outputFile(md, content.replace(/^#{1,6}\s*/gmi, '## '), 'utf-8')
     } else if (is_ordinary_section(md)) {
         // keep header level start from h3
     } else {
