@@ -4,10 +4,11 @@
   "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
   "main": "index.html",
   "dependencies": {
-    "marked": "^0.3.6",
     "fs-extra": "^0.30.0",
     "gitbook": "^3.1.1",
+    "gitbook-cli": "^2.3.0",
     "glob": "^7.0.5",
+    "marked": "^0.3.6",
     "stylus": "^0.54.5"
   },
   "devDependencies": {
@@ -26,7 +27,7 @@
     "stylus:dev": "npm run stylus -- --watch",
     "cleanindex:dev": "node build/clean-index-html.js",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
-    "deploy:gitbook": "sh ./build/gitbook/sync-book-to-qiniu.sh"
+    "deploy:gitbook": "gitbook build && sh ./build/gitbook/sync-book-to-qiniu.sh"
   },
   "repository": {
     "type": "git",
