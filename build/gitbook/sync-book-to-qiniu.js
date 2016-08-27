@@ -10,13 +10,10 @@ const ignoredFiles = [
     'package.json'
 ];
 
-// node ./travis/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY
-const qiniuAccessKey = process.argv.slice(2, 3);
-const qiniuSecretKey = process.argv.slice(3);
-
+// node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY
 // Prepare Qiniu configuration options
-qiniu.conf.ACCESS_KEY = qiniuAccessKey.toString(crypto.enc.Utf8);
-qiniu.conf.SECRET_KEY = qiniuSecretKey.toString(crypto.enc.Utf8);
+qiniu.conf.ACCESS_KEY = process.argv.slice(2, 3).toString(crypto.enc.Utf8);
+qiniu.conf.SECRET_KEY = process.argv.slice(3).toString(crypto.enc.Utf8);
 const bucket = 'mvc-linesh-tw';
 
 glob.sync('_book/**/*.*', {}).filter(filename => {
