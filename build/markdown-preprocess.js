@@ -19,14 +19,15 @@ glob.sync('publish/**/*', {}).forEach(md => {
                                  'detailed message below:\n' + error + '\n')
         }
 
-        // console.log('---------------------------')
-        // console.log('[markdown-start]: ' + md + '   , copying to destination...')
+        console.log('---------------------------')
+        console.log('[markdown-start]: ' + md + '   , copying to destination...')
         const destination = md.replace('publish', 'dist/build')
         fse.copySync(md, destination)
-        // console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
+        console.log('[markdown-end]  : ' + destination + ', copied to destination successfully.')
 
-        // console.log('[preprocessing] : ' + destination + ', start overview section header from h2(##)')
+        console.log('[preprocessing] : ' + destination + ', adjusting section headers from gitbook to spring single page...')
         replaceHeaders(destination, content) // this can be async since they are operating on separate files
+        console.log('[preprocessing] : ' + destination + ', header processing successfully.')
     })
 })
 
@@ -36,27 +37,39 @@ glob.sync('publish/**/*', {}).forEach(md => {
 // into one index page, in that way we have to adjust the headers so that section headers have a lower
 // level than the chapter one, and sub-sections lower than sections and etc.
 function replaceHeaders(md, content) {
-    if (is_overview_section(md)) {
-        // keep header level start from h2, this case is easy to handle for now
-        fse.outputFile(md, content.replace(/^#{1,6}\s*/gmi, '## '), 'utf-8')
-    } else if (is_ordinary_section(md)) {
-        // keep header level start from h3
-        const HEADER = /^(#+)/gm
-        const maxLevel = content.match(HEADER).reduce((min, current) => {
-            return current.length < min.length ? current : min
-        }).length
-        if (3 - maxLevel) {
-            fse.outputFile(md, content.replace(HEADER, "$1" + '#'.repeat(3 - maxLevel)), 'utf-8')
-        }
-    } else {
-        return console.error('file is not valid chapter/sectoin file: ' + md)
+    if (isValidSection(md) && needsHeaderAdjustment(md, content)) {
+        fse.outputFile(md, content.replace(HEADER_REGEX, "$1" + adjustment(md, content)), 'utf-8')
     }
 }
 
-function is_overview_section(section) {
+function needsHeaderAdjustment(md, content) {
+    return (baseHeaderLevel(md) - currentHeaderLevel(content)) !== 0
+}
+
+function isValidSection(md) {
+    return isOverviewSection(md) || isOrdinarySection(md)
+}
+
+function adjustment(md, content) {
+    return '#'.repeat(baseHeaderLevel(md) - currentHeaderLevel(content))
+}
+
+function baseHeaderLevel(md) {
+    return isOverviewSection(md) ? 2 : isOrdinarySection(md) ? 3 : -1
+}
+
+const HEADER_REGEX = /^(#+)/gm
+
+function currentHeaderLevel(content) {
+    return content.match(HEADER_REGEX).reduce((min, current) => {
+        return current.length < min.length ? current : min
+    }).length
+}
+
+function isOverviewSection(section) {
     return /21-\d{1,2}\/(\D+)/gi.test(section)
 }
 
-function is_ordinary_section(section) {
+function isOrdinarySection(section) {
     return /\/21-\d{1,2}\/(\d+)/gi.test(section)
 }
