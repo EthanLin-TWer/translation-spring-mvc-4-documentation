@@ -6,4 +6,7 @@ const qiniuUtils = require('../utils/qiniu.js')
 accessKey = process.argv.slice(2, 3)
 secretKey = process.argv.slice(3)
 
-qiniuUtils.uploadFiles(accessKey, secretKey)
+qiniuUtils.uploadFiles({
+    accessKey: accessKey,
+    secretKey: secretKey
+})

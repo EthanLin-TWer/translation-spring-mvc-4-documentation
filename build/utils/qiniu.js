@@ -4,9 +4,9 @@ const crypto = require('crypto-js')
 
 const bucket = 'mvc-linesh-tw'
 
-function uploadFiles(accessKey, secretKey) {
-    qiniu.conf.ACCESS_KEY = accessKey.toString(crypto.enc.Utf8)
-    qiniu.conf.SECRET_KEY = secretKey.toString(crypto.enc.Utf8)
+function uploadFiles(options) {
+    qiniu.conf.ACCESS_KEY = options.accessKey.toString(crypto.enc.Utf8)
+    qiniu.conf.SECRET_KEY = options.secretKey.toString(crypto.enc.Utf8)
 
     console.log('---------------------------')
     glob.sync('dist/**', { nodir: true, ignore: 'dist/build/**' }).forEach(filepath => {
