@@ -1,3 +1,0 @@
-<h3 id="21-8-1-">21.8.1 获取时区信息</h3>
-<p>除了获取客户端的地区信息外，有时他们所在的时区信息也非常有用。<code>LocaleContextResolver</code>接口为<code>LocaleResolver</code>提供了拓展点，允许解析器在<code>LocaleContext</code>中提供更多的信息，这里面就可以包含时区信息。</p>
-<p>如果用户的时区信息能被解析到，那么你总可以通过<code>RequestContext.getTimeZone()</code>方法获得。时区信息会自动被Spring<code>ConversionService</code>下注册的日期/时间转换器<code>Converter</code>及格式化对象<code>Formatter</code>所使用。</p>

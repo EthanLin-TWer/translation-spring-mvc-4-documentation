@@ -4,11 +4,6 @@ const marked = require('marked')
 
 // copy all files from publish/ to dist/build/
 glob.sync('publish/**/*', {}).forEach(md => {
-    if (['jpg', 'png', 'jpeg'].find(pic_format => md.endsWith(pic_format))) {
-        fse.copy(md, md.replace(/publish\/.*?\//, 'dist/'))
-        return console.log('[image]: ' + md + ', copying to destination...')
-    }
-
     if (fse.statSync(md).isDirectory()) {
         return console.log('[directory]: ' + md + ', returning...')
     }
