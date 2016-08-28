@@ -9,11 +9,11 @@ qiniu.conf.SECRET_KEY = process.argv.slice(3).toString(crypto.enc.Utf8);
 const bucket = 'mvc-linesh-tw';
 
 glob.sync('dist/**/*.*', {}).filter(filename => !filename.startsWith('dist/build/')).forEach(filepath => {
-    const resource_key_in_qiniu_api = (filepath.startsWith('dist/figures') || filepath.startsWith('dist/index.html')) ? filepath.substring('dist/'.length, filepath.length) : filepath;
-    // console.log(resource_key_in_qiniu_api);
+    const resource_key_in_qiniu_api = filepath.substring('dist/'.length, filepath.length);
+    console.log(resource_key_in_qiniu_api);
     // ':' means allow override upload. For further details refer to offical API docs
     const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();
-    uploadFile(policyToken, resource_key_in_qiniu_api, filepath)
+    // uploadFile(policyToken, resource_key_in_qiniu_api, filepath)
 })
 
 function uploadFile(uptoken, key, localFile) {
