@@ -4,7 +4,7 @@ Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有�
 
 下图展示了Spring Web MVC的`DispatcherServlet`处理请求的工作流。熟悉设计模式的朋友会发现，`DispatcherServlet`应用的其实就是一个“前端控制器”的设计模式（其他很多优秀的web框架也都使用了这个设计模式）。
 
-![图21.1 Spring Web MVC处理请求的（高层抽象）工作流](./figures/figure-21-1-the-request-processing-workflow-in-spring-web-mvc.png)
+![图21.1 Spring Web MVC处理请求的（高层抽象）工作流](./figures/figure-21-1-the-request-processing-workflow-in-spring-web-mvc.jpg)
 
 `DispatcherServlet`其实就是个`Servlet`（它继承自`HttpServlet`基类），同样也需要在你web应用的`web.xml`配置文件下声明。你需要在`web.xml`文件中把你希望`DispatcherServlet`处理的请求映射到对应的URL上去。这就是标准的Java EE Servlet配置；下面的代码就展示了对`DispatcherServlet`和路径映射的声明：
 
