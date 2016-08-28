@@ -2,9 +2,11 @@
 
 ![Spring Logo](./spring-logo.png)
 
-本项目翻译的是[Spring MVC官方4.2.4.RELEASE版本的文档][Origin documentation]，包含原文档第21章Spring MVC部分的全部内容。译文尽力于准确传达原意，其次兼顾译文的流畅自然。至于风格和质感，则仍在努力。希望它能为读者带来查阅、学习的价值，自己时不时翻之，仍有收获。 ——2016年6月28 交房租日，8月28日 完成自动化部署后补稿
+本项目翻译的是[Spring MVC官方4.2.4.RELEASE版本的文档][Origin documentation]，包含原文档第21章Spring MVC部分的全部内容。译文尽力于准确传达原意，其次兼顾译文的流畅自然。至于风格和质感，则仍在努力。希望它能为读者带来查阅、学习的价值，自己时不时翻之，仍有收获。
 
-目前多数章节的翻译已完成，剩余部分章节仍在进行。在文档达至我所满意的状态之前都会继续维护它，主要还有译文细化、术语定义、翻译规范、内容、主页修缮、自动化部署等工作可做，读者可前往[issues][Issues link]了解更多，也可参与贡献。翻译过程中遇到值得探讨的翻译问题、取舍及最终解决方案，读者可见[翻译注记](NOTES.md)。
+目前多数章节的翻译已完成，剩余部分章节仍在进行。文档仍在维护状态，主要还有译文细化、术语定义、翻译规范、内容、主页修缮、自动化部署等工作可做，[issues这里][Issues link]有一些有意思的idea。翻译过程中遇到值得探讨的翻译问题、取舍及最终解决方案，读者可见[翻译注记](NOTES.md)。
+
+——2016年6月28 交房租日，8月28日 完成自动化部署后补稿
 
 ## 中文文档地址
 
@@ -14,15 +16,6 @@
 ## 原文地址
 
 [Spring MVC 4.2.4.RELEASE Documentation][Origin documentation]
-
-## 友情链接
-
-本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。“我不确知多少读者需要读此文档，不知多少人果真读之而受益。这不是我能估测、所能评断之事。”昨晚在看陈丹青的《木心谈木心》，讲到他犹豫于出版木心先生这本私房话的心境。正好最近在做翻译、推广，面对我的读者，读之，感觉真挚感动。不敢自比木心，我在我的风中等消息。
-
-这个译本我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/segmentfault/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。最末，连同本项目托管在Travis上的自动化构建网址一并附上。
-
-* [Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
-* [我是如何进行Spring MVC文档翻译项目的环境搭建、项目管理及自动化构建工作的](http://blog.linesh.tw/#/posts/2016-06-26-auto-deploy-translation-to-production-using-jenkins-and-qiniu)
 
 ## 其他相关翻译项目
 
@@ -35,6 +28,15 @@
 | [Spring Framework 4.x参考文档](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [waylau](https://github.com/waylau) | [Github](https://github.com/waylau/spring-framework-4-reference) | 翻译了Spring文档的简介、新特性和容器IOC部分 |
 | [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [sunrh](https://github.com/sunrh) | [Github](https://github.com/sunrh/spring-reference-chinese) | 翻译了Spring文档的简介、新特性和容器IOC部分 |
 | [Spring 中文文档3.1](https://wizardforcel.gitbooks.io/spring-doc-3x/content/) | [wizardforcel](https://github.com/wizardforcel) | - | 主页已标记废弃的项目。楼主BIO是专注单身二十年，言语间竟有一种大学宿友~~不是说我的宿友~~的即视感 |
+
+## 友情链接
+
+本翻译初始只是自我学习需要，逐渐完善后才有坚持完成的执念。“我不确知多少读者需要读此文档，不知多少人果真读之而受益。这不是我能估测、所能评断之事。”昨晚在看陈丹青的《木心谈木心》，讲到他犹豫于出版木心先生这本私房话的心境。正好最近在做翻译、推广，面对我的读者，读之，感觉真挚感动。不敢自比木心，我在我的风中等消息。
+
+这个译本我在国内的多个站点均发表过一篇相同的推广，如OSC/CSDN/Iteye/博客园/掘金/v2ex/segmentfault/Githuber等。除了交付的文档本身外，聊~~瞎扯~~了一些其他的东西。同时，关于这个翻译文档的创始、管理及自动化部署等方面，我也已将其总结成为文章。此二篇文章是对这个项目的完整记录，均发布在我的博客上，有兴趣的读者可以前往阅读。最末，连同本项目托管在Travis上的自动化构建网址一并附上。
+
+* [Spring MVC官方文档翻译稿发布](http://blog.linesh.tw/#/posts/2016-06-23-spring-mvc-documentation-reference)
+* [我是如何进行Spring MVC文档翻译项目的环境搭建、项目管理及自动化构建工作的](http://blog.linesh.tw/#/posts/2016-06-26-auto-deploy-translation-to-production-using-jenkins-and-qiniu)
 
 ## 联系方式
 
