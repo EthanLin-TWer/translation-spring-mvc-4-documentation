@@ -17,13 +17,14 @@
     "qiniu": "^6.1.11"
   },
   "scripts": {
-    "stylus": "stylus css/stylus/*.styl --compress --out dist/css",
+    "images": "mkdir -p dist/images && cp -R images dist && node build/official/copy-documentation-images.js",
+    "stylus": "mkdir -p dist/css && stylus css/stylus/*.styl --compress --out dist/css",
     "preprocess": "node build/official/markdown-preprocess.js",
     "markdown2html": "node build/official/markdown-to-html.js",
     "markdown": "npm run preprocess && npm run markdown2html",
     "html-interpolation": "node build/official/docs-html-interpolation.js",
     "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
-    "build": "npm run stylus && npm run markdown && npm run html-interpolation && npm run htmlmin",
+    "build": "npm run images && npm run stylus && npm run markdown && npm run html-interpolation && npm run htmlmin",
     "stylus:dev": "stylus css/stylus/*.styl --out css --compress --watch",
     "cleanindex:dev": "node build/clean-index-html.js",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
