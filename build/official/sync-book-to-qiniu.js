@@ -10,6 +10,6 @@ qiniuUtils.uploadFiles('dist/**', {
     accessKey: accessKey,
     secretKey: secretKey,
     strippedPath: 'dist/',
-    ignoringList: 'dist/build/**',
+    ignoringList: [ 'dist/build/**' ],
     nodir: true
 })
