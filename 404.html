@@ -20,7 +20,7 @@
         font-family:Arial, sans-serif;
         font-size:12px;
         color:#333;
-        background: #F5D1E3 url(/images/404/sky-404.png) repeat-x 0 0;
+        background: #F5D1E3 url(/app/images/404/sky-404.png) repeat-x 0 0;
         color: #FFF;
         overflow-x:hidden;
         position: relative;
@@ -96,7 +96,7 @@
         width: 189px;
         height: 88px;
         left: 50px;
-        background: transparent url(/images/404/cloud1-404.png) no-repeat scroll 0 0;
+        background: transparent url(/app/images/404/cloud1-404.png) no-repeat scroll 0 0;
     }
     #cloud2 {
         position: absolute;
@@ -104,7 +104,7 @@
         width: 69px;
         height: 29px;
         left: 275px;
-        background: transparent url(/images/404/cloud2-404.png) no-repeat scroll 0 0;
+        background: transparent url(/app/images/404/cloud2-404.png) no-repeat scroll 0 0;
     }
     #gull {
         position: absolute;
@@ -166,12 +166,12 @@
         <p>查完文档还不快滚去学习！</p>
     </div>
     <div id="ripple-control"></div>
-    <img id="fish" src="/images/404/fish-404.png" />
+    <img id="fish" src="/app/images/404/fish-404.png" />
     <div id="ripple"></div>
 
     <div id="cloud1"></div>
     <div id="cloud2"></div>
-    <img id="gull" src="/images/404/gull-404.png"/>
+    <img id="gull" src="/app/images/404/gull-404.png"/>
 
     <ul class="bottomLinkList">
         <li><a href="http://blog.linesh.tw">Blog</a></li>
@@ -212,7 +212,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 e);g.style.width=d+"px";g.style.height=e+"px";s=[Math.floor(0.75*d),0];c=g.getContext("2d");c.fillStyle="rgba(104,168,220,.8)";v()}}function v(){c.fillRect(0,i,d,e-j)}function m(a,b){if(!w)k.style.top="-9999px",k.style.left="-9999px",c.clearRect(0,j,d,e-j);c.clearRect(s[0],s[1]-5,n[0],n[1]);a=a||Math.floor(0.6*d);b=b||0;b+=r-0.5*n[1];c.drawImage(k,a,b,n[0],n[1]);s=[a,b];w||(v(),w=!0)}function O(){midPointY=Math.sin(h*10*P)*(o-h)*Q;h<=o&&(f[p]=[0,midPointY],h%9==0&&h%2==1&&(f[z]=[-1,midPointY],z++));
 c.clearRect(0,j,d,e-j);m(Math.floor(0.6*d),h<o?Math.floor(midPointY):0);c.beginPath();c.moveTo(0,i);for(var a=[0,i],b=0;b<t;b++)if(f[b]){b<p&&(f[b][0]=f[b][0]*R-H,f[p-b+p]=[-f[b][0],f[b][1]]);var q=f[b][0]+I,A=f[b][1]+i;c.bezierCurveTo((q-a[0])/2+a[0],a[1],q-(q-a[0])/2,A,q,A);a[0]=q;a[1]=A}c.lineTo(d,i);c.lineTo(d,e);c.lineTo(0,e);c.closePath();c.fill();h++;h==o&&(B=!1);h>=o*2&&clearInterval(C)}function D(a,b){if(!J)return!1;b&&c.clearRect(x,y,b.w,b.h);a=a||E[0];x=K[0];y=K[1]+a.mt;c.drawImage(l,Math.abs(a.l),
 Math.abs(a.t),a.w,a.h,x,y,a.w,a.h)}function S(){var a=-1,b=0,c=E.length,d;clearInterval(L);L=setInterval(function(){b=++a>c-1?c*2-2-a:a;d=E[b];D(d,M);M=d;a>=c*2-2&&(a=0)},200)}var u=function(a,b,c){var d=c,c=function(b){d.call(a,b)};return a.attachEvent?a.attachEvent("on"+b,c):a.addEventListener(b,c,!1)};if(!window.getComputedStyle)window.getComputedStyle=function(a){return a.currentStyle};var t=13,Q=0.3,d=960,e=600,G=30,r=Math.floor(0.5*e),R=1.01,H=20,i=e-r,j=i-G,o=(t-3)*9,p=Math.floor(t/2),I,g,
-c,C,B=!1,P=Math.PI/180,f,z,h,k,s=[Math.floor(0.75*d),0],n=[236,195],w,l,L,J,M,K=[75,150],E=[{h:58,w:140,t:0,l:0,mt:10},{h:72,w:150,t:-64,l:0,mt:0},{h:61,w:150,t:-151,l:0,mt:30}],N=!1;g=document.createElement("canvas");g.getContext&&(N=!0,document.body.removeChild(document.getElementById("ripple")),g.setAttribute("id","ripple"),document.body.appendChild(g),k=document.getElementById("fish"),l=document.getElementById("gull"),l.setAttribute("src","/images/404/gulls-404.png"));N&&(function(){try{if(fish.complete)m();
+c,C,B=!1,P=Math.PI/180,f,z,h,k,s=[Math.floor(0.75*d),0],n=[236,195],w,l,L,J,M,K=[75,150],E=[{h:58,w:140,t:0,l:0,mt:10},{h:72,w:150,t:-64,l:0,mt:0},{h:61,w:150,t:-151,l:0,mt:30}],N=!1;g=document.createElement("canvas");g.getContext&&(N=!0,document.body.removeChild(document.getElementById("ripple")),g.setAttribute("id","ripple"),document.body.appendChild(g),k=document.getElementById("fish"),l=document.getElementById("gull"),l.setAttribute("src","/app/images/404/gulls-404.png"));N&&(function(){try{if(fish.complete)m();
 else if(parseInt(getComputedStyle(k).height,10))setTimeout(m,1E3);else throw"no fish";}catch(a){u(k,"load",function(){m()})}u(l,"load",function(){J=!0;l.style.top="-9999px";l.style.left="-9999px";D(0,0);S()});u(document.getElementById("ripple-control"),"mouseover",function(a){if(g.getContext&&!B)clearInterval(C),p=Math.floor(t/2),I=a.pageX,z=1,h=0,f=[],f[0]=[H,0],C=setInterval(O,30),B=!0});u(window,"resize",function(){F();m();v();D()})}(),F());(function(){var a=0,b=document.getElementById("cloud1"),
 c=document.getElementById("cloud2"),e=parseInt(getComputedStyle(b).left,10),f=parseInt(getComputedStyle(c).left,10);setInterval(function(){if(++a==2)a=0,e+=1,b.style.left=e+"px";f+=1;c.style.left=f+"px";e>d+50&&(e=-200);f>d+50&&(f=-100)},50)})()})();
 

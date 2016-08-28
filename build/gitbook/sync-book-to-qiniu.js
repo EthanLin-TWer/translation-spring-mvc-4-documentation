@@ -13,9 +13,8 @@ qiniuUtils.uploadFiles('_book/**', {
     ignoringList: [
         '**/mvc-origin.md',
         '**/package.json',
+        '_book/app/**',
         '_book/dist/**',
-        '_book/css/**',
-        '_book/images/**',
         '_book/build/**/*'
     ],
     nodir: true

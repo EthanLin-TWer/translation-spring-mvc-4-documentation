@@ -17,8 +17,8 @@
     "qiniu": "^6.1.11"
   },
   "scripts": {
-    "images": "mkdir -p dist/images && cp -R images dist && node build/official/copy-documentation-images.js",
-    "stylus": "mkdir -p dist/css && stylus css/stylus/*.styl --compress --out dist/css",
+    "images": "mkdir -p dist/app/images && cp -R app/images dist/app/images && node build/official/copy-documentation-images.js",
+    "stylus": "mkdir -p dist/app/css && stylus app/css/stylus/*.styl --compress --out dist/app/css",
     "404:official": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
     "404:gitbook": "html-minifier 404.html --collapse-whitespace --minify-css --output _book/errno-404",
     "preprocess": "node build/official/markdown-preprocess.js",
@@ -27,7 +27,7 @@
     "html-interpolation": "node build/official/docs-html-interpolation.js",
     "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
     "build": "npm run images && npm run stylus && npm run 404:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
-    "stylus:dev": "stylus css/stylus/*.styl --out css --compress --watch",
+    "stylus:dev": "npm run stylus -- --watch",
     "cleanindex:dev": "node build/clean-index-html.js",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
     "build:dev": "npm run build && npm run cleanindex:dev",

@@ -1,11 +1,12 @@
 # MAC OSC Generated File
 .DS_Store
 
-# Gitbook Generated File When Building The Book
-_book
-
 # Final uploading directory, will be created and destoryed only in travis
+_book
 dist
+
+# Local development files
+css
 
 # Gitbook plugins installed by npm
 node_modules

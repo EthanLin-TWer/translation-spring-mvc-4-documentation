@@ -15,8 +15,9 @@ function uploadFiles(uploadingPath, options) {
     }).forEach(filepath => {
         const resourceKey = filepath.substring(options.strippedPath.length, filepath.length)
         // ':' means allow override upload. For further details refer to offical API docs
+        console.log(resourceKey)
         const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resourceKey).token()
-        uploadFile(policyToken, resourceKey, filepath)
+        // uploadFile(policyToken, resourceKey, filepath)
     })
 }
 
