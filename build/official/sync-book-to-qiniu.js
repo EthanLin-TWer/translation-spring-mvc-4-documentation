@@ -16,13 +16,12 @@ glob.sync('dist/**/*.*', {}).filter(filename => !filename.startsWith('dist/build
     const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();
     uploadFile(policyToken, resource_key_in_qiniu_api, filepath)
 })
-console.log('---------------------------')
 
 function uploadFile(uptoken, key, localFile) {
     let extra = new qiniu.io.PutExtra();
     qiniu.io.putFile(uptoken, key, localFile, extra, function(error, response) {
         if(!error) {
-            console.log('[Success] File uploaded: ' + response.key);
+            console.log('[Success] File uploaded to 七牛: ' + response.key);
         } else {
             console.log(error);
         }

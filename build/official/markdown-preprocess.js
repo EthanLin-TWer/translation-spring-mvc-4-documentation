@@ -29,7 +29,7 @@ glob.sync('publish/**/*', {}).forEach(md => {
         replaceHeaders(destination, content) // this can be async since they are operating on separate files
         console.log('[preprocessing] : ' + destination + ', header processed successfully.')
 
-        // add your customization preprocess steps here 
+        // add your customization preprocess steps here
     })
 })
 
