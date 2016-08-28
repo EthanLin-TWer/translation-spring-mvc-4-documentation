@@ -17,7 +17,7 @@
     "qiniu": "^6.1.11"
   },
   "scripts": {
-    "images": "mkdir -p dist/app/images && cp -R app/images dist/app/images && node build/official/copy-documentation-images.js",
+    "images": "mkdir -p dist/app/images && cp -R app/images dist/app && node build/official/copy-documentation-images.js",
     "stylus": "mkdir -p dist/app/css && stylus app/css/stylus/*.styl --compress --out dist/app/css",
     "404:official": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
     "404:gitbook": "html-minifier 404.html --collapse-whitespace --minify-css --output _book/errno-404",
