@@ -10,7 +10,7 @@ function uploadFiles(options) {
 
     console.log('---------------------------')
     glob.sync('dist/**', { nodir: true, ignore: 'dist/build/**' }).forEach(filepath => {
-        const resource_key_in_qiniu_api = filepath.substring('dist/'.length, filepath.length);
+        const resource_key_in_qiniu_api = filepath.substring(options.strippedPath.length, filepath.length);
         // console.log(resource_key_in_qiniu_api);
         // ':' means allow override upload. For further details refer to offical API docs
         const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resource_key_in_qiniu_api).token();

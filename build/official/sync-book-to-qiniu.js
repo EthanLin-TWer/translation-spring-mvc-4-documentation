@@ -8,5 +8,6 @@ secretKey = process.argv.slice(3)
 
 qiniuUtils.uploadFiles({
     accessKey: accessKey,
-    secretKey: secretKey
+    secretKey: secretKey,
+    strippedPath: 'dist/'
 })
