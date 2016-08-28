@@ -1,4 +1,4 @@
-# Spring MVC 4.2.4.RELEASE 中文文档 [![Travis](https://img.shields.io/travis/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation) [![GitHub issues](https://img.shields.io/github/issues/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues?q=is%3Aissue+is%3Aclosed)
+# Spring MVC 4.2.4.RELEASE 中文文档 [![][Badges: Travis CI]][Link: Travis CI] [![][Badges: Github Issues Open]][Links: Github Issues Open] [![][Badges: Github Issues Closed]][Links: Github Issues Closed]
 
 ![Spring Logo](./spring-logo.png)
 
@@ -61,5 +61,13 @@ MIT License
 ![](https://avatars3.githubusercontent.com/u/1506425?v=3&s=20)[ 易枭寒](https://github.com/Yixiaohan)
 ![](https://avatars1.githubusercontent.com/u/5453359?v=3&s=20)[ xcatliu](https://github.com/xcatliu)
 
+---
+
 [Issues link]: https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues
 [Origin documentation]: http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html
+[Badges: Travis CI]: https://img.shields.io/travis/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
+[Links: Travis CI]: https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation
+[Badges: Github Issues Open]: https://img.shields.io/github/issues/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
+[Links: Github Issues Open]: https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues
+[Badges: Github Issues Closed]: https://img.shields.io/github/issues-closed/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
+[Links: Github Issues Closed]: https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues?q=is%3Aissue+is%3Aclosed
