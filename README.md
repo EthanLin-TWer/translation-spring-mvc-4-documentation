@@ -1,4 +1,4 @@
-# Spring MVC 4.2.4.RELEASE 中文文档 [][Travis CI]
+# Spring MVC 4.2.4.RELEASE 中文文档 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?maxAge=2592000)](https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation)
 
 ![Spring Logo](./spring-logo.png)
 
@@ -63,4 +63,3 @@ MIT License
 
 [Issues link]: https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues
 [Origin documentation]: http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html
-[Travis CI]: https://img.shields.io/travis/linesh-simplicity/translation-spring-mvc-4-documentation.svg
