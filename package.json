@@ -1,56 +1,56 @@
 {
-  "name": "spring-mvc-documentation",
-  "version": "1.0.0",
-  "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
-  "main": "index.html",
-  "dependencies": {
-    "fs-extra": "^0.30.0",
-    "gitbook": "^3.1.1",
-    "gitbook-cli": "^2.3.0",
-    "glob": "^7.0.5",
-    "marked": "^0.3.6",
-    "stylus": "^0.54.5"
-  },
-  "devDependencies": {
-    "crypto-js": "^3.1.6",
-    "html-minifier": "^3.0.2",
-    "qiniu": "^6.1.11"
-  },
-  "scripts": {
-    "images": "mkdir -p dist/app/images && cp -R app/images dist/app && node build/official/copy-documentation-images.js",
-    "stylus": "mkdir -p dist/app/css && stylus app/css/stylus/*.styl --compress --out dist/app/css",
-    "404:official": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
-    "404:gitbook": "html-minifier 404.html --collapse-whitespace --minify-css --output _book/errno-404",
-    "resources:official": "npm run 404:official && cp favicon.ico dist",
-    "preprocess": "node build/official/markdown-preprocess.js",
-    "markdown2html": "node build/official/markdown-to-html.js",
-    "markdown": "npm run preprocess && npm run markdown2html",
-    "html-interpolation": "node build/official/docs-html-interpolation.js",
-    "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
-    "build": "npm run images && npm run stylus && npm run resources:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
-    "stylus:dev": "npm run stylus -- --watch",
-    "cleanindex:dev": "node build/clean-index-html.js",
-    "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
-    "build:dev": "npm run build && npm run cleanindex:dev",
-    "deploy:gitbook": "gitbook build && npm run 404:gitbook && node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
-    "deploy:official": "npm run build && node ./build/official/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
-  },
-  "keywords": [
-    "spring",
-    "mvc",
-    "documentation",
-    "文档",
-    "中文",
-    "翻译"
-  ],
-  "author": "Linesh (林从羽)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
-  },
-  "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
+   "name": "spring-mvc-documentation",
+   "version": "1.0.0",
+   "description": "一份比较完整的Spring MVC中文翻译文档。译文力求清楚自然，风格简明清新",
+   "main": "index.html",
+   "dependencies": {
+      "fs-extra": "^0.30.0",
+      "gitbook": "^3.1.1",
+      "gitbook-cli": "^2.3.0",
+      "glob": "^7.0.5",
+      "marked": "^0.3.6",
+      "stylus": "^0.54.5"
+   },
+   "devDependencies": {
+      "crypto-js": "^3.1.6",
+      "html-minifier": "^3.0.2",
+      "qiniu": "^6.1.11"
+   },
+   "scripts": {
+      "images": "mkdir -p dist/app/images && cp -R app/images dist/app && node build/official/copy-documentation-images.js",
+      "stylus": "mkdir -p dist/app/css && stylus app/css/stylus/*.styl --compress --out dist/app/css",
+      "404:official": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
+      "404:gitbook": "html-minifier 404.html --collapse-whitespace --minify-css --output _book/errno-404",
+      "resources:official": "npm run 404:official && cp favicon.ico dist",
+      "preprocess": "node build/official/markdown-preprocess.js",
+      "markdown2html": "node build/official/markdown-to-html.js",
+      "markdown": "npm run preprocess && npm run markdown2html",
+      "html-interpolation": "node build/official/docs-html-interpolation.js",
+      "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
+      "build": "npm run images && npm run stylus && npm run resources:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
+      "stylus:dev": "npm run stylus -- --watch",
+      "cleanindex:dev": "node build/clean-index-html.js",
+      "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
+      "build:dev": "npm run build && npm run cleanindex:dev",
+      "deploy:gitbook": "gitbook build && npm run 404:gitbook && node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
+      "deploy:official": "npm run build && node ./build/official/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation.git"
+   },
+   "keywords": [
+      "spring",
+      "mvc",
+      "documentation",
+      "文档",
+      "中文",
+      "翻译"
+   ],
+   "author": "Linesh (林从羽)",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues"
+   },
+   "homepage": "https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation#readme"
 }
