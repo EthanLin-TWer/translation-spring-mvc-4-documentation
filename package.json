@@ -19,18 +19,19 @@
   "scripts": {
     "images": "mkdir -p dist/images && cp -R images dist && node build/official/copy-documentation-images.js",
     "stylus": "mkdir -p dist/css && stylus css/stylus/*.styl --compress --out dist/css",
-    "resources": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
+    "404:official": "html-minifier 404.html --collapse-whitespace --minify-css --output dist/errno-404",
+    "404:gitbook": "html-minifier 404.html --collapse-whitespace --minify-css --output _book/errno-404",
     "preprocess": "node build/official/markdown-preprocess.js",
     "markdown2html": "node build/official/markdown-to-html.js",
     "markdown": "npm run preprocess && npm run markdown2html",
     "html-interpolation": "node build/official/docs-html-interpolation.js",
     "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
-    "build": "npm run images && npm run stylus && npm run resources && npm run markdown && npm run html-interpolation && npm run htmlmin",
+    "build": "npm run images && npm run stylus && npm run 404:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
     "stylus:dev": "stylus css/stylus/*.styl --out css --compress --watch",
     "cleanindex:dev": "node build/clean-index-html.js",
     "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
     "build:dev": "npm run build && npm run cleanindex:dev",
-    "deploy:gitbook": "gitbook build && node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
+    "deploy:gitbook": "gitbook build && npm run 404:gitbook && node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
     "deploy:official": "npm run build && node ./build/official/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY"
   },
   "repository": {
