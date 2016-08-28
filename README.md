@@ -1,4 +1,4 @@
-# Spring MVC 4.2.4.RELEASE 中文文档 [![][Badges: Travis CI]][Link: Travis CI] [![][Badges: Github Issues Open]][Links: Github Issues Open] [![][Badges: Github Issues Closed]][Links: Github Issues Closed]
+# Spring MVC 4.2.4.RELEASE 中文文档 [![][Badges: Travis CI]][Links: Travis CI] [![][Badges: Github Issues Open]][Links: Github Issues Open] [![][Badges: Github Issues Closed]][Links: Github Issues Closed]
 
 ![Spring Logo](./spring-logo.png)
 
