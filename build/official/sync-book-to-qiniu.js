@@ -9,7 +9,7 @@ qiniu.conf.SECRET_KEY = process.argv.slice(3).toString(crypto.enc.Utf8);
 const bucket = 'mvc-linesh-tw';
 
 console.log('---------------------------')
-glob.sync('dist/**/*.*', {}).filter(filename => !filename.startsWith('dist/build/')).forEach(filepath => {
+glob.sync('dist/**', { nodir: true, ignore: 'dist/build/**' }).forEach(filepath => {
     const resource_key_in_qiniu_api = filepath.substring('dist/'.length, filepath.length);
     // console.log(resource_key_in_qiniu_api);
     // ':' means allow override upload. For further details refer to offical API docs
