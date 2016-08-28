@@ -1,4 +1,4 @@
-# Spring MVC 4.2.4.RELEASE 中文文档 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?maxAge=2592000)](https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation)
+# Spring MVC 4.2.4.RELEASE 中文文档 [![Travis](https://img.shields.io/travis/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation) [![GitHub issues](https://img.shields.io/github/issues/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000)](https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues?q=is%3Aissue+is%3Aclosed)
 
 ![Spring Logo](./spring-logo.png)
 
