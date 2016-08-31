@@ -62,14 +62,14 @@ MIT License
 ![](https://avatars3.githubusercontent.com/u/1506425?v=3&s=20)[ 易枭寒](https://github.com/Yixiaohan)
 ![](https://avatars1.githubusercontent.com/u/5453359?v=3&s=20)[ xcatliu](https://github.com/xcatliu)
 
----
+
 
 [Issues link]: https://github.com/linesh-simplicity/gitbook-translation-spring-mvc-documentation/issues
 [Origin documentation]: http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE/spring-framework-reference/html/mvc.html
 [Badges: Travis CI]: https://img.shields.io/travis/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
 [Links: Travis CI]: https://travis-ci.org/linesh-simplicity/translation-spring-mvc-4-documentation
 [Badges: Github Issues Open]: https://img.shields.io/github/issues/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
-[Links: Github Issues Open]: https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues
+[Links: Github Issues Open]: https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues#boards?notFullScreen=false&repos=50039903
 [Badges: Github Issues Closed]: https://img.shields.io/github/issues-closed/linesh-simplicity/translation-spring-mvc-4-documentation.svg?maxAge=2592000
 [Links: Github Issues Closed]: https://github.com/linesh-simplicity/translation-spring-mvc-4-documentation/issues?q=is%3Aissue+is%3Aclosed
 [Badges: Github Stars]: https://img.shields.io/github/stars/linesh-simplicity/translation-spring-mvc-4-documentation.svg?style=social&label=Star&maxAge=2592000
