@@ -10,10 +10,10 @@ qiniuUtils.clearBucket({
    secretKey: secretKey,
 })
 
-// qiniuUtils.uploadFiles('dist/**', {
-//    accessKey: accessKey,
-//    secretKey: secretKey,
-//    strippedPath: 'dist/',
-//    ignoringList: [ 'dist/build/**' ],
-//    nodir: true
-// })
+qiniuUtils.uploadFiles('dist/**', {
+   accessKey: accessKey,
+   secretKey: secretKey,
+   strippedPath: 'dist/',
+   ignoringList: [ 'dist/build/**' ],
+   nodir: true
+})
