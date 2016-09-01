@@ -27,16 +27,17 @@
       "markdown": "npm run preprocess && npm run markdown2html",
       "html-interpolation": "node build/official/docs-html-interpolation.js",
       "htmlmin": "html-minifier index.html --collapse-whitespace --output dist/index.html",
-      "build": "npm run images && npm run stylus && npm run resources:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
+      "build:gitbook": "gitbook build && npm run 404:gitbook",
+      "build:official": "npm run images && npm run stylus && npm run resources:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
       "qiniusync:gitbook": "node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
       "qiniusync:official": "node ./build/official/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
       "qiniuclean": "node ./build/clear-bucket-before-uploading.js $ACCESS_KEY $SECRET_KEY",
       "stylus:dev": "npm run stylus -- --watch",
       "cleanindex:dev": "node build/clean-index-html.js",
       "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
-      "build:dev": "npm run build && npm run cleanindex:dev",
-      "deploy:gitbook": "npm run qiniuclean && gitbook build && npm run 404:gitbook && npm run qiniusync:gitbook",
-      "deploy:official": "npm run qiniuclean && npm run build && npm run qiniusync:official"
+      "build:dev": "npm run build:official && npm run cleanindex:dev",
+      "deploy:gitbook": "npm run qiniuclean && npm run build:gitbook && npm run qiniusync:gitbook",
+      "deploy:official": "npm run qiniuclean && npm run build:official && npm run qiniusync:official"
    },
    "repository": {
       "type": "git",
