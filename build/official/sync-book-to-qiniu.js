@@ -6,10 +6,15 @@ const qiniuUtils = require('../utils/qiniu.js')
 accessKey = process.argv.slice(2, 3)
 secretKey = process.argv.slice(3)
 
+qiniuUtils.clearBucket({
+   accessKey: accessKey,
+   secretKey: secretKey,
+})
+
 qiniuUtils.uploadFiles('dist/**', {
-    accessKey: accessKey,
-    secretKey: secretKey,
-    strippedPath: 'dist/',
-    ignoringList: [ 'dist/build/**' ],
-    nodir: true
+   accessKey: accessKey,
+   secretKey: secretKey,
+   strippedPath: 'dist/',
+   ignoringList: [ 'dist/build/**' ],
+   nodir: true
 })
