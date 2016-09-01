@@ -1,4 +1,3 @@
-const qiniu  = require("qiniu")
 const qiniuUtils = require('../utils/qiniu.js')
 
 // node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY
