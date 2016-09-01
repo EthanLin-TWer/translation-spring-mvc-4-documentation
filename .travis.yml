@@ -10,8 +10,8 @@ install:
    - npm install
 
 script:
-   - npm run deploy:gitbook
-   # - npm run deploy:official
+   # - npm run deploy:gitbook
+   - npm run deploy:official
 
 env:
    global:
