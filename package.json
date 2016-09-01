@@ -30,7 +30,7 @@
       "build": "npm run images && npm run stylus && npm run resources:official && npm run markdown && npm run html-interpolation && npm run htmlmin",
       "qiniusync:gitbook": "node ./build/gitbook/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
       "qiniusync:official": "node ./build/official/sync-book-to-qiniu.js $ACCESS_KEY $SECRET_KEY",
-      "qiniuclean": "node ./bulid/official/clear-bucket-before-uploading.js $ACCESS_KEY $SECRET_KEY",
+      "qiniuclean": "node ./bulid/clear-bucket-before-uploading.js $ACCESS_KEY $SECRET_KEY",
       "stylus:dev": "npm run stylus -- --watch",
       "cleanindex:dev": "node build/clean-index-html.js",
       "gitbook:dev": "gitbook serve --port 8087 --lrport 45093",
