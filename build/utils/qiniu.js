@@ -35,7 +35,7 @@ function clearBucketBeforeUploading(options) {
 
       console.log('Listing all resources currently in qiniu bucket: ')
       console.log(response.items.map(item => item.key))
-      response.items.map(item => item.key).forEach(resouce => {
+      response.items.map(item => item.key).forEach(resource => {
          client.remove(bucket, resource, (error, response) => {
             console.log('[Delete] Successfully deleted: ' + response.key)
          })
