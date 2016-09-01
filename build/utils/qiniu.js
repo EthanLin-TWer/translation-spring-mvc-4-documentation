@@ -1,7 +1,7 @@
 const qiniu  = require("qiniu")
 const glob   = require('glob')
 const crypto = require('crypto-js')
-const client = new Qiniu.rs.Client()
+const client = new qiniu.rs.Client()
 const qiniuExtend = qiniu.rsf
 
 const bucket = 'mvc-linesh-tw'
