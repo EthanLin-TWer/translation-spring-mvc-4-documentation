@@ -27,7 +27,7 @@ class QiniuUtil {
       })
    }
 
-   clearBucketBeforeUploading(options) {
+   clearBucket(options) {
       console.log('---------------------------')
       qiniuExtend.listPrefix(this.bucket, '', '', '', '', (error, response) => {
          if (error) {
