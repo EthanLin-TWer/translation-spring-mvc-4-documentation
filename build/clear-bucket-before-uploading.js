@@ -5,4 +5,4 @@ const Qiniu = require('./utils/qiniu.js')
 accessKey = process.argv.slice(2, 3)
 secretKey = process.argv.slice(3)
 
-new QiniuUtil(accessKey, secretKey).clearBucket()
+new Qiniu(accessKey, secretKey).clearBucket()
