@@ -41,7 +41,7 @@ class Qiniu {
          console.log(response.items.map(item => item.key))
          response.items.map(item => item.key).forEach(resource => {
             client.remove(this.bucket, resource, (error) => {
-               console.log('[Delete] Origin resouce removed successfully: ' + resource)
+               console.log('[Delete] Origin resource removed successfully: ' + resource)
             })
          })
       })
