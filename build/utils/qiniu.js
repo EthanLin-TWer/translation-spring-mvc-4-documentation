@@ -1,8 +1,10 @@
-const qiniu  = require("qiniu")
-const glob   = require('glob')
-const crypto = require('crypto-js')
-const client = new qiniu.rs.Client()
-const qiniuExtend = qiniu.rsf
+const qiniu    = require("qiniu")
+const glob     = require('glob')
+const crypto   = require('crypto-js')
+const qiniuIO  = qiniu.io
+const qiniuRs  = qiniu.rs
+const qiniuRsf = qiniu.rsf
+const client   = new qiniuRs.Client()
 
 class Qiniu {
    constructor(accessKey, secretKey) {
@@ -22,14 +24,14 @@ class Qiniu {
       }).forEach(filepath => {
          const resourceKey = filepath.substring(options.strippedPath.length, filepath.length)
          // ':' means allow override upload. For further details refer to offical API docs
-         const policyToken = new qiniu.rs.PutPolicy(this.bucket + ":" + resourceKey).token()
+         const policyToken = new qiniuRs.PutPolicy(this.bucket + ":" + resourceKey).token()
          uploadFileInternal(policyToken, resourceKey, filepath)
       })
    }
 
    clearBucket() {
       console.log('---------------------------')
-      qiniuExtend.listPrefix(this.bucket, '', '', '', '', (error, response) => {
+      qiniuRsf.listPrefix(this.bucket, '', '', '', '', (error, response) => {
          if (error) {
             errorLog('listing all resource in bucket', this.bucket, error)
             return ;
@@ -47,7 +49,7 @@ class Qiniu {
 }
 
 function uploadFileInternal(uptoken, key, file) {
-   qiniu.io.putFile(uptoken, key, file, new qiniu.io.PutExtra(), (error, response) => {
+   qiniuIO.putFile(uptoken, key, file, new qiniuIO.PutExtra(), (error, response) => {
       if (error) {
          errorLog('uploading file', response.key, error)
          return ;
