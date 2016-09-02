@@ -4,7 +4,7 @@ const crypto = require('crypto-js')
 const client = new qiniu.rs.Client()
 const qiniuExtend = qiniu.rsf
 
-class QiniuUtil {
+class Qiniu {
    constructor(accessKey, secretKey) {
       this.accessKey = accessKey
       this.secretKey = secretKey
@@ -27,7 +27,7 @@ class QiniuUtil {
       })
    }
 
-   clearBucket(options) {
+   clearBucket() {
       console.log('---------------------------')
       qiniuExtend.listPrefix(this.bucket, '', '', '', '', (error, response) => {
          if (error) {
@@ -46,9 +46,8 @@ class QiniuUtil {
    }
 }
 
-function uploadFileInternal(uptoken, key, localFile) {
-   let extra = new qiniu.io.PutExtra()
-   qiniu.io.putFile(uptoken, key, localFile, extra, function(error, response) {
+function uploadFileInternal(uptoken, key, file) {
+   qiniu.io.putFile(uptoken, key, file, new qiniu.io.PutExtra(), (error, response) => {
       if (error) {
          errorLog('uploading file', response.key, error)
          return ;
@@ -63,4 +62,4 @@ function errorLog(event, resource, error) {
    console.error(error)
 }
 
-module.exports = QiniuUtil
+module.exports = Qiniu
