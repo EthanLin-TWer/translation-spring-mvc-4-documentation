@@ -4,44 +4,46 @@ const crypto = require('crypto-js')
 const client = new qiniu.rs.Client()
 const qiniuExtend = qiniu.rsf
 
-const bucket = 'mvc-linesh-tw'
+class QiniuUtil {
+   constructor(accessKey, secretKey) {
+      this.accessKey = accessKey
+      this.secretKey = secretKey
+      this.bucket = 'mvc-linesh-tw'
 
-function uploadFiles(uploadingPath, options) {
-    qiniu.conf.ACCESS_KEY = options.accessKey.toString(crypto.enc.Utf8)
-    qiniu.conf.SECRET_KEY = options.secretKey.toString(crypto.enc.Utf8)
+      qiniu.conf.ACCESS_KEY = this.accessKey.toString(crypto.enc.Utf8)
+      qiniu.conf.SECRET_KEY = this.secretKey.toString(crypto.enc.Utf8)
+   }
 
-    console.log('---------------------------')
-    glob.sync(uploadingPath, {
-        nodir: options.nodir,
-        ignore: options.ignoringList
-    }).forEach(filepath => {
-        const resourceKey = filepath.substring(options.strippedPath.length, filepath.length)
-        // ':' means allow override upload. For further details refer to offical API docs
-        const policyToken = new qiniu.rs.PutPolicy(bucket + ":" + resourceKey).token()
-        uploadFileInternal(policyToken, resourceKey, filepath)
-    })
-}
+   uploadFiles(uploadingPath, options) {
+      console.log('---------------------------')
+      glob.sync(uploadingPath, {
+         nodir: options.nodir,
+         ignore: options.ignoringList
+      }).forEach(filepath => {
+         const resourceKey = filepath.substring(options.strippedPath.length, filepath.length)
+         // ':' means allow override upload. For further details refer to offical API docs
+         const policyToken = new qiniu.rs.PutPolicy(this.bucket + ":" + resourceKey).token()
+         uploadFileInternal(policyToken, resourceKey, filepath)
+      })
+   }
 
-function clearBucketBeforeUploading(options) {
-   qiniu.conf.ACCESS_KEY = options.accessKey.toString(crypto.enc.Utf8)
-   qiniu.conf.SECRET_KEY = options.secretKey.toString(crypto.enc.Utf8)
+   clearBucketBeforeUploading(options) {
+      console.log('---------------------------')
+      qiniuExtend.listPrefix(this.bucket, '', '', '', '', (error, response) => {
+         if (error) {
+            errorLog('listing all resource in bucket', this.bucket, error)
+            return ;
+         }
 
-   console.log('---------------------------')
-   qiniuExtend.listPrefix(bucket, '', '', '', '', (error, response) => {
-      if (error) {
-         errorLog('listing all resource in bucket', bucket, error)
-         return ;
-      }
-
-      console.log('Listing all resources currently in qiniu bucket: ')
-      console.log(response.items.map(item => item.key))
-      response.items.map(item => item.key).forEach(resource => {
-         client.remove(bucket, resource, (error) => {
-            console.log('[Delete] Origin resouce removed successfully: ' + resource)
+         console.log('Listing all resources currently in qiniu bucket: ')
+         console.log(response.items.map(item => item.key))
+         response.items.map(item => item.key).forEach(resource => {
+            client.remove(this.bucket, resource, (error) => {
+               console.log('[Delete] Origin resouce removed successfully: ' + resource)
+            })
          })
       })
-   })
-
+   }
 }
 
 function uploadFileInternal(uptoken, key, localFile) {
@@ -61,7 +63,4 @@ function errorLog(event, resource, error) {
    console.error(error)
 }
 
-module.exports = {
-    uploadFiles: uploadFiles,
-    clearBucket: clearBucketBeforeUploading
-}
+module.exports = QiniuUtil
