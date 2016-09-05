@@ -12,7 +12,7 @@
 
 ## 中文文档地址
 
-* 七牛主站：[mvc.linesh.tw](http://mvc.linesh.tw)（更快更稳定，使用了原文档样式，体验更好一些）
+* 主站：[mvc.linesh.tw](http://mvc.linesh.tw)（速度和稳定性更好，样式也与原文档一致）
 * [国外Gitbook原站](https://linesh.gitbooks.io/spring-mvc-documentation-linesh-translation/content/)
 
 ## 原文地址
