@@ -66,7 +66,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 </web-app>
 ```
 
-有了以上的Servlet配置文件，你还需要在应用中的`/WEB-INF/`路径下创建一个`golfing-servlet.xml`文件，在该文件中定义所有Spring MVC相关的组件（比如bean等）。你可以通过servlet初始化参数为这个配置文件指定其他的路径（见下面的例子）：
+有了以上的Servlet配置文件，你还需要在应用中的`/WEB-INF/`路径下创建一个`golfing-servlet.xml`文件，在该文件中定义所有Spring MVC相关的组件（比如bean等）。你可以通过servlet初始化参数为这个配置文件指定其他的路径（更多细节请参考下面）。
 
 当你的应用中只需要一个`DispatcherServlet`时，只配置一个根context对象也是可行的。
 
