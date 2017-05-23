@@ -23,7 +23,7 @@ Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有�
 </web-app>
 ```
 
-> In the preceding example, all requests starting with `/example` will be handled by the `DispatcherServlet` instance named example. In a Servlet 3.0+ environment, you also have the option of configuring the Servlet container programmatically. Below is the code based equivalent of the above web.xml example:
+> [Original] In the preceding example, all requests starting with `/example` will be handled by the `DispatcherServlet` instance named example. In a Servlet 3.0+ environment, you also have the option of configuring the Servlet container programmatically. Below is the code based equivalent of the above web.xml example:
 
 在上面的例子中，所有路径以`/example`开头的请求都会被名字为`example`的`DispatcherServlet`处理。在Servlet 3.0+的环境下，你还可以用编程的方式配置Servlet容器。下面是一段这种基于代码配置的例子，它与上面定义的`web.xml`配置文件是等效的。
 
