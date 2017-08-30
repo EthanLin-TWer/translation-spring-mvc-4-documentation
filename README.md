@@ -25,7 +25,7 @@
 
 | 项目 | 作者 | 项目Github | 描述 |
 | :---: | :---: | :---: | --- |
-| [Spring框架参考文档](http://spring.cndocs.tk) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | [Github](http://git.oschina.net/free/spring-framework-reference) | 该项目规模较大、参与人数较多。翻译内容是Spring 4.1.3.RELEASE版本全部文档，其中MVC部分的文档也翻译了一大半。其项目主页保留了与原生Spring文档较一致的样式，很不错 |
+| [Spring框架参考文档](http://spring.cndocs.ml) | [一个团队](http://blog.csdn.net/isea533/article/details/50450289) | [Github](http://git.oschina.net/free/spring-framework-reference) | 该项目规模较大、参与人数较多。翻译内容是Spring 4.1.3.RELEASE版本全部文档，其中MVC部分的文档也翻译了一大半。其项目主页保留了与原生Spring文档较一致的样式，很不错 |
 | [Spring Framework 2.5翻译计划](http://shouce.jb51.net/spring/) | [满江红机构](http://javasalatu.iteye.com/blog/1212618) | - | 感谢[dsliu]()在gitbook上给我提供此版译本链接。译本是整个MVC 2.5.2版的全部文档，其中MVC的部分同样齐全 |
 | [Spring Framework 4.x参考文档](https://waylau.gitbooks.io/spring-framework-4-reference/content/) | [waylau](https://github.com/waylau) | [Github](https://github.com/waylau/spring-framework-4-reference) | 翻译了Spring文档的简介、新特性和容器IOC部分 |
 | [Spring Framework 4.x中文翻译](https://sunrh.gitbooks.io/spring4-reference-chinese/content/) | [sunrh](https://github.com/sunrh) | [Github](https://github.com/sunrh/spring-reference-chinese) | 翻译了Spring文档的简介、新特性和容器IOC部分 |
