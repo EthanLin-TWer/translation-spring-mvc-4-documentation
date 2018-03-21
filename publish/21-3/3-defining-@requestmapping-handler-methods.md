@@ -61,7 +61,7 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 * `View`对象。其中model隐含填充了命令对象，以及注解了`@ModelAttribute`字段的存取器被调用所返回的值。handler方法也可以增加一个`Model`类型的方法参数来增强model
 * `String`对象，其值会被解析成一个逻辑视图名。其中，model将默认填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值。handler方法也可以增加一个`Model`类型的方法参数来增强model
 * `void`。如果处理器方法中已经对response响应数据进行了处理（比如在方法参数中定义一个`ServletResponse`或`HttpServletResponse`类型的参数并直接向其响应体中写东西），那么方法可以返回void。handler方法也可以增加一个`Model`类型的方法参数来增强model
-* 如果处理器方法注解了`ResponseBody`，那么返回类型将被写到HTTP的响应体中，而返回值会被`HttpMessageConverters`转换成所方法声明的参数类型。详见[使用"@ResponseBody注解映射响应体"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-responsebody "Mapping the response body with the @ResponseBody annotation)
+* 如果处理器方法注解了`ResponseBody`，那么返回类型将被写到HTTP的响应体中，而返回值会被`HttpMessageConverters`转换成所方法声明的参数类型。详见[使用"@ResponseBody注解映射响应体"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-responsebody "Mapping the response body with the @ResponseBody annotation")
 * `HttpEntity<?>`或`ResponseEntity<?>`对象，用于提供对Servlet HTTP响应头和响应内容的存取。对象体会被`HttpMessageConverters`转换成响应流。详见[使用HttpEntity一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvn-ann-httpentity "Using Entity")
 * `HttpHeaders`对象，返回一个不含响应体的response
 * `Callable<?>`对象。当应用希望异步地返回方法值时使用，这个过程由Spring MVC自身的线程来管理
