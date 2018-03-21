@@ -20,15 +20,15 @@
 * 用于生成响应正文的`java.io.OutputStream`或`java.io.Writer`。该对象与通过Servlet API拿到的输出流/Writer是一样的
 * `org.springframework.http.HttpMethod`。可以拿到HTTP请求方法
 * 包装了当前被认证用户信息的`java.security.Principal`
-* 带`@PathVariable`注解的方法参数，其存放了URI模板变量中的值。详见[“URI模板变量”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates "URI Template Patterns" )
-* 带`@MatrixVariable`注解的方法参数，其存放了URI路径段中的键值对。详见[“矩阵变量”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-matrix-variables "Matrix Variables")
-* 带`@RequestParam`注解的方法参数，其存放了Servlet请求中所指定的参数。参数的值会被转换成方法参数所声明的类型。详见[“使用@RequestParam注解绑定请求参数至方法参数”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestparam "Binding request parameters to method parameters with @RequestParam" )
-* 带`@RequestHeader`注解的方法参数，其存放了Servlet请求中所指定的HTTP请求头的值。参数的值会被转换成方法参数所声明的类型。详见[“使用@RequestHeader注解映射请求头属性”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestheader "Mapping request header attributes with the @RequestHeader annotation" ).
-* 带`@RequestBody`注解的参数，提供了对HTTP请求体的存取。参数的值通过`HttpMessageConverter`被转换成方法参数所声明的类型。详见[“使用@RequestBody注解映射请求体”一节"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestbody "Mapping the request body with the @RequestBody annotation" )
-* 带`@RequestPart`注解的参数，提供了对一个"multipart/form-data请求块（request part）内容的存取。更多的信息请参考[21.10.5 “处理客户端文件上传的请求”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-multipart-forms-non-browsers "21.10.5 Handling a file upload request from programmatic clients")和[21.10 “Spring对多部分文件上传的支持”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-multipart "21.10 Spring's multipart \(file upload\) support")
-* `HttpEntity<?>`类型的参数，其提供了对HTTP请求头和请求内容的存取。请求流是通过`HttpMessageConverter`被转换成entity对象的。详见[“HttpEntity”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-httpentity "Using HttpEntity")
+* 带`@PathVariable`注解的方法参数，其存放了URI模板变量中的值。详见[“URI模板变量”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-requestmapping-uri-templates "URI Template Patterns" )
+* 带`@MatrixVariable`注解的方法参数，其存放了URI路径段中的键值对。详见[“矩阵变量”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-matrix-variables "Matrix Variables")
+* 带`@RequestParam`注解的方法参数，其存放了Servlet请求中所指定的参数。参数的值会被转换成方法参数所声明的类型。详见[“使用@RequestParam注解绑定请求参数至方法参数”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-requestparam "Binding request parameters to method parameters with @RequestParam" )
+* 带`@RequestHeader`注解的方法参数，其存放了Servlet请求中所指定的HTTP请求头的值。参数的值会被转换成方法参数所声明的类型。详见[“使用@RequestHeader注解映射请求头属性”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-requestheader "Mapping request header attributes with the @RequestHeader annotation" ).
+* 带`@RequestBody`注解的参数，提供了对HTTP请求体的存取。参数的值通过`HttpMessageConverter`被转换成方法参数所声明的类型。详见[“使用@RequestBody注解映射请求体”一节"](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-requestbody "Mapping the request body with the @RequestBody annotation" )
+* 带`@RequestPart`注解的参数，提供了对一个"multipart/form-data请求块（request part）内容的存取。更多的信息请参考[21.10.5 “处理客户端文件上传的请求”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-multipart-forms-non-browsers "21.10.5 Handling a file upload request from programmatic clients")和[21.10 “Spring对多部分文件上传的支持”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-multipart "21.10 Spring's multipart \(file upload\) support")
+* `HttpEntity<?>`类型的参数，其提供了对HTTP请求头和请求内容的存取。请求流是通过`HttpMessageConverter`被转换成entity对象的。详见[“HttpEntity”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-httpentity "Using HttpEntity")
 * `java.util.Map`/`org.springframework.io.Model`/`org.springframework.ui.ModelMap`类型的参数，用以增强默认暴露给视图层的模型(model)的功能
-* `org.springframework.web.servlet.mvc.support.RedirectAttributes`类型的参数，用以指定重定向下要使用到的属性集以及添加flash属性（暂存在服务端的属性，它们会在下次重定向请求的范围中有效）。详见[“向重定向请求传递参数”一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-flash-attributes "21.6 Using flash attributes")
+* `org.springframework.web.servlet.mvc.support.RedirectAttributes`类型的参数，用以指定重定向下要使用到的属性集以及添加flash属性（暂存在服务端的属性，它们会在下次重定向请求的范围中有效）。详见[“向重定向请求传递参数”一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-flash-attributes "21.6 Using flash attributes")
 * 命令或表单对象，它们用于将请求参数直接绑定到bean字段（可能是通过setter方法）。你可以通过`@InitBinder`注解和/或`HanderAdapter`的配置来定制这个过程的类型转换。具体请参考`RequestMappingHandlerAdapter`类`webBindingInitializer`属性的文档。这样的命令对象，以及其上的验证结果，默认会被添加到模型model中，键名默认是该命令对象类的类名——比如，`some.package.OrderAddress`类型的命令对象就使用属性名`orderAddress`类获取。`ModelAttribute`注解可以应用在方法参数上，用以指定该模型所用的属性名
 * `org.springframework.validation.Errors` / `org.springframework.validation.BindingResult`验证结果对象，用于存储前面的命令或表单对象的验证结果（紧接其前的第一个方法参数）。
 * `org.springframework.web.bind.support.SessionStatus`对象，用以标记当前的表单处理已结束。这将触发一些清理操作：`@SessionAttributes`在类级别注解的属性将被移除
@@ -61,8 +61,8 @@ public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result
 * `View`对象。其中model隐含填充了命令对象，以及注解了`@ModelAttribute`字段的存取器被调用所返回的值。handler方法也可以增加一个`Model`类型的方法参数来增强model
 * `String`对象，其值会被解析成一个逻辑视图名。其中，model将默认填充了命令对象以及注解了`@ModelAttribute`字段的存取器被调用所返回的值。handler方法也可以增加一个`Model`类型的方法参数来增强model
 * `void`。如果处理器方法中已经对response响应数据进行了处理（比如在方法参数中定义一个`ServletResponse`或`HttpServletResponse`类型的参数并直接向其响应体中写东西），那么方法可以返回void。handler方法也可以增加一个`Model`类型的方法参数来增强model
-* 如果处理器方法注解了`ResponseBody`，那么返回类型将被写到HTTP的响应体中，而返回值会被`HttpMessageConverters`转换成所方法声明的参数类型。详见[使用"@ResponseBody注解映射响应体"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-responsebody "Mapping the response body with the @ResponseBody annotation)
-* `HttpEntity<?>`或`ResponseEntity<?>`对象，用于提供对Servlet HTTP响应头和响应内容的存取。对象体会被`HttpMessageConverters`转换成响应流。详见[使用HttpEntity一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvn-ann-httpentity "Using Entity")
+* 如果处理器方法注解了`ResponseBody`，那么返回类型将被写到HTTP的响应体中，而返回值会被`HttpMessageConverters`转换成所方法声明的参数类型。详见[使用"@ResponseBody注解映射响应体"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-responsebody "Mapping the response body with the @ResponseBody annotation")
+* `HttpEntity<?>`或`ResponseEntity<?>`对象，用于提供对Servlet HTTP响应头和响应内容的存取。对象体会被`HttpMessageConverters`转换成响应流。详见[使用HttpEntity一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvn-ann-httpentity "Using Entity")
 * `HttpHeaders`对象，返回一个不含响应体的response
 * `Callable<?>`对象。当应用希望异步地返回方法值时使用，这个过程由Spring MVC自身的线程来管理
 * `DeferredResult<?>`对象。当应用希望方法的返回值交由线程自身决定时使用
@@ -98,7 +98,7 @@ public class EditPetForm {
 
 若参数使用了该注解，则该参数默认是必须提供的，但你也可以把该参数标注为非必须的：只需要将`@RequestParam`注解的`required`属性设置为`false`即可（比如，`@RequestParam(path="id", required=false)`）。
 
-若所注解的方法参数类型不是`String`，则类型转换会自动地发生。详见["方法参数与类型转换"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type
+若所注解的方法参数类型不是`String`，则类型转换会自动地发生。详见["方法参数与类型转换"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-typeconversion "Method Parameters And Type
 Conversion")
 
 若`@RequestParam`注解的参数类型是`Map<String, String>`或者`MultiValueMap<String, String>`，则该Map中会自动填充所有的请求参数。
@@ -121,9 +121,9 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 * `FormHttpMessageConverter`用以将表格数据转换成`MultiValueMap<String, String>`或从`MultiValueMap<String, String>`中转换出表格数据
 * `SourceHttpMessageConverter`用于`javax.xml.transform.Source`类的互相转换
 
-关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。另外，如果使用的是MVC命名空间或Java编程的配置方式，会有更多默认注册的消息转换器。更多信息，請參考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
+关于这些转换器的更多信息，请参考["HTTP信息转换器"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion "27.10.2 HTTP Message Conversion")。另外，如果使用的是MVC命名空间或Java编程的配置方式，会有更多默认注册的消息转换器。更多信息，請參考["启用MVC Java编程配置或MVC XML命令空间配置"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
 
-若你更倾向于阅读和编写XML文件，那么你需要配置一个`MarshallingHttpMessageConverter`并为其提供`org.springframework.oxm`包下的一个`Marshaller`和`Unmarshaller`实现。下面的示例就为你展示如何直接在配置文件中配置它。但如果你的应用是使用MVC命令空间或MVC Java编程的方式进行配置的，则请参考["启用MVC Java编程配置或MVC XML命令空间配置"这一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
+若你更倾向于阅读和编写XML文件，那么你需要配置一个`MarshallingHttpMessageConverter`并为其提供`org.springframework.oxm`包下的一个`Marshaller`和`Unmarshaller`实现。下面的示例就为你展示如何直接在配置文件中配置它。但如果你的应用是使用MVC命令空间或MVC Java编程的方式进行配置的，则请参考["启用MVC Java编程配置或MVC XML命令空间配置"这一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
 
 ```xml
 <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -150,7 +150,7 @@ public void handle(@RequestBody String body, Writer writer) throws IOException {
 
 与`@ModelAttribute`注解的参数一样，`Errors`也可以被传入为方法参数，用于检查错误。如果没有声明这样一个参数，那么程序会抛出一个`MethodArgumentNotValidException`异常。该异常默认由`DefaultHandlerExceptionResolver`处理，处理程序会返回一个`400`错误给客户端。
 
-> 关于如何通过MVC命令空间或MVC Java编程的方式配置消息转换器和验证器，也请参考["启用MVC Java编程配置或MVC XML命令空间配置"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
+> 关于如何通过MVC命令空间或MVC Java编程的方式配置消息转换器和验证器，也请参考["启用MVC Java编程配置或MVC XML命令空间配置"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-config-enable "21.16.1 Enabling the MVC Java Config or the MVC XML Namespace")。
 
 ## 使用@ResponseBody注解映射响应体
 
@@ -175,7 +175,7 @@ public String helloWorld() {
 [`@RestController`](http://docs.spring.io/spring-framework/docs/4.2.4.RELEASE
 /javadoc-api/org/springframework/web/bind/annotation/RestController.html)是一个原生内置的注解，它结合了`@ResponseBody`与`@Controller`注解的功能。不仅如此，它也让你的控制器更表义，而且在框架未来的发布版本中，它也可能承载更多的意义。
 
-与普通的`@Controller`无异，`@RestController`也可以与`@ControllerAdvice`bean配合使用。更多细节，请见[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
+与普通的`@Controller`无异，`@RestController`也可以与`@ControllerAdvice`bean配合使用。更多细节，请见[使用@ControllerAdvice辅助控制器](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
 
 
 ## 使用HTTP实体HttpEntity
@@ -232,11 +232,11 @@ public void populateModel(@RequestParam String number, Model model) {
 
 一个控制器可以拥有数量不限的`@ModelAttribute`方法。同个控制器内的所有这些方法，都会在`@RequestMapping`方法之前被调用。
 
-`@ModelAttribute`方法也可以定义在`@ControllerAdvice`注解的类中，并且这些`@ModelAttribute`可以同时对许多控制器生效。具体的信息可以参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
+`@ModelAttribute`方法也可以定义在`@ControllerAdvice`注解的类中，并且这些`@ModelAttribute`可以同时对许多控制器生效。具体的信息可以参考[使用@ControllerAdvice辅助控制器](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")。
 
 > 属性名没有被显式指定的时候又当如何呢？在这种情况下，框架将根据属性的类型给予一个默认名称。举个例子，若方法返回一个`Account`类型的对象，则默认的属性名为"account"。你可以通过设置`@ModelAttribute`注解的值来改变默认值。当向`Model`中直接添加属性时，请使用合适的重载方法`addAttribute(..)`-即，带或不带属性名的方法。
 
-`@ModelAttribute`注解也可以被用在`@RequestMapping`方法上。这种情况下，`@RequestMapping`方法的返回值将会被解释为model的一个属性，而非一个视图名。此时视图名将以视图命名约定来方式来决议，与返回值为void的方法所采用的处理方法类似——请见[视图：请求与视图名的对应](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-coc-r2vnt "21.13.3 The View - RequestToViewNameTranslator")。
+`@ModelAttribute`注解也可以被用在`@RequestMapping`方法上。这种情况下，`@RequestMapping`方法的返回值将会被解释为model的一个属性，而非一个视图名。此时视图名将以视图命名约定来方式来决议，与返回值为void的方法所采用的处理方法类似——请见[视图：请求与视图名的对应](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-coc-r2vnt "21.13.3 The View - RequestToViewNameTranslator")。
 
 
 ## 在方法参数上使用@ModelAttribute注解
@@ -252,7 +252,7 @@ public String processSubmit(@ModelAttribute Pet pet) { }
 
 以上面的代码为例，这个Pet类型的实例可能来自哪里呢？有几种可能:
 
-* 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据"一节](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
+* 它可能因为`@SessionAttributes`注解的使用已经存在于model中——详见["在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据"一节](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-sessionattrib "Using @SessionAttributes to store model attributes in the HTTP Session between requests")
 * 它可能因为在同个控制器中使用了`@ModelAttribute`方法已经存在于model中——正如上一小节所叙述的
 * 它可能是由URI模板变量和类型转换中取得的（下面会详细讲解）
 * 它可能是调用了自身的默认构造器被实例化出来的
@@ -269,7 +269,7 @@ public String save(@ModelAttribute("account") Account account) {
 
 上面这个例子中，model属性的名称（"account"）与URI模板变量的名称相匹配。如果你配置了一个可以将`String`类型的账户值转换成`Account`类型实例的转换器`Converter<String, Account>`，那么上面这段代码就可以工作的很好，而不需要再额外写一个`@ModelAttribute`方法。
 
-下一步就是数据的绑定。`WebDataBinder`类能将请求参数——包括字符串的查询参数和表单字段等——通过名称匹配到model的属性上。成功匹配的字段在需要的时候会进行一次类型转换（从String类型到目标字段的类型），然后被填充到model对应的属性中。数据绑定和数据验证的问题在[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")中提到。如何在控制器层来定制数据绑定的过程，在[这一节 "定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")中提及。
+下一步就是数据的绑定。`WebDataBinder`类能将请求参数——包括字符串的查询参数和表单字段等——通过名称匹配到model的属性上。成功匹配的字段在需要的时候会进行一次类型转换（从String类型到目标字段的类型），然后被填充到model对应的属性中。数据绑定和数据验证的问题在[第8章 _验证，数据绑定和类型转换_](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html "8. Validation, Data Binding, and Type Conversion")中提到。如何在控制器层来定制数据绑定的过程，在[这一节 "定制WebDataBinder的初始化"](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")中提及。
 
 进行了数据绑定后，则可能会出现一些错误，比如没有提供必须的字段、类型转换过程的错误等。若想检查这些错误，可以在注解了`@ModelAttribute`的参数紧跟着声明一个`BindingResult`参数：
 
@@ -384,7 +384,7 @@ public void displayHeaderInfo(@CookieValue("JSESSIONID") String cookie) {
 }
 ```
 
-若注解的目标方法参数不是`String`类型，则类型转换会自动进行。详见["方法参数与类型转换"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
+若注解的目标方法参数不是`String`类型，则类型转换会自动进行。详见["方法参数与类型转换"](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
 
 这个注解可以注解到处理器方法上，在Servlet环境和Portlet环境都能使用。
 
@@ -415,7 +415,7 @@ public void displayHeaderInfo(@RequestHeader("Accept-Encoding") String encoding,
 }
 ```
 
-若注解的目标方法参数不是`String`类型，则类型转换会自动进行。["方法参数与类型转换"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
+若注解的目标方法参数不是`String`类型，则类型转换会自动进行。["方法参数与类型转换"](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-typeconversion "Method Parameters And Type Conversion")一节。
 
 如果`@RequestHeader`注解应用在`Map<String, String>`、`MultiValueMap<String, String>`或`HttpHeaders`类型的参数上，那么所有的请求头属性值都会被填充到map中。
 
@@ -426,12 +426,12 @@ public void displayHeaderInfo(@RequestHeader("Accept-Encoding") String encoding,
 
 ## 方法参数与类型转换
 
-从请求参数、路径变量、请求头属性或者cookie中抽取出来的`String`类型的值，可能需要被转换成其所绑定的目标方法参数或字段的类型（比如，通过`@ModelAttribute`将请求参数绑定到方法参数上）。如果目标类型不是`String`，Spring会自动进行类型转换。所有的简单类型诸如int、long、Date都有内置的支持。如果想进一步定制这个转换过程，你可以通过`WebDataBinder`（详见["定制WebDataBinder的初始化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")一节），或者为`Formatters`配置一个`FormattingConversionService`（详见[8.6节 "Spring字段格式化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#format "8.6 Spring Field Formatting")一节）来做到。
+从请求参数、路径变量、请求头属性或者cookie中抽取出来的`String`类型的值，可能需要被转换成其所绑定的目标方法参数或字段的类型（比如，通过`@ModelAttribute`将请求参数绑定到方法参数上）。如果目标类型不是`String`，Spring会自动进行类型转换。所有的简单类型诸如int、long、Date都有内置的支持。如果想进一步定制这个转换过程，你可以通过`WebDataBinder`（详见["定制WebDataBinder的初始化"](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-webdatabinder "Customizing WebDataBinder initialization")一节），或者为`Formatters`配置一个`FormattingConversionService`（详见[8.6节 "Spring字段格式化"](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/validation.html#format "8.6 Spring Field Formatting")一节）来做到。
 
 
 ## 定制WebDataBinder的初始化
 
-如果想通过Spring的`WebDataBinder`在属性编辑器中做请求参数的绑定，你可以使用在控制器内使用`@InitBinder`注解的方法、在注解了`@ControllerAdvice`的类中使用`@InitBinder`注解的方法，或者提供一个定制的`WebBindingInitializer`。更多的细节，请参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
+如果想通过Spring的`WebDataBinder`在属性编辑器中做请求参数的绑定，你可以使用在控制器内使用`@InitBinder`注解的方法、在注解了`@ControllerAdvice`的类中使用`@InitBinder`注解的方法，或者提供一个定制的`WebBindingInitializer`。更多的细节，请参考[使用@ControllerAdvice辅助控制器](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
 
 
 ### 数据绑定的定制：使用@InitBinder
@@ -488,7 +488,7 @@ public class MyFormController {
 </bean>
 ```
 
-`@InitBinder`方法也可以定义在`@ControllerAdvice`注解的类上，这样配置可以为许多控制器所共享。这提供了除使用`WebBindingInitializer`外的另外一种方法。更多细节请参考[使用@ControllerAdvice辅助控制器](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
+`@InitBinder`方法也可以定义在`@ControllerAdvice`注解的类上，这样配置可以为许多控制器所共享。这提供了除使用`WebBindingInitializer`外的另外一种方法。更多细节请参考[使用@ControllerAdvice辅助控制器](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice "Advising controllers with @ControllerAdvice")一节。
 
 
 ## 使用@ControllerAdvice辅助控制器
