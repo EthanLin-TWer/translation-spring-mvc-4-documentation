@@ -339,7 +339,7 @@ public class EditPetForm {
 
 ## 使用"application/x-www-form-urlencoded"数据
 
-上一小节讲述了如何使用`@ModelAttribute`支持客户端浏览器的多次表单提交请求。对于不是使用的浏览器的客户端，我们也推荐使用这个注解来处理请求。但当请求是一个HTTP PUT方法的请求时，有一个事情需要注意。浏览器可以通过HTTP的GET方法或POST方法来提交表单数据，非浏览器的客户端还可以通过HTTP的PUT方法来提交表单。这就设计是个挑战，因为在Servlet规范中明确规定，`ServletRequest.getParameter*()`系列的方法只能支持通过HTTP POST方法的方式提交表单，而不支持HTTP PUT的方式。
+上一小节讲述了如何使用`@ModelAttribute`支持客户端浏览器的多次表单提交请求。对于不是使用的浏览器的客户端，我们也推荐使用这个注解来处理请求。但当请求是一个HTTP PUT方法的请求时，有一个事情需要注意。浏览器可以通过HTTP的GET方法或POST方法来提交表单数据，非浏览器的客户端还可以通过HTTP的PUT方法来提交表单。这样设计是个挑战，因为在Servlet规范中明确规定，`ServletRequest.getParameter*()`系列的方法只能支持通过HTTP POST方法的方式提交表单，而不支持HTTP PUT的方式。
 
 为了支持HTTP的PUT类型和PATCH类型的请求，Spring的`spring-web`模块提供了一个过滤器`HttpPutFormContentFilter`。你可以在`web.xml`文件中配置它：
 
